@@ -24,7 +24,6 @@
 
 Public sTerminal As TerminalView
 Public sForm As Form
-Private i As Integer
 Public sResult_Style_FontName As String
 Public iResult_Style_FontSize As Integer
 Public iResult_Style_Background As Integer
