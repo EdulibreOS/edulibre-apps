@@ -1,0 +1,70 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,86,82)
+  Icon = Picture["terminal.svg"]
+  Arrangement = Arrange.Vertical
+  Padding = 1
+  { mnuFile Menu
+    Text = ("File")
+    { mnuNewWin Menu
+      Text = ("New Windows")
+    }
+    { mnuNewTab Menu
+      Text = ("New Tab")
+    }
+    { Menu1 Menu
+    }
+    { mnuCloseTab Menu
+      Text = ("Close Tab")
+    }
+    { mnuCloseWin Menu
+      Text = ("Close Windows")
+    }
+  }
+  { mnuEdit Menu
+    Text = ("Edit")
+    { mnuCopy Menu
+      Text = ("Copy")
+    }
+    { mnuPaste Menu
+      Text = ("Paste")
+    }
+    { mnuInsert Menu
+      Text = ("Insert")
+      Shortcut = "Shift+Ins"
+    }
+    { Menu3 Menu
+    }
+    { mnuPreferences Menu
+      Text = ("Preferences")
+      Picture = Picture["icon:/small/linux"]
+      Shortcut = "Ctrl+Alt+P"
+    }
+  }
+  { mnuView Menu
+    Text = ("View")
+    { mnuViewFull Menu
+      Text = ("Fullscreen")
+      Shortcut = "F11"
+    }
+  }
+  { mnuHelp Menu
+    Text = ("Help")
+    { mnuAbout Menu
+      Text = ("About")
+      Picture = Picture["icon:/small/bookmark"]
+    }
+  }
+  { TabPanelTerminal TabStrip
+    MoveScaled(6,10,53,48)
+    Mouse = Mouse.Pointing
+    Expand = True
+    PopupMenu = "mnuFile"
+    Arrangement = Arrange.Fill
+    Closable = True
+    Index = 0
+    Text = ("")
+    Index = 0
+  }
+}

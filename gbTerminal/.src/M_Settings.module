@@ -1,0 +1,130 @@
+' Gambas module file
+
+' Innova Project - Launcher of APP
+'
+' Copyright (C) Herberth Guzmán
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' This code belongs to Benoît Minisini and Fabien Bodard and was adapted for gbTerminal - Innova Project
+
+Public Set_gbTerminal As New Settings(Desktop.ConfigDir &/ "Innova/gbTerminal.conf")
+Public sResult_Style_FontName As String
+Public iResult_Style_FontSize As Integer
+Public iResult_Style_FontBold As Integer
+Public iResult_Style_Background As Integer 
+Public iResult_Style_Foreground As Integer 
+Public iResult_Style_Orientation As Integer
+Public iResult_Style_Theme As Integer
+Public iResult_Style_MenuBar As Integer
+Public iResult_Style_Opacity As Integer 
+Public iResult_Style_Transparency As Integer 
+
+Public sResult_Shortcut_New_Window As String
+Public sResult_Shortcut_Close_Window As String
+Public sResult_Shortcut_New_Tab As String
+Public sResult_Shortcut_Close_Tab As String
+
+Public sResult_Shortcut_Copy As String
+Public sResult_Shortcut_Paste As String
+
+Public Sub Init_Settings_gbTerminal()
+  
+  If Not Exist(Desktop.ConfigDir &/ "Innova") Then
+    Mkdir (Desktop.ConfigDir &/ "Innova")
+  Endif
+  
+  Set_gbTerminal.Write(f_settings)
+  Set_gbTerminal["Style/FontName"] = "Monospace"
+  Set_gbTerminal["Style/FontSize"] = 9
+  Set_gbTerminal["Style/Background"] = &H042C37&
+  Set_gbTerminal["Style/Foreground"] = &HBBD2D2&
+  Set_gbTerminal["Style/Orientation"] = 0 
+  Set_gbTerminal["Style/Theme"] = 0
+  Set_gbTerminal["Style/MenuBar"] = 1
+  Set_gbTerminal["Style/Opacity"] = 100
+  Set_gbTerminal["Style/Transparency"] = 0
+  
+  Set_gbTerminal["Shortcut/New_Window"] = "CTRL+N"
+  Set_gbTerminal["Shortcut/Close_Window"] = "CTRL+Q"
+  Set_gbTerminal["Shortcut/New_Tab"] = "CTRL+T"
+  Set_gbTerminal["Shortcut/Close_Tab"] = "CTRL+W"
+  Set_gbTerminal["Shortcut/Copy"] = "SHIFT+C" '"CTRL+SHIFT+C"
+  Set_gbTerminal["Shortcut/Paste"] = "SHIFT+V"
+  
+  Show_Settings_gbTerminal
+  
+End
+
+Public Sub Show_Theme()
+  
+  Set_gbTerminal.Reload()
+  Show_Settings_gbTerminal
+  
+  With f_terminal.sTerminal
+    '.Exec(["bash"])
+    .Expand = True
+    .Border = False
+    .Blink = True
+    .Font.Name = sResult_Style_FontName
+    .Font.Size = iResult_Style_FontSize
+    If iResult_Style_FontBold = 1 Then
+      .Font.Bold = iResult_Style_FontBold
+    Endif
+    If iResult_Style_FontBold = 0 Then
+      .Font.Bold = False
+    Endif
+    .Background = iResult_Style_Background 
+    .Foreground = iResult_Style_Foreground 
+    .Limit = 0
+    .PopupMenu = "mnuEdit"
+    .SetFocus
+  End With
+  
+Catch
+  
+End
+
+Public Sub Show_Settings_gbTerminal()
+  
+  'Set_gbTerminal.Reload
+  sResult_Style_FontName = Set_gbTerminal["Style/FontName"]
+  iResult_Style_FontSize = Set_gbTerminal["Style/FontSize"]
+  Try iResult_Style_FontBold = Set_gbTerminal["Style/FontBold"]
+  iResult_Style_Background = Set_gbTerminal["Style/Background"]
+  iResult_Style_Foreground = Set_gbTerminal["Style/Foreground"]
+  iResult_Style_Orientation = Set_gbTerminal["Style/Orientation"]
+  iResult_Style_Theme = Set_gbTerminal["Style/Theme"]
+  iResult_Style_MenuBar = Set_gbTerminal["Style/MenuBar"]
+  iResult_Style_Opacity = Set_gbTerminal["Style/Opacity"]
+  iResult_Style_Transparency = Set_gbTerminal["Style/Transparency"]
+  
+  sResult_Shortcut_New_Window = Set_gbTerminal["Shortcut/New_Window"]
+  sResult_Shortcut_Close_Window = Set_gbTerminal["Shortcut/Close_Window"]
+  sResult_Shortcut_New_Tab = Set_gbTerminal["Shortcut/New_Tab"]
+  sResult_Shortcut_Close_Tab = Set_gbTerminal["Shortcut/Close_Tab"]
+  sResult_Shortcut_Copy = Set_gbTerminal["Shortcut/Copy"]
+  sResult_Shortcut_Paste = Set_gbTerminal["Shortcut/Paste"]
+Catch
+  
+End
+
+Public Sub Theme_Application()
+  
+  Application.Font.Size = 9
+  
+End

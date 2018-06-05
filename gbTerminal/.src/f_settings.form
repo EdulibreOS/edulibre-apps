@@ -1,0 +1,190 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,92,56)
+  Mouse = Mouse.Pointing
+  Text = ("gbTerminal - Settings")
+  Icon = Picture["icon:/small/exec"]
+  Resizable = False
+  Arrangement = Arrange.Vertical
+  Spacing = True
+  Margin = True
+  Padding = 2
+  { TabPanelTerminal IconPanel
+    MoveScaled(1,1,87,47)
+    Expand = True
+    Arrangement = Arrange.Vertical
+    Spacing = True
+    Padding = 10
+    Count = 2
+    Border = True
+    Index = 0
+    Text = ("Style")
+    Picture = Picture["keyboard.png"]
+    { HBox49 HBox
+      MoveScaled(1,1,65,4)
+      Spacing = True
+      Indent = True
+      { Label25 Label
+        MoveScaled(1,0,27,4)
+        Expand = True
+        Text = ("Font Name")
+      }
+      { CmbFont ComboBox
+        MoveScaled(31,0,33,4)
+        Mouse = Mouse.Pointing
+        ToolTip = ("Select Font")
+        ReadOnly = True
+      }
+    }
+    { HBox10 HBox
+      MoveScaled(1,6,65,4)
+      Spacing = True
+      Indent = True
+      { Label10 Label
+        MoveScaled(1,0,27,4)
+        Expand = True
+        Text = ("Font Size")
+      }
+      { SpinBoxFontSize SpinBox
+        MoveScaled(55,0,9,4)
+        Mouse = Mouse.Pointing
+        MinValue = 6
+        MaxValue = 24
+      }
+    }
+    { HBox1 HBox
+      MoveScaled(1,11,65,4)
+      Spacing = True
+      Indent = True
+      { Label1 Label
+        MoveScaled(1,0,27,4)
+        Expand = True
+        Text = ("Background")
+      }
+      { ColorButtonBack ColorButton
+        MoveScaled(56,0,8,4)
+        Background = &H042C37&
+        Mouse = Mouse.Pointing
+      }
+    }
+    { HBox2 HBox
+      MoveScaled(1,16,65,4)
+      Spacing = True
+      Indent = True
+      { Label2 Label
+        MoveScaled(1,0,27,4)
+        Expand = True
+        Text = ("Foreground")
+      }
+      { ColorButtonFore ColorButton
+        MoveScaled(56,0,8,4)
+        Foreground = &HBBD2D2&
+        Mouse = Mouse.Pointing
+      }
+    }
+    { HBox9 HBox
+      MoveScaled(1,21,65,4)
+      Spacing = True
+      Indent = True
+      { Label9 Label
+        MoveScaled(1,0,27,4)
+        Expand = True
+        Text = ("Tabs Position")
+      }
+      { cmbOrientation ComboBox
+        MoveScaled(40,0,24,4)
+        Mouse = Mouse.Pointing
+        Expand = True
+        ReadOnly = True
+        List = [("Top"), ("Buttom")]
+      }
+    }
+    { HBox11 HBox
+      MoveScaled(1,26,65,4)
+      Spacing = True
+      Indent = True
+      { Label11 Label
+        MoveScaled(1,0,27,4)
+        Expand = True
+        Text = ("Color Themes")
+      }
+      { cmbTheme ComboBox
+        MoveScaled(40,0,24,4)
+        Mouse = Mouse.Pointing
+        Expand = True
+        ReadOnly = True
+      }
+    }
+    { HBox3 HBox
+      MoveScaled(1,31,65,4)
+      Spacing = True
+      Indent = True
+      { Label3 Label
+        MoveScaled(1,0,27,4)
+        Expand = True
+        Text = ("Application Opacity")
+      }
+      { SpinBoxOpacity SpinBox
+        MoveScaled(55,0,9,4)
+        Mouse = Mouse.Pointing
+      }
+    }
+    { HBox13 HBox
+      MoveScaled(1,36,65,4)
+      Spacing = True
+      Indent = True
+      { ChkMnuBar CheckBox
+        MoveScaled(1,0,24,4)
+        Mouse = Mouse.Pointing
+        Text = ("Show the menu bar")
+      }
+    }
+    { HBox4 HBox
+      MoveScaled(1,41,65,4)
+      Spacing = True
+      Indent = True
+      { Label4 Label
+        MoveScaled(1,0,27,4)
+        Expand = True
+        Text = ("Application Transparency")
+      }
+      { cmbTrans ComboBox
+        MoveScaled(40,0,24,4)
+        Mouse = Mouse.Pointing
+        Expand = True
+        ReadOnly = True
+        List = [("False"), ("True")]
+      }
+    }
+    Index = 1
+    Text = ("Shortcuts")
+    Picture = Picture["theme-config.png"]
+    { GridViewShortcuts TableView
+      MoveScaled(0,0,64,39)
+      Mouse = Mouse.Pointing
+      Mode = Select.Single
+      ShowCursor = True
+      Header = GridView.Horizontal
+    }
+    Index = 0
+  }
+  { HBox21 HBox
+    MoveScaled(22,49,66,4)
+    Spacing = True
+    Indent = True
+    { Panel10 Panel
+      MoveScaled(1,0,33,4)
+      Expand = True
+      Arrangement = Arrange.Vertical
+    }
+    { BtnClose Button
+      MoveScaled(49,0,16,4)
+      NoTabFocus = True
+      Mouse = Mouse.Pointing
+      AutoResize = True
+      Text = Shortcut(("Close"), "C")
+      Picture = Picture["icon:/small/cancel"]
+    }
+  }
+}

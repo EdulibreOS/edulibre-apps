@@ -1,0 +1,15 @@
+Cls_Start
+gbTerminal
+0
+0
+0.1.12
+
+gb.image
+gb.qt5
+gb.form
+gb.desktop
+gb.desktop.x11
+gb.settings
+gb.term
+gb.form.terminal
+
