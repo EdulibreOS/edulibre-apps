@@ -1,0 +1,350 @@
+' Gambas class file
+
+' Innova Project - Launcher of APP
+'
+' Copyright (C) Herberth Guzmán
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' This code belongs to Benoît Minisini and Fabien Bodard and was adapted for gbTerminal - Innova Project
+
+Public sTerminal As TerminalView
+Public sForm As Form
+Public sResult_Style_FontName As String
+Public iResult_Style_FontSize As Integer
+Public iResult_Style_Background As Integer
+Public iResult_Style_Foreground As Integer
+Public iResult_Style_Orientation As Integer
+Public iResult_Style_Theme As Integer
+Public iResult_Style_MenuBar As Integer
+Public iResult_Style_Opacity As Integer
+Public iResult_Style_Transparency As Integer
+
+Public sResult_Shortcut_New_Window As String
+Public sResult_Shortcut_Close_Window As String
+Public sResult_Shortcut_New_Tab As String
+Public sResult_Shortcut_Close_Tab As String
+
+Public sResult_Shortcut_Copy As String
+Public sResult_Shortcut_Paste As String
+
+Public sList_Form As New Object[] 
+Private iForm_Cont As Integer = 0
+
+Public sValue As String
+Private $hWatcher As DesktopWatcher
+
+Public Sub _new()
+  
+  $hWatcher = New DesktopWatcher(True) As "MyDTWatcher"
+  
+End
+
+Public Sub MyDTWatcher_ActiveWindow()
+  
+  M_Settings.Show_Theme
+  
+End
+
+Public Sub Form_Open()
+  
+  Show_Conf_Settings 
+  sTerminal_Init  
+  Conf_Shortcut
+  
+  sTerminal.Clear
+  With sTerminal
+    .Blink = True
+    .Border = False
+    .Expand = True
+    .Limit = 65536
+    .ShowScrollBar = True
+    .Exec(["bash"])
+  End With
+  
+  If iResult_Style_Transparency = 1 Then
+    
+    sTerminal.Background = Color.Transparent
+    '  TabPanelTerminal.Background = Color.Transparent
+  Endif
+  
+End
+
+Public Sub Form_Close()
+  
+  sTerminal.Kill
+  
+Catch
+  
+End
+
+Public Sub sTerminal_Kill()
+  
+  Me.Close
+  '
+  
+End
+
+Public Sub sTerminal_Menu()
+  
+  sValue = Clipboard.Paste()
+  If Not (sValue) Then 
+    mnuPaste.Enabled = False
+    mnuInsert.Enabled = False
+  Else
+    mnuPaste.Enabled = True
+    mnuInsert.Enabled = True
+  Endif
+  
+End
+
+Public Sub sTerminal_Title(Title As String)
+  
+  If Title Then Title &= " - "
+  Me.Title = Title & "gbTerminal"
+  TabPanelTerminal.Text = Title
+  
+End
+
+Public Sub Show_Conf_Settings()
+  
+  sResult_Style_FontName = M_Settings.sResult_Style_FontName 
+  iResult_Style_FontSize = M_Settings.iResult_Style_FontSize
+  iResult_Style_Background = M_Settings.iResult_Style_Background
+  iResult_Style_Foreground = M_Settings.iResult_Style_Foreground
+  iResult_Style_Orientation = M_Settings.iResult_Style_Orientation
+  iResult_Style_Theme = M_Settings.iResult_Style_Theme
+  iResult_Style_MenuBar = M_Settings.iResult_Style_MenuBar
+  iResult_Style_Opacity = M_Settings.iResult_Style_Opacity
+  iResult_Style_Transparency = M_Settings.iResult_Style_Transparency
+  
+  sResult_Shortcut_New_Window = M_Settings.sResult_Shortcut_New_Window
+  sResult_Shortcut_Close_Window = M_Settings.sResult_Shortcut_Close_Window
+  sResult_Shortcut_New_Tab = M_Settings.sResult_Shortcut_New_Tab
+  sResult_Shortcut_Close_Tab = M_Settings.sResult_Shortcut_Close_Tab
+  sResult_Shortcut_Copy = M_Settings.sResult_Shortcut_Copy
+  sResult_Shortcut_Paste = M_Settings.sResult_Shortcut_Paste
+  
+  If iResult_Style_Orientation = 0 Then
+    TabPanelTerminal.Orientation = Align.Top
+  Else
+    TabPanelTerminal.Orientation = Align.Bottom
+  Endif
+  
+  If iResult_Style_Transparency = 0 Then
+    
+    f_terminal.Transparent = 0
+  Else
+    f_terminal.Transparent = 1
+    'TabPanelTerminal.Background = Color.Transparent   
+  Endif
+  
+  If iResult_Style_MenuBar = 1 Then
+    mnuEdit.Visible = 1
+    mnuView.Visible = 1
+    mnuHelp.Visible = 1
+    mnuFile.Visible = 1
+  Else
+    mnuEdit.Visible = 0
+    mnuView.Visible = 0
+    mnuHelp.Visible = 0
+    mnuFile.Visible = 0
+  Endif
+  Me.Opacity = iResult_Style_Opacity
+  
+End
+
+Public Sub sTerminal_Init()
+  
+  Dim i As Integer
+  
+  Inc i
+  
+  sTerminal = New TerminalView(TabPanelTerminal) As "sTerminal"
+  
+  With sTerminal
+    '.Exec(["bash"])
+    .Expand = True
+    .Border = False
+    .Blink = True
+    .Font.Name = sResult_Style_FontName
+    .Font.Size = iResult_Style_FontSize
+    .Background = iResult_Style_Background 
+    .Foreground = iResult_Style_Foreground 
+    .Limit = 0
+    .PopupMenu = "mnuEdit"
+    .SetFocus
+  End With
+  'TabPanelTerminal.Picture = Picture["terminal.png"]  
+  TabPanelTerminal.Picture = Picture["icon:/small/terminal"]  
+  
+End
+
+Public Sub mnuNewTab_Click()
+  
+  TabPanelTerminal.Count += 1
+  
+  sTerminal_Init
+  With sTerminal
+    .Exec(["bash"])
+  End With
+  TabPanelTerminal.Picture = Picture["icon:/small/terminal"]  
+  
+  Show_Conf_Settings
+  
+  If iResult_Style_Transparency = 1 Then
+    sTerminal.Background = Color.Transparent
+    'TabPanelTerminal.Background = Color.Transparent
+  Endif
+  
+End
+
+Public Sub mnuNewWin_Click()
+  
+  Dim sForm_Tmp As New F_terminal
+  
+  iForm_Cont += 1 
+  sList_Form.add(sForm_Tmp) 
+  sForm_Tmp.Show()
+  
+  If iResult_Style_Transparency = 1 Then
+    sForm_Tmp.Transparent = 1
+    sForm_Tmp.sTerminal.Background = Color.Transparent
+  Endif
+  
+End
+
+Public Sub Conf_Shortcut()
+  
+  mnuNewWin.Picture = Picture["icon:/small/add"]
+  mnuNewWin.Text = mnuNewWin.Text 
+  mnuNewWin.Shortcut = sResult_Shortcut_New_Window 
+  mnuCloseWin.Picture = Picture["icon:/small/quit"]
+  mnuCloseWin.Text = mnuCloseWin.Text 
+  mnuCloseWin.Shortcut = sResult_Shortcut_Close_Window 
+  
+  mnuNewTab.Picture = Picture["icon:/small/tablet"]
+  mnuNewTab.Text = mnuNewTab.Text 
+  mnuNewTab.Shortcut = sResult_Shortcut_New_Tab 
+  mnuCloseTab.Picture = Picture["icon:/small/close"]
+  mnuCloseTab.Text = mnuCloseTab.Text 
+  mnuCloseTab.Shortcut = sResult_Shortcut_Close_Tab 
+  
+  mnuCopy.Picture = Picture["icon:/small/copy"]
+  mnuCopy.Text = mnuCopy.Text 
+  mnuCopy.Shortcut = sResult_Shortcut_Copy
+  mnuPaste.Picture = Picture["icon:/small/paste"]
+  mnuPaste.Text = mnuPaste.Text 
+  mnuPaste.Shortcut = sResult_Shortcut_Paste 
+  
+End
+
+Public Sub mnuCloseWin_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub TabPanelTerminal_Close(Index As Integer)
+  
+  Close_sTerminal
+  
+End
+
+Public Sub Close_sTerminal()
+  
+  If TabPanelTerminal.Count > 1 Then
+    sTerminal = TabPanelTerminal.Children[0]
+    sTerminal.Delete
+    TabPanelTerminal.Current.Delete
+  Else
+    Me.Close
+  Endif
+  
+Catch
+  
+End
+
+Public Sub mnuCloseTab_Click()
+  
+  Close_sTerminal
+  
+End
+
+Public Sub mnuCopy_Click()
+  
+  sTerminal.Copy
+Catch
+  mnuPaste.Enabled = True
+  mnuInsert.Enabled = True
+  
+End
+
+Public Sub mnuPaste_Click()
+  
+  sTerminal.Paste
+Catch
+  
+End
+
+Public Sub mnuPreferences_Click()
+  
+  f_settings.ShowModal
+  
+End
+
+Public Sub mnuInsert_Click()
+  
+  sTerminal.Paste
+Catch
+  
+End
+
+Public Sub mnuViewFull_Click()
+  
+  If mnuViewFull.Checked = True Then
+    Me.Maximized = False
+    Me.H = 575
+    Me.w = 650
+    Me.Center
+    mnuViewFull.Checked = False 
+  Else
+    Me.Maximized = True
+    mnuViewFull.Checked = True
+  Endif
+  
+End
+
+Public Sub mnuAbout_Click()
+  
+  f_about.ShowModal
+  
+End
+
+Public Sub Form_Activate()
+  
+  Me.Refresh 
+  sTerminal.SetFocus()
+Catch
+  
+End
+
+Public Sub Form_GotFocus()
+  
+  sTerminal.SetFocus()
+  
+End

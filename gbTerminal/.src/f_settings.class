@@ -1,0 +1,413 @@
+' Gambas class file
+
+' Innova Project - Launcher of APP
+'
+' Copyright (C) Herberth Guzmán
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' This code belongs to Benoît Minisini and Fabien Bodard and was adapted for gbTerminal - Innova Project
+
+Private sResult_Style_FontName As String
+Private iResult_Style_FontSize As Integer
+Private iResult_Style_FontBold As Integer
+Private iResult_Style_Background As Integer
+Private iResult_Style_Foreground As Integer
+Private iResult_Style_Orientation As Integer
+Private iResult_Style_Theme As Integer
+Private iResult_Style_MenuBar As Integer
+Private iResult_Style_Opacity As Integer
+Private iResult_Style_Transparency As Integer
+
+Private sResult_Shortcut_New_Window As String
+Private sResult_Shortcut_Close_Window As String
+Private sResult_Shortcut_New_Tab As String
+Private sResult_Shortcut_Close_Tab As String
+
+Private sResult_Shortcut_Copy As String
+Private sResult_Shortcut_Paste As String
+
+Public Set_gbTerminal As New Settings(Desktop.ConfigDir &/ "Innova/gbTerminal.conf")
+Static Private $aThemeName As String[] = [("Pastel"), ("Obsidian"), ("Gambas"), ("Kids"), ("Visual"), ("Blues"), ("Matrix"), ("Ubuntu"), ("Custom")]
+Public sTerminal As TerminalView
+
+Public Sub _new()
+  
+  cmbTheme.List = $aThemeName '.Copy().Sort(gb.Language)
+  'cmbTheme.Index = 0
+  'cmbTheme.Add(("Pastel"), 0)
+  
+End
+
+Public Sub Form_Open()
+  
+  M_Settings.Show_Settings_gbTerminal
+  Font_List
+  Show_Conf_Settings
+  GridViewShortcuts_Heard
+  GridViewShortcuts_Info
+  
+End
+
+Public Sub Font_List()
+  
+  Dim s As String
+  
+  For Each s In Fonts
+    CmbFont.Add(s)
+  Next
+  
+End
+
+Public Sub Show_Conf_Settings()
+  
+  sResult_Style_FontName = M_Settings.sResult_Style_FontName 
+  iResult_Style_FontSize = M_Settings.iResult_Style_FontSize
+  iResult_Style_FontBold = M_Settings.iResult_Style_FontBold
+  iResult_Style_Background = M_Settings.iResult_Style_Background
+  iResult_Style_Foreground = M_Settings.iResult_Style_Foreground
+  iResult_Style_Orientation = M_Settings.iResult_Style_Orientation
+  iResult_Style_Theme = M_Settings.iResult_Style_Theme
+  iResult_Style_MenuBar = M_Settings.iResult_Style_MenuBar
+  iResult_Style_Opacity = M_Settings.iResult_Style_Opacity
+  iResult_Style_Transparency = M_Settings.iResult_Style_Transparency
+  
+  sResult_Shortcut_New_Window = M_Settings.sResult_Shortcut_New_Window
+  sResult_Shortcut_Close_Window = M_Settings.sResult_Shortcut_Close_Window
+  sResult_Shortcut_New_Tab = M_Settings.sResult_Shortcut_New_Tab
+  sResult_Shortcut_Close_Tab = M_Settings.sResult_Shortcut_Close_Tab
+  sResult_Shortcut_Copy = M_Settings.sResult_Shortcut_Copy
+  sResult_Shortcut_Paste = M_Settings.sResult_Shortcut_Paste
+  
+  CmbFont.Text = sResult_Style_FontName
+  SpinBoxFontSize.Value = iResult_Style_FontSize
+  ColorButtonBack.Value = iResult_Style_Background
+  ColorButtonFore.Value = iResult_Style_Foreground
+  
+  cmbOrientation.Index = iResult_Style_Orientation
+  If iResult_Style_Orientation = 1 Then
+    cmbOrientation.Index = 1
+  Else
+    cmbOrientation.Index = 0
+  Endif
+  
+  cmbtrans.Index = iResult_Style_Transparency
+  If iResult_Style_Transparency = 1 Then
+    cmbtrans.Index = 1
+  Else
+    cmbtrans.Index = 0
+  Endif
+  
+  cmbTheme.Index = iResult_Style_Theme
+  SpinBoxOpacity.Value = iResult_Style_Opacity 
+  
+  If iResult_Style_MenuBar = 1 Then
+    ChkMnuBar.Value = 1 
+  Else
+    ChkMnuBar.Value = 0 
+  Endif
+  
+End
+
+Public Sub cmbTheme_Click()
+  
+  If cmbTheme.Index = 0 Then
+    Set_gbTerminal.Write(f_settings)
+    Set_gbTerminal["Style/FontName"] = "Monospace"
+    Set_gbTerminal["Style/FontSize"] = 9
+    Set_gbTerminal["Style/FontBold"] = 0
+    Set_gbTerminal["Style/Background"] = &H042C37&
+    Set_gbTerminal["Style/Foreground"] = &HBBD2D2&
+    Set_gbTerminal["Style/Theme"] = 0 
+    Set_gbTerminal.Save
+  Endif
+  
+  If cmbTheme.Index = 1 Then
+    Set_gbTerminal.Write(f_settings)
+    Set_gbTerminal["Style/FontName"] = "Serif"
+    Set_gbTerminal["Style/FontSize"] = 9
+    Set_gbTerminal["Style/FontBold"] = 0
+    Set_gbTerminal["Style/Background"] = &000000&
+    Set_gbTerminal["Style/Foreground"] = &FFFFFF&
+    Set_gbTerminal["Style/Theme"] = 1
+    Set_gbTerminal.Save
+  Endif
+  
+  If cmbTheme.Index = 2 Then
+    Set_gbTerminal.Write(f_settings)
+    Set_gbTerminal["Style/FontName"] = "FreeSans"
+    Set_gbTerminal["Style/FontSize"] = 9
+    Set_gbTerminal["Style/FontBold"] = 0
+    Set_gbTerminal["Style/Background"] = &FFFFFF&
+    Set_gbTerminal["Style/Foreground"] = &3398C3&
+    Set_gbTerminal["Style/Theme"] = 2
+    Set_gbTerminal.Save
+  Endif
+  
+  If cmbTheme.Index = 3 Then
+    Set_gbTerminal.Write(f_settings)
+    Set_gbTerminal["Style/FontName"] = "DejaVu Sans"
+    Set_gbTerminal["Style/FontSize"] = 10
+    Set_gbTerminal["Style/FontBold"] = 0
+    Set_gbTerminal["Style/Background"] = &FFFF00&
+    Set_gbTerminal["Style/Foreground"] = &0007DF&
+    Set_gbTerminal["Style/Theme"] = 3
+    Set_gbTerminal.Save
+  Endif
+  
+  If cmbTheme.Index = 4 Then
+    Set_gbTerminal.Write(f_settings)
+    Set_gbTerminal["Style/FontName"] = "Sans"
+    Set_gbTerminal["Style/FontSize"] = 9
+    Set_gbTerminal["Style/FontBold"] = 0
+    Set_gbTerminal["Style/Background"] = &FFFFFF&
+    Set_gbTerminal["Style/Foreground"] = &0006FF&
+    Set_gbTerminal["Style/Theme"] = 4
+    Set_gbTerminal.Save
+  Endif
+  
+  If cmbTheme.Index = 5 Then
+    Set_gbTerminal.Write(f_settings)
+    Set_gbTerminal["Style/FontName"] = "DejaVu Sans Mono"
+    Set_gbTerminal["Style/FontSize"] = 9
+    Set_gbTerminal["Style/FontBold"] = 0
+    Set_gbTerminal["Style/Background"] = &143250&
+    Set_gbTerminal["Style/Foreground"] = &BFBFBF&
+    Set_gbTerminal["Style/Theme"] = 5
+    Set_gbTerminal.Save
+  Endif
+  
+  If cmbTheme.Index = 6 Then
+    Set_gbTerminal.Write(f_settings)
+    Set_gbTerminal["Style/FontName"] = "Monospace"
+    Set_gbTerminal["Style/FontSize"] = 9
+    Set_gbTerminal["Style/FontBold"] = 0
+    Set_gbTerminal["Style/Background"] = &00000000&
+    Set_gbTerminal["Style/Foreground"] = &0000FF00&
+    Set_gbTerminal["Style/Theme"] = 6
+    Set_gbTerminal.Save
+  Endif
+  
+  If cmbTheme.Index = 7 Then
+    Set_gbTerminal.Write(f_settings)
+    Set_gbTerminal["Style/FontName"] = "Sans Serif"
+    Set_gbTerminal["Style/FontSize"] = 10
+    Set_gbTerminal["Style/FontBold"] = 1
+    Set_gbTerminal["Style/Background"] = &00772953&
+    Set_gbTerminal["Style/Foreground"] = &FFFFFF&
+    Set_gbTerminal["Style/Theme"] = 7
+    Set_gbTerminal.Save
+  Endif
+  
+  If cmbTheme.Index = 8 Then
+    Set_gbTerminal.Write(f_settings)
+    Set_gbTerminal["Style/FontName"] = CmbFont.Text
+    Set_gbTerminal["Style/FontSize"] = SpinBoxFontSize.Value
+    Set_gbTerminal["Style/Background"] = ColorButtonBack.Value
+    Set_gbTerminal["Style/Foreground"] = ColorButtonFore.Value
+    Set_gbTerminal["Style/Theme"] = 8
+    Set_gbTerminal.Save
+  Endif
+  
+  M_Settings.Show_Settings_gbTerminal
+  
+  M_Settings.Show_Theme
+  
+  'Catch
+  
+End
+
+Public Sub CmbFont_Click()
+  
+  Set_gbTerminal.Write(f_settings)
+  Set_gbTerminal["Style/FontName"] = CmbFont.Text
+  Set_gbTerminal.Save
+  
+End
+
+Public Sub SpinBoxFontSize_Change()
+  
+  Set_gbTerminal.Write(f_settings)
+  Set_gbTerminal["Style/FontSize"] = SpinBoxFontSize.Value
+  Set_gbTerminal.Save
+  
+End
+
+Public Sub ColorButtonBack_Change()
+  
+  Set_gbTerminal.Write(f_settings)
+  Set_gbTerminal["Style/Background"] = ColorButtonBack.Value
+  Set_gbTerminal.Save
+  
+End
+
+Public Sub ColorButtonFore_Change()
+  
+  Set_gbTerminal.Write(f_settings)
+  Set_gbTerminal["Style/Foreground"] = ColorButtonFore.Value
+  Set_gbTerminal.Save
+  
+End
+
+Public Sub cmbOrientation_Click()
+  
+  Set_gbTerminal.Write(f_settings)
+  Set_gbTerminal["Style/Orientation"] = cmbOrientation.Index 
+  Set_gbTerminal.Save
+  
+  iResult_Style_Orientation = Set_gbTerminal["Style/Orientation"]
+  
+  If iResult_Style_Orientation = 0 Then
+    f_terminal.TabPanelTerminal.Orientation = Align.Top
+  Else
+    f_terminal.TabPanelTerminal.Orientation = Align.Bottom
+  Endif
+  
+  ''f_terminal.TabPanelTerminal.Orientation = If(f_terminal.TabPanelTerminal.Orientation = Align.Top, Align.Bottom, Align.Top)  
+End
+
+Public Sub ChkMnuBar_Click()
+  
+  Set_gbTerminal.Write(f_settings)  
+  
+  If ChkMnuBar.Value = True Then
+    Set_gbTerminal["Style/MenuBar"] = 1 
+  Else
+    Set_gbTerminal["Style/MenuBar"] = 0 
+  Endif
+  Set_gbTerminal.Save
+  
+  iResult_Style_MenuBar = Set_gbTerminal["Style/MenuBar"]
+  
+  If iResult_Style_MenuBar = 1 Then
+    f_terminal.mnuEdit.Visible = 1
+    f_terminal.mnuView.Visible = 1
+    f_terminal.mnuHelp.Visible = 1
+    f_terminal.mnuFile.Visible = 1
+  Else
+    f_terminal.mnuEdit.Visible = 0
+    f_terminal.mnuView.Visible = 0
+    f_terminal.mnuHelp.Visible = 0
+    f_terminal.mnuFile.Visible = 0
+  Endif
+  
+End
+
+Public Sub GridViewShortcuts_Heard()
+  
+  With GridViewShortcuts
+    .Font.Size = 10
+    .Columns.Count = 2
+    .Rows.Height = 24
+    .Columns.Ascending = True
+    '.Columns[0].Width = Desktop.Scale * 16 '150
+    .Columns[0].Width = (GridViewShortcuts.Width / 10) * 4.5
+    .Columns[0].Text = ("Action")
+    .Columns[1].Text = ("Shortcuts")
+  End With
+  
+End
+
+Public Sub GridViewShortcuts_Info()
+  
+  GridViewShortcuts.Rows.Count = 6  
+  GridViewShortcuts.columns.count = 2
+  GridViewShortcuts[0, 0].Text = ("New Tab")
+  GridViewShortcuts[0, 1].Text = sResult_Shortcut_New_Tab 
+  GridViewShortcuts[1, 0].Text = ("Close Tab")
+  GridViewShortcuts[1, 1].Text = sResult_Shortcut_Close_Tab
+  GridViewShortcuts[2, 0].Text = ("New Windows")
+  GridViewShortcuts[2, 1].Text = sResult_Shortcut_New_Window
+  GridViewShortcuts[3, 0].Text = ("Close Windows")
+  GridViewShortcuts[3, 1].Text = sResult_Shortcut_Close_Window
+  GridViewShortcuts[4, 0].Text = ("Copy")
+  GridViewShortcuts[4, 1].Text = sResult_Shortcut_Copy
+  GridViewShortcuts[5, 0].Text = ("Paste")
+  GridViewShortcuts[5, 1].Text = sResult_Shortcut_Paste
+  
+End
+
+Public Sub Form_KeyPress()
+  
+  If Key.Code = Key.Esc Then
+    Me.Close
+  Endif
+  
+End
+
+Public Sub BtnClose_Click()
+  
+  M_Settings.Show_Theme
+  Me.Close
+  
+End
+
+Public Sub GridViewShortcuts_Save(Row As Integer, Column As Integer, Value As String)
+  
+  If Column = 1 Then 
+    GridViewShortcuts[row, column].Text = Value
+    
+    Set_gbTerminal.Write(f_settings)
+    set_gbTerminal["Shortcut/New_Tab"] = GridViewShortcuts[0, 1].Text 
+    set_gbTerminal["Shortcut/Close_Tab"] = GridViewShortcuts[1, 1].Text 
+    set_gbTerminal["Shortcut/New_Window"] = GridViewShortcuts[2, 1].Text   
+    set_gbTerminal["Shortcut/Close_Window"] = GridViewShortcuts[3, 1].Text 
+    set_gbTerminal["Shortcut/Copy"] = GridViewShortcuts[4, 1].Text 
+    set_gbTerminal["Shortcut/Paste"] = GridViewShortcuts[5, 1].Text 
+    set_gbTerminal.Save
+    
+  Endif
+  
+End
+
+Public Sub GridViewShortcuts_Click()
+  
+  GridViewShortcuts.Edit
+  
+End
+
+Public Sub SpinBoxOpacity_Change()
+  
+  Set_gbTerminal.Write(f_settings)
+  Set_gbTerminal["Style/Opacity"] = SpinBoxOpacity.Value
+  Set_gbTerminal.Save
+  
+  iResult_Style_Opacity = Set_gbTerminal["Style/Opacity"]
+  f_terminal.Opacity = iResult_Style_Opacity
+  
+End
+
+Public Sub cmbTrans_Click()
+  
+  Set_gbTerminal.Write(f_settings)
+  Set_gbTerminal["Style/Transparency"] = cmbtrans.Index
+  Set_gbTerminal.Save
+  
+  iResult_Style_Transparency = Set_gbTerminal["Style/Transparency"]
+  
+  If iResult_Style_Transparency = 1 Then
+    f_terminal.Transparent = 1
+    f_terminal.sTerminal.Background = Color.Transparent
+    
+  Else
+    
+    f_terminal.Transparent = 0
+    
+  Endif
+Catch  
+  
+End

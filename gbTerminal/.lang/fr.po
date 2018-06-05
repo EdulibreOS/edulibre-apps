@@ -1,0 +1,231 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: gbTerminal 3.8.90\n"
+"PO-Revision-Date: 2016-07-22 18:07 UTC\n"
+"Last-Translator: edulibreos <edulibreos@EdulibreOS>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .project:1 f_about.form:91
+msgid "gbTerminal"
+msgstr ""
+
+#: .project:2
+msgid "gbTerminal is a terminal emulator based on VT-100 for the Lightweight Desktop Environment (Innova Desktop).\n\nA few features \n • Split terminals (horizontally and vertically).\n • It can contain multiple terminal sessions.\n • Multiple tabs.\n • Customizable shortcuts.\n • Various themes.\n • Blinking text supported.\n • Mouse support.\n • Opacity."
+msgstr ""
+
+#: f_about.form:26
+msgid "About - gbTerminal"
+msgstr "Sur - gbTerminal"
+
+#: f_about.form:38
+msgid "Innova Desktop Environment"
+msgstr ""
+
+#: f_about.form:51
+msgid "This program uses Gambas version 3.8.90"
+msgstr "Ce programme utilise la version 8.3.90 Gambas3"
+
+#: f_about.form:76 f_settings.form:250
+msgid "Close"
+msgstr "Fermer"
+
+#: f_about.form:86 f_terminal.form:91
+msgid "About"
+msgstr "Sur"
+
+#: f_about.form:97
+msgid "Copyright (C) 2016-2016"
+msgstr ""
+
+#: f_about.form:110
+msgid "Innova Desktop"
+msgstr ""
+
+#: f_about.form:115
+msgid "<p><br>gbTerminal is a terminal emulator based on VT-100 for the Lightweight Desktop Environment (Innova Desktop).</p>\n\n<p>gbTerminal would not have been possible without the help of:</p></br>\n\n<font color=\"#D8D8D8\">\n<h5><p><u><br>Benoît Minisini - Gambas3</h5></p></u>\n<h5><p><u>Benoît Minisini / Fabien Bodard - gb.form.terminal</h5></p> </u>\n<h5><p><u>Herberth Guzmán - Customization Development </h5></p></u></br>\n</font>\n"
+msgstr "<p><br>gbTerminal est un émulateur de terminal basé sur VT-100 Desktop Environment (Innova Destkop).</p>\n\n <p>gbTerminal pas été possible sans l'aide de:</p></br>\n<font color=\"#D8D8D8\">\n\n<h5><p><u><br>Benoît Minisini - Gambas3 </h5></p></u>\n<h5><p><u>Benoît Minisini / Fabien Bodard - gb.form.terminal</h5></p></u>\n <h5><p><u>Herberth Guzman - Customisation développement</h5></p></u></br>\n</font>\n"
+
+#: f_about.form:118
+msgid "License"
+msgstr "Licence"
+
+#: f_about.form:123
+msgid "    This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License    along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr "\nCe programme est un logiciel libre: vous pouvez le redistribuer et / ou le modifier selon les termes de la GNU General Public License telle que publiée par la Free Software Foundation, soit la version 3 de la licence, ou (à votre choix) toute version ultérieure.\n\n     Ce programme est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE GARANTIE; sans même la garantie implicite de COMMERCIALISATION ou D'ADAPTATION À UN USAGE PARTICULIER. Voir la GNU General Public License pour plus de détails.\n\n     Vous devriez avoir reçu une copie de la Licence Publique Générale GNU avec ce programme. Sinon, voir <http://www.gnu.org/licenses/>."
+
+#: f_about.form:129
+msgid "Translators"
+msgstr "Traducteur"
+
+#: f_about.form:134
+msgid "Spanish: Herberth Guzmán (herberthguzman@gmail.com)"
+msgstr "Espanol: Herberth Guzmán (herberthguzman@gmail.com)"
+
+#: f_settings.class:44
+msgid "Blues"
+msgstr "Bleu"
+
+#: f_settings.class:44
+msgid "Custom"
+msgstr "Coutume"
+
+#: f_settings.class:44
+msgid "Gambas"
+msgstr "Gambas"
+
+#: f_settings.class:44
+msgid "Kids"
+msgstr "Enfants"
+
+#: f_settings.class:44
+msgid "Matrix"
+msgstr "Matrix"
+
+#: f_settings.class:44
+msgid "Obsidian"
+msgstr "Obsidienne"
+
+#: f_settings.class:44
+msgid "Pastel"
+msgstr "Pastel"
+
+#: f_settings.class:44
+msgid "Visual"
+msgstr "Visuel"
+
+#: f_settings.class:271
+msgid "Action"
+msgstr "Action"
+
+#: f_settings.class:281 f_terminal.form:37
+msgid "New Tab"
+msgstr "Nouvel onglet"
+
+#: f_settings.class:283 f_terminal.form:44
+msgid "Close Tab"
+msgstr "Fermer l'onglet"
+
+#: f_settings.class:285 f_terminal.form:33
+msgid "New Windows"
+msgstr "De Nouvelles Fenêtres"
+
+#: f_settings.class:287 f_terminal.form:48
+msgid "Close Windows"
+msgstr "Fermer les fenêtres"
+
+#: f_settings.class:289 f_terminal.form:56
+msgid "Copy"
+msgstr "Copie"
+
+#: f_settings.class:291 f_terminal.form:60
+msgid "Paste"
+msgstr "Pâte"
+
+#: f_settings.form:39
+msgid "gbTerminal - Settings"
+msgstr "gbterminal - Paramètres"
+
+#: f_settings.form:56
+msgid "Style"
+msgstr "Style"
+
+#: f_settings.form:67
+msgid "Font Name"
+msgstr "Nom de la police"
+
+#: f_settings.form:73
+msgid "Select Font"
+msgstr "Sélectionnez la police"
+
+#: f_settings.form:86
+msgid "Font Size"
+msgstr "Taille de police"
+
+#: f_settings.form:105
+msgid "Background"
+msgstr "Le fond"
+
+#: f_settings.form:123
+msgid "Foreground"
+msgstr "Premier plan"
+
+#: f_settings.form:141
+msgid "Tabs Position"
+msgstr "Positions de Tabulation"
+
+#: f_settings.form:149
+msgid "Buttom"
+msgstr "Inférieur"
+
+#: f_settings.form:149
+msgid "Top"
+msgstr "Haut"
+
+#: f_settings.form:161
+msgid "Color Themes"
+msgstr "Thème de couleur"
+
+#: f_settings.form:180
+msgid "Application Opacity"
+msgstr "Lla transparence de l'application"
+
+#: f_settings.form:197
+msgid "Show the menu bar"
+msgstr "Afficher la barre de menu"
+
+#: f_settings.form:209
+msgid "Application Transparency"
+msgstr "Lla opacité de l'application"
+
+#: f_settings.form:217
+msgid "False"
+msgstr "Faux"
+
+#: f_settings.form:217
+msgid "True"
+msgstr "Vrai"
+
+#: f_settings.form:221
+msgid "Shortcuts"
+msgstr "Raccourci"
+
+#: f_terminal.form:30
+msgid "File"
+msgstr "Fichier"
+
+#: f_terminal.form:53
+msgid "Edit"
+msgstr "Modifier"
+
+#: f_terminal.form:64
+msgid "Insert"
+msgstr "Insérer"
+
+#: f_terminal.form:72
+msgid "Preferences"
+msgstr "Préférences"
+
+#: f_terminal.form:79
+msgid "View"
+msgstr "Affichage"
+
+#: f_terminal.form:82
+msgid "Fullscreen"
+msgstr "Plein écran"
+
+#: f_terminal.form:88
+msgid "Help"
+msgstr "Aidez-moi"
+
+#: test.form:13
+msgid "Borrar"
+msgstr ""
+
+#: test.form:18
+msgid "Buscar"
+msgstr ""
+
