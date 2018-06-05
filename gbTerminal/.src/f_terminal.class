@@ -1,8 +1,8 @@
 ' Gambas class file
 
-' Innova Project - Launcher of APP
-'
+' Innova Project 
 ' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
 '
 ' This program is free software; you can redistribute it and/or modify
 ' it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 
 Public sTerminal As TerminalView
 Public sForm As Form
+Private i As Integer
 Public sResult_Style_FontName As String
 Public iResult_Style_FontSize As Integer
 Public iResult_Style_Background As Integer
