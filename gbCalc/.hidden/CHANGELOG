@@ -1,0 +1,33 @@
+* Mon May 26 2014 Herberth Guzman <innovadesktop@gmail.com> 0.0.10
+
+* Mon May 05 2014 Herberth Guzman <innovadesktop@gmail.com> 0.0.8
+
+* Fri Mar 07 2014 Herberth Guzman <innovadesktop@gmail.com> 0.0.8
+
+* Fri Mar 07 2014 Herberth Guzman <innovadesktop@gmail.com> 0.0.7
+
+* Tue Dec 17 2013 Herberth Guzman <hguzman@edulibre.net> 0.0.5
+
+* Tue Dec 17 2013 Herberth Guzman <hguzman@edulibre.net> 0.0.5
+
+* Tue Dec 17 2013 Herberth Guzman <hguzman@edulibre.net> 0.0.5
+
+* Mon Dec 16 2013 Herberth Guzman <hguzman@edulibre.net> 0.0.5
+- Se renombro la ruta de config/GB a .config/Innova
+
+* Tue Oct 01 2013 Herberth Guzman <hguzman@edulibre.net> 0.0.4
+- NUEVO:  Se agrego la funsion raiz cuadra.
+
+* Mon Sep 29 2013 Herberth Guzman <hguzman@edulibre.net> 0.0.3
+- NUEVO:  Se tradujo al ingles.
+
+* Fri Sep 27 2013 Herberth Guzman <hguzman@edulibre.net> 0.0.2
+
+- NUEVO:  Se agrego un tema infantil.
+- NUEVO:  Maneja SQLite para almacenar el valor del tema seleccionado.
+- NUEVO:  Se agrego el boton porcentaje y su funsion.
+- CAMBIOS: El cuadro de texto no aceptaba decimales y fue corregido.
+- CAMBIOS: La imagen del proyecto fue cambiada por la actual.
+
+* Wed Sep 11 2013 Herberth Guzman <hguzman@edulibre.net> 0.0.1
+- Inicio del proyecto

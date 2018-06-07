@@ -1,0 +1,36 @@
+# Gambas Project File 3.0
+# Compiled with Gambas 3.10.0
+Title=gbCalc
+Startup=Cls_Start
+Icon=img/gbCalc.png
+Version=0.2.2
+Component=gb.image
+Component=gb.qt5
+Component=gb.form
+Component=gb.db
+Component=gb.desktop.x11
+Component=gb.desktop
+Component=gb.settings
+Description="gbCalc\nCalculator for Innova Desktop"
+Authors="Herberth Guzmán  <innovadesktop@gmail.com>"
+Environment="GB_GUI=gb.qt5"
+TabSize=2
+Translate=1
+Language=en_US
+ControlPublic=1
+Maintainer=Herberth Guzman
+Vendor=InnovaDesktop
+Address=innovadesktop@gmail.com
+Url=http://www.edulibreos.com/
+License=General Public License
+PackageName=innocalc-0.0.10
+CreateEachDirectory=1
+Packager=1
+Systems=ubuntu
+Menus=ubuntu:"Applications/Editors"
+Categories=ubuntu:"Utility"
+Groups=ubuntu:"x11"
+ExtraFiles=ubuntu:"DB_Innova_Calc.dat\t/usr/share/Innova/DB"
+Tags=Accessibility,Utility,Calculator
+GambasVersion=3.9
+WebSite=https://sourceforge.net/projects/innovadesktop/
