@@ -1,0 +1,287 @@
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Private $MX As Integer
+Private $MY As Integer
+Private sDistro_ID As String 
+Private $hWatcher As DesktopWatcher
+
+Public Sub Logo_Distro()
+  
+  sDistro_ID = M_InfoPc.Distro_ID 
+  
+  If sDistro_ID = "Ubuntu" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-ubuntu.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-ubuntu.svg"]
+  Endif
+  If sDistro_ID = "Archlinux" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-archlinux.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-archlinux.svg"]
+  Endif
+  If sDistro_ID = "Chakra" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-chakra.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-chakra.svg"]
+  Endif
+  If sDistro_ID = "Debian" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-debian.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-debian.svg"]
+  Endif
+  If sDistro_ID = "Deepin" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-deepin.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-deepin.svg"]
+  Endif
+  If sDistro_ID = "Elementary" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-eos.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-eos.svg"]
+  Endif
+  If sDistro_ID = "Fedora" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-fedora.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-fedora.svg"]
+  Endif
+  If sDistro_ID = "Gentoo" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-gentoo.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-gentoo.svg"]
+  Endif
+  If sDistro_ID = "Kubuntu" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-kubuntu.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-kubuntu.svg"]
+  Endif
+  If sDistro_ID = Null Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-generic.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-generic.svg"]
+  Endif
+  If sDistro_ID = "Lubuntu" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-lubuntu.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-lubuntu.svg"]
+  Endif
+  If sDistro_ID = "Magiea" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-magiea.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-magiea.svg"]
+  Endif
+  If sDistro_ID = "Manjaro" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-manjaro.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-manjaro.svg"]
+  Endif
+  If sDistro_ID = "Mint" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-mint.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-mint.svg"]
+  Endif
+  If sDistro_ID = "OpenSUSE" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-opensuse.svg"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-opensuse.svg"]
+  Endif
+  If sDistro_ID = "EdulibreOS" Then
+    PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-edulibreos.png"]
+    mnudistro.Picture = Picture["img/distro/distributor-logo-edulibreos.png"]
+  Endif
+  
+End
+
+Public Sub _new()
+  
+  $hWatcher = New DesktopWatcher(True) As "MyDTWatcher"
+  
+  M_InfoPc._inits_DD
+  M_InfoPc.Dat_DD
+  TimerRam.Start
+  'Me.TopOnly = Not Me.TopOnly
+  
+End
+
+Public Sub MyDTWatcher_Windows()
+  
+  M_Theme.Show_Theme
+  
+  Wait
+  
+End 
+
+Public Sub TimerRam_Timer()
+  
+  M_InfoPc.MemoryFree
+  
+End
+
+Public Sub TrayIconPC_Click()
+  
+  Debug
+  Me.Visible = Not Me.Visible
+  
+End
+
+Public Sub Form_Open()
+  
+  TrayIconPC.Show
+  Me.Center
+  M_Theme.Show_Theme
+  M_InfoPc.Info_Pc
+  Logo_Distro
+  MSG
+  
+End
+
+Public Sub MSG()
+  
+  '  Dim sNotify As String 
+  
+  If Not Exist(User.Home &/ ".local/share/PCInfo") Then 'A place to store the program's icon
+    Mkdir User.Home &/ ".local/share/PCInfo"
+  Endif
+  
+  If Not Exist(User.Home &/ ".local/share/PCInfo/pcinfo.png") Then 'If the icon is not here copy it here.
+    Copy "img/pcinfo.png" To User.Home &/ ".local/share/PCInfo/pcinfo.png"
+  Endif
+  
+  ' sNotify = "notify-send -i ~/.local/share/PCInfo/pcinfo.png PCInfo " & Chr(34) & " Innova Project (c) 2016 " & Chr(34)
+  ' Try Shell sNotify Wait
+  
+End
+
+Public Sub PanelInfo_MouseMove()
+  
+  If Mouse.Left Then Me.Move(Mouse.ScreenX - $MX, Mouse.ScreenY - $MY)
+  
+End
+
+Public Sub PanelInfo_MouseDown()
+  
+  $MX = Mouse.ScreenX - Me.X
+  $MY = Mouse.ScreenY - Me.Y
+  
+End
+
+Public Sub PictureBoxBack_MouseDown()
+  
+  $MX = Mouse.ScreenX - Me.X
+  $MY = Mouse.ScreenY - Me.Y
+  
+End
+
+Public Sub PictureBoxBack_MouseMove()
+  
+  If Mouse.Left Then Me.Move(Mouse.ScreenX - $MX, Mouse.ScreenY - $MY)
+  
+End
+
+Public Sub Form_KeyPress()
+  
+  If Key.Code = Key.Esc Then
+    Me.Close
+  Endif
+  
+End
+
+Public Sub BtnClean_Click()
+  
+  Dim sDesktop As String
+  
+  sDesktop = Desktop.Type
+  
+  Select Case sDesktop
+    Case "GNOME"
+      Shell "gksu sysctl -w vm.drop_caches=3"          'Ubuntu, Mint, Debian etc
+      
+    Case "UNITY"
+      Shell "gksu sysctl -w vm.drop_caches=3"          'Ubuntu
+      
+    Case "LXDE"
+      Shell "gksu sysctl -w vm.drop_caches=3"          
+      
+    Case "MATE"
+      Shell "gksu sysctl -w vm.drop_caches=3"          
+      
+    Case "XFCE"
+      'XFCE, Mint etc
+      Shell "gksu sysctl -w vm.drop_caches=3" 
+      
+    Case "KDE"
+      'Kubuntu, Mint KDE etc
+      Shell "kdesudo sysctl -w vm.drop_caches=3" 
+      
+    Case "KDE4"
+      'Kubuntu, Mint KDE etc
+      Shell "kdesudo sysctl -w vm.drop_caches=3" 
+      
+    Case "KDE5"
+      'Kubuntu, Mint KDE etc
+      Shell "kdesudo sysctl -w vm.drop_caches=3" 
+      
+    Case "Innova"
+      'EdulibreOS, Innova etc
+      Shell "gksu sysctl -w vm.drop_caches=3"
+      
+  End Select
+  
+End
+
+Public Sub Form_Close()
+  
+  Stop Event
+  Me.Visible = Not Me.Visible
+  
+End
+
+Public Sub Form_Arrange()
+  
+End
+
+Public Sub mnuClose_Click()
+  
+  TrayIconPC.Delete
+  f_PC_Info.Delete
+  
+End
+
+Public Sub TextLabel3_MouseDown()
+  
+End
+
+Public Sub PanelBack_MouseDown()
+  
+  'xprop -id $(xprop -root -notype | awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}') -notype \ - f _NET_WM_NAME 8 t | grep _NET_WM_NAME | sed 's/.*"\(.*\)"/\1/'
+  
+End
+
+Public Sub mnuAbout_Click()
+  
+  f_about.ShowModal
+  
+End
+
+Public Sub mnuAboutW_Click()
+  
+  f_about.ShowModal
+  
+End
+
+Public Sub Panel23_MouseDown()
+  
+End
+
+Public Sub mnuSO_L_Click()
+  
+End
+
+Public Sub pnlIconsDesk_MouseDown()
+  
+End

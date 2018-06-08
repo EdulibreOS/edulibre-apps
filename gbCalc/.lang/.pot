@@ -1,0 +1,251 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  #project.pot (gbCalc 3.11.2)  #-#-#-#-#\n"
+"Project-Id-Version: gbCalc 3.11.2\n"
+"POT-Creation-Date: 2018-06-07 15:57 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  Cls_Start.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2018-06-07 15:57 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  M_Settings.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2018-06-07 15:57 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  f_about.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2018-06-07 15:57 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  f_calc.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2018-06-07 15:57 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .project:1 f_about.form:91 f_calc.form:37
+msgid "gbCalc"
+msgstr ""
+
+#: .project:2
+msgid ""
+"gbCalc\n"
+"Calculator for Innova Desktop"
+msgstr ""
+
+#: f_about.form:26
+msgid "About - gbCalc"
+msgstr ""
+
+#: f_about.form:38
+msgid "Innova Desktop Environment"
+msgstr ""
+
+#: f_about.form:51
+msgid "Framework Version 3.10"
+msgstr ""
+
+#: f_about.form:76 f_calc.form:74
+msgid "Close"
+msgstr ""
+
+#: f_about.form:86 f_calc.form:65
+msgid "About"
+msgstr ""
+
+#: f_about.form:97
+msgid "Copyright (C) 2016-2018"
+msgstr ""
+
+#: f_about.form:110
+msgid "Innova Desktop"
+msgstr ""
+
+#: f_about.form:115
+msgid ""
+"<p><br>gbCalc calculator for Lightweight Desktop Environment (Innova "
+"Desktop).</p>\n"
+"\n"
+"<p>gbCalc would not have been possible without the help of:</p></br>\n"
+"\n"
+"<font color=\"#D8D8D8\">\n"
+"<h5><p><u><br>Benoît Minisini - Gambas3</h5></p></u>\n"
+"<h5><p><u>Fabien Bodard</h5></p> </u>\n"
+"<h5><p><u>Herberth Guzmán - Development </h5></p></u></br>\n"
+"</font>\n"
+msgstr ""
+
+#: f_about.form:118
+msgid "License"
+msgstr ""
+
+#: f_about.form:123
+msgid ""
+"    This program is free software: you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation, either version 3 of the License, or (at your option) "
+"any later version.\n"
+"\n"
+"    This program is distributed in the hope that it will be useful, but "
+"WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY "
+"or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"    You should have received a copy of the GNU General Public License    "
+"along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+
+#: f_about.form:129
+msgid "Translators"
+msgstr ""
+
+#: f_about.form:134
+msgid ""
+"Spanish: Herberth Guzmán (herberthguzman@gmail.com)\n"
+"English: Herberth Guzmán (herberthguzman@gmail.com)"
+msgstr ""
+
+#: f_calc.form:44
+msgid "Open"
+msgstr ""
+
+#: f_calc.form:48
+msgid "Settings"
+msgstr ""
+
+#: f_calc.form:51
+msgid "Theme Kids"
+msgstr ""
+
+#: f_calc.form:56
+msgid "Top"
+msgstr ""
+
+#: f_calc.form:62
+msgid "?"
+msgstr ""
+
+#: f_calc.form:84
+msgid "0"
+msgstr ""
+
+#: f_calc.form:92
+msgid "1"
+msgstr ""
+
+#: f_calc.form:100
+msgid "2"
+msgstr ""
+
+#: f_calc.form:108
+msgid "3"
+msgstr ""
+
+#: f_calc.form:116
+msgid "4"
+msgstr ""
+
+#: f_calc.form:124
+msgid "5"
+msgstr ""
+
+#: f_calc.form:132
+msgid "6"
+msgstr ""
+
+#: f_calc.form:140
+msgid "7"
+msgstr ""
+
+#: f_calc.form:148
+msgid "8"
+msgstr ""
+
+#: f_calc.form:156
+msgid "9"
+msgstr ""
+
+#: f_calc.form:164
+msgid "Divide"
+msgstr ""
+
+#: f_calc.form:165
+msgid "/"
+msgstr ""
+
+#: f_calc.form:173
+msgid "Multiply"
+msgstr ""
+
+#: f_calc.form:174
+msgid "*"
+msgstr ""
+
+#: f_calc.form:182
+msgid "Subtract"
+msgstr ""
+
+#: f_calc.form:183
+msgid "-"
+msgstr ""
+
+#: f_calc.form:191
+msgid "Sum"
+msgstr ""
+
+#: f_calc.form:192
+msgid "+"
+msgstr ""
+
+#: f_calc.form:198
+msgid "Result"
+msgstr ""
+
+#: f_calc.form:199
+msgid "="
+msgstr ""
+
+#: f_calc.form:205
+msgid "."
+msgstr ""
+
+#: f_calc.form:211
+msgid "Clear"
+msgstr ""
+
+#: f_calc.form:212
+msgid "C"
+msgstr ""
+
+#: f_calc.form:218
+msgid "Delete"
+msgstr ""
+
+#: f_calc.form:219
+msgid "AC"
+msgstr ""
+
+#: f_calc.form:225
+msgid "Percentage"
+msgstr ""
+
+#: f_calc.form:226
+msgid "%"
+msgstr ""
+
+#: f_calc.form:238
+msgid "Square Root"
+msgstr ""
+
+#: f_calc.form:239
+msgid "√"
+msgstr ""

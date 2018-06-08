@@ -1,0 +1,107 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,91,68)
+  Background = &H042C37&
+  Foreground = &HBBD2D2&
+  Mouse = Mouse.Pointing
+  Text = ("About - gbClock")
+  Resizable = False
+  { pnHeader Panel
+    MoveScaled(-3,0,95,14)
+    Background = &HBBD2D2&
+    Foreground = &H042C37&
+    { lblAboutTitle Label
+      MoveScaled(13,3,58,4)
+      Font = Font["+6"]
+      Foreground = &H042C37&
+      Text = ("Innova Desktop Environment")
+    }
+    { picLogo PictureBox
+      MoveScaled(5,3,6.875,6.875)
+      Picture = Picture["IMG/gambas3.png"]
+      Stretch = True
+      Alignment = Align.Center
+    }
+    { lblFramework Label
+      MoveScaled(13,7,41,4)
+      Foreground = &H042C37&
+      Text = ("Framework Version 3.9")
+    }
+  }
+  { picLogo3 PictureBox
+    MoveScaled(1,26,18.25,18.25)
+    Picture = Picture["IMG/gambas3.png"]
+    Stretch = True
+    Alignment = Align.Center
+  }
+  { HBox1 HBox
+    MoveScaled(2,62,87,4)
+    Spacing = True
+    Indent = True
+    { Panel1 Panel
+      MoveScaled(11,0,33,4)
+      Expand = True
+      Arrangement = Arrange.Vertical
+    }
+    { btnClose Button
+      MoveScaled(69,0,14,4)
+      Mouse = Mouse.Pointing
+      Text = Shortcut(("Close"), "C")
+      Picture = Picture["icon:/small/cancel"]
+    }
+  }
+  { tab_Workspace TabPanel
+    MoveScaled(21,16,68,44)
+    Count = 3
+    Highlight = True
+    Index = 0
+    Text = ("About")
+    { lblTitle Label
+      MoveScaled(1,1,66,5)
+      Font = Font["Lato,Bold,+2"]
+      Text = ("gbClock")
+      Alignment = Align.Left
+    }
+    { lblAuthor Label
+      MoveScaled(1,36,66,4)
+      Text = ("Copyright (C) 2016-2016")
+      Alignment = Align.Center
+    }
+    { lblVersion Label
+      MoveScaled(1,4,14,4)
+      Font = Font["Bold"]
+      Alignment = Align.Left
+    }
+    { URLLabel1 URLLabel
+      MoveScaled(27,33,15,4)
+      Link = "http://sourceforge.net/projects/innovadesktop/"
+      Text = ("Innova Desktop")
+    }
+    { txtlabelabout TextLabel
+      MoveScaled(1,6,65,27)
+      Text = ("<p><br>gbClock is a Widget Clock  for the Lightweight Desktop Environment (Innova Desktop).</p>\n\n<p>gbClock would not have been possible without the help of:</p></br>\n\n<font color=\"#D8D8D8\">\n<h5><p><u><br>Benoît Minisini - Gambas3</h5></p></u>\n<h5><p><u>Benoît Minisini / Fabien Bodard</h5></p> </u>\n<h5><p><u>Herberth Guzmán - Customization Development </h5></p></u></br>\n</font>\n")
+    }
+    Index = 1
+    Text = ("License")
+    { txt_License TextArea
+      MoveScaled(1,1,66,38)
+      Background = Color.Background
+      Text = ("    This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License    along with this program.  If not, see <http://www.gnu.org/licenses/>.")
+      ReadOnly = True
+      Wrap = True
+      Border = False
+    }
+    Index = 2
+    Text = ("Translators")
+    { txt_Translators TextArea
+      MoveScaled(1,1,66,38)
+      Background = Color.Background
+      Text = ("Spanish: Herberth Guzmán (herberthguzman@gmail.com)")
+      ReadOnly = True
+      Wrap = True
+      Border = False
+    }
+    Index = 0
+  }
+}

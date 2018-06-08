@@ -1,0 +1,350 @@
+' Gambas module file
+
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' Part of this code belongs to Gambas3 and was adapted for Innova Project
+
+Public $List_DD As String[] = []
+Public sListDD As String
+Public sListAllDiscs As String 
+Public sReal_Size As String
+Public iReal_Size As Integer
+Public sSize_Used As String
+Public Distro_ID As String
+
+Public Sub Info_Pc()
+  
+  Dim sTemp As String
+  Dim sTempFam As String
+  Dim sTempPro As String
+  Dim sTempRam As String
+  Dim timezone As String
+  Dim sTempSessio As String
+  Dim sTempVendor As String
+  
+  Exec ["uname", "-r"] To sTemp
+  Exec ["uname", "-o"] To sTempFam
+  
+  Shell "cat /proc/cpuinfo | grep -i ghz | uniq | cut -f2 -d" & ":" To sTempPro
+  Shell "cat /proc/cpuinfo | grep -i vendor_id | uniq | cut -f2 -d" & ":" To sTempVendor
+  Shell "env | grep DESKTOP_SESSION= | cut -d '=' -f 2" To sTempSessio 
+  Exec ["cat", "/proc/meminfo"] To sTempRam
+  
+  f_PC_Info.TextLabelLinux.Text = sTempFam
+  f_PC_Info.mnuSO_L.Text = ("Operating System: ") & sTempFam
+  f_PC_Info.mnuArchitecture.Text = ("Architecture: ") & System.Architecture 
+  f_PC_Info.TextLabelArchitecture.Text = System.Architecture 
+  f_PC_Info.TextLabelKernel.Text = Trim(sTemp)
+  f_PC_Info.mnuKernel.Text = ("Kernel: ") & Trim(sTemp)
+  f_PC_Info.TextLabelProcesador.Text = Trim(sTempPro)
+  f_PC_Info.mnuProcessor.Text = ("Processor: ") & Trim(sTempPro)
+  
+  Try sTempRam = Scan(sTempRam, "*MemTotal:*\n*")[1]
+  If Error Then 
+    sTempRam = ""
+  Else
+    While Not IsDigit(Right(sTempRam))
+      sTempRam = Left(sTempRam, -1)
+    Wend
+    sTempRam = Trim(sTempRam)
+  Endif
+  
+  If sTempRam Then
+    Try sTempRam = Format(CInt(sTempRam) / 1024, "0") & " MB"
+    If Not Error Then f_PC_Info.TextLabelRam.Text = (sTempRam)
+    
+    f_PC_Info.TextLabelRam2.Text = "Total : " & (sTempRam)
+    f_PC_Info.TextLabelRam.Text = "Total : " & (sTempRam)
+    f_PC_Info.mnuRamT.Text = ("Total: ") & sTempRam 
+    f_PC_Info.mnuRam.Text = ("Memory: ") & sTempRam 
+  Endif
+  
+  Shell "cat /etc/timezone || grep ^TIMEZONE= /etc/sysconfig/clock | cut -d '=' -f 2" Wait To timezone
+  If timezone = Null Or "" Then
+    Shell "timedatectl status | grep Timezone: |awk '{print $2}'" Wait To timezone
+  Endif
+  
+  f_PC_Info.TextLabelDistro.Text = GetDistribution()
+  f_PC_Info.TextLabelDistro2.Text = GetDistribution()
+  f_PC_Info.mnuDistro.Text = ("Distribution: ") & GetDistribution()
+  f_PC_Info.TextLabelDesktop.Text = Desktop.Type 
+  f_PC_Info.mnuDesktop.Text = ("Desktop: ") & Desktop.Type 
+  f_PC_Info.TextLabelSession.Text = sTempSessio
+  f_PC_Info.mnuSession.Text = ("Session: ") & sTempSessio
+  f_PC_Info.TextLabelGroup.Text = System.Domain
+  f_PC_Info.mnuWorkgropu.Text = ("Workgroup: ") & System.Domain
+  f_PC_Info.TextLabelNameComputer.Text = System.Host
+  f_PC_Info.mnuCN.Text = ("Computer Name: ") & System.Host
+  f_PC_Info.TextLabelUser.Text = System.User.Name
+  f_PC_Info.mnuUser.Text = ("User: ") & System.User.Name
+  f_PC_Info.TextLabelLanguage.Text = System.Language
+  f_PC_Info.mnuLang.Text = ("Language: ") & System.Language
+  f_PC_Info.TextLabelTimeZone.Text = Replace(timezone, "\n", "")
+  f_PC_Info.mnTZ.Text = ("Time Zone: ") & Replace(timezone, "\n", "")
+  f_PC_Info.TextLabelversionGambas.Text = "Gambas3" & " " & System.FullVersion
+  f_PC_Info.mnuVD.Text = ("Development Version: ") & "Gambas3" & " " & System.FullVersion
+  f_PC_Info.TextLabelVendor.Text = Trim(sTempVendor)
+  f_PC_Info.mnuProceVendor.Text = ("Vendor: ") & Trim(sTempVendor)
+  
+  Distro_ID = GetDistribution_ID()
+  
+End
+
+Public Sub ReadLsbRelease(sPath As String) As Collection
+  
+  Dim cCol As New Collection
+  Dim sLine As String
+  Dim aLine As String[]
+  
+  For Each sLine In Split(File.Load(sPath), "\n", "", True)
+    
+    aLine = Scan(sLine, "*=*")
+    Try cCol[aLine[0]] = UnQuote(aLine[1])
+    
+  Next
+  
+  Return cCol
+  
+End
+
+Public Sub GetDistribution() As String
+  
+  Dim cDist As Collection = ["lsb-release": "/etc/lsb-release", "vector": "/etc/vector-version", "slackware": "/etc/slackware-version", "debian": "/etc/debian_version", "redhat": "/etc/redhat-release", "arch": "/etc/arch-release", "SuSE": "/etc/SuSE-release", "gentoo": "/etc/gentoo-release", "conectiva": "/etc/conectiva-release", "mandriva": "/etc/mandriva-release", "pardus": "/etc/pardus-release", "kanotix": "/etc/kanotix-release"]
+  Dim sPath As String
+  Dim sDistro As String
+  Dim cData As Collection
+  Dim iPos As Integer
+  
+  For Each sPath In cDist
+    sDistro = cDist.Key
+    
+    If Not Exist(sPath) Then Continue
+    
+    If sDistro = "lsb-release" Then
+      cData = ReadLsbRelease(sPath)
+      sDistro = cData["DISTRIB_DESCRIPTION"]
+      
+      If sDistro Then Return sDistro
+      Return cData["DISTRIB_ID"] & " " & cData["DISTRIB_RELEASE"]
+      
+    Else
+      Return sDistro & " " & Trim(File.Load(sPath))
+    Endif
+    
+  Next
+  
+  sDistro = File.Load("/etc/issue")
+  If sDistro Then
+    iPos = InStr(sDistro, "\\")
+    If iPos Then sDistro = Left(sDistro, iPos - 1)
+  Endif
+  Return Trim(sDistro)
+  
+End
+
+Public Sub GetDistribution_ID() As String
+  
+  Dim cDist As Collection = ["lsb-release": "/etc/lsb-release", "vector": "/etc/vector-version", "slackware": "/etc/slackware-version", "debian": "/etc/debian_version", "redhat": "/etc/redhat-release", "arch": "/etc/arch-release", "SuSE": "/etc/SuSE-release", "gentoo": "/etc/gentoo-release", "conectiva": "/etc/conectiva-release", "mandriva": "/etc/mandriva-release", "pardus": "/etc/pardus-release", "kanotix": "/etc/kanotix-release"]
+  Dim sPath As String
+  Dim sDistro As String
+  Dim cData As Collection
+  Dim iPos As Integer
+  
+  For Each sPath In cDist
+    sDistro = cDist.Key
+    
+    If Not Exist(sPath) Then Continue
+    
+    If sDistro = "lsb-release" Then
+      cData = ReadLsbRelease(sPath)
+      sDistro = cData["DISTRIB_ID"]
+      
+      If sDistro Then Return sDistro
+      Return cData["DISTRIB_ID"] & " " & cData["DISTRIB_RELEASE"]
+      
+    Else
+      Return sDistro & " " & Trim(File.Load(sPath))
+    Endif
+    
+  Next
+  
+  sDistro = File.Load("/etc/issue")
+  If sDistro Then
+    iPos = InStr(sDistro, "\\")
+    If iPos Then sDistro = Left(sDistro, iPos - 1)
+  Endif
+  Return Trim(sDistro)
+  
+End
+
+Public Sub MemoryFree()
+  
+  Dim total, used, freee, shared, buffers, cached, usedonthistime, swaptotal As String
+  Dim dospam, totpam, totalswap, usedswap, sresult As String
+  
+  Shell "free -m | grep 'Mem' | awk {'print $2'}" Wait To total
+  Shell "free -m | awk {'print $3'} | sed -n '2p'" Wait To used
+  Shell "free -m | awk {'print $4'} | sed -n '2p'" Wait To freee
+  Shell "free -m | awk {'print $5'} | sed -n '2p'" Wait To shared
+  Shell "free -m | awk {'print $6'} | sed -n '2p'" Wait To buffers
+  Shell "free -m | awk {'print $7'} | sed -n '2p'" Wait To cached
+  Shell "free -m | grep - | awk {'print $3'}" To dospam
+  Shell "free -m | grep - | awk {'print $3'}" To usedonthistime
+  Shell "free -m | grep Mem | awk {'print $2'}" Wait To totpam
+  Shell "free -m | grep 'Swap:' | awk {'print $2'}" Wait To swaptotal
+  
+  Shell "/sbin/swapon -s | awk {'print $3'} | sed -n '2p'" Wait To totalswap
+  Shell "/sbin/swapon -s | awk {'print $4'} | sed -n '2p'" Wait To usedswap
+  
+  swaptotal = Replace(swaptotal, "\n", "")
+  usedonthistime = Replace(usedonthistime, "\n", "")
+  cached = Replace(cached, "\n", "")
+  buffers = Replace(buffers, "\n", "")
+  shared = Replace(shared, "\n", "")
+  freee = Replace(freee, "\n", "")
+  used = Replace(used, "\n", "")
+  total = Replace(total, "\n", "")
+  
+  f_PC_Info.TextLabelRamUseT.Text = used & " MB" 'usedonthistime & " MB"
+  f_PC_Info.mnuUsed.Text = ("Used: ") & used & " MB"
+  
+  sresult = Val(total) - Val(used)  'usedonthistime & " MB"
+  f_PC_Info.TextLabelRam3.Text = ("Free : ") & sresult & " MB" 'usedonthistime & " MB"
+  f_PC_Info.mnuFree.Text = ("Free:") & sresult & " MB"
+  
+  If sresult <> 0 Then
+    Try f_PC_Info.ProgressBarFree.Value = Replace(Replace(used, " ", ""), "\n", "") / Replace(Replace(totpam, " ", ""), "\n", "")
+    f_PC_Info.ProgressBarFree.ToolTip = Int(f_PC_Info.ProgressBarFree.Value * 100) & " %"
+  Endif
+  
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub _inits_DD()
+  
+  Dim sdx As String 
+  Dim Avail_HDD As Integer 
+  Dim Max_HDD As Integer
+  Dim cache As String
+  
+  Shell "ls /sys/block/ | grep -e 'sd' -e 'sr' | tr ' ' '\n' | wc -l" Wait To cache
+  Max_HDD = Val(cache)
+  For Avail_HDD = 1 To Max_HDD
+    Shell "ls /sys/block/ | grep -e 'sd' -e 'sr' | tr ' ' '\n' | sed -n '" & Avail_HDD & "p'" Wait To sdx
+    sdx = Replace(sdx, "\n", "")
+    $List_DD.Add(sdx)
+    
+  Next
+  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Dat_DD()
+  
+  Dim sPart As String
+  Dim sSize As String
+  Dim sUtil As String
+  Dim sFree As String
+  Dim sPorc As String
+  Dim sType As String
+  Dim sVendor As String
+  Dim sModel As String
+  
+  For Each sListDD In $List_DD
+    
+    If (InStr(sListDD, "sda")) Or (InStr(sListDD, "hda")) Then
+      Shell "cat /sys/block/" & sListDD & "/" & sListAllDiscs & "/size" Wait To sReal_Size  
+      rm_new_line
+      
+      Shell "cat /sys/block/" & sListDD & "/device/vendor" Wait To sVendor
+      
+      f_PC_Info.lblvendor.Text = Trim(sVendor)
+      f_PC_Info.mnuDDVendor.Text = ("Vendor: ") & sVendor 
+      
+      Shell "cat /sys/block/" & sListDD & "/device/model" Wait To sModel
+      
+      f_PC_Info.lblname.Text = Trim(sModel)
+      f_PC_Info.mnuDDName.Text = ("Name: ") & sModel 
+      
+      Shell "df | grep '" & sListDD & "' | awk {'print $5'} | sed -n '1p'" Wait To sSize_Used
+      rm_new_line
+      
+      f_PC_Info.txtcapacity.Text = ("Hard Drive Capacity : ") & sReal_Size
+      f_PC_Info.mnuDDCapacity.Text = ("Hard Drive Capacity: ") & sReal_Size
+      f_PC_Info.TextLabelHarddrive.Text = sReal_Size
+      f_PC_Info.mnuHD.Text = ("Hard Drive: ") & sReal_Size
+      
+      Shell "df -h  | awk {'print $1'} | sed -n '4p' " Wait To sPart 
+      If (InStr(sPart, "udev")) Then 
+        Shell "df -h /boot  | awk {'print $1'} | sed -n '2p' " Wait To sPart 
+      Endif
+      Shell "df -h /boot  | awk {'print $2'} | sed -n '2p' " Wait To sSize 
+      Shell "df -h /boot  | awk {'print $3'} | sed -n '2p' " Wait To sUtil 
+      Shell "df -h /boot  | awk {'print $4'} | sed -n '2p' " Wait To sFree 
+      Shell "df -h /boot  | awk {'print $5'} | sed -n '2p' " Wait To sPorc
+      Shell "df -T /boot  | awk {'print $2'} | sed -n '2p' " Wait To sType
+      
+      f_PC_Info.txtdev.Text = ("Partition : ") & Trim(sPart)
+      f_PC_Info.mnuDev.Text = ("Partition: ") & Trim(sPart)
+      f_PC_Info.txtpz.Text = ("Partition Size : ") & Trim(sSize) 
+      f_PC_Info.mnupz.Text = ("Partition Size: ") & Trim(sSize) 
+      f_PC_Info.txtused.Text = ("Used : ") & Trim(sUtil)
+      f_PC_Info.mnuDDUsed.Text = ("Used: ") & Trim(sUtil)
+      f_PC_Info.txtfree.Text = ("Free : ") & Trim(sFree)
+      f_PC_Info.mnuDDFree.Text = ("Free: ") & Trim(sFree)
+      
+      sPart = Replace(sPart, "/dev/", Null)
+      sPart = Replace(sPart, "\n", Null)
+      sType = Replace(sType, "/dev/", Null)
+      sType = Replace(sType, "\n", Null)
+      
+      f_PC_Info.txttype.Text = ("Type : ") & Str(sType)
+      f_PC_Info.mnuDDType.Text = ("Type: ") & Str(sType)
+      
+      If sSize_Used <> 0 Then
+        Try f_PC_Info.ProgressBarSize.Value = sSize_Used / 100
+        f_PC_Info.ProgressBarSize.ToolTip = sSize_Used & "%"
+      Endif
+    Endif
+  Next
+  'Catch
+  ' Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub rm_new_line()
+  
+  sSize_Used = Replace(sSize_Used, "\n", "")
+  sSize_Used = Replace(sSize_Used, "%", "")
+  
+  Try sReal_Size = ((Replace(sReal_Size, "\n", "") / 1024000) / 2) & " GB"
+  sReal_Size = CStr(Left(sReal_Size, 5) & " GB")
+  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End

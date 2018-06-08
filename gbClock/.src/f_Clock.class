@@ -1,0 +1,299 @@
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' Part of this code belongs to Gambas3 and was adapted for Innova Project
+
+Private picHour As Image
+Private picMinute As Image
+Private picSecond As Image
+Private Clock As Image
+
+Private HE As Integer
+Private WI As Integer
+
+Private $MX As Integer
+Private $MY As Integer
+
+Private sResult_Clock As String 
+
+Public Set_gbClock As New Settings(Desktop.ConfigDir &/ "Innova/gbClock.conf")
+
+Public Sub DrawTime()
+  
+  Dim tmpImg As Image
+  
+  Dim hPict As Image
+  
+  WI = Clock.Width
+  HE = Clock.Height
+  
+  hPict = Clock.Copy()
+  
+  tmpImg = picHour.Rotate(- ((Hour(Now) * 60) + Minute(Now)) * Pi(1 / 360))    
+  hPict.PaintImage(tmpImg, WI / 2 - tmpImg.Width / 2, HE / 2 - tmpImg.Height / 2)
+  tmpImg = picMinute.Rotate(- Minute(Now) * Pi(2 / 60))
+  hPict.PaintImage(tmpImg, WI / 2 - tmpImg.Width / 2, HE / 2 - tmpImg.Height / 2)
+  tmpImg = picSecond.Rotate(- Second(Now) * Pi(2 / 60))
+  hPict.PaintImage(tmpImg, WI / 2 - tmpImg.Width / 2, HE / 2 - tmpImg.Height / 2)
+  
+  Me.Picture = hPict.Picture
+Catch
+  
+End
+
+Private Sub SetClock(iClock As Integer)
+  
+  Dim hImage As Image
+  Dim hMenu As Menu
+  Dim sPath As String
+  
+  sPath = Desktop.ConfigDir &/ "Innova/Widget/Themes_Clock/" 
+  Try sResult_Clock = Set_gbClock["Theme_Clock/Theme"]
+  
+  Try hImage = Image.Load(sPath & sResult_Clock & ".png")
+  If Error Then
+    Message(("gbClock: warning: cannot read ") & sPath & sResult_Clock & ".png")
+    M_Settings.Init_Settings_gbClock
+  Endif
+  
+  Clock = hImage
+  DrawTime
+  
+  For Each hMenu In mnuPopup.Children
+    If hMenu.Tag Then
+      hMenu.Checked = Val(hMenu.Tag) = iClock
+    Endif
+  Next
+  'Catch
+  
+End
+
+Public Sub Reload_Theme()
+  
+  Dim sResult_X As String 
+  Dim sResult_Y As String 
+  Dim sResult_Theme As String 
+  
+  Try sResult_X = Set_gbClock["Position/Position_X"]
+  Try sResult_Y = Set_gbClock["Position/Position_Y"]
+  Try sResult_Theme = Set_gbClock["Theme_Clock/Theme"]
+  
+  Me.X = sResult_X
+  Me.y = sResult_y
+  
+  If sResult_Clock = "Default" Then
+    mnuTheme1.Checked = True
+  Endif
+  If sResult_Clock = "Transparent" Then
+    mnuTheme2.Checked = True
+  Endif
+  If sResult_Clock = "Metro" Then
+    mnuTheme3.Checked = True
+  Endif
+  If sResult_Clock = "Gambas" Then
+    mnuTheme4.Checked = True
+  Endif
+  If sResult_Clock = "White" Then
+    mnuTheme5.Checked = True
+  Endif
+  If sResult_Clock = "Classic" Then
+    mnuTheme6.Checked = True
+  Endif
+  If sResult_Clock = "Kids" Then
+    mnuTheme7.Checked = True
+  Endif
+  If sResult_Clock = "Edu" Then
+    mnuTheme8.Checked = True
+  Endif
+  If sResult_Clock = "Tux" Then
+    mnuTheme9.Checked = True
+  Endif
+  If sResult_Clock = "Wood" Then
+    mnuTheme9.Checked = True
+  Endif
+Catch
+  
+End
+
+Public Sub Form_Open()
+  
+  picMinute = Image.Load("IMG/arrow_min.png")
+  picHour = Image.Load("IMG/arrow_hour.png")
+  picSecond = Image.Load("IMG/arrow_sec.png")
+  
+  SetClock(1)
+  Timer1.Enabled = True
+  Me.TopOnly = Not Me.TopOnly
+  
+  Reload_Theme 
+Catch
+  
+End
+
+Public Sub Timer1_Timer()
+  
+  DrawTime()
+  
+End
+
+Public Sub Form_Menu()
+  
+  mnuPopup.Popup
+  
+End
+
+Public Sub mnuClock_Click()
+  
+  SetClock(Val(Last.Tag))
+  
+End
+
+Public Sub mnuQuit_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub mnuAbout_Click()
+  
+  f_about.ShowModal
+  
+End
+
+Public Sub Form_MouseDown()
+  
+  $MX = Mouse.ScreenX - Me.X
+  $MY = Mouse.ScreenY - Me.Y
+  
+End
+' 
+
+Public Sub Form_MouseMove()
+  
+  If Mouse.Left Then Me.Move(Mouse.ScreenX - $MX, Mouse.ScreenY - $MY)
+  
+End
+
+Public Sub mnuOntop_Click()
+  
+  Me.TopOnly = Not Me.TopOnly
+  
+End
+
+Public Sub Form_Leave()
+  
+  Set_gbClock.Write(f_Clock)
+  Set_gbClock["Position/Position_X"] = f_Clock.X
+  Set_gbClock["Position/Position_Y"] = f_Clock.Y
+  Set_gbClock.Save
+  
+End
+
+Public Sub mnuTheme1_Click()
+  
+  Set_gbClock.Write(f_Clock)
+  Set_gbClock["Theme_Clock/Theme"] = "Default" 
+  Set_gbClock.Save
+  M_Restart.F_Refresh
+  
+End
+
+Public Sub mnuTheme2_Click()
+  
+  Set_gbClock.Write(f_Clock)
+  Set_gbClock["Theme_Clock/Theme"] = "Transparent"
+  Set_gbClock.Save
+  M_Restart.F_Refresh
+  
+End
+
+Public Sub mnuTheme3_Click()
+  
+  Set_gbClock.Write(f_Clock)
+  Set_gbClock["Theme_Clock/Theme"] = "Metro"
+  Set_gbClock.Save
+  M_Restart.F_Refresh
+  
+End
+
+Public Sub mnuTheme4_Click()
+  
+  Set_gbClock.Write(f_Clock)
+  Set_gbClock["Theme_Clock/Theme"] = "Gambas"
+  Set_gbClock.Save
+  M_Restart.F_Refresh
+  
+End
+
+Public Sub mnuTheme5_Click()
+  
+  Set_gbClock.Write(f_Clock)
+  Set_gbClock["Theme_Clock/Theme"] = "White"
+  Set_gbClock.Save
+  M_Restart.F_Refresh
+  
+End
+
+Public Sub mnuTheme6_Click()
+  
+  Set_gbClock.Write(f_Clock)
+  Set_gbClock["Theme_Clock/Theme"] = "Classic"
+  Set_gbClock.Save
+  M_Restart.F_Refresh
+  
+End
+
+Public Sub mnuTheme7_Click()
+  
+  Set_gbClock.Write(f_Clock)
+  Set_gbClock["Theme_Clock/Theme"] = "Kids"
+  Set_gbClock.Save
+  M_Restart.F_Refresh
+  
+End
+
+Public Sub mnuTheme8_Click()
+  
+  Set_gbClock.Write(f_Clock)
+  Set_gbClock["Theme_Clock/Theme"] = "Edu"
+  Set_gbClock.Save
+  M_Restart.F_Refresh
+  
+End
+
+Public Sub mnuTheme9_Click()
+  
+  Set_gbClock.Write(f_Clock)
+  Set_gbClock["Theme_Clock/Theme"] = "Tux"
+  Set_gbClock.Save
+  M_Restart.F_Refresh
+  
+End
+
+Public Sub mnuTheme10_Click()
+  
+  Set_gbClock.Write(f_Clock)
+  Set_gbClock["Theme_Clock/Theme"] = "Wood"
+  Set_gbClock.Save
+  M_Restart.F_Refresh
+  
+End

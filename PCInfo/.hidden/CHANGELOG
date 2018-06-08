@@ -1,0 +1,10 @@
+* Wed Feb 01 2017 Herberth Guzman <innovadesktop@gmail.com> 0.5.11
+
+- Muestra espacio disco duro
+- Se adapto el theme a Innova Desktop
+- Se actualizo la libreria my myclassdesktop
+- Se trabaja con Dbus para inforacion del sistema
+
+* Fri Jan 31 2014 Herberth Guzman <innovadesktop@gmail.com> 0.0.3
+- Lanzamiento inicial
+

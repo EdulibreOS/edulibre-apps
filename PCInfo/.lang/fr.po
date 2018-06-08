@@ -1,0 +1,351 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PCInfo 3.8.90\n"
+"PO-Revision-Date: 2016-07-05 04:38 UTC\n"
+"Last-Translator: edulibreos <edulibreos@EdulibreOS>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .project:1
+msgid "PCInfo"
+msgstr ""
+
+#: .project:2
+msgid "Information System\n\nSO\n  Linux Distibution\n  Architecture\n  Kernel\n\nMemory\n  Memory Capacity and Usage\n\nHard Disk\n  Partition Capacity and Usage\n  Type Partition\n\nDesktop Environment\n  Desktop\n  User\n  Language\n  Timezone\n  Computer Name\n\nCPU\n  Vendor\n  Processor usage\n  Memory Capacity\n  Hard Disk Capacity\n  Workgroup"
+msgstr ""
+
+#: Form1.form:28
+msgid "Resume"
+msgstr ""
+
+#: Form1.form:31
+msgid "Monitores"
+msgstr ""
+
+#: Form1.form:34
+msgid "Almacenamiento"
+msgstr ""
+
+#: Form1.form:36
+msgid "Memoria"
+msgstr ""
+
+#: Form1.form:55
+msgid "Resumen"
+msgstr ""
+
+#: M_InfoPc.module:51
+msgid "Operating System: "
+msgstr "Système d'Exploitation: "
+
+#: M_InfoPc.module:53
+msgid "Architecture: "
+msgstr "Architecture: "
+
+#: M_InfoPc.module:55
+msgid "Kernel: "
+msgstr "Noyau: "
+
+#: M_InfoPc.module:58
+msgid "Processor: "
+msgstr "Processeur: "
+
+#: M_InfoPc.module:74
+msgid "Total: "
+msgstr "Totale: "
+
+#: M_InfoPc.module:75
+msgid "Memory: "
+msgstr "Mémoire: "
+
+#: M_InfoPc.module:84
+msgid "Distribution: "
+msgstr "Distribution: "
+
+#: M_InfoPc.module:87
+msgid "Desktop: "
+msgstr "Bureau: "
+
+#: M_InfoPc.module:89
+msgid "Session: "
+msgstr "Session: "
+
+#: M_InfoPc.module:91
+msgid "Workgroup: "
+msgstr "Groupe de travail: "
+
+#: M_InfoPc.module:93
+msgid "Computer Name: "
+msgstr "Nom de l'ordinateur: "
+
+#: M_InfoPc.module:95
+msgid "User: "
+msgstr "Utilisateur: "
+
+#: M_InfoPc.module:97
+msgid "Language: "
+msgstr "Langue: "
+
+#: M_InfoPc.module:99
+msgid "Time Zone: "
+msgstr "Fuseau Horaire: "
+
+#: M_InfoPc.module:101
+msgid "Development Version: "
+msgstr "Version de Développement: "
+
+#: M_InfoPc.module:103
+msgid "Vendor: "
+msgstr "Vendeur: "
+
+#: M_InfoPc.module:225
+msgid "Used: "
+msgstr "Utilisée: "
+
+#: M_InfoPc.module:228
+msgid "Free : "
+msgstr "Libre : "
+
+#: M_InfoPc.module:229
+msgid "Free:"
+msgstr "Libre: "
+
+#: M_InfoPc.module:286
+msgid "Name: "
+msgstr "Nom: "
+
+#: M_InfoPc.module:293
+msgid "Hard Drive Capacity : "
+msgstr "Capacité du Disque Dur : "
+
+#: M_InfoPc.module:294
+msgid "Hard Drive Capacity: "
+msgstr "Capacité du Disque Dur: "
+
+#: M_InfoPc.module:297
+msgid "Hard Drive: "
+msgstr "Disque Dur: "
+
+#: M_InfoPc.module:313
+msgid "Partition : "
+msgstr "Partition : "
+
+#: M_InfoPc.module:314
+msgid "Partition: "
+msgstr "Partition: "
+
+#: M_InfoPc.module:315
+msgid "Partition Size : "
+msgstr "Taille de la Partition"
+
+#: M_InfoPc.module:316
+msgid "Partition Size: "
+msgstr "Taille de la Partition: "
+
+#: M_InfoPc.module:317
+msgid "Used : "
+msgstr "Utilisée : "
+
+#: M_InfoPc.module:320
+msgid "Free: "
+msgstr "Libre: "
+
+#: M_InfoPc.module:326
+msgid "Type : "
+msgstr "Type : "
+
+#: M_InfoPc.module:327
+msgid "Type: "
+msgstr "Type: "
+
+#: f_about.form:26
+msgid "About - PCInfo"
+msgstr ""
+
+#: f_about.form:39
+msgid "Innova Desktop Environment"
+msgstr ""
+
+#: f_about.form:52
+msgid "This program uses Gambas version 3.8.90"
+msgstr ""
+
+#: f_about.form:77 f_pcinfo.form:333
+msgid "Close"
+msgstr "Fermer"
+
+#: f_about.form:87 f_pcinfo.form:343
+msgid "About"
+msgstr "à propos de"
+
+#: f_about.form:92
+msgid "PcInfo"
+msgstr ""
+
+#: f_about.form:98
+msgid "Copyright (C) 2015-2016"
+msgstr ""
+
+#: f_about.form:111
+msgid "Innova Desktop"
+msgstr ""
+
+#: f_about.form:116
+msgid "<p><br>PcInfo is an application that gathers information for hardware components available on your system for the Lightweight Desktop Environment (Innova Desktop).</p>\n\n<p>PcInfo would not have been possible without the help of:</p></br>\n\n<font color=\"#D8D8D8\">\n<h5><p><u><br>Benoît Minisini - Gambas3</h5></p></u>\n<h5><p><u>Michał aka eloaders - I-Nex</h5></p> </u>\n<h5><p><u>Herberth Guzmán - Developer</h5></p></u></br>\n</font>\n"
+msgstr ""
+
+#: f_about.form:119
+msgid "License"
+msgstr ""
+
+#: f_about.form:124
+msgid "    This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License    along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+
+#: f_about.form:130
+msgid "Translators"
+msgstr ""
+
+#: f_about.form:135
+msgid "Spanish: Herberth Guzmán (herberthguzman@gmail.com)"
+msgstr ""
+
+#: f_pcinfo.form:165
+msgid "Information of System"
+msgstr "Informations du Système"
+
+#: f_pcinfo.form:170
+msgid "Main"
+msgstr ""
+
+#: f_pcinfo.form:174
+msgid "Operating System"
+msgstr "Système d'Exploitation"
+
+#: f_pcinfo.form:183
+msgid "Architecture"
+msgstr "Architecture"
+
+#: f_pcinfo.form:188
+msgid "Kernel"
+msgstr "Noyau"
+
+#: f_pcinfo.form:193
+msgid "Distribution"
+msgstr "Distribution"
+
+#: f_pcinfo.form:198
+msgid "Memory"
+msgstr "Mémoire"
+
+#: f_pcinfo.form:202
+msgid "Total"
+msgstr "Totale"
+
+#: f_pcinfo.form:207
+msgid "Free"
+msgstr "Libre"
+
+#: f_pcinfo.form:212
+msgid "Used"
+msgstr "Utilisée"
+
+#: f_pcinfo.form:218
+msgid "Hard Disk"
+msgstr "Disque Dur"
+
+#: f_pcinfo.form:222
+msgid "Vendor"
+msgstr "Vendeur"
+
+#: f_pcinfo.form:227
+msgid "Name"
+msgstr "Nom"
+
+#: f_pcinfo.form:232
+msgid "Capacity"
+msgstr "Capacité"
+
+#: f_pcinfo.form:237
+msgid "Dev"
+msgstr ""
+
+#: f_pcinfo.form:242
+msgid "Type"
+msgstr "Type"
+
+#: f_pcinfo.form:247
+msgid "Partition Size"
+msgstr "Taille de la Partition"
+
+#: f_pcinfo.form:263
+msgid "Desktop Environment"
+msgstr "Environnement de Bureau"
+
+#: f_pcinfo.form:267
+msgid "Desktop"
+msgstr "Bureau"
+
+#: f_pcinfo.form:272
+msgid "Development Version"
+msgstr "Version de Développement"
+
+#: f_pcinfo.form:277
+msgid "Session"
+msgstr "Session"
+
+#: f_pcinfo.form:282
+msgid "Computer Name"
+msgstr "Nom de l'ordinateur"
+
+#: f_pcinfo.form:287
+msgid "User"
+msgstr "Utilisateur"
+
+#: f_pcinfo.form:292
+msgid "Language"
+msgstr "Langue"
+
+#: f_pcinfo.form:297
+msgid "Timezone"
+msgstr "Fuseau Horaire"
+
+#: f_pcinfo.form:303
+msgid "CPU"
+msgstr ""
+
+#: f_pcinfo.form:312
+msgid "Processor"
+msgstr "Processeur"
+
+#: f_pcinfo.form:317
+msgid "Memory Ram"
+msgstr "Mémoire Ram"
+
+#: f_pcinfo.form:327
+msgid "Workgroup"
+msgstr "Groupe de travail"
+
+#: f_pcinfo.form:339
+msgid "mnuAbout"
+msgstr ""
+
+#: f_pcinfo.form:1023
+msgid "N/A"
+msgstr ""
+
+#: f_pcinfo.form:1029
+msgid "Ram used:"
+msgstr "Ram utilisée : "
+
+#: f_pcinfo.form:1040
+msgid "Release the cache RAM"
+msgstr "Libérer le cache RAM"
+
+#: f_pcinfo.form:1217
+msgid "System Info"
+msgstr "Information Système"
+

@@ -1,0 +1,65 @@
+' Gambas module file
+
+' Gambas module f' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Public Set_gbClock As New Settings(Desktop.ConfigDir &/ "Innova/gbClock.conf")
+Private sPath As String
+
+Public Sub Init_Settings_gbClock()
+  
+  Dim sDir As String
+  Dim sElt As String
+  
+  sPath = Desktop.ConfigDir &/ "Innova"
+  
+  If Not Exist(sPath) Then Mkdir sPath
+  If Not Exist(sPath &/ "Widget") Then Mkdir sPath &/ "Widget"
+  If Not Exist(sPath &/ "Widget/Themes_Clock") Then Mkdir sPath &/ "Widget/Themes_Clock"
+  
+  Set_gbClock.Write(f_Clock)
+  Set_gbClock["Theme_Clock/Theme"] = "Default" 
+  Set_gbClock.Save
+  cpData_gbClock
+  M_Restart.F_Refresh
+  
+End
+
+Public Sub cpData_gbClock()
+  
+  Dim sCp As String
+  Dim sDir_Ori As String
+  Dim sDir_Des As String
+  
+  sDir_Ori = Application.Path &/ "Themes_Clock/"
+  sDir_Des = (sPath &/ "Widget/")
+  sCp = "cp -R " & sDir_Ori & " " & sDir_Des
+  Shell sCp Wait
+  
+End
+
+Public Sub Theme_Application()
+  
+  Application.Font.Size = 9
+  
+End

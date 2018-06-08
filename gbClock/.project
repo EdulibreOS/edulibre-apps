@@ -1,0 +1,37 @@
+# Gambas Project File 3.0
+# Compiled with Gambas 3.9.90
+Title=gbClock
+Startup=Cls_Start
+Icon=IMG/gbClock.png
+Version=0.2.2
+Component=gb.image
+Component=gb.qt5
+Component=gb.form
+Component=gb.desktop.x11
+Component=gb.desktop
+Component=gb.settings
+Description="Widget Clock  for Innova Desktop.\nWidget Clock  pour Innova Desktop.\nWidget Clock  para Innova Desktop."
+Authors="Fabien BODARD\nBenoît MINISINI\nHerberth GUZMAN"
+TabSize=2
+Translate=1
+Language=en_US
+Maintainer=Herberth Guzman
+Vendor=InnovaDesktop
+Address=innovadesktop@gmail.com
+Url=http://sourceforge.net/projects/innovadesktop/
+License=General Public License
+PackageName=gbclock-0.2.0
+Packager=1
+Systems=ubuntu
+Menus=debian:"Applications/Accessibility"
+Categories=debian:"Accessibility;Utility"
+Groups=debian:"admin"
+Menus=ubuntu:"Applications/Accessibility"
+Categories=ubuntu:"Accessibility;Utility"
+Groups=ubuntu:"admin"
+ExtraDependencies=ubuntu:"\t\t"
+ExtraFiles=ubuntu:"GWI_Clock.conf\t/usr/share/Innova/Widget\nThemes_Clock/Classic.png\t/usr/share/Innova/Widget/Themes_Clock\nThemes_Clock/Default.png\t/usr/share/Innova/Widget/Themes_Clock\nThemes_Clock/Edu.png\t/usr/share/Innova/Widget/Themes_Clock\nThemes_Clock/Gambas.png\t/usr/share/Innova/Widget/Themes_Clock\nThemes_Clock/Kids.png\t/usr/share/Innova/Widget/Themes_Clock\nThemes_Clock/Metro.png\t/usr/share/Innova/Widget/Themes_Clock\nThemes_Clock/Transparent.png\t/usr/share/Innova/Widget/Themes_Clock\nThemes_Clock/Tux.png\t/usr/share/Innova/Widget/Themes_Clock\nThemes_Clock/White.png\t/usr/share/Innova/Widget/Themes_Clock"
+Tags=Accessibility,Utility,Example
+GambasVersion=3.9
+WebSite=http://sourceforge.net/projects/innovadesktop/
+CreateMenu=1

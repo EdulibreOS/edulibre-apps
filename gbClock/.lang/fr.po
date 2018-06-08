@@ -1,0 +1,127 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: gbClock 3.8.90\n"
+"PO-Revision-Date: 2016-07-17 18:58 UTC\n"
+"Last-Translator: edulibreos <edulibreos@EdulibreOS>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .project:1 f_about.form:91
+msgid "gbClock"
+msgstr ""
+
+#: .project:2
+msgid "Widget Clock  for Innova Desktop.\nWidget Clock  pour Innova Desktop.\nWidget Clock  para Innova Desktop."
+msgstr ""
+
+#: F_WClock.class:166
+msgid "Widget Clock for Innova Desktop made by Fabien BODARD\n and was optimized by Benoît MINISINI\npersonalized by Herberth GUZMAN\n\nNote.\n Example taken Gambas3. Email - innovadesktop@gmail.com"
+msgstr "Widget Clock pour Innova Desktop faite par Fabien BODARD\n et a été optimisé par Benoît MINISINI\npersonnalisé par Herberth GUZMAN\n\nRemarque.\n Exemple pris Gambas3. Email - innovadesktop@gmail.com"
+
+#: F_WClock.form:31 f_Clock.form:32
+msgid "central"
+msgstr ""
+
+#: F_WClock.form:35 f_Clock.form:36
+msgid "Themes"
+msgstr "Thèmes"
+
+#: F_WClock.form:39 f_Clock.form:39
+msgid "Default"
+msgstr "Par défaut"
+
+#: F_WClock.form:45 f_Clock.form:45
+msgid "Transparent"
+msgstr "Transparent"
+
+#: F_WClock.form:51 f_Clock.form:51
+msgid "Metro"
+msgstr "Metro"
+
+#: F_WClock.form:57 f_Clock.form:57
+msgid "Tux"
+msgstr "Tux"
+
+#: F_WClock.form:63 f_Clock.form:63
+msgid "Gambas"
+msgstr "Gambas"
+
+#: F_WClock.form:69 f_Clock.form:69
+msgid "White"
+msgstr "Blanc"
+
+#: F_WClock.form:75 f_Clock.form:75
+msgid "Classic"
+msgstr "Classique"
+
+#: F_WClock.form:81 f_Clock.form:81
+msgid "Kids"
+msgstr "Enfants"
+
+#: F_WClock.form:87 f_Clock.form:87
+msgid "Edu"
+msgstr "Edu"
+
+#: F_WClock.form:97 f_Clock.form:102 f_about.form:86
+msgid "About"
+msgstr "Sur"
+
+#: F_WClock.form:104 f_Clock.form:110
+msgid "Quit"
+msgstr "Quitter"
+
+#: f_Clock.class:74
+msgid "gbClock: warning: cannot read "
+msgstr "gbClock: avertissement: ne peut pas lire "
+
+#: f_Clock.form:93
+msgid "Wood"
+msgstr "Bois"
+
+#: f_about.form:26
+msgid "About - gbClock"
+msgstr "Sur - gbClock"
+
+#: f_about.form:38
+msgid "Innova Desktop Environment"
+msgstr ""
+
+#: f_about.form:51
+msgid "This program uses Gambas version 3.8.90"
+msgstr "Ce programme utilise la version 8.3.90 Gambas3"
+
+#: f_about.form:76
+msgid "Close"
+msgstr "Fermer"
+
+#: f_about.form:97
+msgid "Copyright (C) 2016-2016"
+msgstr ""
+
+#: f_about.form:110
+msgid "Innova Desktop"
+msgstr ""
+
+#: f_about.form:115
+msgid "<p><br>gbClock is a Widget Clock  for the Lightweight Desktop Environment (Innova Desktop).</p>\n\n<p>gbClock would not have been possible without the help of:</p></br>\n\n<font color=\"#D8D8D8\">\n<h5><p><u><br>Benoît Minisini - Gambas3</h5></p></u>\n<h5><p><u>Benoît Minisini / Fabien Bodard</h5></p> </u>\n<h5><p><u>Herberth Guzmán - Customization Development </h5></p></u></br>\n</font>\n"
+msgstr "<p><br>gbClock est un Clock Widget pour l'environnement de Bureau (Innova Destkop).</p>\n\n <p>gbClock pas été possible sans l'aide de:</p></br>\n<font color=\"#D8D8D8\">\n\n<h5><p><u><br>Benoît Minisini - Gambas3 </h5></p></u>\n<h5><p><u>Benoît Minisini / Fabien Bodard </h5></p></u>\n <h5><p><u>Herberth Guzman - Customisation développement</h5></p></u></br>\n</font>\n"
+
+#: f_about.form:118
+msgid "License"
+msgstr "Licence"
+
+#: f_about.form:123
+msgid "    This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License    along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr "\nCe programme est un logiciel libre: vous pouvez le redistribuer et / ou le modifier selon les termes de la GNU General Public License telle que publiée par la Free Software Foundation, soit la version 3 de la licence, ou (à votre choix) toute version ultérieure.\n\n     Ce programme est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE GARANTIE; sans même la garantie implicite de COMMERCIALISATION ou D'ADAPTATION À UN USAGE PARTICULIER. Voir la GNU General Public License pour plus de détails.\n\n     Vous devriez avoir reçu une copie de la Licence Publique Générale GNU avec ce programme. Sinon, voir <http://www.gnu.org/licenses/>."
+
+#: f_about.form:129
+msgid "Translators"
+msgstr "Traducteur"
+
+#: f_about.form:134
+msgid "Spanish: Herberth Guzmán (herberthguzman@gmail.com)"
+msgstr "Espanol: Herberth Guzmán (herberthguzman@gmail.com)"
+
