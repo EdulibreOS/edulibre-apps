@@ -41,6 +41,7 @@ Public Sub Info_Pc()
   Dim timezone As String
   Dim sTempSessio As String
   Dim sTempVendor As String
+  'Dim jhm As String
   
   Exec ["uname", "-r"] To sTemp
   Exec ["uname", "-o"] To sTempFam
