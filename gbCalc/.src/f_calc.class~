@@ -1,0 +1,419 @@
+' Gambas class file
+
+' Innova - Lanzador de aplicaciones 
+' Copyright(C)2013 Herberth Guzman <innovadesktop@gmail.com>
+
+' This program is free software: you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation, either version 3 of the License, or
+' (at your option) any later version.
+
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+
+' You should have received a copy of the GNU General Public License
+' along with this program.  If not, see <http://www.gnu.org/licenses/>.
+' 
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' 
+Private ope1 As Float
+Private ope2 As Float
+Private ope As String
+Private clean As Boolean
+Private result As Float
+Public Set_gbCalc As New Settings(Desktop.ConfigDir &/ "Innova/gbCalc.conf")
+Private sResult_Theme As String 
+Private iResult_Top As Integer
+Private $MX As Integer
+Private $MY As Integer
+
+'Public inicialResize As Integer = 0 
+'Public inicioArrange As Integer = 0
+
+Public Sub Form_MouseDown()
+  
+  $MX = Mouse.ScreenX - Me.X
+  $MY = Mouse.ScreenY - Me.Y
+  
+End
+
+Public Sub Form_MouseMove()
+  
+  If Mouse.Left Then Me.Move(Mouse.ScreenX - $MX, Mouse.ScreenY - $MY)
+  
+End
+
+Public Sub _new()
+  
+  Theme_Calc
+  
+  Try iResult_Top = Set_gbCalc["Calc/Top"]
+  
+  If iResult_Top = 1 Then
+    mnuTop.Checked = True
+    Me.TopOnly = Not Me.TopOnly
+  Endif
+  
+End
+
+Public Sub Form_Open()
+  
+  Dim sResult_X As String 
+  Dim sResult_Y As String 
+  
+  Try sResult_X = Set_gbCalc["Position/Position_X"]
+  Try sResult_Y = Set_gbCalc["Position/Position_Y"]
+  
+  Me.X = sResult_X
+  Me.y = sResult_y
+  
+  LCD.SetFocus
+  Me.Resizable = False
+  'Me.Center 
+  
+  ' Me.TopOnly = Not Me.TopOnly
+  
+  'Set_gbCalc.Write(f_calc)
+Catch
+  
+End
+
+Public Sub Form_Menu()
+  
+  mnuOpen.Popup
+  'mnuApariencia.Popup
+  'MenuAbout.Popup
+  'mnuArchivo.Visible = True 
+  
+End
+
+Public Sub Btndec_Click()
+  
+  If InStr(LCD.Text, ".") = False Then
+    LCD.Text = LCD.Text & "."
+  Endif
+  
+End
+
+Public Sub BotonIgual_Click()
+  
+  ope2 = CFloat(LCD.Text)
+  If ope = "+" Then result = ope1 + ope2
+  If ope = "-" Then result = ope1 - ope2
+  If ope = "*" Then result = ope1 * ope2
+  If ope = "/" And ope2 <> 0 Then result = ope1 / ope2
+  If ope = "%" Then result = (ope1 * ope2) / 100
+  LCD.Text = result
+  LCD.SetFocus
+Catch
+  
+End
+
+Public Sub Btnclean_Click()
+  
+  LCD.Text = Null
+  LCD.SetFocus
+  
+End
+
+Public Sub Form_KeyPress()
+  
+  Select Case Key.code 
+    Case Key.Esc 
+      LCD.Text = Null
+      
+    Case 43
+      'If Key.Code = 43 Then
+      ope1 = CFloat(LCD.Text)
+      ope = "+"
+      LCD.Text = Null
+      LCD.text = Left(LCD.text, -1) & ""
+      Wait 0.1
+      Stop Event 
+      
+    Case 45
+      ope1 = CFloat(LCD.Text)
+      ope = "-"
+      LCD.Text = Null
+      LCD.text = Left(LCD.text, -1) & ""
+      Wait 0.1
+      Stop Event 
+    Case 42
+      ope1 = CFloat(LCD.Text)
+      ope = "*"
+      LCD.Text = Null
+      LCD.text = Left(LCD.text, -1) & ""
+      Wait 0.1
+      Stop Event 
+    Case 47
+      ope1 = CFloat(LCD.Text)
+      ope = "/"
+      LCD.Text = Null
+      LCD.text = Left(LCD.text, -1) & ""
+      Wait 0.1
+      Stop Event 
+    Case Key.Enter 
+      BotonIgual_Click
+    Case 37
+      ope1 = CFloat(LCD.Text)
+      ope = "%"
+      LCD.Text = Null
+  End Select
+Catch
+  Return
+  
+End
+
+Public Sub mnuTheme_Click()
+  
+  If mnuTheme.Checked = True
+    Set_gbCalc.Write(f_calc)
+    Set_gbCalc["Theme_Calc/Theme"] = "Kids"
+    Set_gbCalc.Save
+  Endif
+  
+  If mnuTheme.Checked = False
+    Set_gbCalc.Write(f_calc)
+    Set_gbCalc["Theme_Calc/Theme"] = "Default"
+    Set_gbCalc.Save
+  Endif
+  
+  Theme_Calc
+  
+End
+
+Public Sub Theme_Calc()
+  
+  Try sResult_Theme = Set_gbCalc["Theme_Calc/Theme"]
+  
+  If sResult_Theme = "Kids" Then
+    mnuTheme.Checked = True
+  Endif
+  
+  If mnuTheme.Value = True Then
+    
+    Btn1.Background = color.DarkBlue
+    Btn2.Background = color.DarkBlue
+    Btn3.Background = color.DarkBlue
+    Btn4.Background = color.DarkBlue
+    Btn5.Background = color.DarkBlue
+    Btn6.Background = color.DarkBlue
+    Btn7.Background = color.DarkBlue
+    Btn8.Background = color.DarkBlue
+    Btn9.Background = color.DarkBlue
+    Btn0.Background = color.DarkBlue
+    Btndec.Background = color.DarkBlue
+    BtnDiv.Background = color.Red
+    BtnPor.Background = color.Red
+    BtnSum.Background = color.Red
+    BtnMen.Background = color.Red
+    BotonIgual.Background = color.Green
+    Btndelete.Background = color.DarkGray
+    Btnclean.Background = color.DarkYellow
+    Btnporcen.Background = color.Violet
+    BtnRC.Background = color.Magenta
+    
+    LCD.Background = color.Yellow
+    Me.Background = &00006FDF&
+    
+    Btn1.Foreground = color.White
+    Btn2.Foreground = color.White
+    Btn3.Foreground = color.White
+    Btn4.Foreground = color.White
+    Btn5.Foreground = color.White
+    Btn6.Foreground = color.White
+    Btn7.Foreground = color.White
+    Btn8.Foreground = color.White
+    Btn9.Foreground = color.White
+    Btn0.Foreground = color.White
+    Btndec.Foreground = color.White
+    BtnDiv.Foreground = color.White
+    BtnPor.Foreground = color.White
+    BtnSum.Foreground = color.White
+    BtnMen.Foreground = color.White
+    BotonIgual.Foreground = color.White
+    Btndelete.Foreground = color.White
+    Btnclean.Foreground = color.White
+    Btnporcen.Foreground = color.White
+    BtnRC.Foreground = color.White
+    
+  Else
+    '  Theme.Checked = False
+    Btn1.Background = color.Default
+    Btn2.Background = color.Default
+    Btn3.Background = color.Default
+    Btn4.Background = color.Default
+    Btn5.Background = color.Default
+    Btn6.Background = color.Default
+    Btn7.Background = color.Default
+    Btn8.Background = color.Default
+    Btn9.Background = color.Default
+    Btn0.Background = color.Default
+    Btndec.Background = color.Default
+    BtnDiv.Background = color.Default
+    BtnPor.Background = color.Default
+    BtnSum.Background = color.Default
+    BtnMen.Background = color.Default
+    BotonIgual.Background = color.Default
+    Btndelete.Background = color.Default
+    Btnclean.Background = color.Default
+    Btnporcen.Background = color.Default
+    BtnRC.Background = color.Default
+    
+    LCD.Background = Color.White
+    Me.Background = &H042C37&
+    
+    Btn1.Foreground = color.Default
+    Btn2.Foreground = color.Default
+    Btn3.Foreground = color.Default
+    Btn4.Foreground = color.Default
+    Btn5.Foreground = color.Default
+    Btn6.Foreground = color.Default
+    Btn7.Foreground = color.Default
+    Btn8.Foreground = color.Default
+    Btn9.Foreground = color.Default
+    Btn0.Foreground = color.Default
+    Btndec.Foreground = color.Default
+    BtnDiv.Foreground = color.Default
+    BtnPor.Foreground = color.Default
+    BtnSum.Foreground = color.Default
+    BtnMen.Foreground = color.Default
+    BotonIgual.Foreground = color.Default
+    Btndelete.Foreground = color.Default
+    Btnclean.Foreground = color.Default
+    Btnporcen.Foreground = color.Default
+    BtnRC.Foreground = color.Default
+  Endif
+  
+End
+
+Public Sub Botonmasmenos_Click()
+  
+End
+
+Public Sub Btndelete_Click()
+  
+  LCD.Text = Null
+  LCD.SetFocus
+  
+End
+
+Public Sub Acercade_Click()
+  
+  f_About.ShowModal
+  'Message(("InnoCalc is part of Innova Desktop made by Herberth GUZMAN - innovadesktop@gmail.com"))
+  
+End
+
+Public Sub Salir_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub LCD_KeyPress()
+  
+  If (Key.Code >= Asc("a") And Key.Code <= Asc("z")) Or (Key.Code >= Asc("A") And Key.Code <= Asc("Z")) Then
+    LCD.Text = Null
+    Stop Event
+  Endif
+  
+End
+
+Public Sub Btnporcen_Click()
+  
+  ope1 = CFloat(LCD.Text)
+  ope = "%"
+  LCD.Text = Null
+  LCD.SetFocus
+  
+End
+
+Public Sub Button1_Click()
+  
+End
+
+Public Sub Num_Click()
+  
+  If clean Then
+    LCD.Text = Null
+    clean = False
+  Endif
+  LCD.Text = LCD.Text & Last.Text
+  LCD.SetFocus
+  
+End
+
+Public Sub BtnRC_Click()
+  
+  LCD.Text = Sqr(LCD.Text) 
+  LCD.SetFocus
+  
+End
+
+Public Sub Oper_Click()
+  
+  Select Case Last.tag
+    Case 0
+      ope1 = CFloat(LCD.Text)
+      ope = "+"
+      LCD.Text = Null
+    Case 1
+      ope1 = CFloat(LCD.Text)
+      ope = "-"
+      LCD.Text = Null
+    Case 2
+      ope1 = CFloat(LCD.Text)
+      ope = "*"
+      LCD.Text = Null
+    Case 3
+      ope1 = CFloat(LCD.Text)
+      ope = "/"
+      LCD.Text = Null
+  End Select
+  LCD.SetFocus
+Catch
+  Return
+  
+End
+
+Public Sub Form_Leave()
+  
+  Set_gbCalc.Write(f_calc)
+  Set_gbCalc["Position/Position_X"] = f_calc.X
+  Set_gbCalc["Position/Position_Y"] = f_calc.Y
+  Set_gbCalc.Save
+  
+End
+
+Public Sub mnuAcercade_Click()
+  
+  f_about.ShowModal
+  
+End
+
+Public Sub mnuSalir_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub mnuTop_Click()
+  
+  If mnuTop.Checked = True
+    Set_gbCalc.Write(f_calc)
+    Set_gbCalc["Calc/Top"] = 1
+    Set_gbCalc.Save
+    Me.TopOnly = Not Me.TopOnly
+  Endif
+  
+  If mnuTop.Checked = False
+    Set_gbCalc.Write(f_calc)
+    Set_gbCalc["Calc/Top"] = 0
+    Set_gbCalc.Save
+    Me.TopOnly = False
+  Endif
+  
+End

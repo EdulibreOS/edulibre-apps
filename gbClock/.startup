@@ -1,0 +1,13 @@
+Cls_Start
+gbClock
+0
+0
+0.2.2
+
+gb.image
+gb.qt5
+gb.form
+gb.desktop.x11
+gb.desktop
+gb.settings
+

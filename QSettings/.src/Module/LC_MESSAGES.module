@@ -1,0 +1,60 @@
+' Gambas module file
+
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Public Const MSG_INF_EXT_ACTIVE As String = ("Current extensions is active, can not be deleted.")
+Public Const MSG_INF_WIDGET_ACTIVE As String = ("Current widget is active, can not be deleted.")
+Public Const MSG_INF_CAD_NULL As String = ("The fields can not be empety")
+Public Const MSG_INFO_REC_ADD As String = ("Record saved successfully")
+Public Const MSG_QUESTION_DEL_EXT As String = ("¿Are you sure we want to remove the extensions - ")
+Public Const MSG_QUESTION_WIDGET_EXT As String = ("¿Are you sure we want to remove the widget - ")
+
+Public Const MSG_ERR_SAVE As String = ("Theme Registration Error")
+Public Const MSG_ERR_DB As String = ("Failed to connect to the DB system")
+Public Const MSG_ERR_REC As String = ("Error processing the system information")
+Public Const MSG_ERR_WINMAN As String = ("You must select valid windows manager")
+Public Const MSG_ERR_IMAGE As String = ("Format not valid")
+Public Const MSG_ERR_DEL_ITEMS As String = ("No item selected to remove")
+
+'Public Const MSG_ERR_CREATE_DIR As String = ("Cannot create directory.")
+
+Public Const MSG_INF_INN_EJECT As String = ("Innova Desktop in execution...")
+Public Const MSG_INF_SPLASH_EXIST As String = ("Splash Screen exists")
+Public Const MSG_INF_TYPE_LAUNCHER As String = ("Appearance Launcher Innova is NOT equal to the Launcher Type selected in the Theme Current. You want to change the Appearance of Launcher...?")
+Public Const MSG_INF_FOLDER_EXIST As String = ("Folder already exists")
+Public Const MSG_INF_FILE_EXIST As String = ("File already exists")
+Public Const MSG_INF_DEL_FILE As String = ("Can not delete the files")
+Public Const MSG_INF_THEME_EXIST As String = ("Theme selected already exists in the system.")
+Public Const MSG_INF_THEME_ACTIVE As String = ("Current theme is active, can not be deleted.")
+Public Const MSG_INF_THEME_INACTIVE As String = ("You have not selected Innova Theme.")
+Public Const MSG_INF_APPS_REFERENCE As String = ("It has not established a reference Apps.")
+
+Public Const MSG_QUESTION_DEL_SPLASH As String = ("¿Want to delete the select splash?")
+Public Const MSG_QUESTION_RES_NEW_FILE As String = ("Enter a Name...")
+Public Const MSG_QUESTION_WRITE_FILE_EXIST As String = ("The files can not be restored after deleted. Do you want continue? ")
+Public Const MSG_QUESTION_DELETE_FILE_TRASH As String = ("Sure you want to move the file to the trash ..? ")
+Public Const MSG_QUESTION_DEL_THEME As String = ("¿Are you sure we want to remove the theme - ")
+Public Const MSG_QUESTION_DEL_INNOVA_CONFIG As String = ("The version of the configuration file Innova_Config.conf has CHANGED. Wants to update.? ")
+
+Public Const MSG_WARNING_DES_EXIST As String = ("Destination file exists. OverWrite")

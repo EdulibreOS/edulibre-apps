@@ -1,0 +1,76 @@
+' Gambas module file
+
+' Gambas module file
+
+' Gambas class file
+
+'Nota Importante:
+'debe de estar activado el componente gb.settings
+
+Public Sub crearPosiciones(f As Form)
+  
+  Dim c As Object
+  'guardo datos del formulario
+  Settings[f.name & "/X"] = f.x
+  Settings[f.name & "/Y"] = f.y 
+  Settings[f.name & "/W"] = f.w
+  Settings[f.name & "/H"] = f.h
+  'guardo todas las posiciones de todos los controles
+  For Each c In f.Controls
+    
+    Settings[c.name & "/X"] = c.x
+    Settings[c.name & "/Y"] = c.y 
+    Settings[c.name & "/W"] = c.width 
+    Settings[c.name & "/H"] = c.height
+    
+  Next
+  
+End
+
+Public Sub restaurarPosiciones(f As Form)
+  
+  Dim fdato_x As Integer
+  Dim fdato_y As Integer
+  Dim fdato_w As Integer
+  Dim fdato_h As Integer
+  Dim cdato_x As Integer
+  Dim cdato_y As Integer
+  Dim cdato_w As Integer
+  Dim cdato_h As Integer
+  
+  Dim c As Object
+  
+  fdato_x = Settings[f.name & "/X"]
+  fdato_y = Settings[f.name & "/Y"]
+  fdato_w = Settings[f.name & "/W"]
+  fdato_h = Settings[f.name & "/H"]
+  'cambios producidos....
+  For Each c In f.Controls
+    
+    cdato_x = Settings[c.name & "/X"]
+    cdato_y = Settings[c.name & "/Y"]
+    cdato_w = Settings[c.name & "/W"]
+    cdato_h = Settings[c.name & "/H"]
+    
+    'paso 1 cambio del sistema de coordenas al centro
+    c.x = (cdato_x - fdato_w / 2)
+    c.y = (cdato_y - fdato_h / 2)
+    
+    'aplico scala eje X y eje Y
+    c.x = c.x * f.w / fdato_w
+    c.y = c.y * f.h / fdato_h
+    '
+    
+    'cambio de sistema de coordenadas 
+    c.x = c.x + f.w / 2
+    c.y = c.y + f.h / 2
+    
+    'escalo anchos y largos    
+    c.h = cdato_h * f.h / fdato_h
+    c.w = cdato_w * f.w / fdato_w
+    
+  Next
+  
+End
+
+' Gambas module file

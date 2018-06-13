@@ -1,0 +1,81 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(112.8571,7.1429,28.5714,28.5714)
+  Icon = Picture["img_clock/clock.png"]
+  Mask = True
+  Border = False
+  Stacking = Window.Above
+  SkipTaskbar = True
+  Transparent = True
+  { mnuPopup Menu
+    Text = ("central")
+    Visible = False
+    { mnuTheme Menu
+      Text = ("Themes")
+      { mnuTheme1 Menu
+        Text = ("Default")
+        Picture = Picture["icon:/small/clock"]
+        Toggle = True
+      }
+      { mnuTheme2 Menu
+        Text = ("Transparent")
+        Picture = Picture["icon:/small/clock"]
+        Toggle = True
+      }
+      { mnuTheme3 Menu
+        Text = ("Metro")
+        Picture = Picture["icon:/small/clock"]
+        Toggle = True
+      }
+      { mnuTheme9 Menu
+        Text = ("Tux")
+        Picture = Picture["icon:/small/clock"]
+        Toggle = True
+      }
+      { mnuTheme4 Menu
+        Text = ("Gambas")
+        Picture = Picture["icon:/small/clock"]
+        Toggle = True
+      }
+      { mnuTheme5 Menu
+        Text = ("White")
+        Picture = Picture["icon:/small/clock"]
+        Toggle = True
+      }
+      { mnuTheme6 Menu
+        Text = ("Classic")
+        Picture = Picture["icon:/small/clock"]
+        Toggle = True
+      }
+      { mnuTheme7 Menu
+        Text = ("Kids")
+        Picture = Picture["icon:/small/clock"]
+        Toggle = True
+      }
+      { mnuTheme8 Menu
+        Text = ("Edu")
+        Picture = Picture["icon:/small/clock"]
+        Toggle = True
+      }
+      { mnuTheme10 Menu
+        Text = ("Wood")
+        Picture = Picture["icon:/small/clock"]
+      }
+    }
+    { mn2 Menu
+    }
+    { mnuAbout Menu
+      Text = ("About")
+      Picture = Picture["icon:/small/bookmark"]
+    }
+    { mn Menu
+    }
+    { mnuQuit Menu
+      Text = ("Quit")
+      Picture = Picture["icon:/small/close"]
+    }
+  }
+  { Timer1 #Timer
+  }
+}
