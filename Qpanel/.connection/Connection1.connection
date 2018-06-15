@@ -1,0 +1,10 @@
+[Connection]
+Type="sqlite"
+Path="/home/edulibreos/.config/Innova"
+RememberPassword=False
+IgnoreCharset=False
+DisplayMetadata=False
+RememberTemplate=False
+Database="DBInnova.dat"
+Requests=[""]
+

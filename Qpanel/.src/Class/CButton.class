@@ -1,0 +1,177 @@
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' This code belongs to Gambas3
+Export
+
+Inherits DrawingArea
+
+Event Click
+
+Property Image As Image
+Property Opacity As Float
+Property Highlight As Boolean
+Property Shortcut As String
+
+Public Const MIN_OPACITY As Float = 0.6
+Public Const MAX_OPACITY As Float = 0.9
+
+Private $hObs As Observer
+Private $hImage As Image
+Private $hDraw As Image
+'Private $bInside As Boolean
+'Private $hTimer As Timer
+Private $fOpacity As Float = MIN_OPACITY
+Private $bHighlight As Boolean
+Private $hTimer As Timer
+Private $sShortcut As String
+
+Public Sub _new()
+  
+  $hObs = New Observer(Me) As "DrawingArea"
+  Me.Mouse = Mouse.Pointing
+  $hTimer = New Timer As "Timer"
+  
+End
+
+Public Sub DrawingArea_Enter()
+  
+  'Debug
+  
+  If Not Me.Enabled Then Return
+  CAnimation.Start(Me, "Opacity", MAX_OPACITY, 250)
+  
+End
+
+Public Sub DrawingArea_Leave()
+  
+  'Debug
+  
+  If Not Me.Enabled Then Return
+  CAnimation.Start(Me, "Opacity", MIN_OPACITY, 250)
+  
+End
+
+Public Sub DrawingArea_MouseUp()
+  
+  If Not Me.Enabled Then Return
+  Raise Click
+  Stop Event
+  
+End
+
+
+Public Sub DrawingArea_Draw()
+  
+  If $hDraw Then Draw.Image($hDraw, 2, 2)
+  
+  If $bHighlight Then 
+    Paint.Begin(Me)
+    Paint.Brush = Paint.Color(Color.SetAlpha(Color.White, 192))
+    Paint.Rectangle(0, 0, Me.W, Me.H)
+    Paint.Fill
+    Paint.End
+  Endif
+  
+End
+
+Private Function Image_Read() As Image
+  
+  Return $hImage
+  
+End
+
+Private Sub Image_Write(Value As Image)
+  
+  $hImage = Value.Stretch(Me.W - 4, Me.H - 4)
+  SetOpacity
+  
+End
+
+Private Sub SetOpacity()
+  
+  Dim X, Y As Integer
+  
+  $hDraw = $hImage.Copy()
+  If $sShortcut Then
+    
+    Paint.Begin($hDraw)
+    
+    Paint.Font = Font["Bold,+3"]
+    
+    Paint.Brush = Paint.Color(Color.SetAlpha(Color.White, 64))
+   
+    Paint.Arc($hDraw.W - 12, $hDraw.H - 12, 12)
+    Paint.Fill
+    
+    Paint.Brush = Paint.Color(Color.SetAlpha(Color.Black, 64))
+    Paint.DrawText($sShortcut, $hDraw.W - 24, $hDraw.H - 24, 24, 24, Align.Center)
+    
+    Paint.End
+    
+  Endif
+  
+  $hDraw.Opacity($fOpacity)
+  Me.Refresh
+  
+End
+
+Private Function Opacity_Read() As Float
+  
+  Return $fOpacity
+  
+End
+
+Private Sub Opacity_Write(Value As Float)
+  
+  'Debug Value
+  $fOpacity = Max(0, Min(1, Value))
+  SetOpacity
+  
+End
+
+Private Function Highlight_Read() As Boolean
+  
+  Return $bHighlight
+  
+End
+
+Private Sub Highlight_Write(Value As Boolean)
+  
+  $bHighlight = Value
+  Me.Refresh
+  
+End
+
+Private Function Shortcut_Read() As String
+  
+  Return $sShortcut
+  
+End
+
+Private Sub Shortcut_Write(Value As String)
+  
+  $sShortcut = Value
+  SetOpacity
+  Me.Refresh
+  
+End

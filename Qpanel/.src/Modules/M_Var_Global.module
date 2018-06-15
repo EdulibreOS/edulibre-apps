@@ -1,0 +1,53 @@
+' Gambas module file
+
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Const ENCODING As String = "Encoding=UTF-8"
+Public splash_update As String ' si funsiona
+Public splash_show As String ' si funsiona
+Public logo_start As String ' si funsiona
+Public icon_size_app_launcher As Integer = 48 '22 ' si funsiona
+Public Language_System As String = ((Left(System.Language, 2)))
+'Private Languages As String[] = ["fr", "it", "es", "de", "ja"]
+'Private DefaultLanguage As String = Languages[1]
+Public mytheme_icons As String
+Public Lang_Select As String ' funsiona
+Public spath_pic_user As String ' funsiona
+Public ipanel_size As Integer ' funsiona
+Public sPanel_Position As String ' funsiona
+Public sImage_Panel_Systray As Image ' funsiona
+Public sImage_Panel_Systray1 As String ' funsiona
+Public Group_Cat As String ' funsiona
+
+Public aDir As New String[]
+Public sDir As String 
+Public sName_Font As String = "Roboto_Light"
+Public iSize_Font As Integer = 9
+Public iSize_Icons_View As Integer = 48
+Public iSize_Icons_Grid As Integer = 30
+
+Public sLang As String = ((Left(System.Language, 2)))
+Public sFontColor As String
+Public sPicUser As String
+Public sGroup_Cat As String

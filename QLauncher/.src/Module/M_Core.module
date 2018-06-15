@@ -1,0 +1,891 @@
+' Gambas module file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Public sLang As String = ((Left(System.Language, 2)))
+Public sGroup_Cat As String = M_Var_Global.sGroup_Cat
+Private iSizeApps As Integer
+Private iSizeCat As Integer 
+Private sCat As String
+Public sCurCat As String
+Public sAppsExec As String
+Private ImgButtonApps As PushButton
+Private ImgBtnAppsCNB As PushButton
+Private ImgBtnCatCNB As PushButton
+Private ImgButtonCat As PushButton
+Private ImgButtonCatAll As PushButton
+Public sText As String
+Public sSendApps As String
+Public sSendApps1 As String
+
+Public sFontColor As String
+Public sFontName As String
+Public iFontSize As Integer
+
+Private $hIconView As ListView
+Public cx As Connection
+Public rs As Result
+Public Settings_Core_Innova As New Settings(Desktop.ConfigDir &/ "Innova/Innova_Config.conf")
+Private sDirSend As String
+Public iShow As Boolean
+
+Private iResult_Text As Integer 
+Private iResult_Size As Integer 
+
+Private AllCat As String[] = [("Development"), ("Other"), ("Office"), ("Network"), ("Game"), ("AudioVideo"), ("System"), ("Settings"), ("Utility"), ("Graphics"), ("Education")]
+
+'Private AllCatCNB As String[] = [("Primero"), ("Segundo"), ("Tercero"), ("Cuarto"), ("Quinto"), ("Sexto")]
+Private AllCatCNB As String[] = [("Preescolar"), ("Primaria Básica"), ("Primaria Avanzada"), ("Básico"), ("Diversificado")]
+
+'Private cImgCatCNB As Collection = ["Primero": "primero", "Segundo": "segundo", "Tercero": "tercero", "Cuarto": "cuarto", "Quinto": "quinto", "Sexto": "sexto"]
+Private cImgCatCNB As Collection = ["Preescolar": "primero", "Primaria Básica": "segundo", "Primaria Avanzada": "tercero", "Básico": "cuarto", "Diversificado": "quinto"]
+
+Private cImgCat As Collection = ["Development": "development", "Other": "other", "Office": "office", "Network": "internet", "Game": "games", "AudioVideo": "multimedia", "System": "system", "Settings": "accessories", "Utility": "utilities", "Graphics": "graphics"]
+
+Private aCurCatApps As New String[]
+
+Public Sub FillList_Cat(Optional sFilter As String)
+  
+  Dim s As String
+  Dim iSize As Integer
+  Dim i As Integer
+  Dim iw As Integer
+  
+  Dim cThemes As New Collection
+  Dim sTheme As String
+  Dim sDir As String
+  Dim aThemes As New String[]
+  
+  Settings_Core_Innova.Reload()
+  iResult_Text = Settings_Core_Innova["Launcher/Show_Text"]
+  iSizeCat = Settings_Core_Innova["Launcher/Icon_Size"]
+ 
+  
+  ''VERTICAL
+  If iResult_Text = 1 Then
+    f_launcher.IconViewCat.Orientation = 1
+    iw = ((Desktop.Width / 100) * 10) / 3.5 
+    f_launcher.VBoxCat.w = iSizeCat * 1.8 
+    iSizeCat = iw + 2 '4
+  Else
+    ''HORIZONTAL
+    f_launcher.IconViewCat.Orientation = 1
+    f_launcher.VBoxCat.w = iSizeCat - 15
+    iSizeCat = (Desktop.Width / 10) / 4
+    iSizeCat = iSizeCat * 1.27
+  Endif
+  
+  f_launcher.IconViewCat.Clear
+  For Each s In DesktopAppsCat 
+    
+    If DesktopAppsCat[s].Group.Find("Innova") > - 1 Then
+      
+      If DesktopAppsCat[s].NoDisplay Then Continue
+      If sFilter And If Not InStr(DesktopAppsCat[s].Group, sFilter, 0, gb.IgnoreCase) Then Continue
+      If DesktopAppsCat[s].Category.Count > 0 Then
+        sCat = DesktopAppsCat[s].Category[0] 
+      Endif
+      
+      If iResult_Text = 1 Then
+        
+        f_launcher.IconViewCat.Add(s, GetAppNameCat(s, sLang), DesktopAppsCat[s].GetIcon(iSizeCat).Picture)
+        
+      Else
+        f_launcher.IconViewCat.Add(s, Null, DesktopAppsCat[s].GetIcon(iSizeCat).Picture)
+      Endif
+      
+      f_launcher.IconViewCat.Sorted = True
+      f_launcher.IconViewCat.Background = Color.Transparent
+      
+      f_launcher.IconViewCat.Foreground = (sFontColor)
+      
+      If iFontSize > 8 Then   
+        f_launcher.IconViewCat.Font.Size = (iFontSize) - 1
+      Else
+        Try f_launcher.IconViewCat.Font.Size = (iFontSize)
+      Endif
+      '  
+      f_launcher.IconViewCat.Font.Name = (sFontName)
+      '  ImgButtonCat.Tag = s
+    Endif
+    
+    DesktopAppsCat[s].Reset
+    
+  Next
+  
+Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub GetCat(sApp As String, Language As String) As String
+  
+  Dim hApp As DesktopAppsCat = DesktopAppsCat[sApp]
+  
+  If hApp.GetGenericName(Language) Then 
+    Return hApp.GetGenericName(Language)
+  Else
+    If hApp.GetName(Language) Then
+      Return hApp.GetName(Language)
+    Else
+      If hApp.GenericName Then 
+        Return hApp.GenericName
+      Endif
+    Endif
+  Endif
+  
+  Return hApp.Name
+Catch
+  
+End
+
+Public Sub FillList_Cat_Mini_Allcat(Optional sFilter As String)
+  
+  Dim hImage As Image
+  Dim s As String
+  Dim i As Integer
+  
+  If AllCat = Null Then Return
+  f_launcher_mini.IconViewCat.Clear
+  
+  For Each s In AllCat.Sort(gb.Natural) 
+ 
+    Inc i
+    
+    Try f_launcher_mini.IconViewCat.Add(AllCat[i], GetCat(AllCat[i], sLang), Stock["32/categories/applications-" & LCase(cImgCat[s])].Image.Picture)
+    f_launcher_mini.IconViewCat.Background = Color.Transparent
+    
+  Next
+  
+End
+
+Public Sub FillList_Cat_CNB_Mini(Optional sFilter As String)
+  
+  Dim hImage As Image
+  Dim s As String
+  Dim i As Integer = -1
+  
+  iSizeCat = Settings_Core_Innova["Launcher/Icon_Size"]
+  f_launcher_cnb_mini.PanelCat.w = iSizeCat
+  
+  If AllCatCNB = Null Then Return
+  
+
+  f_launcher_cnb_mini.ScrollCat.Children.Clear
+  f_launcher_cnb_mini.ScrollCat.Background = Color.Transparent
+  f_launcher_cnb_mini.PanelCat.Background = Color.Transparent
+  
+  For Each s In AllCatCNB
+
+    Inc i
+    
+    ImgBtnCatCNB = New PushButton(f_launcher_cnb_mini.ScrollCat) As "IButtonCatCNB"
+    ImgBtnCatCNB.w = iSizeCat 
+    ImgBtnCatCNB.h = iSizeCat - 10
+    
+    ImgBtnCatCNB.Text = AllCatCNB[i]
+      ImgBtnCatCNB.Mouse = 13    
+    ImgBtnCatCNB.Picture = Picture["img/cnb/" & LCase(cImgCatCNB[s] & ".png")].Image.Stretch(48, 48).Picture
+    ImgBtnCatCNB.Background = Color.Transparent
+    ImgBtnCatCNB.Tag = s
+
+    
+  Next
+  
+End
+
+Public Sub IButtonCatCNB_Click()
+  
+  Dim iResult As Integer 
+  
+  Try iResult = Settings_Core_Innova["Launcher/Cat_MouseMove"]
+  
+  If iResult = 0 Then
+    M_Core.sCurCat = Last.tag 'DesktopAppsCat[Last.Item.key].Name
+    M_Core.FillList_Apps_CNB_Mini
+    f_launcher_cnb_mini.txtSearchApps.Clear
+    
+  Endif
+  
+End
+
+Public Sub IButtonCatCNB_Enter()
+  
+  Dim iResult As Integer 
+  
+  Try iResult = Settings_Core_Innova["Launcher/Cat_MouseMove"]
+  
+  If iResult = 1 Then
+    
+    M_Core.sCurCat = Last.tag 
+    M_Core.FillList_Apps_CNB_Mini
+    
+  Endif
+  
+End
+
+
+
+Public Sub FillList_Cat_Mini(Optional sFilter As String)
+  
+  Dim s As String
+  
+  iResult_Text = Settings_Core_Innova["Launcher/Show_Text"]
+  
+  iSizeCat = f_launcher_mini.H / 16
+  
+  f_launcher_mini.IconViewCat.Clear
+  
+  
+  For Each s In DesktopAppsCat 
+    If DesktopAppsCat[s].Group.Find("Innova") > - 1 Then
+      
+      If DesktopAppsCat[s].NoDisplay Then Continue
+      If sFilter And If Not InStr(DesktopAppsCat[s].Group, sFilter, 0, gb.IgnoreCase) Then Continue
+      If DesktopAppsCat[s].Category.Count > 0 Then
+        sCat = DesktopAppsCat[s].Category[0] 
+      Endif
+      
+      f_launcher_mini.IconViewCat.Add(s, GetAppNameCat(s, sLang), DesktopAppsCat[s].GetIcon(iSizeCat).Stretch(iSizeCat, iSizeCat).Picture)
+      f_launcher_mini.IconViewCat.Sorted = True
+      f_launcher_mini.IconViewCat.Background = Color.Transparent
+      f_launcher_mini.IconViewCat.Foreground = (sFontColor)
+      Try f_launcher_mini.IconViewCat.Font.Size = (iFontSize) 
+      f_launcher_mini.IconViewCat.Font.Name = (sFontName)
+      
+    Endif
+    
+    DesktopAppsCat[s].Reset
+    
+  Next
+  
+Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub FillList_All(Optional sFilter As String)
+  
+  Dim s As String
+  Dim i As Integer
+  Dim aList As String[]
+  
+  Settings_Core_Innova.Reload()
+  iResult_Text = Settings_Core_Innova["Launcher/Show_Text"]
+  iSizeApps = Settings_Core_Innova["Launcher/Icon_Size"]
+  
+  f_launcher.txtlabelcat.Visible = True
+  f_launcher.ScrollApps.Children.Clear
+  
+  For Each s In DesktopApps
+    
+    If DesktopApps[s].NoDisplay Then Continue
+    If sFilter And If Not InStr(DesktopApps[s].Name, sFilter, 0, gb.IgnoreCase) Then Continue
+    
+    ImgButtonApps = New PushButton(f_launcher.ScrollApps) As "IButtonApps"
+    ImgButtonApps.w = iSizeApps 
+    ImgButtonApps.h = iSizeApps 
+    ImgButtonApps.Mouse = 13
+    ImgButtonApps.Picture = DesktopApps[s].GetIcon(iSizeApps).Picture
+    If iResult_Text = 1 Then
+           ImgButtonApps.Text = DesktopApps[s].Name
+    Endif
+    ImgButtonApps.Foreground = (sFontColor) 
+    ImgButtonApps.Background = Color.Transparent
+    Try ImgButtonApps.Font.Size = (iFontSize)
+    ImgButtonApps.Font.Name = (sFontName)
+    ImgButtonApps.Tag = s
+    
+
+  Next
+  'Catch
+  
+End
+
+Public Sub FillList_All_CNB_Mini(Optional sFilter As String)
+  
+  Dim s As String
+  Dim i As Integer
+  
+  iResult_Text = Settings_Core_Innova["Launcher/Show_Text"]
+  iSizeApps = Settings_Core_Innova["Launcher/Icon_Size"]
+  
+  f_launcher_cnb_mini.ScrollApps.Children.Clear
+  
+  For Each s In DesktopApps
+    
+    If DesktopApps[s].NoDisplay Then Continue
+    If sFilter And If Not InStr(DesktopApps[s].Name, sFilter, 0, gb.IgnoreCase) Then Continue
+    
+    ImgBtnAppsCNB = New PushButton(f_launcher_cnb_mini.ScrollApps) As "IButtonApps"
+    ImgBtnAppsCNB.w = iSizeApps - 5
+    ImgBtnAppsCNB.h = iSizeApps - 5
+    
+    If iResult_Text = 1 Then
+      ImgBtnAppsCNB.Text = DesktopApps[s].Name
+    Endif
+    
+    ImgBtnAppsCNB.Mouse = 13
+    ImgBtnAppsCNB.Picture = DesktopApps[s].GetIcon(iSizeApps).Stretch(iSizeApps, iSizeApps).Picture
+
+    ImgBtnAppsCNB.Background = Color.Transparent
+    Try ImgBtnAppsCNB.Font.Size = (iFontSize)
+    ImgBtnAppsCNB.Font.Name = (sFontName)
+    ImgBtnAppsCNB.Tag = s
+    DesktopApps[s].Reset
+  Next
+  
+End
+
+Public Sub FillList_All_Mini(Optional sFilter As String)
+  
+  Dim s As String
+  Dim i As Integer
+  
+  Settings_Core_Innova.Reload()
+  iResult_Text = Settings_Core_Innova["Launcher/Show_Text"]
+  iSizeApps = Settings_Core_Innova["Launcher/Icon_Size"]
+  iSizeApps = iSizeApps / 3
+  f_launcher_mini.IconViewApp.Clear
+  f_launcher.txtlabelcat.Visible = True
+  
+  For Each s In DesktopApps
+    
+    If DesktopApps[s].NoDisplay Then Continue
+    If sFilter And If Not InStr(DesktopApps[s].Name, sFilter, 0, gb.IgnoreCase) Then Continue
+    
+    f_launcher_mini.IconViewApp.Add(s, DesktopApps[s].Name, DesktopApps[s].GetIcon(iSizeApps).Stretch(iSizeApps, iSizeApps).Picture)
+    f_launcher_mini.IconViewApp.Background = Color.Transparent
+    f_launcher_mini.IconViewApp.Sorted = True
+    
+    Try f_launcher_mini.IconViewApp.Font.Size = (iFontSize)
+    f_launcher_mini.IconViewApp.Font.Name = (sFontName)
+    f_launcher_mini.IconViewApp.Foreground = (sFontColor)
+    
+  Next
+  DesktopApps[s].Reset
+Catch
+  
+End
+
+Public Sub FillList_Apps(Optional sFilter As String)
+  
+  Dim s As String
+  Dim st As String
+  Dim iResult_TextCat As Integer = 1
+  Dim iResult_FormTrans As Integer = 0
+  Dim i As Integer
+  Dim $aApps As String[]
+  
+  Settings_Core_Innova.Reload()
+  iResult_Text = Settings_Core_Innova["Launcher/Show_Text"]
+  iSizeApps = Settings_Core_Innova["Launcher/Icon_Size"]
+  
+  f_launcher.ScrollApps.Children.Clear
+
+  
+  If Not sCat Then
+    
+    For Each s In DesktopApps
+      
+      If DesktopApps[s].Category.Find(M_Var_Global.sGroup_Cat) > -1 Then
+        If DesktopApps[s].NoDisplay Then Continue
+        If sFilter And If Not InStr(DesktopApps[s].Name, sFilter, 0, gb.IgnoreCase) Then Continue
+        
+       ImgButtonApps = New PushButton(f_launcher.ScrollApps) As "IButtonApps"
+        ImgButtonApps.w = iSizeApps
+        ImgButtonApps.h = iSizeApps
+        
+        If iResult_Text = 1 Then
+     
+          ImgButtonApps.Text = DesktopApps[s].Name
+     
+        Endif
+        
+        ImgButtonApps.Mouse = 13
+        
+        ImgButtonApps.Picture = DesktopApps[s].GetIcon(iSizeApps).Stretch(iSizeApps, iSizeApps).Picture
+        
+        ImgButtonApps.Foreground = (sFontColor)
+        ImgButtonApps.Background = Color.Transparent
+        Try ImgButtonApps.Font.Size = (iFontSize)
+        ImgButtonApps.Font.Name = (sFontName)
+        ImgButtonApps.Tag = s
+        
+      Endif
+      
+    Next
+    
+  Endif
+Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub FillList_Apps_Mini(Optional sFilter As String)
+  
+  Dim s As String
+  Dim st As String
+  Dim iResult_TextCat As Integer = 1
+  Dim iResult_FormTrans As Integer = 0
+  Dim i As Integer
+  Dim $aApps As String[]
+  
+  Settings_Core_Innova.Reload()
+  iResult_Text = Settings_Core_Innova["Launcher/Show_Text"]
+  iSizeApps = Settings_Core_Innova["Launcher/Icon_Size"]
+  iSizeApps = iSizeApps / 3
+  f_launcher_mini.IconViewApp.Clear
+  
+  If Not sCat Then
+    
+    For Each s In DesktopApps
+      
+      If DesktopApps[s].Category.Find(sCurCat) > -1 Then
+        If DesktopApps[s].NoDisplay Then Continue
+        If sFilter And If Not InStr(DesktopApps[s].Name, sFilter, 0, gb.IgnoreCase) Then Continue
+        
+       
+        f_launcher_mini.IconViewApp.Add(s, DesktopApps[s].Name, DesktopApps[s].GetIcon(iSizeApps).Stretch(iSizeApps, iSizeApps).Picture)
+       
+        
+        f_launcher_mini.IconViewApp.Background = Color.Transparent
+        f_launcher_mini.IconViewApp.Foreground = (sFontColor)
+        Try f_launcher_mini.IconViewApp.Font.Size = (iFontSize)
+        f_launcher_mini.IconViewApp.Font.Name = (sFontName)
+        
+      Endif
+      
+    Next
+    
+  Endif
+Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub FillList_Apps_CNB_Mini(Optional sFilter As String)
+  
+  Dim s As String
+  Dim st As String
+  Dim iResult_TextCat As Integer = 1
+  Dim iResult_FormTrans As Integer = 0
+  Dim i As Integer
+  Dim $aApps As String[]
+  
+  Settings_Core_Innova.Reload()
+  iResult_Text = Settings_Core_Innova["Launcher/Show_Text"]
+  iSizeApps = Settings_Core_Innova["Launcher/Icon_Size"]
+  
+
+  f_launcher_cnb_mini.ScrollApps.Children.Clear
+  
+  If Not sCat Then
+    
+    For Each s In DesktopApps
+      
+      If DesktopApps[s].Category.Find(sCurCat) > -1 Then
+        If DesktopApps[s].NoDisplay Then Continue
+        If sFilter And If Not InStr(DesktopApps[s].Name, sFilter, 0, gb.IgnoreCase) Then Continue
+        
+        ImgBtnAppsCNB = New PushButton(f_launcher_cnb_mini.ScrollApps) As "IButtonApps"
+        ImgBtnAppsCNB.w = iSizeApps - 5
+        ImgBtnAppsCNB.h = iSizeApps - 5
+        
+        If iResult_Text = 1 Then
+        
+          ImgBtnAppsCNB.Text = DesktopApps[s].Name
+        Endif
+        
+        ImgBtnAppsCNB.Mouse = 13
+        
+        ImgBtnAppsCNB.Picture = DesktopApps[s].GetIcon(iSizeApps).Stretch(iSizeApps, iSizeApps).Picture
+ 
+        ImgBtnAppsCNB.Background = Color.Transparent
+        Try ImgBtnAppsCNB.Font.Size = (iFontSize)
+        ImgBtnAppsCNB.Font.Name = (sFontName)
+        ImgBtnAppsCNB.Tag = s
+        
+       
+        
+      Endif
+      
+    Next
+   
+  Endif
+Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub FillList_Apps_Reset(Optional sFilter As String)
+  
+  Dim s As String
+  
+  If Not sCat Then
+    
+    For Each s In DesktopApps
+      
+      If DesktopApps[s].Category.Find(sCurCat) > -1 Then
+        DesktopApps[s].Reset
+      Endif
+    Next
+    
+  Endif
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub GetAppNameCat(sApp As String, Language As String) As String
+  
+  Dim hAppCat As DesktopAppsCat = DesktopAppsCat[sApp]
+  
+  If hAppCat.GetName(Language) Then 
+    Return hAppCat.GetName(Language)
+  Else
+    If hAppCat.GetGenericName(Language) Then
+      Return hAppCat.GetGenericName(Language)
+    Else
+      If hAppCat.Name Then 
+        Return hAppCat.Name
+      Endif
+    Endif
+  Endif
+  
+  Return hAppCat.Name
+Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Function GetAppName(sApp As String, Language As String) As String
+  
+  Dim hApp As DesktopApps = DesktopApps[sApp]
+  
+  If hApp.GetName(Language) Then 
+    Return hApp.GetName(Language)
+  Else
+    If hApp.GetGenericName(Language) Then
+      Return hApp.GetGenericName(Language)
+    Else
+      If hApp.Name Then 
+        Return hApp.Name
+      Endif
+    Endif
+  Endif
+  
+  Return hApp.Name
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Function GetAppComent(sApp As String, Language As String) As String
+  
+  Dim hApps As DesktopApps = DesktopApps[sApp]
+  
+  If hApps.GetComment(Language) Then 
+    Return hApps.GetComment(Language)
+  Else
+    If hApps.GetGenericName(Language) Then
+      Return hApps.GetGenericName(Language)
+    Else
+      If hApps.Comment Then 
+        Return hApps.Comment
+      Endif
+    Endif
+  Endif
+  Return hApps.Comment
+  
+Catch
+  ' Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub IButtonCat_Click()
+  
+  Dim iResult As Integer 
+  
+  Settings_Core_Innova.Reload()
+  Try iResult = Settings_Core_Innova["Launcher/Cat_MouseMove"]
+  
+  If iResult = 0 Then
+    f_launcher.txtlabelcat.Visible = False
+    sText = m_core.GetAppNameCat(Last.tag, sLANG)
+    ' f_launcher.txtlabelInfo.Text = (Html(sText))
+    M_Core.sCurCat = DesktopAppsCat[Last.tag].Name
+    M_Core.FillList_Apps
+    f_launcher.txtSearchApps.Clear
+    
+  Endif
+  
+End
+
+Public Sub IButtonCatAll_Click()
+  
+  Dim iResult As Integer 
+  
+  Settings_Core_Innova.Reload()
+  Try iResult = Settings_Core_Innova["Launcher/Cat_MouseMove"]
+  
+  If iResult = 0 Then
+    f_launcher.txtlabelcat.Visible = True
+    m_core.FillList_CatAll()
+    
+  Endif
+  
+End
+
+Public Sub IButtonCatAll_Enter()
+  
+  Dim iResult As Integer 
+  
+  f_launcher.PanInfo.Visible = False
+  Settings_Core_Innova.Reload()
+  Try iResult = Settings_Core_Innova["Launcher/Cat_MouseMove"]
+  
+  If iResult = 1 Then
+    f_launcher.txtlabelcat.Visible = True
+    
+    m_core.FillList_All()
+    
+  Endif
+  
+End
+
+Public Sub IButtonCatAll_Leavel()
+  
+  f_launcher.txtlabelcat.Visible = False
+  
+End
+
+Public Sub IButtonCat_Enter()
+  
+  Dim iResult As Integer 
+  
+  f_launcher.PanInfo.Visible = False
+  Settings_Core_Innova.Reload()
+  Try iResult = Settings_Core_Innova["Launcher/Cat_MouseMove"]
+  
+  If iResult = 1 Then
+    f_launcher.txtlabelcat.Visible = False
+    sText = m_core.GetAppNameCat(Last.tag, sLANG)
+    M_Core.sCurCat = DesktopAppsCat[Last.tag].Name
+    M_Core.FillList_Apps
+    
+    f_launcher.txtSearchApps.Clear
+    f_launcher.txtSearchApps.SetFocus()
+  Endif
+Catch
+  
+End
+
+
+
+Public Sub IButtonApps_Menu()
+  
+
+  iShow = True
+  f_launcher.mnuApps.Popup()
+
+  
+End
+
+Public Sub IButtonApps_Leave()
+  
+  f_launcher.PanInfo.Visible = False
+  f_launcher.txtlabelInfo.Text = Null
+  f_launcher.txtnameapp.Text = Null
+  f_launcher.Pic_Logo_PreviewApp.Picture = Null
+  
+End
+
+Public Sub IButtonApps_Enter()
+  
+  Dim sTextNam As String = DesktopApps[Last.Tag].Name
+  Dim sTextCom As String = GetAppComent(Last.Tag, sLANG)
+  Dim $Category As String[] = Split(DesktopApps[Last.Tag]._$Category, "\n", " ", True)
+  Dim sCat As String
+  
+  f_launcher.PanInfo.Visible = True  
+  f_launcher.txtnameapp.Text = (Html(sTextNam)) 
+  
+  If sTextCom Begins "s" Then 
+    sTextCom = Right$(sTextCom, -2) 
+    f_launcher.txtlabelInfo.Text = (Html(sTextCom))
+  Else
+    f_launcher.txtlabelInfo.Text = (Html(sTextCom))
+  Endif
+  f_launcher.Pic_Logo_PreviewApp.Picture = Last.Picture
+  
+  For Each sCat In $Category
+    sCat = Replace$($Category[0], ";", " \n", True)
+    f_launcher.txtlabelcat.Text = ("Category: ") & sCat
+  Next
+  
+
+  
+  sSendApps = Last.Tag
+  sAppsExec = Last.Tag
+Catch
+  
+End
+
+Public Sub IButtonApps_Click()
+  
+
+  DesktopApps[Last.Tag].Exec_()
+  f_launcher.Close
+  f_launcher_cnb_mini.Close
+  
+End
+
+Public Sub SendDesk()
+  
+  Dim sCopy As String
+  Dim sDest As String 
+  Dim sFile As String 
+  Dim sDataDir As String
+  
+  sDest = Desktop.GetDirectory("DESKTOP")
+  'For Each sDataDir In [Desktop.DataDir &/ "applications/", "/usr/share/applications/"]
+  For Each sDataDir In ["/usr/share/applications/", "/usr/share/applications/kde4/", Desktop.DataDir &/ "applications/"]
+    
+    sFile = sDataDir & sSendApps & ".desktop"
+    sCopy = "cp -r " & sFile & " " & sDest 
+    Shell sCopy Wait
+    
+  Next
+  
+End
+
+Public Sub SendPanel()
+  
+  Dim sSend As String = Desktop.ConfigDir &/ "Innova/Panel/Apps"
+  Dim sFile As String = sSendApps & ".desktop"
+  Dim sDir As String
+  Dim sCopy As String
+  
+  For Each sDir In ["/usr/share/applications/", "/usr/share/applications/kde4/", Desktop.DataDir &/ "applications/"]
+    sCopy = "cp -r " & sDir & sFile & " " & sSend 
+    Inc Application.Busy
+    Shell sCopy Wait
+    Dec Application.Busy
+  Next
+  
+End
+
+Public Sub SendBook()
+  
+  Dim sSend As String = Desktop.ConfigDir &/ "Innova/App_Bookmark"
+  Dim sFile As String = sSendApps & ".desktop"
+  Dim sDir As String
+  Dim sCopy As String
+  
+  For Each sDir In ["/usr/share/applications/", "/usr/share/applications/kde4/", Desktop.DataDir &/ "applications/"]
+    sCopy = "cp -r " & sDir & sFile & " " & sSend 
+    Inc Application.Busy
+    Shell sCopy Wait
+    Dec Application.Busy
+  Next
+  
+End
+
+Public Sub Show_Opacity_Launcher()
+  
+  Dim iResult As Integer
+  
+  iResult = Settings_Core_Innova["Launcher/Opacity"]
+  f_launcher.Opacity = iResult
+  f_launcher_mini.Opacity = iResult
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Show_Background_Launcher()
+  
+  Dim sResult As String 
+  
+  Try sResult = Settings_Core_Innova["Launcher/Background"]
+  
+  If Not IsNull(sResult) Then 
+    f_launcher.Picture = Picture[sResult].Image.Stretch(Desktop.W, Desktop.h).Picture
+    f_launcher_mini.Picture = Picture[sResult].Image.Stretch(Desktop.W, Desktop.h).Picture
+  Endif
+  
+End
+
+Public Sub Show_Cat_Hide_Launcher()
+  
+  Dim iResult As Integer
+  
+  Try iResult = Settings_Core_Innova["Launcher/Show_Cat"]
+  If iResult = 1 Then
+    f_launcher.PanelBookmark.Visible = True 
+    f_launcher.IconViewCat.Visible = True 
+    f_launcher_mini.PanelCat.Visible = True 
+    
+  Else
+    
+    f_launcher.PanelBookmark.Visible = False
+    f_launcher.IconViewCat.Visible = False
+    f_launcher_mini.PanelCat.Visible = False 
+  Endif
+Catch
+  ' Debug "ERROR [ " & DConv(Error.Text) & " ]" 
+  
+End
+
+'''SHOW USER
+Public Sub User_System()
+  
+  Dim User_Sys As String
+  
+  Shell "whoami" To User_Sys
+  f_launcher_mini.lblusuario.Text = User_Sys
+  f_launcher_cnb_mini.lblusuario.Text = User_Sys
+
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Update_Img_User_Launcher()
+  
+  Settings_Core_Innova.Write(f_launcher_mini)
+  Settings_Core_Innova["Launcher/Image_User"] = M_Var_Global.sPicUser
+  Settings_Core_Innova.Save
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Show_Img_User_Launcher()
+  
+  Dim sResult As String 
+  
+  sResult = Settings_Core_Innova["Launcher/Image_User"]
+  f_launcher_mini.PicUsuario.Picture = Picture[sResult].Image.Stretch(32, 32).Picture 
+   
+End

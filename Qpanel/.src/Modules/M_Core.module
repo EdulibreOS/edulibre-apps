@@ -1,0 +1,402 @@
+' Gambas module file
+
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' This code belongs to Fabien Bodard and was adapted for Innova Project
+
+Public Settings_Core_Innova As New Settings(Desktop.ConfigDir &/ "Innova/Innova_Config.conf")
+Private iResult As Integer
+
+Public sLang As String = ((Left(System.Language, 2)))
+Public sGroup_Cat As String = M_Var_Global.sGroup_Cat
+Private iSizeApps As Integer
+Private iSizeCat As Integer 
+Private sCat As String
+Public sCurCat As String
+Public sAppsExec As String
+Private ImgButtonApps As PushButton
+Private ImgBtnAppsCNB As PushButton
+Private ImgBtnCatCNB As PushButton
+Private ImgButtonCat As PushButton
+Private ImgButtonCatAll As PushButton
+Public sText As String
+Public sSendApps As String
+Public sSendApps1 As String
+
+Public sFontColor As String
+Public sFontName As String
+Public iFontSize As Integer
+
+Private $hIconView As ListView
+Public cx As Connection
+Public rs As Result
+Private sDirSend As String
+Public iShow As Boolean
+
+Private iResult_Text As Integer 
+Private iResult_Size As Integer 
+
+Private aCurCatApps As New String[]
+Public sDir As String
+Public sPath_Wall_Rnd As String
+Public sPath_Img_Rnd As String
+
+Public Function object_lock(o As Object)
+  
+  While Not (Object.IsLocked(o))
+    Object.Lock(o)
+  Wend
+  
+End
+
+Public Function object_unlock(o As Object)
+  
+  While Object.IsLocked(o)
+    Object.Unlock(o)
+  Wend
+  
+End
+
+Public Function image_from_svg(svg_file As String, rSize As String) As Image
+  
+  Dim hSvg As SvgImage
+  Dim hImage As Image
+  
+  If Not Exist(svg_file, True) Then Return Null
+  hSvg = SvgImage.Load(svg_file)
+  hImage = New Image(rSize, rSize, Color.Transparent)
+  Paint.Begin(hImage)
+  hSvg.Resize(rSize, rSize)
+  hSvg.Paint
+  Paint.End
+  Return hImage
+  
+End
+
+Public Function Load_image(img_file As String, Optional rSize As Integer = -1) As Image
+  
+  Dim i As New Image
+  
+  If Not Exist(img_file, True) Then Return Null
+  
+  If Lower(img_file) Ends ".svg" Then Return image_from_svg(img_file, rSize)
+  
+  If rSize <> -1 Then 
+    i = Image.Load(img_file)
+    If i.w <> rSize Then i = i.Stretch(rSize, rSize)
+    Return i
+  Endif  
+  
+  Return Image.Load(img_file)
+  
+End
+
+Public Sub Show_Windows_Manager()
+  
+  Dim O_Window As String
+  Dim sResult_WM As String 
+  
+  sResult_WM = Settings_Core_Innova["Session_Windows_Manager/Windows_Manager", f_panel]
+  
+  O_Window = sResult_WM
+  
+  Shell (O_Window & " --replace")
+  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"  
+  
+End
+
+Public Sub Show_No_Desktop()
+  
+  Dim iDesktop As Integer
+  
+  iDesktop = Desktop.Count
+  
+  Try iResult = Settings_Core_Innova["Innova/No_Desktop"]
+  
+  If IsNull(iResult) Then
+    desktop.Count = iDesktop
+  Else
+    desktop.Count = iResult
+  Endif
+  
+End
+
+Public Sub Show_Active_Time_Wallpaper_Rnd()
+  
+  Dim sActive_Time_Rnd As String 
+  Dim sTime As Integer
+  
+  Try sActive_Time_Rnd = Settings_Core_Innova["Desktop/Time_Random"]
+  sTime = Val(sActive_Time_Rnd) 
+  f_wallpaper.TimerWallRand.Delay = Int(sTime)
+  
+Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Change_Wallpaper_Conf_Wallpaper()
+  
+  Settings_Core_Innova.Write(f_conf_wallpaper)
+  Settings_Core_Innova["Desktop/Wallpaper_Desktop"] = f_conf_wallpaper.txtselectfondo.Text
+  Settings_Core_Innova.Save
+  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Show_Preview_Wallpaper()
+  
+  Dim sResult_Desktop As String 
+  Dim sResult_Desktop_Rand As String 
+  Dim sResult_Dir_Wallpaper_Desktop_Random As String
+  Dim sResult_Rnd_True As Integer
+  
+  Try sResult_Desktop = Settings_Core_Innova["Desktop/Wallpaper_Desktop"]
+  Try sResult_Desktop_Rand = Settings_Core_Innova["Desktop/Image_Wallpaper_Desktop_Random"]
+  Try sResult_Dir_Wallpaper_Desktop_Random = Settings_Core_Innova["Desktop/Dir_Wallpaper_Desktop_Random"]
+  Try sResult_Rnd_True = Settings_Core_Innova["Desktop/Wallpaper_Desktop_Random"]
+  
+  If (sResult_Rnd_True = "1") Then
+    
+    f_conf_wallpaper.txtselectfondo.Text = sResult_Dir_Wallpaper_Desktop_Random &/ sResult_Desktop_Rand
+    f_conf_wallpaper.img_Fondo.Picture = Picture[sResult_Dir_Wallpaper_Desktop_Random &/ sResult_Desktop_Rand] 
+    f_conf_wallpaper.msgInfo.Open(("Mode random background screen, <br> you can not select new background..."), Picture["icon:/32/info"])
+    f_conf_wallpaper.txtselectfondo.Enabled = False
+    f_conf_wallpaper.BtnOk.Enabled = False
+    
+  Else
+    f_conf_wallpaper.msgInfo.Visible = False
+    f_conf_wallpaper.img_Fondo.Picture = Picture[sResult_Desktop]
+    f_conf_wallpaper.txtselectfondo.Text = sResult_Desktop
+    f_conf_wallpaper.BtnOk.Enabled = True
+  Endif
+  
+  'endif
+Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Show_Wallpaper()
+  
+  Dim Settings_Config_Theme As Settings
+  Dim sResult_Inn_WallpaperImg As String
+  Dim sPath_Theme As String
+  
+  Dim sResult_Desktop_MyInn As String 
+  Dim sResult_Desktop_Rand_MyInn As String 
+  Dim sResult_Desktop_Wall As String 
+  Dim sResult_Desktop_Wall_Rand As String 
+  Dim sResult_Rnd_True As Integer 
+  Dim sResult_Dir_Wallpaper_Desktop_Random As String
+  Dim sDir As String
+  Dim sResultTheme As String
+  Dim sPath As String
+  
+  Try sResult_Desktop_MyInn = Settings_Core_Innova["Desktop/Wallpaper_Desktop"]
+  Try sResult_Desktop_Rand_MyInn = Settings_Core_Innova["Desktop/Image_Wallpaper_Desktop_Random"]
+  Try sResult_Desktop_Wall = Settings_Core_Innova["Desktop/Wallpaper_Desktop", f_wallpaper]
+  Try sResult_Desktop_Wall_Rand = Settings_Core_Innova["Desktop/Image_Wallpaper_Desktop_Random"]
+  Try sResult_Dir_Wallpaper_Desktop_Random = Settings_Core_Innova["Desktop/Dir_Wallpaper_Desktop_Random"]
+  Try sResult_Rnd_True = Settings_Core_Innova["Desktop/Wallpaper_Desktop_Random"]
+  
+  Settings_Core_Innova.Reload()
+  For Each sDir In ["/usr/share/Innova/Theme/", Desktop.ConfigDir &/ "Innova/Theme/"]
+    Try sResultTheme = Settings_Core_Innova["Style_Desktop/Theme_Name_Innova"]
+  Next
+  
+  sPath = sDir & sResultTheme &/ sResultTheme & ".Inn"
+  Settings_Config_Theme = New Settings(sPath)
+  sPath_Theme = File.Dir(sPath) 
+  
+  sResult_Inn_WallpaperImg = Settings_Config_Theme["Meta_Theme/Inn_Wallpaper_Img"]
+  
+  If sResultTheme Then 
+    
+    If (sResult_Rnd_True = "1") Then
+      
+      f_wallpaper.img_Fondo.Picture = Picture[sResult_Dir_Wallpaper_Desktop_Random &/ sResult_Desktop_Wall_Rand]
+      f_wallpaper.img_Fondo.Refresh
+      Wait 0.5
+    Endif
+    
+    If IsNull(sResult_Desktop_MyInn) Then
+      
+      f_wallpaper.img_Fondo.Picture = Picture[sPath_Theme &/ sResult_Inn_WallpaperImg]
+    Else
+      
+      f_wallpaper.img_Fondo.Picture = Picture[sResult_Desktop_Wall]
+      
+    Endif
+    
+  Endif
+  
+  f_wallpaper.Refresh
+  f_wallpaper.img_Fondo.Refresh
+  
+  'Catch
+  ' Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Show_Home()
+  
+  Dim sResult_File_Manager As String 
+  
+  sResult_File_Manager = Settings_Core_Innova["Panel_Command/File_Manager", f_panel]
+  Exec [(sResult_File_Manager)]
+  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+
+Public Sub SendDesk()
+  
+  Dim sCopy As String
+  Dim sDest As String 
+  Dim sFile As String 
+  Dim sDataDir As String
+  
+  sDest = Desktop.GetDirectory("DESKTOP")
+ 
+  For Each sDataDir In ["/usr/share/applications/", "/usr/share/applications/kde4/", Desktop.DataDir &/ "applications/"]
+    
+    sFile = sDataDir & sSendApps & ".desktop"
+    sCopy = "cp -r " & sFile & " " & sDest 
+    Shell sCopy Wait
+    
+  Next
+  
+End
+
+Public Sub SendPanel()
+  
+  Dim sSend As String = Desktop.ConfigDir &/ "Innova/Panel/Apps"
+  Dim sFile As String = sSendApps & ".desktop"
+  Dim sDir As String
+  Dim sCopy As String
+  
+  For Each sDir In ["/usr/share/applications/", "/usr/share/applications/kde4/", Desktop.DataDir &/ "applications/"]
+    sCopy = "cp -r " & sDir & sFile & " " & sSend 
+    Inc Application.Busy
+    Shell sCopy Wait
+    Dec Application.Busy
+  Next
+  
+End
+
+Public Sub SendBook()
+  
+  Dim sSend As String = Desktop.ConfigDir &/ "Innova/App_Bookmark"
+  Dim sFile As String = sSendApps & ".desktop"
+  Dim sDir As String
+  Dim sCopy As String
+  
+  For Each sDir In ["/usr/share/applications/", "/usr/share/applications/kde4/", Desktop.DataDir &/ "applications/"]
+    sCopy = "cp -r " & sDir & sFile & " " & sSend 
+    Inc Application.Busy
+    Shell sCopy Wait
+    Dec Application.Busy
+  Next
+  
+End
+
+
+Public Sub Randomize_Wallpaper()
+  
+  Dim $Files As String[]
+  Dim i As Integer
+  
+  Dim sResult_Dir_Rnd_Wall As String 
+  Dim sResult_Rnd_True As String 
+  
+  Try sResult_Dir_Rnd_Wall = Settings_Core_Innova["Desktop/Dir_Wallpaper_Desktop_Random", f_wallpaper]
+  sResult_Rnd_True = Settings_Core_Innova["Desktop/Wallpaper_Desktop_Random", f_wallpaper]
+  
+  sDir = sResult_Dir_Rnd_Wall
+  $Files = Dir(sDir, "*.bmp")
+  $Files.Insert(Dir(sDir, "*.jpg"))
+  $Files.Insert(Dir(sDir, "*.jpeg"))
+  $Files.Insert(Dir(sDir, "*.png"))
+  
+  i = Int(Rnd(0, $Files.Max))
+  
+  If sResult_Rnd_True = 1 Then 
+    Settings_Core_Innova.Write(f_wallpaper)
+    Settings_Core_Innova["Desktop/Image_Wallpaper_Desktop_Random"] = $Files[i] 
+    Settings_Core_Innova.Save
+  Else
+    Settings_Core_Innova.Write(f_wallpaper)
+    Settings_Core_Innova["Desktop/Image_Wallpaper_Desktop_Random"] = ""
+    Settings_Core_Innova.Save
+  Endif
+  
+  f_wallpaper.img_Fondo.Picture = Picture[sdir &/ $Files[i]]
+  sPath_Img_Rnd = sdir &/ $Files[i]
+  Print sPath_Img_Rnd
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Show_Time_Wallpaper_Rnd()
+  
+  Dim sResult_Desk_Time_Rnd As Integer 
+  Dim sTime As Integer
+  
+  Try sResult_Desk_Time_Rnd = Settings_Core_Innova["Desktop/Time_Random", f_wallpaper]
+  
+  sTime = (sResult_Desk_Time_Rnd) / 3600000
+  f_wallpaper.TimerWallRand.Delay = (sTime)
+  
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Show_Preview_Wallpaper_RND()
+  
+  Dim sResult_Desktop As String 
+  Dim sResult_Desktop_Rand As String 
+  Dim sResult_Dir_Wallpaper_Desktop_Random As String
+  Dim iResult_Rnd_True As Integer
+  
+  Try sResult_Desktop = Settings_Core_Innova["Desktop/Wallpaper_Desktop"]
+  Try sResult_Desktop_Rand = Settings_Core_Innova["Desktop/Image_Wallpaper_Desktop_Random"]
+  Try sResult_Dir_Wallpaper_Desktop_Random = Settings_Core_Innova["Desktop/Dir_Wallpaper_Desktop_Random"]
+  Try iResult = Settings_Core_Innova["Desktop/Wallpaper_Desktop_Random"]
+  
+  If (iResult = 1) Then
+    f_wallpaper.img_Fondo.Picture = Picture[sResult_Dir_Wallpaper_Desktop_Random &/ sResult_Desktop_Rand]
+    f_wallpaper.img_Fondo.Refresh
+    
+    Print iResult   
+  Endif
+  
+End

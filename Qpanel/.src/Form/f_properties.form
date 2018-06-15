@@ -1,0 +1,23 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,46,53)
+  Text = ("Innova Desktop - Properties of files")
+  Icon = Picture["icon:/16/info"]
+  Resizable = False
+  AutoResize = True
+  Spacing = True
+  Margin = True
+  { FilePropertiesDesktop FileProperties
+    MoveScaled(1,1,44,46)
+  }
+  { HBoxAppCom Panel
+    MoveScaled(1,48,44,4)
+    { BtnClose Button
+      MoveScaled(28,0,16,4)
+      Mouse = Mouse.Pointing
+      Text = Shortcut(("Close"), "C")
+      Picture = Picture["icon:/small/cancel"]
+    }
+  }
+}

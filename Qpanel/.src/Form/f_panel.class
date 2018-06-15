@@ -1,0 +1,934 @@
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' This code belongs to Gambas, Fabien Bodard and was adapted for Innova Project
+
+Public cx As Connection
+Public rs As Result
+Private iSize As Integer ' = 42
+Private iSizePanel As Integer ' = 42
+Private sDir_Apps As String 
+Private sFile_Apps As String
+Private hToggleTask As ToolButton
+''Private hToggleTask As CButton
+Private hToggleTaskW As Integer
+
+Private hCButton_App_Default As CButton
+Private hCButton_App_Bookmarks As CButton
+Private hCButton_Home As CButton
+Private hCButton_App_Desktop As ToolButton
+Private $iLast As Integer
+
+Private iValue As Integer
+
+Static Private BACKGROUND_COLOR As Integer = &212121& '&H3398C3& '&HFFAF5F&
+Static Private TEXT_COLOR As Integer = &e0e0e0& '&HDF6B00& ' &z '&HFFAF5F&
+
+Private $hWatcher As DesktopWatcher
+Private hWindWatch As DesktopWatcher
+Private $iLast2 As Integer
+
+Private _NET_CLIENT_LIST As Integer
+Private _NET_WM_ICON As Integer
+Private iResult As Integer
+Private iCountw As Integer
+Private iTaskDesktop As Integer
+
+Private $iKey As Integer
+Private Const MIME_TYPE As String = "text/x-gambas-dragndrop-example"
+
+Private pIcon2 As Picture
+Private DesktopEntry2 As DesktopFile
+Static Private $aDataDir As String[]
+Public Settings_Core_Innova As New Settings(Desktop.ConfigDir &/ "Innova/Innova_Config.conf")
+Public sList As New Settings(Desktop.ConfigDir &/ "Innova/List.conf")
+Private Const Margin As Integer = 5
+Private $hImage As Image
+Public _$IconName As String
+Private sExec_Delete As String 
+
+Private pIcon As Picture
+
+Public Sub Init_Panel()
+  
+  Dim sResult_Pos As String 
+  Dim sResult_Background As String
+  
+  Dim desk_w As Integer = Desktop.W
+  
+  Settings_Core_Innova.Reload()
+  Try iSizePanel = Settings_Core_Innova["Panel/Size"]
+  Try sResult_Pos = Settings_Core_Innova["Panel/Panel_Position"]
+  Try sResult_Background = Settings_Core_Innova["Panel/Background_Image"]
+  
+ 
+  
+  Me.H = iSizePanel
+  
+ ' Me.w = Screen.w  
+ ' Me.Top = (Screen.x - Me.x)
+  
+  Me.w = Screen.w  
+  Me.Top = (Screen.Height - Me.Height)
+  
+  
+ ' X11.SetWindowProperty(f_panel.Id, Atom["_NET_WM_STRUT"], Atom["CARDINAL"], [0, 0, iSizePanel, 0]) 
+ ' X11.SetWindowProperty(f_panel.Id, Atom["_NET_WM_STRUT_PARTIAL"], Atom["CARDINAL"], [0, 0, iSizePanel, 0, 0, 0, 0, 0, 0, 0, 0, desk_w])
+ 
+  X11.SetWindowProperty(f_panel.Id, Atom["_NET_WM_STRUT"], Atom["CARDINAL"], [0, 0, 0, iSizePanel])
+  X11.SetWindowProperty(f_panel.Id, Atom["_NET_WM_STRUT_PARTIAL"], Atom["CARDINAL"], [0, 0, 0, iSizePanel, 0, 0, 0, 0, 0, 0, 0, iSizePanel, desk_w])
+  
+  
+End
+
+Public Sub _new()
+  
+  M_Theme.Show_Theme
+  Me.TopOnly = True
+  $hWatcher = New DesktopWatcher(True) As "MyDTWatcher"
+  
+  
+End
+
+Public Sub iDesktop()
+  
+  Dim iDesk As Integer '= 4
+  Dim a As Integer
+  Dim il As Short
+  
+ 
+  
+  For Each hCButton_App_Desktop In NoDesktop.Children
+    hCButton_App_Desktop.Delete
+  Next
+  iDesk = Desktop.Count
+  For a = 0 To iDesk - 1
+    Inc il 
+    hCButton_App_Desktop = New ToolButton(NoDesktop) As "TBDesktop"
+    
+  
+    hCButton_App_Desktop.h = iSize '- 2
+    hCButton_App_Desktop.w = iSize '- 22
+    hCButton_App_Desktop.Border = True
+    hCButton_App_Desktop.Mouse = Mouse.Pointing
+    hCButton_App_Desktop.Tag = il
+    hCButton_App_Desktop.Text = il
+    hCButton_App_Desktop.Tooltip = il
+        hCButton_App_Desktop.Mouse = 13
+
+  Next
+
+  
+End
+
+Public Sub TBDesktop_Click()
+  
+  Dim i As Integer
+  
+  i = Last.tag - 1
+  X11.SendClientMessageToRootWindow(Atom["_NET_CURRENT_DESKTOP"], [i])
+  
+End
+
+Public Sub TimerPanel_Timer()
+  
+  TimerPanel.Delay = 1000
+  TimerPanel.Start
+  TextLabelDate.Text = Format$(Now, "hh:nn")
+  
+End
+
+
+
+Public Sub Size_Control()
+
+  CButtonStart.W = iSize
+  CButtonStart.h = iSize
+  CButtonDesktop.W = iSize
+  CButtonDesktop.h = iSize
+  
+Catch
+  
+End
+
+Public Sub Form_Open()
+  
+  hWindWatch = New DesktopWatcher As "WindWatch" 
+  lsbWindRefresh()
+  
+   
+  Try iSize = Settings_Core_Innova["Panel/Size"]
+  
+  X11Systray.Show(SystrayDrawingArea.Handle)
+  
+  TimerPanel.Start
+  Desktop.ActiveWindow = Me.Id
+  
+  CButtonStart.W = iSize
+  CButtonStart.h = iSize
+  
+  CButtonDesktop.W = iSize
+  CButtonDesktop.h = iSize
+  
+  CButtonDesktop.Image = Picture["icon:/48/desktop"].Image
+  
+  App_Bookmarks
+  App_Default
+  
+  Init_Panel
+  
+  Desktop_Windows_Select
+  
+  X11.SetWindowProperty(Me.Id, Atom["_NET_WM_WINDOW_TYPE"], Atom["ATOM"], Atom["_NET_WM_WINDOW_TYPE_DOCK"])
+  Init_Applets
+  Show_Widget_All_Exec
+
+  
+End
+
+Public Sub App_Default(Optional sFilter As String)
+  
+  Dim DesktopEntry As DesktopFile
+  
+ 
+  AppsDefault.Children.Clear
+  sDir_Apps = Desktop.ConfigDir &/ "Innova/Panel/AppsDefault"
+  
+  hCButton_Home = New CButton(AppsDefault) As "btnHome"
+  hCButton_Home.w = iSize 
+  hCButton_Home.h = iSize 
+  hCButton_Home.Mouse = 13
+  hCButton_Home.Image = Picture["icon:/48/home"].Image
+  
+  For Each sFile_Apps In Dir(sDir_Apps, "*.desktop").Sort(gb.IgnoreCase)
+    DesktopEntry = New DesktopFile(sDir_Apps &/ sFile_Apps)
+    pIcon = M_DesktopEntry[DesktopEntry.Path, 48].Image.Stretch(iSize, iSize).Picture
+    hCButton_App_Default = New CButton(AppsDefault) As "CButtonAppDefault"
+    hCButton_App_Default.w = iSize 
+    hCButton_App_Default.h = iSize 
+    hCButton_App_Default.Mouse = 13
+    hCButton_App_Default.Image = pIcon.Image
+    hCButton_App_Default.Tooltip = DesktopEntry.Name
+    hCButton_App_Default.Tag = DesktopEntry.Path
+  Next
+  
+
+Catch
+  
+End
+
+Public Sub App_Bookmarks(Optional sFilter As String)
+  
+  Dim DesktopEntry As DesktopFile
+  Dim pIcon As Picture
+  
+
+  AppBookmarks.Children.Clear
+  sDir_Apps = Desktop.ConfigDir &/ "Innova/Panel/Apps"
+  
+  For Each sFile_Apps In Dir(sDir_Apps, "*.desktop").Sort(gb.IgnoreCase)
+    DesktopEntry = New DesktopFile(sDir_Apps &/ sFile_Apps)
+    pIcon = M_DesktopEntry[DesktopEntry.Path, 48].Image.Stretch(iSize, iSize).Picture
+    hCButton_App_Bookmarks = New CButton(AppBookmarks) As "CButtonAppBookmarks"
+    hCButton_App_Bookmarks.w = iSize 
+    hCButton_App_Bookmarks.h = iSize 
+    hCButton_App_Bookmarks.Mouse = 13
+    hCButton_App_Bookmarks.Image = pIcon.Image
+    hCButton_App_Bookmarks.Tooltip = DesktopEntry.Name
+    hCButton_App_Bookmarks.Tag = DesktopEntry.Path
+  Next
+Catch
+  
+End
+
+Private Sub runDesktopFile(sPath As String)
+  
+  Dim sDesktopFile As New DesktopFile(sPath)
+  Dim $CmdArray As String[] = Split(sDesktopFile.Exec, " ", "")
+  
+  Try Shell $CmdArray[0]
+  
+End
+
+Public Sub CButtonAppBookmarks_Click()
+  
+  Dim sExec As String = Last.tag
+
+  
+  sExec = File.BaseName(sExec)
+  Try DesktopApps[sExec].Exec()
+  CAnimation.Start(Last, "Opacity", 70, 250)
+  
+End
+
+Public Sub CButtonAppBookmarks_MouseDown()
+  
+  CAnimation.Start(Last, "Opacity", 0.2, 1)
+ 
+  
+End
+
+Public Sub CButtonAppDefault_Enter()
+  
+  Last.Background = BACKGROUND_COLOR
+ 
+  
+End
+
+Public Sub CButtonAppDefault_Leave()
+  
+  Last.Background = Color.Transparent
+ 
+  
+End
+
+Public Sub btnHome_Enter()
+  
+  Last.Background = BACKGROUND_COLOR
+  
+  
+End
+
+Public Sub btnHome_Leave()
+  
+  Last.Background = Color.Transparent
+ 
+  
+End
+
+Public Sub CButtonAppDefault_Click()
+  
+  Dim sExec As String = Last.tag
+  
+  runDesktopFile(sExec)
+  
+End
+
+
+
+Public Sub CButtonStart_Click()
+  
+   
+  Dim sResult As String 
+  
+  Settings_Core_Innova.Reload()
+  Wait 0.1
+  Try sResult = Settings_Core_Innova["Launcher/Style_Launcher"]
+  
+  If (sResult = "Mini") Then
+    M_Core.iShow = False
+    Shell User.Home &/ "Launcher_Mini.gambas"
+    
+  Endif
+  
+  If (sResult = "Tablet") Then
+    M_Core.iShow = False
+    Shell User.Home &/ "Launcher_Tablet.gambas"
+     
+  Endif
+  If (sResult = "CNB") Then
+    M_Core.iShow = False
+    Shell User.Home &/ "Launcher_CNB.gambas"
+     Endif
+  
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub MyDTWatcher_Windows()
+  
+  Desktop_Windows_Select
+  
+  M_Theme.Show_Theme
+  Init_Panel
+  
+End 
+
+Public Sub MyDTWatcher_ActiveWindow()
+  
+  $iLast = Desktop.ActiveWindow
+  
+End
+
+Public Sub ShowDesktop()
+  
+  Dim sWindow As DesktopWindow
+  
+  For Each sWindow In Desktop.Windows
+    If sWindow.Desktop <> Desktop.Current Then Continue
+    If sWindow.SkipTaskbar Then Continue
+    If sWindow.Sticky Then Continue
+    sWindow.Minimized = True
+  Next
+  
+End
+
+Public Sub ResultIconWindows()
+  
+
+  iResult = Me.Width / 8
+  iResult = iResult / hToggleTaskW 
+  
+Catch
+  
+End
+
+Public Sub Desktop_Windows_Select()
+  
+  Dim iCount As Integer
+  Dim hWin As DesktopWindow
+  Dim aWindow As Integer[]
+  Dim hWind As DesktopWindow
+  Dim Idx As Integer
+  Dim hImage As Image
+  
+  Settings_Core_Innova.Reload()
+  Try iResult = Settings_Core_Innova["Panel/OnlyIcon_Taskbar"]
+  If iResult = 1 Then
+    PanelTaskIcon.Visible = True
+    PanelTaskList.Visible = False
+    WindList_Icons
+  Else
+    PanelTaskList.Visible = True
+    PanelTaskIcon.Visible = False
+    WindList_List
+  Endif
+  
+  ResultIconWindows
+  
+End
+
+Private Sub WindList_List()
+  
+  Dim aWindow As Integer[]
+  Dim iWindow As Integer
+  Dim aIcon As Integer[]
+  Dim hImage As Image
+  Dim iCurrentDesktop As Integer
+  Dim iDesktop As Integer
+  Dim hWindow As DesktopWindow
+  Dim sResult_Img_Icon As String 
+  Dim sResult_Font_Color As String
+  Dim i As Integer
+  
+  Try iSize = Settings_Core_Innova["Panel/Size"]
+  Try sResult_Img_Icon = Settings_Core_Innova["Panel/Img_Icon_Task"]
+  Try sResult_Font_Color = Settings_Core_Innova["Style_Desktop/Font_Color"]
+  
+  iCurrentDesktop = X11.GetWindowProperty(X11.RootWindow, "_NET_CURRENT_DESKTOP")[0]
+  
+  For Each hToggleTask In PanelTaskList.Children
+    hToggleTask.Delete
+  Next
+  
+  _NET_CLIENT_LIST = X11.InternAtom("_NET_CLIENT_LIST")  
+  _NET_WM_ICON = X11.InternAtom("_NET_WM_ICON")  
+  aWindow = X11.GetWindowProperty(X11.RootWindow, _NET_CLIENT_LIST)
+  For Each iWindow In aWindow
+    
+    hWindow = New DesktopWindow(iWindow)
+    iDesktop = hWindow.Desktop
+    aIcon = X11.GetWindowProperty(iWindow, _NET_WM_ICON)
+    
+    If hWindow.SkipTaskbar Or hWindow.Desktop <> Desktop.Current Or hWindow.Id = Me.Id Then Continue
+    If hWindow.Name Then
+      Inc i
+      
+      hToggleTask = New ToolButton(PanelTaskList) As "ToggleTask"
+      hToggleTask.Mouse = 13
+      hToggleTask.Tag = hWindow.Id
+      hToggleTask.Font.Size = 9
+      
+      hImage = hWindow.Icon
+      hToggleTask.Tooltip = hWindow.Name 
+      hToggleTask.Text = Left$(hWindow.Name, 25) 
+      hToggleTaskW = hToggleTask.w
+      If (sResult_Img_Icon = 1) Then  
+        hToggleTask.Text = Null
+      Endif
+      
+      If hImage Then
+        hToggleTask.Picture = hImage.Picture.Image.Stretch(iSize, iSize).Picture
+      Endif
+      If (hToggleTask.Picture = Picture[Null]) Then
+        hToggleTask.Picture = Picture["icon:/" & iSize & "/exec"]
+        
+      Endif
+      
+    Endif
+    
+  Next
+  
+  hToggleTask.AutoResize = True  
+  
+Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End 
+
+Private Sub WindList_Icons()
+  
+  Dim aWindow As Integer[]
+  Dim iWindow As Integer
+  Dim aIcon As Integer[]
+  Dim hImage As Image
+  Dim iCurrentDesktop As Integer
+  Dim iDesktop As Integer
+  Dim hWindow As DesktopWindow
+  Dim sResult_Img_Icon As String 
+  Dim i As Integer
+  Dim iSize As Integer
+  
+  Try iSize = Settings_Core_Innova["Panel/Size"]
+  Try sResult_Img_Icon = Settings_Core_Innova["Panel/Img_Icon_Task"]
+  
+  iSize = iSize - 10
+  
+  iCurrentDesktop = X11.GetWindowProperty(X11.RootWindow, "_NET_CURRENT_DESKTOP")[0]
+  
+  For Each hToggleTask In PanelTaskIcon.Children
+    hToggleTask.Delete
+  Next
+  
+  _NET_CLIENT_LIST = X11.InternAtom("_NET_CLIENT_LIST")  
+  _NET_WM_ICON = X11.InternAtom("_NET_WM_ICON")  
+  aWindow = X11.GetWindowProperty(X11.RootWindow, _NET_CLIENT_LIST)
+  For Each iWindow In aWindow
+    
+    hWindow = New DesktopWindow(iWindow)
+    iDesktop = hWindow.Desktop
+    aIcon = X11.GetWindowProperty(iWindow, _NET_WM_ICON)
+    
+    If hWindow.SkipTaskbar Or hWindow.Desktop <> Desktop.Current Or hWindow.Id = Me.Id Then Continue
+    If hWindow.Name Then
+      
+      hToggleTask = New ToolButton(PanelTaskIcon) As "ToggleTask"
+      hToggleTask.Mouse = 13
+      hToggleTask.Tag = hWindow.Id
+      hToggleTask.Font.Size = 9
+      
+      hImage = hWindow.Icon
+      
+      hToggleTask.W = 44 
+      hToggleTask.h = 42 
+      hToggleTask.Background = BACKGROUND_COLOR
+      hToggleTask.Border = False
+      
+      hToggleTask.Tooltip = hWindow.Name 
+      
+      hToggleTaskW = hToggleTask.w
+      If (sResult_Img_Icon = 1) Then  
+        hToggleTask.Text = Null
+      Endif
+      
+      If hImage Then
+        hToggleTask.Picture = hImage.Picture.Image.Stretch(iSize, iSize).Picture
+      Endif
+      If (hToggleTask.Picture = Picture[Null]) Then
+        hToggleTask.Picture = Picture["icon:/" & iSize & "/exec"]
+        
+      Endif
+      
+    Endif
+    
+  Next
+  
+Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub mnuClose_Click()
+  
+  Desktop.Windows.FromHandle(iValue).Close       
+  Wait 0.1
+Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub mnuMaximized_Click()
+  
+  X11.MinimizeWindow(iValue, 0)  
+Catch
+  ' Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub mnuMinimizar_Click()
+  
+  X11.MinimizeWindow(iValue, 1)
+  
+Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub ToggleTask_Menu()
+  
+  If Not IsNull(hToggleTask.Picture) Then
+    
+    mnumain.Popup
+    
+  Endif
+  
+End
+
+Public Sub ToggleTask_MouseDown()
+  
+  If Mouse.Left Then
+    Last.Background = BACKGROUND_COLOR
+    Last.Foreground = TEXT_COLOR
+  Endif
+  
+End
+
+Public Sub ToggleTask_MouseUp()
+  
+  Last.Background = Color.Transparent
+  Last.Foreground = Color.Black
+  
+End
+
+Public Sub ToggleTask_Click()
+  
+  Dim iId As Integer
+  
+  iId = Last.tag 
+  
+  If iId = $iLast2 And If Not Desktop.Windows.FromHandle(iId).Minimized Then
+    Desktop.Windows.FromHandle(iId).Minimized = True
+    Return
+    
+  Endif
+  
+  Desktop.Windows.FromHandle(iId).Activate()
+  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  'Catch
+  
+End
+
+Public Sub ToggleTask_Enter()
+  
+  iValue = Last.Tag
+  
+  hToggleTask.Tooltip = Last.text
+  
+Catch
+  
+End
+
+Public Sub Form_Close()
+  
+  Stop Event
+  
+End
+
+Public Sub CButtonDesktop_Click()
+  
+  ShowDesktop
+  
+End
+
+Public Sub CButtonDesktop_Drop()
+  
+  CButtonDesktop.Image = Picture[Drag.data].Image
+  
+Catch
+  
+End
+
+Public Sub CButtonAppBookmark_Drop()
+  
+  hCButton_App_Default.Image = Picture[Drag.data].Image
+  
+End
+
+Public Sub PictureBox1_MouseDown()
+  
+  Dim sDir As String
+  Dim sResult As String 
+  Dim sSize As String
+  
+  Dim sMime As String 
+  Dim Size As Integer = 16
+  Dim sPath As String
+  
+  Try sResult = Settings_Core_Innova["Style_Desktop/Theme_Name_Icons"]
+  sMime = Replace(sMime, "/", "-")
+  For Each sDir In [Desktop.DataDir &/ "icons", "/usr/share/icons"]
+    
+    For Each sSize In [CStr(Size), "256", "16", "22", "24", "32", "48", "64", "128", "scalable"]
+      
+     
+    Next
+    
+  Next
+  
+End
+
+Public Sub ArrangeTray()
+  
+  Dim I As Integer
+  Dim X, Y, H As Integer
+  Dim DH As Integer
+  Dim iSizeSisTray As Integer
+  
+  iSize = iSizePanel
+  
+  If IsNull(iSize) Then
+    iSize = 16
+  Else
+    iSize = iSize - 3
+  Endif
+  
+  h = iSize
+  Debug
+  X = 2
+  Y = 2
+  For I = 0 To X11Systray.Count - 1
+    With X11Systray[I]
+      
+      Debug I;; iSize;; iSize
+      
+      If (X + iSize) >= (Me.ClientW - 2) Then
+        X = 2
+        Y += H + 2
+        H = 0
+      Endif
+      
+      .Move(X, Y, iSize, iSize)
+      H = Max(H, iSize)
+      X += iSize + 2
+      iSizeSisTray = x
+    End With
+  Next
+  SystrayDrawingArea.w = iSizeSisTray
+  'Catch
+  ' Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Form_Resize()
+  
+  Me.ArrangeTray()
+  
+  AppsDefault.H = Me.H
+  
+End
+
+Static Public Sub X11Systray_Arrange()
+  
+  Me.ArrangeTray()
+  
+End
+
+Public Sub Init_Applets()
+  
+  Dim sApplets As String[]
+  Dim sApplet As String
+  
+  Dim sExec As String
+  
+  cx = M_DB.Connect()
+  
+  rs = cx.Exec("SELECT * FROM tb_extensions where status LIKE '1'")
+  
+  Do While rs.Available 
+    sExec = rs!exec
+    sApplets = Split(rs!exec, ",")
+    rs.MoveNext 
+    
+    Shell sExec & " > /dev/null 2>/dev/null"
+  Loop 
+  
+Catch
+  
+End
+
+Public Sub Show_Widget_All_Exec()
+  
+  Dim active As String
+  Dim Path As String
+  
+  cx = M_DB.Connect()
+  rs = cx.Exec("select * from tb_widgets")
+  
+  Do While rs.Available 
+    Print Path
+    Path = rs!exec
+    active = rs!status  
+    
+    rs.MoveNext 
+    
+    If active = True Then
+      
+      Exec [Path]
+      
+    Endif
+  Loop 
+  
+  M_DB.Close(cx)
+  
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Form_Show()
+  
+End
+
+Public Sub TextLabelDate_MouseDown()
+  
+  Dim sResult_Pos As String
+  
+  Try sResult_Pos = Settings_Core_Innova["Panel/Panel_Position"]
+  
+  M_Core.iShow = False
+  f_date.Visible = If(f_date.Visible = 0, 1, 0)  
+  
+  If (sResult_Pos = "Bottom") Then
+    f_date.Y = Desktop.H - f_date.H
+    f_date.x = Desktop.w - f_date.w
+    
+  Endif
+  
+  TextLabelDate.Tooltip = Format$(Now, "dd/mm/yyyy")
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub CButtonAppBookmarks_Menu()
+  
+  mnuDelApps.Popup()
+  
+End
+
+Public Sub CButtonAppBookmarks_Enter()
+  
+  sExec_Delete = Last.tag 
+  Last.Background = BACKGROUND_COLOR
+  
+  
+End
+
+Public Sub CButtonAppBookmarks_Leave()
+  
+  Last.Background = Color.Transparent
+ 
+  
+End
+
+Public Sub mnuDelApp_Click()
+  
+  Dim sApp_Del As String = sExec_Delete 
+  
+  Shell "rm -r " &/ sApp_Del
+  Wait 0.1
+  App_Bookmarks
+  
+End
+
+Public Sub btnHome_Click()
+  
+  m_core.Show_Home
+  
+End
+
+Public Sub AppBookmarks_Enter()
+  
+  If AppBookmarks.HasFocus Then
+    App_Bookmarks()
+  Endif
+  
+End
+
+Public Sub WindWatch_ActiveWindow()
+  
+  lsbWindRefresh()
+  
+End
+
+Private Sub lsbWindSelectActiveWindow()
+  
+  If Not lsbWind.Exist(Desktop.ActiveWindow) Then Return
+  Object.Lock(lsbWind)
+  lsbWind[Desktop.ActiveWindow].Selected = True
+  $iLast2 = Desktop.ActiveWindow
+  Object.Unlock(lsbWind)
+Catch
+  
+End
+
+Private Sub lsbWindRefresh()
+  
+  Dim hWind As DesktopWindow
+  Dim Idx As Integer
+  
+  lsbWind.Clear()
+  For Each hWind In getWindsList()
+    'add windows name and icon to list
+    lsbWind.Add(hWind.Id, hWind.Id & "-" & hWind.Name, hWind.Icon.Stretch(32, 32).Picture)
+    Inc Idx
+  Next
+  lsbWindSelectActiveWindow()
+Catch
+  
+End
+
+Private Function getWindsList() As DesktopWindow[]
+  
+  Dim aRet As New DesktopWindow[]
+  Dim hWind As DesktopWindow
+  
+  Desktop.Windows.Refresh()
+  For Each hWind In Desktop.Windows
+    If hWind.SkipTaskbar Or hWind.Desktop <> Desktop.Current Or hWind.Id = Me.Id Then Continue
+    aRet.Add(hWind)
+  Next
+  
+  Return aRet
+  
+End
+
+Public Sub AppsDefault_MouseDown()
+  
+End
+
+Public Sub CButtonDesktop_Enter()
+  
+  Last.Background = BACKGROUND_COLOR
+
+  
+End
+
+Public Sub CButtonDesktop_Leave()
+  
+  Last.Background = Color.Transparent
+
+  
+End

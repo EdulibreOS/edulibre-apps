@@ -1,0 +1,87 @@
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' Part of this code belongs to Gambas3 and was adapted for Innova Project
+
+Private directoriorigen As String 
+Private directoriodestino As String = Desktop.GetDirectory("DESKTOP")
+
+Public Sub Form_Open()
+  
+  Me.Center
+  
+End
+
+Public Sub copia_dir(path_origen As String, path_destino As String, Optional tipo As String)
+  
+  Dim arDir As String[]
+  Dim arFile As String[]
+  Dim nombredir, nombrefile As String
+  
+  If Not tipo Then tipo = "*"
+  If Not Exist(path_destino) Then
+    Mkdir path_destino
+  Endif
+  arfile = Dir(path_origen, tipo, gb.file)  
+  For Each nombrefile In arfile  
+    Copy path_origen &/ nombrefile To path_destino &/ nombrefile
+  Next
+  ardir = Dir(path_origen, "*", gb.Directory)
+  For Each nombredir In arDir 
+    copia_dir(path_origen &/ nombredir, path_destino &/ nombredir)
+  Next
+  
+End
+
+Public Sub Copy_Progress()
+  
+  Dim aarchivos As New String[]  
+  Dim unarchivo As String
+  Dim incrementos As Float
+  
+  aarchivos.Clear
+  ProgressBar1.Value = 0
+  
+  aarchivos = Dir(directoriorigen, "*", gb.File)
+  incrementos = 1 / aarchivos.Count
+  For Each unarchivo In aarchivos
+    ProgressBar1.Value += incrementos
+    lblStatus.Text = "Copiando " & unarchivo
+    Wait 0.01     
+    
+    Copy directoriorigen To directoriodestino 
+    
+  Next
+  
+End
+
+Public Sub lblStatus_MouseDown()
+
+  
+
+End
+
+Public Sub ProgressBar1_MouseDown()
+
+  
+
+End

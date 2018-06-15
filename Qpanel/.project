@@ -1,0 +1,25 @@
+# Gambas Project File 3.0
+Title=Qpanel
+Startup=Cls_Start
+Icon=img/desktop-environment-innova.png
+Version=0.1.68
+Component=gb.args
+Component=gb.image
+Component=gb.qt5
+Component=gb.form
+Component=gb.compress
+Component=gb.compress.bzlib2
+Component=gb.compress.zlib
+Component=gb.crypt
+Component=gb.db
+Component=gb.db.sqlite3
+Component=gb.desktop
+Component=gb.desktop.x11
+Component=gb.settings
+Environment="GB_GUI=gb.qt5"
+TabSize=2
+Translate=1
+Language=en_US
+ControlPublic=1
+ModulePublic=1
+Packager=1

@@ -1,0 +1,96 @@
+' Gambas module file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' This code belongs to Nagato Project and was adapted for Innova Project
+
+Private Const HicolorIcons As String = "/usr/share/icons/hicolor/128x128/apps"
+Private Const PixmapIcons As String = "/usr/share/pixmaps"
+
+Private $desktopFile As DesktopFile
+Private $path As String
+
+Private Function getIconPath(argDirectory As String) As String
+  
+  Dim sPath As String
+  
+  For Each sPath In RDir(argDirectory)
+    If File.BaseName(sPath) <> File.BaseName($desktopFile.Icon) Then Continue
+    Return (argDirectory &/ sPath)
+  Next
+  
+  Return ""
+  
+End
+
+Private Function getIconPathFormDesktopFileData(argPath As String) As String
+  
+  Dim sPath As String = PixmapIcons &/ File.BaseName(argPath) & ".png"
+  
+  If Exist(sPath) Then Return sPath
+  If Exist(argPath) Then Return argPath
+  
+  Return ""
+  
+End
+
+Private Function setPath()
+  
+  $path = ""
+  
+  If $desktopFile.Icon Begins "/" Then $path = getIconPathFormDesktopFileData($desktopFile.Icon)
+  If Not $path Then $path = getIconPath(HicolorIcons)
+  If Not $path Then $path = getIconPath(PixmapIcons)
+  
+End
+
+Private Function getIconFromAbsolutePath(argSize As Integer) As Picture
+  
+  Dim iImage As Image = Image.Load($path)
+  
+  If Max(iImage.H, iImage.W) > argSize Then
+    Return iImage.Stretch(argSize, argSize).Picture
+  Else
+    Return iImage.Picture
+  End If
+  
+End
+
+Private Function getIcon(argSize As Integer) As Picture
+  
+  If $path And If Exist($path) Then 
+    Return getIconFromAbsolutePath(argSize)
+  Else
+    Return $desktopFile.GetIcon(argSize).Picture
+  Endif
+  
+Finally
+  
+End
+
+Public Sub _get(argPath As String, Optional argSize As Integer = 16) As Picture
+  
+  $desktopFile = New DesktopFile(argPath)
+  setPath()
+  
+  Return getIcon(argSize)
+  
+End

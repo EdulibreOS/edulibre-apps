@@ -1,0 +1,158 @@
+' Gambas module file
+
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Public cx As Connection
+Public rs As Result
+Public sResult_Theme As String
+Public Settings_Core_Innova As New Settings(Desktop.ConfigDir &/ "Innova/Innova_Config.conf")
+
+Public Sub IconTheme()
+  
+  Try sResult_Theme = Settings_Core_Innova["Style_Desktop/Theme_Name_Icons"]
+  
+  Application.Theme = sResult_Theme
+  
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Function Show_Theme()
+  
+  Dim ctrl As Control
+  Dim Settings_Config_Theme As Settings
+  Dim sPath_Theme As String
+  
+  Dim sResult_Trans As String 
+  Dim sResult_Img_Launcher As String 
+  
+  Dim sResult_Font_Name As String 
+  Dim iResult_Font_Size As Integer
+  Dim sResult_Font_Color As String 
+  
+  Dim sResult_Inn_Font_Name As String 
+  Dim sResult_Inn_Font_Color As String
+  Dim iResult_Inn_Font_Size As String  
+  
+  Dim sResult_Img_Look As String
+  
+  Dim sDir As String
+  Dim sResultTheme As String
+  Dim sPath As String
+  
+
+  Settings_Core_Innova.Reload()
+  For Each sDir In ["/usr/share/Innova/Theme/", Desktop.ConfigDir &/ "Innova/Theme/"]
+    Try sResultTheme = Settings_Core_Innova["Style_Desktop/Theme_Name_Innova"]
+  Next
+  
+  sPath = sDir & sResultTheme &/ sResultTheme & ".Inn"
+  Settings_Config_Theme = New Settings(sPath)
+  sPath_Theme = File.Dir(sPath) 
+  
+  Try sResult_Trans = Settings_Core_Innova["Innova/Transparent"]
+  
+  Try sResult_Font_Color = Settings_Core_Innova["Style_Desktop/Font_Color"]
+  Try iResult_Font_Size = Settings_Core_Innova["Style_Desktop/Font_Size"]
+  Try sResult_Font_Name = Settings_Core_Innova["Style_Desktop/Font_Name"]
+  
+  Try sResult_Img_Launcher = Settings_Config_Theme["Meta_Theme/Inn_Background_Img"] 
+  Try sResult_Img_Look = Settings_Config_Theme["Meta_Theme/Inn_Look_Img"]
+  
+  sResult_Inn_Font_Color = Settings_Config_Theme["Meta_Theme/Inn_Font_Color"]
+  sResult_Inn_Font_Name = Settings_Config_Theme["Meta_Theme/Inn_Font_Name"]
+  iResult_Inn_Font_Size = Settings_Config_Theme["Meta_Theme/Inn_Font_Size"]
+  
+  If sResultTheme Then
+    
+    ''FRM_TRANS
+    If sResult_Trans = "1" Then
+      f_launcher.Transparent = True
+      f_launcher_mini.Transparent = True
+    Endif
+    
+    ''IMG_BACKGROUND    
+    
+    f_launcher.Picture = Picture[sPath_Theme &/ sResult_Img_Launcher].Image.Stretch(Desktop.W, Desktop.h).Picture
+    f_launcher_mini.Picture = Picture[sPath_Theme &/ sResult_Img_Launcher].Image.Stretch(f_launcher_mini.W, f_launcher_mini.h).Picture
+    f_power.Picture = Picture[sPath_Theme &/ sResult_Img_Look].Image.Stretch(Desktop.W, Desktop.h).Picture
+    f_style_launcher.Picture = Picture[sPath_Theme &/ sResult_Img_Launcher].Image.Stretch(f_launcher_mini.W, f_launcher_mini.h).Picture
+    
+    ''FONT COLOR
+    
+    For Each ctrl In f_launcher.Controls
+      Try ctrl.Foreground = Val(sResult_Inn_Font_Color) 
+      M_Core.sFontColor = Val(sResult_Inn_Font_Color) 
+    Next
+    
+    For Each ctrl In f_launcher_mini.Controls
+      Try ctrl.Foreground = Val(sResult_Inn_Font_Color) 
+      M_Core.sFontColor = Val(sResult_Inn_Font_Color) 
+    Next
+    
+    For Each ctrl In f_power.Controls
+      Try ctrl.Foreground = Val(sResult_Inn_Font_Color) 
+      
+    Next
+    
+    ''FONT NAME
+    
+    For Each ctrl In f_launcher.Controls
+      Try ctrl.Font.Name = (sResult_Inn_Font_Name) 
+      M_Core.sFontName = (sResult_Inn_Font_Name) 
+    Next
+    For Each ctrl In f_launcher_mini.Controls
+      Try ctrl.Font.Name = (sResult_Inn_Font_Name) 
+      M_Core.sFontName = (sResult_Inn_Font_Name) 
+    Next
+    For Each ctrl In f_power.Controls
+      Try ctrl.Font.Name = (sResult_Inn_Font_Name) 
+    Next
+    
+    ''FONT SIZE
+    
+    If (iResult_Inn_Font_Size > 9) Then
+      
+      iResult_Inn_Font_Size = (iResult_Inn_Font_Size - 1)
+      For Each ctrl In f_launcher.Controls
+        Try ctrl.Font.Size = (iResult_Inn_Font_Size) 
+        M_Core.iFontSize = (iResult_Inn_Font_Size) 
+      Next
+      For Each ctrl In f_launcher_mini.Controls
+        Try ctrl.Font.Size = (iResult_Inn_Font_Size) 
+        M_Core.iFontSize = (iResult_Inn_Font_Size) 
+      Next
+      f_launcher.txtnameapp.Font = Font["Bold,+2"]
+      f_launcher.txtlabelInfo.Font = Font["+1"]
+    Endif
+    
+    For Each ctrl In f_power.Controls
+      Try ctrl.Font.Size = (iResult_Inn_Font_Size) 
+    Next
+  Endif 
+  
+Catch
+  
+End
