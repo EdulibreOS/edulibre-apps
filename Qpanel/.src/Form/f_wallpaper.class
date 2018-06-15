@@ -1,0 +1,1171 @@
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' Part of this code belongs to Gambas3, Fabien Bodard and was adapted for Innova Project
+
+Private $sLastName As String
+
+Private sPath As String
+Public sDir As String = Desktop.GetDirectory("DESKTOP") & "/" 
+Public sLanguage As String = ((Left(System.Language, 2)))
+
+Private $MX As Integer
+Private $MY As Integer
+Public sPath_Source As String 
+Public sPath_Destination As String 
+Public sName_Paste As String 
+Public sName_Copy As String 
+
+Public Settings_Core_Innova As New Settings(Desktop.ConfigDir &/ "Innova/Innova_Config.conf")
+
+Public Item_Menu_Link As Menu
+
+Private dm As New DesktopMime  
+Private df As DesktopFile  
+Private $df As DesktopFile[]
+Private i As Integer
+Private pr As Process
+Private $hWatcher As DesktopWatcher
+Private $hWatch As Watcher
+Private sPC As String
+Private sTrash As String
+Public MovingButton As Integer
+
+Public Sub _new()
+  
+  M_Theme.Show_Theme
+  
+  $hWatcher = New DesktopWatcher(True) As "MyDTWatcher"
+  
+  X11.SetWindowProperty(f_wallpaper.Id, Atom["_NET_WM_WINDOW_TYPE"], Atom["ATOM"], Atom["_NET_WM_WINDOW_TYPE_DESKTOP"])
+  
+End
+
+Public Sub Show_Files_Desktop()
+  
+  Dim sFiles As String
+  Dim iSize_Icon As Integer = M_Var_Global.iSize_Icons_View 
+  Dim i As Integer
+  Dim img As Image
+  Dim PicWall As Picture
+  Dim pIcon As Picture
+  Dim DesktopEntry As DesktopFile
+  Dim $Files As String[]
+  Dim iSize As Integer
+  Dim iTam As Integer
+  Dim iResult_iSize_Icons As Integer 
+  Dim iResult_Icons_Line As Integer 
+  
+  ivwDesktop.Clear
+  
+  If (iSize_Icon > 64) Then
+    iSize_Icon = iSize_Icon / 1.5
+  Endif
+  Settings_Core_Innova.Reload
+  
+  Try iResult_iSize_Icons = Settings_Core_Innova["Desktop/Icon_Size_Desktop"]
+  Try iResult_Icons_Line = Settings_Core_Innova["Desktop/IconLine_Desktop"]
+  
+  If Not IsNull(iResult_iSize_Icons) Then
+    M_Var_Global.iSize_Icons_View = iResult_iSize_Icons
+  Endif
+  
+  If Not IsNull(iResult_Icons_Line) Then
+    ivwDesktop.IconLines = iResult_Icons_Line
+  Endif
+  
+  sPC = Settings_Core_Innova["Desktop/Show_Icon_PC"]
+  sTrash = Settings_Core_Innova["Desktop/Show_Icon_Trash"]
+  
+  
+  If (sPC = "1") Then
+    Inc i
+  
+    Try ivwDesktop.Add("System", ("System"), Picture["icon:/" & iSize_Icon & "/computer"])
+  Endif
+  
+  If (sTrash = "1") Then
+    Inc i    
+    Try ivwDesktop.Add("Trash", ("Trash"), Picture["icon:/" & iSize_Icon & "/trash"])
+  Endif
+  
+  $Files = Dir(sDir, "*.png")
+  $Files.Insert(Dir(sDir, "*.jpg"))
+  $Files.Insert(Dir(sDir, "*.jpeg"))
+  $Files.Insert(Dir(sDir, "*.bmp"))
+  $Files.Insert(Dir(sDir, "*.gif"))
+  $Files.Insert(Dir(sDir, "*.xpm"))
+  
+  For Each sFiles In Dir(sDir) '.Sort(gb.Natural)
+    If IsDir(sDir &/ sFiles) Then
+     
+      ivwDesktop.Add(sFiles, sFiles, Picture["icon:/" & iSize_Icon & "/directory"]).Editable = Access(sDir, gb.Write)
+    Endif
+  Next
+  
+  For Each sFiles In Dir(sDir, "*", gb.File)
+    Inc i
+    img = DesktopMime.FromFile(sDir &/ sFiles).GetIcon(iSize_Icon)
+    
+    If Not (InStr(sFiles, ".desktop")) Then
+      
+      If Not (InStr(sFiles, ".jpg") Or InStr(sFiles, ".png") Or InStr(sFiles, ".bmp") Or InStr(sFiles, ".jpeg") Or InStr(sFiles, ".gif") Or InStr(sFiles, ".xpm")) Then
+      
+        Try ivwDesktop.Add(sFiles, sFiles, img.Picture).Editable = Access(sDir, gb.Write)
+      Endif
+      
+    Else
+      DesktopEntry = New DesktopFile(sDir &/ sFiles)
+     
+      pIcon = M_DesktopEntry[DesktopEntry.Path, iSize_Icon].Image.Stretch(iSize_Icon, iSize_Icon).Picture
+    
+      Try ivwDesktop.Add(sFiles, DesktopEntry.Name, pIcon).Editable = Access(sDir, gb.Write)
+    Endif
+    
+  Next
+  
+  For Each sFiles In $Files
+    Inc i
+    PicWall = Picture[sDir &/ sFiles]
+    iTam = (iSize_Icon * PicWall.Height) \ PicWall.Width
+    PicWall = Picture[sDir &/ sFiles].Image.Stretch(iSize_Icon, iTam).Picture
+   
+    Try ivwDesktop.Add(sFiles, sFiles, PicWall)
+    
+  Next
+  
+
+  
+End
+
+Public Sub Form_Open()
+  
+  Dim sResult_Desktop_Wall As Integer 
+  Dim sResult_Desktop_Wall_Rand As String 
+  Dim iResult_iSize_Icons As Integer 
+  Dim sResult_Pos As String 
+  Dim sResult_WM As String 
+  Dim sResult_Rnd_True As Integer 
+  Dim sResult_Dir_Wallpaper_Desktop_Random As String
+  
+  TimerWallRand.Start()
+  M_Theme.Show_Theme
+  m_core.Show_Active_Time_Wallpaper_Rnd
+  
+  panView.Resize(Desktop.w / 2, Desktop.H - f_panel.H / 2)
+  Try sResult_Pos = Settings_Core_Innova["Panel/Panel_Position", f_panel]
+  If (sResult_Pos = "Top") Then
+    
+    ivwDesktop.y = Desktop.y + f_panel.H 
+    
+  Endif
+  
+  Try iResult_iSize_Icons = Settings_Core_Innova["Desktop/Icon_Size_Desktop"]
+  
+  If Not IsNull(iResult_iSize_Icons) Then
+    M_Var_Global.iSize_Icons_View = iResult_iSize_Icons
+  Endif
+  
+  Show_Files_Desktop
+  
+  With ivwDesktop
+    
+    .Background = Color.Transparent
+  End With
+  
+  Try sResult_WM = Settings_Core_Innova["Session_Windows_Manager/Windows_Manager", f_wallpaper]
+  
+  If sResult_WM = "kwin" Then
+    f_wallpaper.FullScreen = True
+    Me.Maximized = True ''
+    Me.Width = Desktop.Width ''
+    Me.Height = Desktop.Height ''
+  Else  
+    Me.Maximized = True
+    Me.Width = Desktop.Width
+    Me.Height = Desktop.Height
+  Endif
+  
+  Me.SetFocus
+  
+End
+
+Public Sub Form_MouseDown()
+  
+  $MX = Mouse.ScreenX - Me.X
+  $MY = Mouse.ScreenY - Me.Y
+  
+End
+
+Public Sub Form_MouseMove()
+  
+  If Mouse.Left Then Me.Move(Mouse.ScreenX - $MX, Mouse.ScreenY - $MY)
+  
+End
+
+Public Sub Create_Apps_Link()
+  
+  Dim sMimeType As String
+  Dim i As Integer
+  
+  sPath = sDir &/ ivwDesktop.Item.Text
+  sMimeType = DesktopMime.FromFile(sPath).Type
+  mnuOpenwith.Children.Clear
+  
+  For Each df In DesktopFile.FromMime(DesktopMime.FromFile(sPath).Type)
+    Inc i
+    
+    Item_Menu_Link = New Menu(mnuOpenwith) As "Items" 
+    Item_Menu_Link.text = df.Name
+    Item_Menu_Link.Picture = df.GetIcon(16).Picture
+    Item_Menu_Link.Tag = i 
+    
+  Next
+  
+Catch
+  
+End
+
+Public Sub Items_Click()
+  
+  sPath = sDir &/ ivwDesktop.Item.Text
+  
+  With df = DesktopFile.FromMime(DesktopMime.FromFile(sPath).Type)[Last.tag - 1]  
+    df.Run(sPath)
+  End With
+  
+End
+
+Private Sub runDesktopFile(sPath As String)
+  
+  Dim sDesktopFile As New DesktopFile(sPath)
+  Dim $CmdArray As String[] = Split(sDesktopFile.Exec, " ", "")
+  
+  Try Shell $CmdArray[0]
+  
+End
+
+Public Sub Form_Close()
+  
+  Stop Event
+  
+End
+
+Public Sub New_Folder()
+  
+  Dim sResult As String
+  Dim sRes As String
+  
+  While sResult = Null
+    sResult = InputBox("Folder name", ("New Folder"), ("New Folder"))
+    
+    If Exist(sDir &/ sResult) Then  
+      Message(LC_MESSAGES.MSG_INF_FOLDER_EXIST)
+    Endif
+    
+    Try Mkdir sDir &/ sResult
+    
+    If sResult = Null
+      sRes = Message.Question(("Enter a Name..."), ("Ok"), ("Cancelar"))
+      If sRes = 2
+        Break
+      Else
+        Try Mkdir sDir &/ sResult
+        
+      Endif
+    Endif
+    
+  Wend 
+  mnuRefresh_Click
+Catch
+  
+  Message.Error(("Cannot create directory.") & "\n\n" & Error.Text)
+  
+End
+
+Public Sub mnuNewFile_Click()
+  
+  Dim sResult As String
+  Dim sRes As String
+  Dim hFile As File
+  
+  While sResult = Null
+    sResult = InputBox("New File", ("New File"), ("New File"))
+    
+    If Exist(sDir &/ sResult) Then
+      
+      Message(LC_MESSAGES.MSG_INF_FILE_EXIST)
+    Endif
+    
+    Try hFile = Open sDir &/ sResult For Create
+    
+    If sResult = Null
+      sRes = Message.Question((LC_MESSAGES.MSG_QUESTION_RES_NEW_FILE), ("Ok"), ("Cancelar"))
+      If sRes = 2
+        Break
+      Else
+        Try hFile = Open sDir &/ sResult For Create
+
+      Endif
+    Endif
+    
+  Wend 
+  mnuRefresh_Click
+  
+End
+
+Public Sub mnuSelectall_Click()
+  
+  ivwDesktop.SelectAll
+  
+End
+
+Public Sub ivwDesktop_Select()
+  
+  $sLastName = ivwDesktop.Item.Text
+  
+  If ivwDesktop.Item.Text Then sName_Copy = ivwDesktop.Item.Text
+  Create_Apps_Link
+  
+  If ivwDesktop.Item.Text = Null Then
+    $sLastName = Null
+  Endif
+  
+  If (ivwDesktop.Item.Key = "System") Or (ivwDesktop.Item.Key = "Trash") Then 
+    mnucopy.Visible = False
+    mnutrash.Visible = False
+    mnuDelete.Visible = False
+    mnuOpenwith.Visible = False
+    mnucompress.Visible = False
+  Else
+    mnucopy.Visible = True
+    mnutrash.Visible = True
+    mnuDelete.Visible = True
+    mnuOpenwith.Visible = True
+    mnucompress.Visible = True
+  Endif
+  
+  If $sLastName Like "*.tar.gz" Or If $sLastName Like "*.tar.bz2" Or If $sLastName Like "*.tgz" Or If $sLastName Like "*.tar" Or If $sLastName Like "*.zip" Then
+    
+    mnuUncompress.Visible = True
+    mnucompress.Visible = False
+    
+  Else
+    
+    mnucompress.Visible = True
+    mnuUncompress.Visible = False
+    
+  Endif
+  
+Catch
+  
+End 
+
+Public Sub ivwDesktop_KeyPress()
+  
+  If (Key.Code = Key.Enter) Or (Key.Code = Key.Return) Then
+    ivwDesktop_DblClick
+  Endif
+  
+  If (Key.Code = Key.Delete) Or (Key.Code = Key.Del) Then
+    mnuDelete_Click
+  Endif
+  
+  If (Key.Code = Key.Esc) Then
+    ivwDesktop.UnselectAll
+    $sLastName = Null
+  Endif
+  
+End
+
+Private Sub GetSelection() As String[]
+  
+  Dim hView As Object
+  Dim aSel As New String[]
+  
+  If ivwDesktop.Visible Then
+    hView = ivwDesktop
+  Endif
+  
+  ivwDesktop.MoveFirst
+  While ivwDesktop.Available
+    If ivwDesktop.Item.Selected Then
+      aSel.Add(ivwDesktop.Item.Text)
+    Endif
+    ivwDesktop.MoveNext
+  Wend
+  
+  Return aSel
+  
+End
+
+Private Sub GetSelection_fDesktop() As String[]
+  
+  Dim hView As Object
+  Dim aSel As New String[]
+  
+  If ivwDesktop.Visible Then
+    hView = ivwDesktop
+  Endif
+  
+  ivwDesktop.MoveFirst
+  While ivwDesktop.Available
+    If ivwDesktop.Item.Selected Then
+      'aSel.Add(ivwDesktop.Current)
+      aSel.Add(ivwDesktop.Item.Key)
+    Endif
+    ivwDesktop.MoveNext
+  Wend
+  
+  Return aSel
+  
+End
+
+Public Sub mnucopy_Click_Origi()
+  
+  Dim strFiles As String[]
+  Dim strData As String
+  Dim strFile As String
+  Dim sType As String = "text/uri-list"
+  
+  strFiles = GetSelection()
+  If strFiles.Count > 0 Then
+    For Each strFile In strFiles
+      strFile = sDir &/ strFile
+      strData = strData & strFile & "\n"
+    Next
+    strFiles.Clear()
+    strFiles = Null
+    Clipboard.Copy(strData, sType)
+    
+  Endif
+  
+End
+
+Public Sub mnucopy_Click()
+  
+  Dim strFiles As String[]
+  Dim strData As String
+  Dim strFile As String
+  Dim sType As String = "text/uri-list"
+  
+  strFiles = GetSelection()
+  If strFiles.Count > 0 Then
+    
+    For Each strFile In strFiles
+      
+      strFile = sDir &/ strFile
+      strData = strData & strFile & "\n"
+    Next
+    strFiles.Clear()
+    strFiles = Null
+    Clipboard.Copy(strData, sType)
+    
+  Endif
+  
+End
+
+Public Sub mnuRefresh_Click()
+  
+  application.busy = 1
+  ivwDesktop.Clear
+  'Wait
+  
+  Show_Files_Desktop
+  application.busy = 0
+  'Wait
+  
+End
+
+Public Sub mnulink_Click()
+  
+  Dim I As Integer
+  Dim sName As String
+  Dim sExt As String
+  
+  Inc i
+  sName = File.BaseName(sDir & ivwDesktop.Item.Text)
+  sExt = File.Ext(sDir & ivwDesktop.Item.Text)
+  
+  If sExt = Null Then
+    Link sDir & ivwDesktop.Item.Text To sDir & sName & "_" & i & sExt
+  Else
+    Link sDir & ivwDesktop.Item.Text To sDir & sName & "_" & i & "." & sExt
+  Endif
+  
+End
+
+Public Sub mnuRefresh1_Click()
+  
+  mnuRefresh_Click
+  
+End
+
+Public Sub ivwDesktop_DblClick()
+  
+  Dim sResult_FM As String 
+
+  Dim sFM As String
+  Dim sCurrent As String
+  Dim sLastCurrent As String
+  
+  sLastCurrent = $sLastName
+  
+  Try sResult_FM = Settings_Core_Innova["Panel_Command/File_Manager", f_panel]
+  
+  If IsDir(sDir &/ ivwDesktop.Item.Text) Then
+   
+    Exec [sResult_FM, sDir &/ sLastCurrent]   
+  Else
+    
+  
+    If ivwDesktop.Item.Key Ends "desktop" Then 
+     
+      DesktopApps_Desk[File.BaseName(ivwDesktop.Item.Key)].Exec() 
+      
+    Else
+      Desktop.Open(sDir &/ sLastCurrent)
+    Endif
+    
+  Endif
+  
+  If File.Ext(sLastCurrent) = "gambas" Or File.Ext(sLastCurrent) = "sh" Or File.Ext(sLastCurrent) = "bin" Then
+    Shell ("./" & sLastCurrent)
+  Endif
+  
+  
+  If (ivwDesktop.Item.Key = "System") Then
+    Exec [sResult_FM, "/"]  
+  Endif
+  
+  If (ivwDesktop.Item.Key = "Trash") Then
+    sFM = (sResult_FM)
+    If sFM = "Dolphin" Then
+      sCurrent = ("trash:/")
+      Exec [sFM, sCurrent] 
+    Else
+      sCurrent = ("trash:///")
+      Exec [sFM, sCurrent] 
+    Endif
+  Endif
+  
+Catch
+  
+End
+
+Public Sub mnuProperties_Click()
+  
+  f_properties.Show
+  f_properties.Move(Mouse.ScreenX, Mouse.ScreenY)
+  f_properties.FilePropertiesDesktop.Path = sDir
+  
+End
+
+Public Sub Properties_Mixed()
+  
+  Dim strFiles As String[]
+  Dim strData As String
+  Dim strFile As String
+  Dim calcSum As Integer = 0
+  
+  strFiles = GetSelection()
+  If strFiles.Count > 0 Then
+    
+    For Each strFile In strFiles
+      
+      strFile = sDir &/ strFile
+      strData = strData & strFile & "\n"
+      
+      With Stat(strFile)
+        calcSum += Str(.Size) 
+      End With
+      
+    Next
+    
+    f_properties_mixed.Show
+    f_properties_mixed.Move(Mouse.ScreenX, Mouse.ScreenY) 
+    f_properties_mixed.lblName.Text = ("Multiple Files")
+    f_properties_mixed.lbltype.Text = ("Files of different types")
+    f_properties_mixed.lbldir.Text = File.Dir(Stat(strFile).Path)
+    f_properties_mixed.lbluser.Text = Stat(strFile).User
+    f_properties_mixed.lblsize.Text = getText(calcSum)
+    
+  Endif
+  
+End
+
+Public Sub mnuProperties1_Click()
+  
+  Dim strFiles As String[]
+  
+  If (ivwDesktop.Item.Key = "System") Then
+    Shell "/usr/bin/PCInfo.gambas"
+  Else
+    
+    strFiles = GetSelection()
+    
+    If strFiles.Count > 1 Then
+      
+      Properties_Mixed
+    Else
+      
+      f_properties.Show
+      f_properties.Move(Mouse.ScreenX, Mouse.ScreenY)
+      f_properties.FilePropertiesDesktop.Path = sDir &/ $sLastName
+      
+    Endif
+  Endif
+  'Catch
+  
+End
+
+Public Sub mnucompress_Click()
+  
+  f_compress.Show
+  f_compress.txtfilename.Text = ivwDesktop.Current.Text
+  
+End
+
+Public Sub ivwDesktop_Menu()
+  
+  'Dim sFile_Select As String = ivwDesktop.Item.Text
+  Dim sValue As String
+  Dim sType As String = "text/uri-list"
+  
+  sValue = Clipboard.Paste(sType)
+  If Not sValue Then 
+    mnuPaste.Enabled = False
+  Else
+    mnuPaste.Enabled = True
+  Endif
+  
+  If IsNull(ivwDesktop.Item.Text) Then
+    
+    mnuPopup2.Popup
+    
+  Else
+    mnuPopup.Popup
+  Endif
+Catch
+  
+End
+
+Public Sub mnuopen2_Click()
+  
+  m_core.Show_Home_Desktop
+  
+End
+
+Public Sub mnupcinfo_Click()
+  
+  'f_pcinfo.Show
+  
+  'Shell User.Home &/ "PCInfo.gambas"
+  Shell "/usr/bin/PCInfo.gambas"
+  
+End
+
+Public Sub mnuMyInnova_Click()
+  
+  'Shell User.Home &/ "QSettings.gambas"
+  Shell "/usr/bin/QSettings.gambas"
+  
+End
+
+Public Sub mnuWidget_Click()
+  
+  'Shell User.Home &/ "QSettings.gambas"
+  Shell "/usr/bin/QSettings.gambas"
+  
+End
+
+Public Sub menuWallpaper_Click()
+  
+  f_conf_wallpaper.Show
+  
+End
+
+Public Sub mnuabout2_Click()
+  
+  f_about_dist.ShowModal
+  'f_about_edulibreos.ShowModal
+  
+End
+
+Public Sub mnuFolder_Click()
+  
+  New_Folder
+  
+End
+
+Private Function URLDecode_Original(sURL As String) As String
+  
+  Dim i As Integer                 
+  Dim ch As String                
+  Dim digits As String
+  Dim modifiedURL As String = ""
+  
+  i = 1
+  Do While i <= Len(sURL)
+    
+    ch = Mid$(sURL, i, 1)
+    If ch = "+" Then
+      
+      modifiedURL = modifiedURL & " "
+    Else If ch <> "%" Then
+      
+      modifiedURL = modifiedURL & ch
+    Else If i > Len(sURL) - 2 Then
+      modifiedURL = modifiedURL & ch
+    Else
+      
+      digits = Mid$(sURL, i + 1, 2)
+      
+      modifiedURL = modifiedURL & Chr$(CInt(Val("&" & digits)))
+      
+      i += 2
+    Endif
+    Inc i
+  Loop
+  
+  Return modifiedURL
+  
+End
+
+Public Sub Form_Arrange()
+  
+  Me.Center
+  img_Fondo.Move(Me.x, Me.y, Me.W, Me.H)
+  
+End
+
+Public Sub mnuDelete_Click()
+  
+  Dim strFiles As String[]
+  Dim strData As String
+  Dim strFile As String
+  Dim sType As String = "text/uri-list"
+  Dim sKey As String
+  
+  strFiles = GetSelection_fDesktop()
+  
+  If strFiles.Count > 0 Then
+    Select Message.Question((LC_MESSAGES.MSG_QUESTION_WRITE_FILE_EXIST), ("&Yes"), ("&No"))
+      Case 1
+        
+        For Each strFile In strFiles
+          
+          ' If (InStr(strFile, ".desktop")) Then
+        
+          strFile = sDir &/ strFile
+          strData = strData & strFile & "\n"
+          If Not IsDir(strFile) Then 
+            Try Kill strFile
+          Else
+            Shell "rm -rf " & Shell$(strFile)
+          Endif  
+          
+        Next
+      Case 2
+        ivwDesktop.UnselectAll
+        
+    End Select
+    
+    strFiles.Clear()
+    strFiles = Null
+    
+  Endif
+  
+  mnuRefresh_Click
+  
+End
+
+Public Sub Kill_Files()
+  
+  Dim strFiles As String[]
+  Dim strFile As String
+  
+  If Not Access(ivwDesktop.Dir, gb.Write) Then
+    Message.Info(LC_MESSAGES.MSG_INF_DEL_FILE)
+    Return
+  Endif
+  
+  strFiles = ivwDesktop.Item.Text
+  If strFiles.Count > 0 Then
+    
+    Select Message.Question((LC_MESSAGES.MSG_QUESTION_WRITE_FILE_EXIST), ("&Yes"), ("&No"))
+      Case 1
+        
+        For Each strFile In strFiles
+          
+          Shell "rm -rf " & Shell$(sDir &/ strFile)
+          
+          'Wait 
+          
+          ivwDesktop.Refresh
+          Wait
+        Next
+      Case 2
+        ivwDesktop.UnselectAll
+        
+        ivwDesktop.Refresh
+        Wait
+    End Select
+  Endif
+  
+  strFiles.Clear()
+  strFiles = Null
+  
+  ivwDesktop.Refresh
+  
+End
+
+Public Sub mnuOpen_Click()
+  
+  ivwDesktop_DblClick
+  
+End
+
+Public Sub mnuOpenwith_Click()
+  
+  'If mouse.Left Then
+  Create_Apps_Link
+  
+  'Endif
+  
+End
+
+Static Public Sub Decode(Path As String) As String
+  
+  Dim iInd As Integer
+  Dim sRes As String
+  Dim sCar As String
+  
+  For iInd = 1 To Len(Path)
+    sCar = Mid$(Path, iInd, 1)
+    If sCar = "%" Then 
+      sCar = Chr$(Val("&H" & Mid$(Path, iInd + 1, 2)))
+      iInd += 2
+    Else If sCar = "+" Then 
+      sCar = " "
+    Endif
+    sRes &= sCar
+  Next
+  
+  Return sRes  
+  
+End
+
+Static Private Function URLDecode(txt As String) As String
+  
+  Dim txt_len As Integer
+  Dim i As Integer
+  Dim ch As String
+  Dim digits As String
+  Dim resultado As String
+  
+  resultado = ""
+  txt_len = Len(txt)
+  i = 1
+  Do While i <= txt_len
+    
+    ch = Mid$(txt, i, 1)
+    If ch = "+" Then
+      
+      resultado = resultado & " "
+    Else If ch <> "%" Then
+      
+      resultado = resultado & ch
+    Else If i > txt_len - 2 Then
+      resultado = resultado & ch
+    Else
+      
+      digits = Mid$(txt, i + 1, 2)
+      
+      resultado = resultado & Chr$(CInt(Val("&" & digits)))
+      i = i + 2
+    Endif
+    i = i + 1
+  Loop
+  
+  Return resultado
+  
+End
+
+Public Sub TimerWallRand_Timer()
+  
+  Dim sResult_Desktop_Wall_Rand As String
+  
+  Try sResult_Desktop_Wall_Rand = Settings_Core_Innova["Desktop/Image_Wallpaper_Desktop_Random", f_wallpaper]
+  
+  If Not IsNull(sResult_Desktop_Wall_Rand) Then
+    M_Core.Randomize_Wallpaper
+    M_Core.Show_Preview_Wallpaper_RND
+  Endif
+  
+End
+
+
+
+Public Sub ivwDesktop_GotFocus()
+  
+  If ivwDesktop.HasFocus Then
+    ivwDesktop.Clear
+    Show_Files_Desktop
+  Endif
+  
+End
+
+Public Sub ivwDesktop_MouseMove()
+  
+  If Not ivwDesktop.FindAt(Mouse.x, Mouse.y) Then
+    
+    Try $sLastName = ivwDesktop.Item.Text
+  Endif
+  
+End
+
+Public Sub mnuAscending_Click()
+  
+  If mnuAscending.Checked = True Then
+    ivwDesktop.Sorted = True
+    
+  Endif
+  
+  If mnuAscending.Checked = False Then
+    ivwDesktop.Sorted = False
+    ivwDesktop.Clear
+    Show_Files_Desktop
+  Endif
+  
+End
+
+Public Sub panView_MouseDown()
+  
+End
+
+Public Sub mnucut_Click()
+  
+  Dim strFiles As String[]
+  Dim strData As String
+  Dim strFile As String
+  Dim sType As String = "text/uri-list"
+  
+  strFiles = GetSelection()
+  If strFiles.Count > 0 Then
+    For Each strFile In strFiles
+      strFile = sDir &/ strFile
+      strData = strData & strFile & "\n"
+    Next
+    strFiles.Clear()
+    strFiles = Null
+    Clipboard.Copy(strData, sType)
+    
+  Endif
+  
+  strFiles = GetSelection()
+  If strFiles.Count > 0 Then
+    
+    For Each strFile In strFiles
+      strFile = sDir &/ strFile
+      strData = strData & strFile & "\n"
+      
+      If Not IsDir(strFile) Then 
+        Try Kill strFile
+      Else
+        Shell "rm -rf " & Shell$(strFile)
+        
+      Endif  
+      
+    Next
+    
+    strFiles.Clear()
+    strFiles = Null
+    
+  Endif
+  
+  mnuRefresh_Click
+  
+End
+
+Public Sub ivwDesktop_Rename()
+  
+  Dim sOld As String
+  Dim sLast As String
+  
+  sOld = sDir & $sLastName
+  sLast = sDir & ivwDesktop.Item.Text
+  Try Move sOld To sLast
+  
+End
+
+Public Sub mnutrash_Click()
+  
+  Dim strFiles As String[]
+  Dim strData As String
+  Dim strFile As String
+  Dim sType As String = "text/uri-list"
+  Dim sOrigen As String
+  Dim sDestiny As String
+  
+  sDestiny = Desktop.DataDir &/ "Trash/info"
+  
+  strFiles = GetSelection()
+  If strFiles.Count > 0 Then
+    Select Message.Question((LC_MESSAGES.MSG_QUESTION_DELETE_FILE_TRASH), ("&Yes"), ("&No"))
+      Case 1
+        
+        For Each strFile In strFiles
+          strFile = sDir &/ strFile
+          strData = strData & strFile & "\n"
+          Shell "mv -f " & Shell$(strFile) & " " & Desktop.DataDir &/ "Trash/info"
+          
+        Next
+        
+      Case 2
+        ivwDesktop.UnselectAll
+        
+    End Select
+    
+    strFiles.Clear()
+    strFiles = Null
+    
+  Endif
+  
+  mnuRefresh_Click
+  
+End
+
+Public Sub ivwDesktop_Leave()
+  
+End
+
+Public Sub mnuPaste_Click()
+  
+  Dim a As String
+  Dim b As String[]
+  Dim sDir As String
+  Dim sCopy As String
+  Dim sResult As String
+  
+  Dim nFiles As Integer
+  Dim sName As String
+  Dim iSize As Float
+  
+  sDir = Desktop.GetDirectory("DESKTOP") 
+  a = Clipboard.Paste("text/uri-list") 
+  b = Split(a, gb.CrLf, "", True)
+  
+  a = Null 
+  
+  nFiles = 0
+  nFiles = b.Count
+  
+  f_progressbar.Show
+  f_progressbar.ProgressBar1.Value = 0
+  If sDir Then
+    
+    For Each a In b
+      a = Right$(a, -7) 
+      a = URLDecode(a)  
+      a = RTrim(a)
+      
+      If Exist(sDir &/ File.Name(a)) Then
+        Message.Title = ("Innova Desktop - Copy File")
+        If Message.Question("<span style=\"color:#" & "0000FF" & ";margin-left:1em;\">" & ("There is already a file with the same name in this location.  ") & "</span>" & "<b><span style=\"color:#" & "088906" & ";margin-left:1em;\">" & UCase(File.Name(a)) & "</span></b>" & "<span style=\"color:#" & "CC0000" & ";margin-left:1em;\">" & (" Overwrite it with the new file?"), ("Copy and Replace"), ("Don't Copy")) = 1 Then
+          Try Kill sDir &/ File.Name(a)
+          
+        Endif
+      Endif
+      
+      If Not IsDir(a) Then 
+        
+        sName = Left$(a, -4)
+        f_progressbar.lblStatus2.Text = ("Copying ") & nFiles & (" Items ")
+        f_progressbar.lblStatus.Text = ("Copying ") & File.Name(a) & (" To ") & sDir
+        iSize = Stat(a).Size
+        
+        f_progressbar.lblSize.Text = getText(iSize)
+        f_progressbar.ProgressBar1.Value += (1 / nFiles)
+        
+        f_progressbar.ProgressBar1.Background = &336b87&
+        
+        Wait 0.5
+        
+        Try Copy a To sDir &/ File.Name(a) 
+        
+      Else
+        sName = Left$(a, -4) 
+        
+        f_progressbar.lblStatus2.Text = ("Copying ") & nFiles & (" Items ")
+        f_progressbar.lblStatus.Text = ("Copying ") & File.Name(a) & (" To ") & sDir
+        iSize = Stat(a).Size
+        f_progressbar.lblSize.Text = getText(iSize)
+        f_progressbar.ProgressBar1.Value += (1 / nFiles) 
+        f_progressbar.ProgressBar1.Background = &336b87&
+        
+        Wait 0.5
+        sCopy = "cp -R " & a & " " & sDir
+        Shell sCopy Wait
+        
+      Endif 
+      
+    Next
+    
+    f_progressbar.Hide
+  Else
+    Message.Info(("An unknown error has occurred."))
+  Endif  
+  
+  mnuRefresh_Click
+Catch
+  
+End
+
+Private Function getText(argSize As Integer) As String
+  
+  If 1024 > argSize Then 'byte
+    Return Format$(argSize, "##0 Byte")
+  Else If 1024 ^ 2 > argSize Then 'KiB
+    Return Format$(argSize / 1024, "##0.00 KB")
+  Else If 1024 ^ 3 > argSize Then 'MiB
+    Return Format$(argSize / (1024 ^ 2), "##0.00 MB")
+  Else If 1024 ^ 4 > argSize Then 'GiB
+    Return Format$(argSize / (1024 ^ 3), "##0.00 GB")
+  Else If 1024 ^ 5 > argSize Then 'TiB
+    Return Format$(argSize / (1024 ^ 4), "##0.00 TB")
+  Else
+    Return "Null"
+  Endif
+  
+End
+
+Public Sub mnuabout3_Click()
+  
+
+  f_about.ShowModal
+  
+End
+
+Public Sub mnuSelectApps_Click()
+  
+End

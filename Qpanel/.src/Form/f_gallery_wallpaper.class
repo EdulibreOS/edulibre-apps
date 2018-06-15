@@ -1,0 +1,91 @@
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Private sDir As String
+Private sImage_Wall As String
+Private sImage As String
+
+Public Sub Gallery()
+  
+  Dim i As Integer
+  
+  Dim $Files As String[]
+  
+  For Each sDir In ["/usr/share/Innova/Wallpaper", Desktop.ConfigDir &/ "Innova/Wallpaper"]
+    
+    txtselectdir.Text = sDir
+  Next
+  
+  $Files = Dir(sDir, "*.png")
+  $Files.Insert(Dir(sDir, "*.jpg"))
+  $Files.Insert(Dir(sDir, "*.jpeg"))
+  $Files.Insert(Dir(sDir, "*.bmp"))
+   
+  For Each sImage In $Files
+    Inc i
+    ListViewImage.Add(i, sImage, Picture[sDir &/ sImage].Image.Stretch(128, 72).Picture)
+    ListViewImage.Sorted = True
+  Next
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub ListViewImage_MouseMove()
+  
+  If Not ListViewImage.FindAt(Mouse.x, Mouse.y) Then
+    
+    ListViewImage.Tooltip = File.BaseName(ListViewImage.Item.Text)
+    Try img_Fondo.Picture = ListViewImage.Item.Picture
+  Endif
+  
+End
+
+Public Sub ListViewImage_Select()
+  
+  txtselectwallpaper.Text = File.BaseName(ListViewImage.Item.Text)
+  sImage_Wall = File.Name(ListViewImage.Item.Text)
+  
+End
+
+Public Sub Form_Open()
+  
+  Gallery
+  
+End
+
+Public Sub txtselectwallpaper_Change()
+  
+  If txtselectwallpaper.Text = Null Then
+    BtnOk.Enabled = False
+  Else
+    BtnOk.Enabled = True
+  Endif
+  
+End
+
+Public Sub BtnClose_Click()
+  
+  Me.Close
+  
+End

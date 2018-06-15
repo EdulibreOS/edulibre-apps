@@ -1,0 +1,92 @@
+' Gambas class file
+
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Public iShow As Boolean
+
+Public Sub Day_Name()
+  
+  Dim dDate As String
+  Dim dDateD As String
+  Dim dDateM As String
+  Dim dDateY As String
+  
+  dDate = Format(Date(Now), "dddd")
+  dDateD = Format(Date(Now), "dd")
+  dDateM = Format(Date(Now), "mmmm")
+  dDateY = Format(Date(Now), "yyyy")
+  
+  lbldate.Text = String.UCaseFirst(dDateD) & " " & dDatem & ", " & dDateY
+  lblday.Text = String.UCaseFirst(dDate) 
+
+  
+End
+
+Public Sub Form_Open()
+  
+  M_Theme.Show_Theme
+  Day_Name
+  
+  lblweek.Text = ("Week ") & Format(Week(DateChooserTask.Value))
+  
+  DateChooserTask.Background = Color.White
+  DateChooserTask.Foreground = Color.red
+  M_Core.iShow = True
+  
+End
+
+Public Sub DateChooserTask_Change()
+  
+
+  lblweek.Text = ("Week ") & Format(Week(DateChooserTask.Value))
+   M_Core.iShow = True
+   
+End
+
+Public Sub Form_KeyPress()
+  
+  If (Key.Code = Key.Esc) Then 
+    Me.Hide
+  Endif
+  
+End
+
+Public Sub panDateChooser_MouseDown()
+  
+End
+
+Public Sub Form_Deactivate()
+  
+  If m_core.iShow = True Then
+    f_date.show
+  Endif
+  
+  Wait 0.1
+  
+  If m_core.iShow = False Then
+    f_date.Close
+  Endif
+  M_Core.iShow = False
+  
+End

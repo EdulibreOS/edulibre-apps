@@ -1,15 +1,15 @@
 Cls_Start
-gbTerminal
+QLauncher
 0
 0
-0.1.12
+0.1.58
 
 gb.image
-gb.qt4
+gb.qt5
 gb.form
+gb.db
 gb.desktop
 gb.desktop.x11
+gb.form.dialog
 gb.settings
-gb.term
-gb.form.terminal
 

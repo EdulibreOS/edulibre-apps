@@ -1,0 +1,208 @@
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' Part of this code belongs to Gambas3 and was adapted for Innova Project
+
+Private AllCat As String[] = ["Version = " & Application.version, "Framework = " & System.FullVersion, "Developed = Gambas" & System.version, "LibCore = " & "libQt5Core", "Build Type = " & ("Stable"), "Language = " & System.Language, "Theme = " & Style.Name]
+
+Public Sub Form_Open()
+  
+  GetAuthor
+  lblversion.Text = ("Version ") & Application.Version
+  Grid.Background = Color.Transparent
+  
+End
+
+Public Sub btnClose_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub Form_KeyPress()
+  
+  If Key.Code = Key.Esc Then
+    Me.Close
+  Endif
+  
+End
+
+Public Sub pnHeader_MouseDown()
+  
+End
+
+Public Sub Button6_Click()
+  
+  Desktop.Open("http:www.edulibre.net")
+  
+End
+
+Public Sub Button7_Click()
+  
+  Desktop.Open("mailto:herberthguzman@gmail.com")
+  
+End
+
+Private Sub GetAuthor()
+  
+  Dim hFic As File
+  Dim sText As String
+  Dim sLig As String
+  Dim sMail As String
+  Dim sCountry As String
+  Dim sName As String
+  Dim aAuthor As New String[]
+  Dim sAuthor As String
+  Dim aSplit As String[]
+  
+  'hFic = Open "authors.txt"
+  hFic = Open "authors_innova.txt"
+  
+  While Not Eof(hFic)
+    
+    Line Input #hFic, sLig
+    If Not sLig Then Continue
+    If Left(sLig) = "-" Then Continue
+    
+    sName = sLig
+    Line Input #hFic, sMail
+    Line Input #hFic, sCountry
+    
+    sText = ""
+    While Not Eof(hFic)
+      
+      Line Input #hFic, sLig
+      If Not sLig Then Continue
+      If Left(sLig) = "-" Then Break
+      
+      If Right(sLig) <> "." Then sLig &= "."
+      sText &= sLig & "<br>"
+      
+    Wend
+    
+    If Right(sText, 4) = "<br>" Then sText = Left(sText, -4)
+    
+    aAuthor.Add(sName & "\n\n" & sMail & "\n" & sCountry & "\n" & sText)
+    
+  Wend
+  
+  Close #hFic
+  
+  sText = ""
+  
+  For Each sAuthor In aAuthor
+    
+    aSplit = Split(sAuthor, "\n")
+    
+    sName = aSplit[0]
+    
+    If aSplit.Count = 2 Then
+      
+      sText &= "<font size=+1>" & aSplit[0] & "</font>"
+      sText &= "<blockquote>"
+      
+    Else
+      
+      sText &= "<b><font size=+1>" & aSplit[0] & "</font>"
+      If aSplit[2] Then sText &= " (" & aSplit[2] & ")"
+      sText &= "<blockquote>"
+      If aSplit[3] Then sText &= "<u>" & aSplit[3] & "</u><br>"
+      sText &= aSplit[4]
+      
+      sText &= "</b>"
+      
+    Endif
+    
+    sText &= "</blockquote><br>\n"
+    
+  Next
+
+  txtAuthor.Text = sText
+  txtAuthor.Adjust
+  
+Catch
+  
+  txtAuthor.Text = Error.Text
+  txtAuthor.Adjust
+  
+End
+
+Public Sub tlbWallOk_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub _new()
+  
+  Dim sText As String
+  Dim aText As String[] = []
+  Dim I As Integer
+  Dim aLine As String[]
+  
+  aText.Add("[Innova Desktop]")
+  aText.Add("Version=" & Application.Version)
+  aText.Add("Framework=" & System.FullVersion)
+  aText.Add("Developed=Gambas" & System.Version)
+  aText.Add("LibCore=" & "libQt5Core")
+  aText.Add("Build Type=" & "Preview")
+  aText.Add("Language=" & System.Language)
+  aText.Add("Theme=" & Style.Name)
+  
+  Grid.Rows.Count = aText.Count
+  Grid.Columns.Count = 3
+  Grid.Mode = Select.Single
+  Grid.Grid = False
+  I = 0
+  For Each sText In aText
+    If Left(sText) = "[" Then
+      With Grid[I, 0]
+        .Text = Mid$(sText, 2, -1)
+        .Font.Bold = True
+        .Font.Underline = True
+        .ColumnSpan = 3
+        .Padding = 4
+      End With
+    Else If sText Then 
+      aLine = Split(sText, "=")
+      Grid[I, 0].Text = Space$(2) & Trim(aLine[0])
+      Grid[I, 0].Padding = 4
+      Grid[I, 2].Text = Trim(aLine[1])
+      Grid[I, 2].Padding = 4
+    Endif
+    Inc I
+  Next
+  
+  Grid.Columns[0].Width = -1
+  Grid.Columns[1].Width = Desktop.Scale * 2
+  
+End
+
+Public Sub Grid_Draw(X As Integer, Y As Integer, Width As Integer, Height As Integer, Row As Integer, Column As Integer)
+  
+End
+
+Public Sub picLogo3_MouseDown()
+
+  
+
+End

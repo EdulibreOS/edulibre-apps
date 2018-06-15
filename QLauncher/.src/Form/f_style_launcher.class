@@ -1,0 +1,133 @@
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+
+Public Settings_Core_Innova As New Settings(Desktop.ConfigDir &/ "Innova/Innova_Config.conf")
+
+Public Sub Form_Open()
+  
+  Dim i As Integer
+  Dim $Files As String[]
+  Dim sDir As String
+  Dim sImage As String
+  
+  M_Theme.Show_Theme
+  ListViewImage.Clear
+  
+  For Each sDir In ["/usr/share/Innova/Launcher", Desktop.ConfigDir &/ "Innova/Launcher"]
+    
+  Next
+  
+  $Files = Dir(sDir, "*.png")
+  
+  For Each sImage In $Files
+    
+    Inc i
+    Try ListViewImage.Add(i, File.BaseName(sImage), Picture[sDir &/ sImage].Image.Stretch(192, 102).Picture)
+    '  ListViewImage.Sorted = True
+  Next
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub BtnClose_Click()
+  
+  Dim sResult As String 
+  
+  Settings_Core_Innova.Reload()
+  Try sResult = Settings_Core_Innova["Launcher/Style_Launcher"]
+  
+  If sResult = "Mini" Then
+    f_launcher_mini.Show
+  Endif
+  
+  If sResult = "Tablet" Then
+    f_launcher.Show
+  Endif
+  
+  If sResult = "CNB" Then
+    f_launcher_cnb_mini.Show
+  Endif
+  
+  Me.Close
+  
+End
+
+Public Sub ListViewImage_Select()  
+  
+  Dim sResult As String 
+  
+  Settings_Core_Innova.Write(f_style_launcher)
+  
+  If ListViewImage.Item.Text = "Mini" Then
+    Settings_Core_Innova["Launcher/Style_Launcher"] = "Mini" 
+  Endif
+  
+  If ListViewImage.Item.Text = "Tablet" Then
+    Settings_Core_Innova["Launcher/Style_Launcher"] = "Tablet"
+  Endif 
+  
+  If ListViewImage.Item.Text = "CNB" Then
+    Settings_Core_Innova["Launcher/Style_Launcher"] = "CNB" 
+  Endif 
+  Settings_Core_Innova.Save
+
+  
+End
+
+Public Sub ListViewImage_Click()
+  
+  Dim sResult As String 
+  
+  If f_launcher_mini.Visible = True Then
+    f_launcher_mini.Visible = False
+  Endif
+  If f_launcher.Visible = True Then
+    f_launcher.Visible = False
+  Endif
+  If f_launcher_cnb_mini.Visible = True Then
+    f_launcher_cnb_mini.Visible = False
+  Endif
+  
+  Me.Hide
+  
+  Wait 0.1
+  
+  Settings_Core_Innova.Reload()
+  Try sResult = Settings_Core_Innova["Launcher/Style_Launcher"]
+  
+  If sResult = "Mini" Then
+    f_launcher_mini.Show
+  Endif
+  
+  If sResult = "Tablet" Then
+    f_launcher.Show
+  Endif
+  
+  If sResult = "CNB" Then
+    f_launcher_cnb_mini.Show
+  Endif
+
+  
+End

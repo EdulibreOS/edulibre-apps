@@ -1,0 +1,48 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,84,56)
+  Tracking = True
+  Text = ("Select Style Launcher - Innova")
+  Icon = Picture["icon:/small/image"]
+  Persistent = True
+  Resizable = False
+  Border = False
+  Stacking = Window.Above
+  Sticky = True
+  Arrangement = Arrange.Vertical
+  Spacing = True
+  Margin = True
+  Padding = 2
+  { hzoStyle2 HBox
+    MoveScaled(0,0,65,4)
+    Spacing = True
+    Indent = True
+    { lbltitle Label
+      MoveScaled(1,0,41,4)
+      Font = Font["Ubuntu,+4"]
+      Text = ("Style Launcher")
+    }
+  }
+  { ListViewImage ListView
+    MoveScaled(0,5,57,46)
+    Mouse = Mouse.Pointing
+  }
+  { HBox5 HBox
+    MoveScaled(0,51,66,4)
+    Spacing = True
+    Indent = True
+    { Panel24 Panel
+      MoveScaled(1,0,29,4)
+      Expand = True
+      Arrangement = Arrange.Vertical
+    }
+    { BtnClose ToolButton
+      MoveScaled(50,0,16,4)
+      Mouse = Mouse.Pointing
+      Text = Shortcut(("Close"), "C")
+      Picture = Picture["icon:/small/cancel"]
+      Border = True
+    }
+  }
+}

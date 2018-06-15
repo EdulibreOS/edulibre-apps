@@ -1,0 +1,168 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,93,79)
+  NoTabFocus = True
+  Picture = Picture["img/cnb/Artboard.png"]
+  Border = False
+  Stacking = Window.Above
+  Sticky = True
+  SkipTaskbar = True
+  Arrangement = Arrange.Vertical
+  Spacing = True
+  Padding = 2
+  { mnuDel_Bookmark Menu
+    Text = ("mnuBookmark")
+    Visible = False
+    { mnuDelBookmark Menu
+      Text = ("Delete Bookmark")
+      Picture = Picture["icon:/small/delete"]
+    }
+  }
+  { Pansearch Panel
+    MoveScaled(1,0,92,6)
+    Expand = True
+    Arrangement = Arrange.Horizontal
+    AutoResize = True
+    Spacing = True
+    Margin = True
+    Padding = 4
+    { picSettings PictureBox
+      MoveScaled(1,0,6,6)
+      Mouse = Mouse.Pointing
+      ToolTip = ("Show Categories")
+      Picture = Picture["img/cnb/exp.svg"]
+      Stretch = True
+    }
+    { Panel3 Panel
+      MoveScaled(8,0,1,3)
+      Arrangement = Arrange.Vertical
+      AutoResize = True
+    }
+    { txtSearchApps ButtonBox
+      MoveScaled(18,0,18,3)
+      Font = Font["+5"]
+      Expand = True
+      Picture = Picture["icon:/small/close"]
+      Button = False
+      ClearButton = True
+      Filter = True
+    }
+    { Panel5 Panel
+      MoveScaled(45,0,1,3)
+      Arrangement = Arrange.Vertical
+      AutoResize = True
+    }
+  }
+  { PanelLauncher DrawingArea
+    MoveScaled(0,6,93,65)
+    Arrangement = Arrange.Horizontal
+    Spacing = True
+    Margin = True
+    Padding = 5
+    { PanelCat Panel
+      MoveScaled(0,0,30,64)
+      Arrangement = Arrange.Vertical
+      Spacing = True
+      Margin = True
+      Padding = 1
+      { ScrollCat ScrollView
+        MoveScaled(10,11,7,17)
+        Expand = True
+        Arrangement = Arrange.Vertical
+        Spacing = True
+        Padding = 1
+        Border = False
+        ScrollBar = Scroll.None
+      }
+      { IconViewCat ListView
+        MoveScaled(5,58,21,6)
+        Visible = False
+        Font = Font["16"]
+        Expand = True
+        Border = False
+        ScrollBar = Scroll.None
+      }
+    }
+    { PanelApp Panel
+      MoveScaled(32,0,60,64)
+      Expand = True
+      Arrangement = Arrange.Vertical
+      Spacing = True
+      Margin = True
+      Padding = 5
+      { ScrollApps ScrollView
+        MoveScaled(3,2,8,13)
+        Expand = True
+        Arrangement = Arrange.Row
+        Spacing = True
+        Margin = True
+        Padding = 8
+        Border = False
+        ScrollBar = Scroll.None
+      }
+    }
+  }
+  { Panel4 Panel
+    MoveScaled(1,72,37,0)
+    Background = &HBFBFBF&
+  }
+  { Pansearch2 Panel
+    MoveScaled(1,73,82,6)
+    Expand = True
+    Arrangement = Arrange.Horizontal
+    AutoResize = True
+    Spacing = True
+    Margin = True
+    Padding = 4
+    { PicUsuario PictureBox
+      MoveScaled(0,0,6,6)
+      Mouse = Mouse.Pointing
+      Picture = Picture["img/cnb/Edu_logo.png"]
+      Stretch = True
+    }
+    { lblusuario TextLabel
+      MoveScaled(6,1,6,5)
+      Font = Font["+5"]
+      Expand = True
+      Text = ("User")
+      Alignment = Align.Left
+      Transparent = True
+    }
+    { Panel1 Panel
+      MoveScaled(21,2,1.7143,3)
+      Expand = True
+      Arrangement = Arrange.Vertical
+      Margin = True
+    }
+    { picLaunch PictureBox
+      MoveScaled(32,0,6,6)
+      Mouse = Mouse.Pointing
+      Picture = Picture["img/cnb/launcher-program.svg"]
+      Stretch = True
+    }
+    { picSys PictureBox
+      MoveScaled(38,0,6,6)
+      Mouse = Mouse.Pointing
+      Picture = Picture["img/cnb/computer.svg"]
+      Stretch = True
+    }
+    { picBook PictureBox
+      MoveScaled(44,0,6,6)
+      Mouse = Mouse.Pointing
+      Picture = Picture["img/cnb/bookmark-new.svg"]
+      Stretch = True
+    }
+    { Panel11 Panel
+      MoveScaled(68,1,1.7143,3)
+      Arrangement = Arrange.Vertical
+      Margin = True
+    }
+    { picPower PictureBox
+      MoveScaled(76,0,6,6)
+      Mouse = Mouse.Pointing
+      Picture = Picture["img/cnb/system-shutdown.svg"]
+      Stretch = True
+    }
+  }
+}

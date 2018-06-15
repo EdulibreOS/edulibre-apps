@@ -1,0 +1,233 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,141,92)
+  Tracking = True
+  NoTabFocus = True
+  Drop = True
+  PopupMenu = "mnuPopup3"
+  Persistent = True
+  Resizable = False
+  Border = False
+  Stacking = Window.Below
+  Sticky = True
+  SkipTaskbar = True
+  { mnuPopup Menu
+    Text = ("mnuPopup")
+    Visible = False
+    { mnuOpen Menu
+      Text = Shortcut(("Open"), "O")
+      Picture = Picture["icon:/small/open"]
+    }
+    { mnuOpenwith Menu
+      Text = ("Open with")
+      { mnuSelectApps Menu
+        Text = ("Select aplication")
+      }
+    }
+    { Menu5 Menu
+    }
+    { mnucut Menu
+      Text = ("Cut")
+      Picture = Picture["icon:/small/cut"]
+      Visible = False
+      Shortcut = "Ctrl+X"
+    }
+    { mnucopy Menu
+      Text = ("Copy")
+      Picture = Picture["icon:/small/copy"]
+      Shortcut = "Ctrl+C"
+    }
+    { Menu13 Menu
+    }
+    { mnuDelete Menu
+      Text = ("Delete")
+      Picture = Picture["icon:/small/delete"]
+      Shortcut = "Ctrl+Del"
+    }
+    { mnutrash Menu
+      Text = ("Move to Trash")
+      Picture = Picture["icon:/small/trash"]
+    }
+    { Menu15 Menu
+    }
+    { mnuRename Menu
+      Text = ("Rename")
+      Visible = False
+      Shortcut = "F2"
+    }
+    { Menu16 Menu
+    }
+    { mnulink Menu
+      Text = ("Create Link")
+      Picture = Picture["icon:/small/jump"]
+      Visible = False
+    }
+    { Menu1 Menu
+    }
+    { mnuRefresh Menu
+      Text = ("Refresh")
+      Picture = Picture["icon:/small/refresh"]
+      Shortcut = "F5"
+    }
+    { Menu2 Menu
+    }
+    { mnucompress Menu
+      Text = ("Compress")
+      Picture = Picture["icon:/small/archive"]
+    }
+    { mnuUncompress Menu
+      Text = ("Uncompress")
+      Picture = Picture["icon:/small/archive"]
+      Visible = False
+    }
+    { Menu9 Menu
+    }
+    { mnuProperties1 Menu
+      Text = ("Properties")
+      Picture = Picture["icon:/small/properties"]
+    }
+    { Menu3 Menu
+    }
+    { MnClose Menu
+      Text = Shortcut(("Close"), "C")
+      Picture = Picture["icon:/small/close"]
+      Visible = False
+    }
+  }
+  { mnuPopup2 Menu
+    Text = ("mnuPopup2")
+    Visible = False
+    { mnuFile Menu
+      Text = ("File")
+      { mnuFolder Menu
+        Text = ("New Folder")
+        Picture = Picture["icon:/small/new-dir"]
+      }
+      { mnuNewFile Menu
+        Text = ("New File")
+        Picture = Picture["icon:/small/new"]
+      }
+    }
+    { Menu4 Menu
+    }
+    { mnuPaste Menu
+      Text = ("Paste")
+      Picture = Picture["icon:/small/paste"]
+      Shortcut = "Ctrl+V"
+    }
+    { mnuSelectall Menu
+      Text = ("Select All")
+      Picture = Picture["icon:/small/select-all"]
+      Shortcut = "Ctrl+A"
+    }
+    { Menu10 Menu
+    }
+    { mnusort Menu
+      Text = ("Sort by File")
+      { mnuAscending Menu
+        Text = ("Ascending")
+        Toggle = True
+      }
+    }
+    { Menu6 Menu
+    }
+    { mnuRefresh1 Menu
+      Text = ("Refresh")
+      Picture = Picture["icon:/small/refresh"]
+      Shortcut = "F5"
+    }
+    { Menu8 Menu
+    }
+    { mnuProperties Menu
+      Text = ("Properties")
+      Picture = Picture["icon:/small/properties"]
+    }
+    { Menu11 Menu
+    }
+    { MnClose2 Menu
+      Text = ("Close")
+      Picture = Picture["icon:/small/close"]
+      Visible = False
+    }
+    { Menu12 Menu
+    }
+    { mnuAbout Menu
+      Text = ("About Innova Desktop")
+      Picture = Picture["icon:/small/info"]
+      Visible = False
+    }
+  }
+  { mnuPopup3 Menu
+    Text = ("Menu_Principal")
+    Visible = False
+    { mnuopen2 Menu
+      Text = ("Open Home")
+      Picture = Picture["icon:/small/directory"]
+      Visible = False
+    }
+    { Menu17 Menu
+      Visible = False
+    }
+    { mnupcinfo Menu
+      Text = ("Pc Info")
+      Picture = Picture["icon:/small/computer"]
+    }
+    { mnucc Menu
+      Text = ("Control Center")
+      Picture = Picture["icon:/small/exec"]
+      Visible = False
+    }
+    { mnuMyInnova Menu
+      Text = ("Innova Settings")
+      Picture = Picture["icon:/small/linux"]
+    }
+    { mnuWidget Menu
+      Text = ("Widgets")
+      Picture = Picture["icon:/small/clock"]
+      Visible = False
+    }
+    { Menu14 Menu
+    }
+    { menuWallpaper Menu
+      Text = ("Change Wallpaper")
+      Picture = Picture["icon:/small/image"]
+    }
+    { Menu7 Menu
+    }
+    { mnuabout2 Menu
+      Text = ("About EdulibreOS")
+      Picture = Picture["img/distributor-logo-edulibreos.png"]
+    }
+    { mnuabout3 Menu
+      Text = ("About Innova Desktop")
+      Picture = Picture["img/desktop-environment-innova.png"]
+    }
+  }
+  { img_Fondo PictureBox
+    MoveScaled(0,0,16,16)
+    Expand = True
+    Stretch = True
+    AutoResize = True
+    Alignment = Align.Center
+  }
+  { TimerWallRand #Timer
+    #MoveScaled(129,47)
+    Delay = 0
+  }
+  { panView Panel
+    MoveScaled(3,1,115,85.7143)
+    Arrangement = Arrange.Fill
+    { ivwDesktop IconView
+      MoveScaled(24,13,44,40)
+      Mouse = Mouse.Pointing
+      Drop = True
+      Expand = True
+      PopupMenu = "mnuPopup2"
+      Mode = Select.Multiple
+      IconLines = 1
+      Border = False
+      ScrollBar = Scroll.None
+    }
+  }
+}
