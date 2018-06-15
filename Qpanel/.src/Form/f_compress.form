@@ -1,0 +1,72 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,91,21)
+  Spacing = True
+  Margin = True
+  Padding = 2
+  { HBox25 HBox
+    MoveScaled(18,1,95,4)
+    Spacing = True
+    Indent = True
+    { Label16 Label
+      MoveScaled(1,0,18,4)
+      AutoResize = True
+      Text = ("File Name:")
+    }
+    { txtfilename TextBox
+      MoveScaled(23,0,24,4)
+      Expand = True
+    }
+    { cmbextcompress ComboBox
+      MoveScaled(49,0,24,4)
+      ToolTip = ("Terminal")
+      Expand = True
+      ReadOnly = True
+    }
+  }
+  { HBox2 HBox
+    MoveScaled(18,11,66,4)
+    Spacing = True
+    { Panel1 Panel
+      MoveScaled(19,1,7,4)
+      Expand = True
+    }
+    { btnCreate Button
+      MoveScaled(30,0,16,4)
+      AutoResize = True
+      Text = Shortcut(("Create"), "C")
+      Picture = Picture["icon:/small/archive"]
+    }
+    { btnClose Button
+      MoveScaled(50,0,16,4)
+      Text = ("Close")
+      Picture = Picture["icon:/16/close"]
+    }
+  }
+  { HBox1 HBox
+    MoveScaled(18,6,73,4)
+    Spacing = True
+    Indent = True
+    { Label1 Label
+      MoveScaled(1,0,18,4)
+      AutoResize = True
+      Text = ("Path Home:")
+    }
+    { cmbpathselect ComboBox
+      MoveScaled(39,0,24,4)
+      ToolTip = ("Terminal")
+      Expand = True
+      ReadOnly = True
+      Sorted = True
+    }
+  }
+  { Panel2 Panel
+    MoveScaled(0,1,18,14)
+    Spacing = True
+    { PictureBox1 PictureBox
+      MoveScaled(4,0,9.1429,9.1429)
+      Picture = Picture["icon:/64/archive"]
+    }
+  }
+}

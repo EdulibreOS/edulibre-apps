@@ -1,0 +1,97 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,55,51)
+  Text = ("Innova Desktop - Properties of files")
+  Resizable = False
+  Arrangement = Arrange.Vertical
+  Spacing = True
+  Margin = True
+  Padding = 5
+  { TabPanel1 TabPanel
+    MoveScaled(1,1,52,44)
+    Index = 0
+    Text = ("General")
+    { panIcon HBox
+      MoveScaled(0,0,48,10)
+      Spacing = True
+      Margin = True
+      { picIcon PictureBox
+        MoveScaled(3,1,10,8)
+        Picture = Picture["icon:/64/file"]
+        AutoResize = True
+      }
+    }
+    { Panel1 Panel
+      MoveScaled(0,12,50,26)
+      Expand = True
+      Arrangement = Arrange.Row
+      Margin = True
+      { Label1 Label
+        MoveScaled(1,1,18,5)
+        Text = ("Name:")
+        Alignment = Align.TopNormal
+      }
+      { lblName TextLabel
+        MoveScaled(21,1,26,4)
+        Font = Font["Bold"]
+        Expand = True
+      }
+      { Label2 Label
+        MoveScaled(1,5,18,5)
+        Text = ("Type:")
+        Alignment = Align.TopNormal
+      }
+      { lbltype Label
+        MoveScaled(21,5,9,5)
+        Expand = True
+        Alignment = Align.TopNormal
+      }
+      { Label4 Label
+        MoveScaled(1,9,18,5)
+        Text = ("Directory:")
+        Alignment = Align.TopNormal
+      }
+      { lbldir Label
+        MoveScaled(21,9,9,5)
+        Expand = True
+        Alignment = Align.TopNormal
+      }
+      { Label5 Label
+        MoveScaled(1,13,18,5)
+        Text = ("Owner:")
+        Alignment = Align.TopNormal
+      }
+      { lbluser Label
+        MoveScaled(21,13,9,5)
+        Expand = True
+        Alignment = Align.TopNormal
+      }
+      { Label3 Label
+        MoveScaled(1,17,18,5)
+        Text = ("Size:")
+        Alignment = Align.TopNormal
+      }
+      { lblsize Label
+        MoveScaled(21,17,9,5)
+        Expand = True
+        Alignment = Align.TopNormal
+      }
+    }
+    Index = 0
+  }
+  { HBoxAppCom HBox
+    MoveScaled(10,45,44,5)
+    { Panel15 Panel
+      MoveScaled(3,1,13,4)
+      Expand = True
+      Arrangement = Arrange.Vertical
+    }
+    { BtnClose Button
+      MoveScaled(26,1,16,4)
+      Mouse = Mouse.Pointing
+      Text = Shortcut(("Close"), "C")
+      Picture = Picture["icon:/small/cancel"]
+    }
+  }
+}

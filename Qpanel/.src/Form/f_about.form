@@ -1,0 +1,166 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,91,68)
+  Background = &H042C37&
+  Foreground = &HBBD2D2&
+  Text = ("Acerca de Innova Desktop")
+  Icon = Picture["img/desktop-environment-innova.png"]
+  Resizable = False
+  { pnHeader Panel
+    MoveScaled(-3,0,95,14)
+    Background = &HBBD2D2&
+    Foreground = &H042C37&
+    { lblAboutTitle Label
+      MoveScaled(13,3,58,4)
+      Font = Font["+6"]
+      Foreground = &H042C37&
+      Text = ("Innova Desktop Environment")
+    }
+    { picLogo PictureBox
+      MoveScaled(5,3,6.8571,6.8571)
+      Picture = Picture["img/desktop-environment-innova.png"]
+      Stretch = True
+      Alignment = Align.Center
+    }
+    { lblFramework Label
+      MoveScaled(13,6,41,4)
+      Foreground = &H042C37&
+      Text = ("Framework Version 3.10")
+    }
+  }
+  { picLogo3 PictureBox
+    MoveScaled(1,26,18.2857,18.2857)
+    Picture = Picture["img/gambas3.png"]
+    Stretch = True
+    Alignment = Align.Center
+  }
+  { HBox1 HBox
+    MoveScaled(2,62,87,4)
+    Spacing = True
+    Indent = True
+    { Panel1 Panel
+      MoveScaled(11,0,33,4)
+      Expand = True
+      Arrangement = Arrange.Vertical
+    }
+    { btnClose Button
+      MoveScaled(69,0,14,4)
+      Text = Shortcut(("Close"), "C")
+      Picture = Picture["icon:/small/cancel"]
+    }
+  }
+  { tab_Workspace TabPanel
+    MoveScaled(21,16,68,44)
+    Count = 6
+    Highlight = True
+    Index = 0
+    Text = ("About")
+    { lblTitle Label
+      MoveScaled(1,1,66,5)
+      Font = Font["Lato,Bold,+2"]
+      Text = ("Innova Desktop")
+      Alignment = Align.Left
+    }
+    { lblAuthor Label
+      MoveScaled(1,35,66,4)
+      Text = ("Copyright (C) 2014-2018")
+      Alignment = Align.Center
+    }
+    { lblVersion Label
+      MoveScaled(1,4,14,4)
+      Font = Font["Bold"]
+      Alignment = Align.Left
+    }
+    { URLLabel1 URLLabel
+      MoveScaled(27,32,15,4)
+      Link = "http://sourceforge.net/projects/innovadesktop/"
+      Text = ("Innova Desktop")
+    }
+    { txtlabelabout TextLabel
+      MoveScaled(1,8,65,24)
+      Text = ("<p><br>Advanced, easy to use, and fast desktop environment developed on Gambas3.</p>\n\n<p>Innova Desktop would not have been possible without the help of:</p></br>\n\n<font color=\"#D8D8D8\">\n<h5><p><u><br>Benoît Minisini</h5></p></u>\n<h5><p><u> Fabien Bodard</h5></p> </u>\n<h5><p><u>Zainudin Ahmad</h5></p></u></br>\n</font>\n")
+    }
+    Index = 1
+    Text = ("License")
+    { txt_License TextArea
+      MoveScaled(1,1,66,38)
+      Background = Color.Background
+      Text = ("    This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License    along with this program.  If not, see <http://www.gnu.org/licenses/>.")
+      ReadOnly = True
+      Wrap = True
+      Border = False
+    }
+    Index = 2
+    Text = ("Translators")
+    { txt_Translators TextArea
+      MoveScaled(1,1,66,38)
+      Background = Color.Background
+      Text = ("Spanish: Herberth Guzmán (herberthguzman@gmail.com)")
+      ReadOnly = True
+      Wrap = True
+      Border = False
+    }
+    Index = 3
+    Text = ("Update")
+    { HBox2 HBox
+      MoveScaled(4,20,59,5)
+      Spacing = True
+      Margin = True
+      Padding = 5
+      Indent = True
+      { Button6 Button
+        MoveScaled(15,1,12,3)
+        Expand = True
+        Text = ("Home page")
+        Picture = Picture["icon:/small/internet"]
+      }
+      { Button7 Button
+        MoveScaled(28,1,12,3)
+        Expand = True
+        Text = ("Mail")
+        Picture = Picture["icon:/small/info"]
+      }
+    }
+    { ToolButton1 ToolButton
+      MoveScaled(23,28,20.1429,8.7143)
+      Picture = Picture["img/donate.png"]
+      Border = True
+    }
+    { ToolButton2 ToolButton
+      MoveScaled(23,10,22,4)
+      Expand = True
+      AutoResize = True
+      Text = ("Check Update")
+      Picture = Picture["icon:/small/refresh"]
+      Border = True
+    }
+    Index = 4
+    Text = ("Thanks")
+    { svwAuthor ScrollView
+      MoveScaled(0,0,59,59)
+      Expand = True
+      Arrangement = Arrange.Vertical
+      Spacing = True
+      Margin = True
+      Padding = 16
+      Border = False
+      ScrollBar = Scroll.None
+      { txtAuthor TextLabel
+        MoveScaled(0,0,41,8)
+      }
+      { Panel3 Panel
+        MoveScaled(28,133,10,43)
+      }
+    }
+    Index = 5
+    Text = ("System")
+    { Grid GridView
+      MoveScaled(0,0,56,47)
+      Mouse = Mouse.Pointing
+      Expand = True
+      Border = False
+    }
+    Index = 0
+  }
+}

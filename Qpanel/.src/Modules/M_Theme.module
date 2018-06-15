@@ -1,0 +1,187 @@
+' Gambas module file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Public sResult_Theme As String
+Public Settings_Core_Innova As New Settings(Desktop.ConfigDir &/ "Innova/Innova_Config.conf")
+
+Public Sub IconTheme()
+  
+  Try sResult_Theme = Settings_Core_Innova["Style_Desktop/Theme_Name_Icons"]
+  
+  Application.Theme = sResult_Theme
+  
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Function Show_Theme()
+  
+  Dim ctrl As Control
+  Dim Settings_Config_Theme As Settings
+  Dim sPath_Theme As String
+  
+  Dim sResult_Trans As String 
+  Dim sResult_Img_Launcher As String 
+  Dim sResult_Desktop As String 
+  Dim sResult_Font_Name As String 
+  Dim iResult_Font_Size As Integer
+  Dim sResult_Font_Color As String 
+  Dim sResult_Img_Look As String
+  Dim sResult_Wallpaper As String
+  Dim sResult_Panel As String
+  
+  Dim sDir As String
+  Dim sResultTheme As String
+  Dim sPath As String
+  
+  Dim sResult_Inn_WallpaperImg As String 
+  Dim sResult_Inn_BackgroundImg As String 
+  Dim sResult_Inn_HorizontalPanelImg As String 
+  Dim sResult_Inn_VerticalPanelImg As String 
+  Dim sResult_Inn_SearchImg As String 
+  Dim sResult_Inn_LogoImg As String 
+  Dim sResult_Inn_LauncherImg As String 
+  Dim sResult_Inn_Font_Color As String 
+  Dim sResult_Inn_Font_Name As String 
+  Dim iResult_Inn_Font_Size As String 
+  Dim sResult_Inn_Logo_Img_Dist As String 
+  Dim sResult_Inn_Panel_Img As String 
+  Dim sResult_Inn_Launcher_Type As String 
+  Dim sResult_Style_Launcher As String
+  Dim sResult_Inn_Look_Img As String 
+  Dim sResult_Img_Panel As String
+  Dim sResult_Background_Panel As String
+  
+  Settings_Core_Innova.Reload()
+  'For Each sDir In [ "/usr/share/Innova/Theme/",Desktop.ConfigDir &/ "Innova/Theme/"]
+  For Each sDir In [Desktop.ConfigDir &/ "Innova/Theme/", "/usr/share/Innova/Theme/"]
+    Try sResultTheme = Settings_Core_Innova["Style_Desktop/Theme_Name_Innova"]
+  Next
+  
+  sPath = sDir & sResultTheme &/ sResultTheme & ".Inn"
+  Settings_Config_Theme = New Settings(sPath)
+  sPath_Theme = File.Dir(sPath) 
+  
+  Try sResult_Desktop = Settings_Core_Innova["Desktop/Wallpaper_Desktop"]
+  Try sResult_Trans = Settings_Core_Innova["Innova/Transparent"]
+  Try sResult_Font_Color = Settings_Core_Innova["Style_Desktop/Font_Color"]
+  Try iResult_Font_Size = Settings_Core_Innova["Style_Desktop/Font_Size"]
+  Try sResult_Font_Name = Settings_Core_Innova["Style_Desktop/Font_Name"]
+  
+  Try sResult_Img_Panel = Settings_Core_Innova["Panel/Background_Image"]
+  Try sResult_Background_Panel = Settings_Core_Innova["Panel/Background_Color"]
+  
+  Try sResult_Img_Launcher = Settings_Config_Theme["Meta_Theme/Inn_Background_Img"] 
+  Try sResult_Img_Look = Settings_Config_Theme["Meta_Theme/Inn_Look_Img"]
+  
+  sResult_Inn_WallpaperImg = Settings_Config_Theme["Meta_Theme/Inn_Wallpaper_Img"]
+  sResult_Inn_BackgroundImg = Settings_Config_Theme["Meta_Theme/Inn_Background_Img"]
+  sResult_Inn_HorizontalPanelImg = Settings_Config_Theme["Meta_Theme/Inn_Hor_PLauncher_Img"]
+  sResult_Inn_VerticalPanelImg = Settings_Config_Theme["Meta_Theme/Inn_Ver_PLauncher_Img"]
+  sResult_Inn_SearchImg = Settings_Config_Theme["Meta_Theme/Inn_Search_Img"]
+  sResult_Inn_LogoImg = Settings_Config_Theme["Meta_Theme/Inn_Logo_Img"]
+  sResult_Inn_LauncherImg = Settings_Config_Theme["Meta_Theme/Inn_Launcher_Img"]
+  sResult_Inn_Font_Color = Settings_Config_Theme["Meta_Theme/Inn_Font_Color"]
+  sResult_Inn_Font_Name = Settings_Config_Theme["Meta_Theme/Inn_Font_Name"]
+  iResult_Inn_Font_Size = Settings_Config_Theme["Meta_Theme/Inn_Font_Size"]
+  sResult_Inn_Logo_Img_Dist = Settings_Config_Theme["Meta_Theme/Inn_Logo_Img_Dist"]
+  sResult_Inn_Panel_Img = Settings_Config_Theme["Meta_Theme/Inn_Panel_Img"]
+  sResult_Inn_Launcher_Type = Settings_Config_Theme["Meta_Theme/Inn_Launcher_Type"]
+  sResult_Inn_Look_Img = Settings_Config_Theme["Meta_Theme/Inn_Look_Img"]
+  
+  If sResultTheme Then
+    
+    If IsNull(sResult_Desktop) Then
+      f_wallpaper.img_Fondo.Picture = Picture[sPath_Theme &/ sResult_Inn_WallpaperImg]
+      f_conf_wallpaper.img_Fondo.Picture = Picture[sPath_Theme &/ sResult_Inn_WallpaperImg]     
+    Else
+      f_wallpaper.img_Fondo.Picture = Picture[sResult_Desktop]
+      f_conf_wallpaper.img_Fondo.Picture = Picture[sResult_Desktop]     
+    Endif
+    
+    'f_panel.Picture = Picture[sPath_Theme &/ sResult_Inn_Panel_Img]
+    
+    If Not IsNull(sResult_Img_Panel) Then
+      f_panel.Picture = Picture[sResult_Img_Panel]
+    Else
+      f_panel.Picture = Picture[sPath_Theme &/ sResult_Inn_Panel_Img]
+    Endif
+    
+    If Not IsNull(sResult_Background_Panel) Then
+      
+      f_panel.HBoxMain.Background = (sResult_Background_Panel)
+      
+    Endif
+    
+    f_date.Picture = Picture[sPath_Theme &/ sResult_Inn_Look_Img]
+    f_conf_wallpaper.Picture = Picture[sPath_Theme &/ sResult_Inn_Look_Img]
+    f_compress.Picture = Picture[sPath_Theme &/ sResult_Inn_Look_Img]
+    f_gallery_wallpaper.Picture = Picture[sPath_Theme &/ sResult_Inn_Look_Img]
+    f_progressbar.Picture = Picture[sPath_Theme &/ sResult_Inn_Look_Img]
+    f_properties.Picture = Picture[sPath_Theme &/ sResult_Inn_Look_Img]
+    f_properties_mixed.Picture = Picture[sPath_Theme &/ sResult_Inn_Look_Img]
+    
+    f_panel.CButtonStart.Image = Image.Load(sPath_Theme &/ sResult_Inn_LogoImg)
+    
+    For Each ctrl In f_wallpaper.Controls
+      Try ctrl.Foreground = Val(sResult_Inn_Font_Color) 
+    Next
+    
+    For Each ctrl In f_panel.Controls
+      f_panel.TextLabelDate.Foreground = Val(sResult_Inn_Font_Color) 
+      
+    Next
+    
+    For Each ctrl In f_date.Controls
+      
+      f_date.panDay.Foreground = Val(sResult_Inn_Font_Color) 
+      f_date.panDate.Foreground = Val(sResult_Inn_Font_Color) 
+      f_date.panweek.Foreground = Val(sResult_Inn_Font_Color) 
+      
+    Next
+    
+    For Each ctrl In f_wallpaper.Controls
+      Try ctrl.Font.Name = (sResult_Inn_Font_Name) 
+    Next
+    
+    For Each ctrl In f_panel.Controls
+      Try ctrl.Font.Name = (sResult_Inn_Font_Name) 
+    Next
+    For Each ctrl In f_date.Controls
+      Try ctrl.Font.Name = (sResult_Inn_Font_Name) 
+    Next
+    For Each ctrl In f_wallpaper.Controls
+      Try ctrl.Font.Size = (iResult_Inn_Font_Size) 
+    Next
+    
+    For Each ctrl In f_panel.Controls
+      Try ctrl.Font.Size = (iResult_Inn_Font_Size) 
+    Next
+    For Each ctrl In f_date.Controls
+      Try ctrl.Font.Size = (iResult_Inn_Font_Size) 
+    Next
+  Endif
+  'Catch
+  
+End

@@ -1,0 +1,113 @@
+' Gambas class file
+
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' Part of this code belongs to Gambas3 and was adapted for Innova Project
+
+Private cx As New Connection
+Private rs As Result
+
+Public Sub btnClose_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub Form_KeyPress()
+  
+  If Key.Code = Key.Esc Then
+    Me.Close
+  Endif
+  
+End
+
+Public Sub pnHeader_MouseDown()
+  
+End
+
+Public Sub Button6_Click()
+  
+  Desktop.Open("http:www.edulibre.net")
+  
+End
+
+Public Sub Button7_Click()
+  
+  Desktop.Open("mailto:herberthguzman@gmail.com")
+  
+End
+
+Public Sub tlbWallOk_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub _new()
+  
+  cx = M_DB.Connect()
+  rs = cx.Exec("select * from tb_donations")
+  
+  Grid.Mode = Select.Single
+  Grid.Grid = False
+  Grid.Columns.Count = 3
+  Grid.Rows.Height = 25
+  Grid.Columns.Ascending = True
+  Grid.columns[0].width = 250
+  Grid.columns[0].Text = ("Name")
+  'Grid.Columns[0].Expand = True
+  Grid.columns[1].Text = ("Country")
+  Grid.columns[1].width = 100
+  Grid.columns[2].Text = ("Country")
+  Grid.Columns[2].Expand = True
+  Grid.Columns[2].Alignment = Align.Center
+  Grid.Foreground = &00142B3F& 
+  Grid.Font.Size = 8
+  Grid.Rows.Count = rs.Count 
+  
+  FillsList
+  
+End
+
+Public Sub FillsList() 
+  
+  Dim i As Integer
+  Dim sDir As String
+  
+  sDir = "img/Sponsor/"
+  
+  cx = M_DB.Connect()
+  rs = cx.Exec("select * from tb_donations")
+  
+  For i = 0 To rs.Count - 1
+
+    Grid[i, 0].RichText = rs!Nombre 
+    Grid[i, 1].RichText = rs!Pais 
+    Grid[i, 2].Picture = Picture[sDir &/ rs!Pais & ".png"]
+    
+    rs.MoveNext
+
+  Next
+  
+End
+

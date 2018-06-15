@@ -1,0 +1,279 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,146,77)
+  NoTabFocus = True
+  Persistent = True
+  Border = False
+  Stacking = Window.Above
+  Sticky = True
+  SkipTaskbar = True
+  Arrangement = Arrange.Vertical
+  Spacing = True
+  Margin = True
+  Padding = 2
+  { mnuDel_Bookmark Menu
+    Text = ("mnuBookmark")
+    Visible = False
+    { mnuDelBookmark Menu
+      Text = ("Delete Bookmark")
+      Picture = Picture["icon:/small/delete"]
+    }
+  }
+  { mnuApps Menu
+    Text = ("mnuLauncher")
+    Visible = False
+    { mnuOpen Menu
+      Text = ("Open")
+      Picture = Picture["icon:/small/open"]
+      Checked = True
+      Tag = "Open"
+    }
+    { Menu1 Menu
+    }
+    { mnuSendDesk Menu
+      Text = ("Add to Desktop")
+      Picture = Picture["icon:/small/desktop"]
+      Tag = "Desktop"
+    }
+    { mnuSend Menu
+      Text = ("Add to Panel")
+      Picture = Picture["icon:/small/new"]
+      Tag = "Panel"
+    }
+    { mnuSendBook Menu
+      Text = ("Add to Bookmark")
+      Picture = Picture["icon:/small/bookmark"]
+    }
+  }
+  { PanelLauncher Panel
+    MoveScaled(0,4,137,69)
+    Expand = True
+    Arrangement = Arrange.Horizontal
+    Spacing = True
+    Margin = True
+    Padding = 5
+    { VBoxCat VBox
+      MoveScaled(1,4,14,50)
+      Spacing = True
+      Margin = True
+      Padding = 1
+      { Panel13 Panel
+        MoveScaled(0,0,3,1)
+        Arrangement = Arrange.Vertical
+        AutoResize = True
+      }
+      { PanelBookmark HBox
+        MoveScaled(2,3,16,6)
+        Spacing = True
+        Padding = 2
+        { Panel8 Panel
+          MoveScaled(0,0,3,3)
+          Expand = True
+          Arrangement = Arrange.Vertical
+          AutoResize = True
+        }
+        { picBook PictureBox
+          MoveScaled(1,3,6.2857,6.5714)
+          Mouse = Mouse.Pointing
+          Picture = Picture["img/book.png"]
+          Stretch = True
+        }
+        { Panel9 Panel
+          MoveScaled(10,1,3,3)
+          Expand = True
+          Arrangement = Arrange.Vertical
+          AutoResize = True
+        }
+      }
+      { Panel1 HBox
+        MoveScaled(0,7,10,1.1429)
+      }
+      { Panel12 Panel
+        MoveScaled(3,9,3,2)
+        Arrangement = Arrange.Vertical
+        AutoResize = True
+      }
+      { IconViewCat IconView
+        MoveScaled(-1,15,16,16)
+        Expand = True
+        Border = False
+        ScrollBar = Scroll.None
+      }
+      { Panel2 HBox
+        MoveScaled(-1,32,10,0.7143)
+      }
+      { Separator2 Separator
+        MoveScaled(1,39,9,0)
+        Visible = False
+      }
+      { PanelPower HBox
+        MoveScaled(-3,43,16,6)
+        Spacing = True
+        Padding = 2
+        { Panel6 Panel
+          MoveScaled(0,0,3,3)
+          Expand = True
+          Arrangement = Arrange.Vertical
+          AutoResize = True
+        }
+        { btnPower CButton
+          MoveScaled(4,-1,6,6)
+        }
+        { Panel7 Panel
+          MoveScaled(10,1,3,3)
+          Expand = True
+          Arrangement = Arrange.Vertical
+          AutoResize = True
+        }
+      }
+    }
+    { Panel4 Panel
+      MoveScaled(14,12,1,5)
+    }
+    { VBoxApps Panel
+      MoveScaled(36,13,79,50)
+      Expand = True
+      Spacing = True
+      Margin = True
+      { Pansearch HBox
+        MoveScaled(0,1,78,4)
+        Expand = True
+        AutoResize = True
+        Spacing = True
+        Margin = True
+        Padding = 4
+        { Panel3 Panel
+          MoveScaled(8,0,3,3)
+          Expand = True
+          Arrangement = Arrange.Vertical
+          AutoResize = True
+        }
+        { txtSearchApps ButtonBox
+          MoveScaled(18,0,18,3)
+          Expand = True
+          Picture = Picture["icon:/small/close"]
+          Button = False
+          ClearButton = True
+          Filter = True
+        }
+        { Panel5 Panel
+          MoveScaled(43,0,3,3)
+          Expand = True
+          Arrangement = Arrange.Vertical
+          AutoResize = True
+        }
+        { picLaunch PictureBox
+          MoveScaled(56,0,4.5714,4.5714)
+          Mouse = Mouse.Pointing
+          Picture = Picture["img/launch.png"]
+          Stretch = True
+        }
+        { Panel10 Panel
+          MoveScaled(61,1,1.7143,3)
+          Arrangement = Arrange.Vertical
+          AutoResize = True
+        }
+        { picSettings PictureBox
+          MoveScaled(63,0,4.5714,4.5714)
+          Mouse = Mouse.Pointing
+          Picture = Picture["img/settings.png"]
+          Stretch = True
+        }
+        { Panel11 Panel
+          MoveScaled(68,1,1.7143,3)
+          Arrangement = Arrange.Vertical
+          AutoResize = True
+        }
+        { Separator1 Separator
+          MoveScaled(71,0,0.2857,4)
+          Background = &H3F3F3F&
+        }
+        { picExpand PictureBox
+          MoveScaled(72,0,4.5714,4.5714)
+          Mouse = Mouse.Pointing
+          Picture = Picture["img/contract.png"]
+          Stretch = True
+        }
+      }
+      { PanApps HBox
+        MoveScaled(0,12,78,19)
+        Expand = True
+        AutoResize = True
+        Spacing = True
+        { PansepApps1 Panel
+          MoveScaled(2,9,5,3)
+          Arrangement = Arrange.Vertical
+          AutoResize = True
+        }
+        { ScrollApps ScrollView
+          MoveScaled(21,5,37,10)
+          Expand = True
+          Arrangement = Arrange.Row
+          Spacing = True
+          Margin = True
+          Padding = 27
+          Border = False
+          ScrollBar = Scroll.None
+        }
+        { PansepApps2 Panel
+          MoveScaled(67,9,6,3)
+          Arrangement = Arrange.Vertical
+          AutoResize = True
+        }
+      }
+      { PanInfo DrawingArea
+        MoveScaled(20,42,57,7)
+        Visible = False
+        Expand = True
+        Arrangement = Arrange.Horizontal
+        Padding = 4
+        { VBox3 Panel
+          MoveScaled(2,0,41,7)
+          Expand = True
+          Arrangement = Arrange.Vertical
+          { PansepApps4 Panel
+            MoveScaled(-9,0,51,4)
+            Arrangement = Arrange.Horizontal
+            AutoResize = True
+            { PansepApps5 Panel
+              MoveScaled(10,1,28,2)
+              Arrangement = Arrange.Vertical
+              Spacing = True
+              Margin = True
+              { !txtlabelcat Label
+                MoveScaled(0,0,10,2)
+                #Public = True
+                Visible = False
+              }
+            }
+            { !txtnameapp Label
+              MoveScaled(32,0,16,4)
+              #Public = True
+              Font = Font["Bold,+2"]
+              ToolTip = ("test")
+              Expand = True
+              Alignment = Align.Right
+            }
+          }
+          { !txtlabelInfo Label
+            MoveScaled(27,4,13,3)
+            #Public = True
+            Font = Font["8"]
+            Expand = True
+            Alignment = Align.Right
+          }
+        }
+        { PansepApps3 Panel
+          MoveScaled(45,4,2,3)
+          Arrangement = Arrange.Vertical
+          AutoResize = True
+        }
+        { Pic_Logo_PreviewApp PictureBox
+          MoveScaled(50,1,6,6)
+          Stretch = True
+        }
+      }
+    }
+  }
+}

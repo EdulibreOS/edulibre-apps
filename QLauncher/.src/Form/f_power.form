@@ -1,0 +1,51 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,61,26)
+  Border = False
+  Stacking = Window.Above
+  Transparent = True
+  { Panel1 Panel
+    MoveScaled(0,0,61,26)
+    Border = Border.Plain
+  }
+  { btn1 PushButton
+    MoveScaled(4,2,16,16)
+    Mouse = Mouse.Pointing
+    Text = ("Power Off")
+  }
+  { btn2 PushButton
+    MoveScaled(22,2,16,16)
+    Mouse = Mouse.Pointing
+    Text = ("Reboot")
+  }
+  { btn3 PushButton
+    MoveScaled(40,2,16,16)
+    Mouse = Mouse.Pointing
+    Text = ("Close Session")
+  }
+  { HBoxAppCom HBox
+    MoveScaled(1,21,59,4)
+    Expand = True
+    Spacing = True
+    Padding = 5
+    { Panel3 Panel
+      MoveScaled(0,0,3,3)
+      Expand = True
+      Arrangement = Arrange.Vertical
+      AutoResize = True
+    }
+    { BtnClose Button
+      MoveScaled(15,0,16,4)
+      Mouse = Mouse.Pointing
+      Text = Shortcut(("Close"), "C")
+      Picture = Picture["icon:/small/cancel"]
+    }
+    { Panel2 Panel
+      MoveScaled(35,0,3,3)
+      Expand = True
+      Arrangement = Arrange.Vertical
+      AutoResize = True
+    }
+  }
+}

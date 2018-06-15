@@ -1,0 +1,33 @@
+# Gambas Project File 3.0
+Title=QLauncher
+Startup=Cls_Start
+Icon=img/App-Launcher.png
+Version=0.1.58
+Component=gb.image
+Component=gb.qt5
+Component=gb.form
+Component=gb.db
+Component=gb.desktop
+Component=gb.desktop.x11
+Component=gb.form.dialog
+Component=gb.settings
+Description="QLauncher is a powerful application launcher  advanced, easy to use and fast, Developed with Gambas3."
+Authors="Herberth Guzman\nFabien Bodard\nBenoit Minisini\nZainudin Ahmad"
+Environment="GB_GUI=gb.qt5"
+TabSize=2
+Translate=1
+Language=en_US
+ControlPublic=1
+ModulePublic=1
+Maintainer=herberth
+Vendor=InnovaDesktop
+Address=herberth@Herberth
+License=General Public License
+PackageName=qlauncher-0.0.3
+Packager=1
+Systems=ubuntu
+Menus=ubuntu:"FVWM Modules"
+Categories=ubuntu:"KDE"
+Groups=ubuntu:"admin"
+Tags=System,Accessibility,Utility
+WebSite=https://sourceforge.net/projects/innovadesktop/?source=navbar

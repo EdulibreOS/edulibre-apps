@@ -1,0 +1,498 @@
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+' This code belongs to Fabien Bodard and was adapted for Innova Project
+
+Public Settings_Core_Innova As New Settings(Desktop.ConfigDir &/ "Innova/Innova_Config.conf")
+Private DesktopEntry As DesktopFile
+Private sDir_AppsFav As String 
+Private sFile_AppsFav As String
+Public sLang As String = ((Left(System.Language, 2)))
+Private sDel As String
+
+Public Sub _new()
+  
+  f_launcher_mini.txtSearchApps.SetFocus
+  
+End
+
+Public Sub Form_Open()
+  
+  M_OBS_Global.Add(Me)
+  M_Core.FillList_Cat_Mini
+  M_Core.Show_Img_User_Launcher
+  M_Core.User_System
+  IconViewApp.Background = Color.Transparent
+  txtSearchApps.Background = Color.Transparent
+  
+  m_core.Show_Opacity_Launcher
+  m_core.Show_Background_Launcher
+  m_core.Show_Cat_Hide_Launcher
+  
+End
+
+Public Sub IconViewCat_Select()
+  
+  Dim iResult As Integer 
+  
+  Try iResult = Settings_Core_Innova["Launcher/Cat_MouseMove"]
+  
+  If iResult = 0 Then
+    M_Core.sCurCat = DesktopAppsCat[Last.Item.key].Name
+    M_Core.FillList_Apps_Mini 
+  Endif
+  
+  IconViewCatAll.UnselectAll()
+  
+End
+
+Public Sub IconViewCat_MouseMove()
+  
+  Dim iResult As Integer 
+  
+  Try iResult = Settings_Core_Innova["Launcher/Cat_MouseMove"]
+  txtlabelcat.Visible = False
+  txtSearchApps.Clear
+  
+  If iResult = 1 Then
+    
+    If Not IconViewCat.FindAt(Mouse.x, Mouse.y) Then
+      IconViewCat.Mouse = Mouse.Pointing
+    
+      If IsNull(txtSearchApps.Text) Then
+        M_Core.sCurCat = DesktopAppsCat[Last.Item.key].Name
+        M_Core.FillList_Apps_Mini 
+      Endif
+     
+      
+    Endif
+    
+  Endif
+  'Catch
+  ' Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub PicUsuario_MouseDown()
+  
+  Dialog.Title = ("Image Archive")
+  Dialog.Filter = ["*.png", ("Image PNG"), "*.jpg", ("Image JPG"), "*.jpeg", ("Image JPEG"), "*.svg", ("Image SVG"), "*.bmp", ("Image BMP of Windows")] 
+  Try Dialog.Path = Desktop.ConfigDir &/ "Innova/Img_User/"
+  
+  If Dialog.OpenFile() Then
+    Return 
+  Endif
+  
+  M_Var_Global.sPicUser = Dialog.Path
+  PicUsuario.Picture = Picture.Load(Dialog.Path).Image.Stretch(32, 32).Picture
+  m_core.Update_Img_User_Launcher
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub picPower_Enter()
+  
+  picPower.Border = Border.Plain
+  
+End
+
+Public Sub picPower_Leave()
+  
+  picPower.Border = Border.None
+  
+End
+
+Public Sub picPower_MouseDown()
+  
+  f_power.ShowModal
+  
+End
+
+Public Sub Form_Show()
+  
+  Dim iResult As Integer 
+  
+  Try iResult = Settings_Core_Innova["Panel/Panel_Size"]
+  f_launcher_mini.X = 5
+  f_launcher_mini.y = Desktop.h - Me.h - 5
+  
+
+  
+End
+
+Public Sub IconViewCatAll_Select()
+  
+  Dim iResult As Integer 
+  
+  Try iResult = Settings_Core_Innova["Launcher/Cat_MouseMove"]
+  
+  If iResult = 0 Then
+    f_launcher.txtlabelcat.Visible = True
+    m_core.FillList_All_Mini()
+    
+  Endif
+  IconViewCat.UnselectAll()
+  '
+  
+End
+
+Public Sub txtSearchApps_Change()
+  
+  txtlabelcat.Visible = True
+  txtSearchApps.Text = Lower$((txtSearchApps.text))
+  m_core.FillList_All_Mini(Last.text)
+  
+End
+
+Public Sub IconViewCatAll_MouseMove()
+  
+  Dim iResult As Integer 
+  
+  Try iResult = Settings_Core_Innova["Launcher/Cat_MouseMove"]
+  txtlabelcat.Visible = True
+  
+  If iResult = 1 Then
+    If Not IconViewCat.FindAt(Mouse.x, Mouse.y) Then
+      IconViewCatAll.Mouse = Mouse.Pointing
+      'M_Core.sCurCat = DesktopAppsCat[Last.Item.key].Name
+      M_Core.FillList_All_Mini
+    Endif
+    
+  Endif
+  
+End
+
+Public Function GetAppComent(sApp As String, Language As String) As String
+  
+  Dim hApps As DesktopApps = DesktopApps[sApp]
+  
+  If hApps.GetComment(Language) Then 
+    Return hApps.GetComment(Language)
+  Else
+    If hApps.GetGenericName(Language) Then
+      Return hApps.GetGenericName(Language)
+    Else
+      If hApps.Comment Then 
+        Return hApps.Comment
+      Endif
+    Endif
+  Endif
+  Return hApps.Comment
+  
+Catch
+  ' Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub IconViewApp_MouseMove()
+  
+  Dim $Category As String[] 
+  Dim sCat As String
+  Dim s As String
+  
+  If Not IconViewApp.FindAt(Mouse.x, Mouse.y) Then
+    IconViewApp.Mouse = Mouse.Pointing
+
+    s = GetAppComent(Last.Item.Key, sLANG)
+    
+    IconViewApp.Tooltip = s
+    
+    $Category = Split(DesktopApps[Last.Item.Key]._$Category, "\n", " ", True)
+    For Each sCat In $Category
+      sCat = Replace$($Category[0], ";", " \n", True)
+      txtlabelcat.Text = ("Category: ") & sCat
+    Next
+    
+  Endif
+Catch
+  
+End
+
+Public Sub Form_KeyPress()
+  
+  If Key.Code = Key.Esc Then
+    Me.Close
+  Endif
+  
+End
+
+Public Sub Form_Deactivate()
+  
+  If m_core.iShow = True Then
+    f_launcher_mini.show
+  Endif
+  
+  If m_core.iShow = False Then
+    f_launcher_mini.Close
+  Endif
+  M_Core.iShow = False
+  
+End
+
+Public Sub IconViewCatAll_Leave()
+  
+  IconViewCatAll.UnselectAll
+  
+End
+
+Public Sub picBook_Enter()
+  
+  Dim iResult As Integer 
+  
+  picBook.Border = Border.Plain
+  
+  Try iResult = Settings_Core_Innova["Launcher/Cat_MouseMove"]
+  
+  If iResult = 1 Then
+    App_Fav_Select
+  Endif
+  
+End
+
+Public Sub picBook_Leave()
+  
+  picBook.Border = Border.None
+  
+End
+
+Public Sub picBook_MouseDown()
+  
+  Dim iResult As Integer 
+  
+  Try iResult = Settings_Core_Innova["Launcher/Cat_MouseMove"]
+  
+  If iResult = 0 Then
+    App_Fav_Select  
+  Endif
+  
+End
+
+Public Sub App_Fav_Select(Optional sFilter As String)
+  
+  Dim pIcon As Picture
+  Dim iSizeApps As Integer
+  Dim i As Integer
+  
+  sDir_AppsFav = Desktop.ConfigDir &/ "Innova/App_Bookmark"
+
+  
+  iSizeApps = Settings_Core_Innova["Launcher/Icon_Size"]
+  iSizeApps = iSizeApps / 3
+  IconViewApp.Clear
+  For Each sFile_AppsFav In Dir(sDir_AppsFav, "*.desktop").Sort(gb.IgnoreCase)
+    DesktopEntry = New DesktopFile(sDir_AppsFav &/ sFile_AppsFav)
+    pIcon = M_DesktopEntry[DesktopEntry.Path, 48].Image.Stretch(iSizeApps, iSizeApps).Picture
+    
+    Inc i 
+    f_launcher_mini.IconViewApp.Add(DesktopEntry.Path, DesktopEntry.Name, pIcon.Image.Picture)
+    f_launcher_mini.IconViewApp.Sorted = True
+    f_launcher_mini.IconViewApp.Background = Color.Transparent
+    sDel = DesktopEntry.Path
+
+    
+  Next
+  
+  'Catch
+  
+End
+
+Private Sub runDesktopFile(sPath As String)
+  
+  Dim sDesktopFile As New DesktopFile(sPath)
+  Dim $CmdArray As String[] = Split(sDesktopFile.Exec, " ", "")
+  
+  Try Shell $CmdArray[0]
+  
+End
+
+Public Sub IconViewApp_DblClick()
+  
+  Dim sExec As String = Last.Item.key
+  
+  Try DesktopApps[sExec].Exec()
+  Try runDesktopFile(sExec)
+  
+  Me.Close
+  
+End
+
+Public Sub picExpand_MouseDown()
+  
+  m_core.FillList_Apps_Reset
+  Settings_Core_Innova.Write(f_launcher_mini)
+  Settings_Core_Innova["Launcher/Style_Launcher"] = "Tablet" 
+  Settings_Core_Innova.Save
+  
+  f_launcher.Show
+  Wait 0.1
+  Me.Close
+  
+End
+
+Public Sub picSettings_MouseDown()
+  
+
+  PanelCat.Visible = If(PanelCat.Visible = 0, 1, 0)  
+  
+End
+
+Public Sub IconViewCatAll_Click()
+  
+  m_core.FillList_All_Mini()
+  
+End
+
+Public Sub mnuDelBookmark_Click()
+  
+  Shell "rm -r " & sDel
+  
+  IconViewApp.Clear
+  Wait 0.1
+  App_Fav_Select
+  
+End
+
+Public Sub mnuOpen_Click()
+  
+  DesktopApps[IconViewApp.Item.key].Exec
+  
+End
+
+Public Sub mnuSendDesk_Click()
+  
+
+  Dim sCopy As String
+  Dim sDest As String 
+  Dim sFile As String 
+  Dim sDataDir As String
+  
+  sDest = Desktop.GetDirectory("DESKTOP")
+  'For Each sDataDir In [Desktop.DataDir &/ "applications/", "/usr/share/applications/"]
+  For Each sDataDir In ["/usr/share/applications/", "/usr/share/applications/kde4/", Desktop.DataDir &/ "applications/"]
+    
+    sFile = sDataDir & IconViewApp.Item.Key & ".desktop"
+    sCopy = "cp -r " & sFile & " " & sDest 
+    Shell sCopy Wait
+    
+  Next
+  
+End
+
+Public Sub mnuSend_Click()
+  
+  'M_Core.SendPanel
+  Dim sSend As String = Desktop.ConfigDir &/ "Innova/Panel/Apps"
+  Dim sFile As String = IconViewApp.Item.Key & ".desktop"
+  Dim sDir As String
+  Dim sCopy As String
+  
+  For Each sDir In ["/usr/share/applications/", "/usr/share/applications/kde4/", Desktop.DataDir &/ "applications/"]
+    sCopy = "cp -r " & sDir & sFile & " " & sSend 
+    Inc Application.Busy
+    Shell sCopy Wait
+    Dec Application.Busy
+  Next
+  
+End
+
+Public Sub mnuSendBook_Click()
+  
+
+  Dim sSend As String = Desktop.ConfigDir &/ "Innova/App_Bookmark"
+  Dim sFile As String = IconViewApp.Item.Key & ".desktop"
+  Dim sDir As String
+  Dim sCopy As String
+  
+  For Each sDir In ["/usr/share/applications/", "/usr/share/applications/kde4/", Desktop.DataDir &/ "applications/"]
+    sCopy = "cp -r " & sDir & sFile & " " & sSend 
+    Inc Application.Busy
+    Shell sCopy Wait
+    Dec Application.Busy
+  Next
+  
+End
+
+Public Sub IconViewApp_Menu()
+  
+  
+  M_Core.iShow = True
+  
+  If (InStr(IconViewApp.Item.Key, ".desktop")) Then
+    mnuDel_Bookmark.Popup()
+  Else
+    mnuApps.Popup
+  Endif
+  
+End
+
+Public Sub IconViewApp_Select()
+  
+End
+
+Public Sub PanelLauncher_Draw()
+  
+  Dim X, Y, W, H As Float
+  Dim hBrush As PaintBrush
+  Dim hImage As Image
+  Dim hBackground As Image
+  
+  hImage = Image.Load("img/plot-background.png")
+  hBackground = New Image(hImage.W, hImage.H, Color.SetAlpha(Color.TextBackground, 160))
+  
+  X = 0
+  Y = 0
+  W = PanelLauncher.w
+  H = PanelLauncher.w
+  
+  hBrush = Paint.Image(hImage)
+  Paint.Brush = hBrush
+  Paint.Rectangle(X, Y, W, H)
+  Paint.Fill
+  
+End
+
+Public Sub picLaunch_MouseDown()
+  
+  f_style_launcher.Show
+  
+End
+
+Public Sub txtSearchApps_KeyPress()
+  
+  If Key.Code = Key.Enter Or Key.Code = Key.Return Then
+    txtlabelcat.Visible = True
+    txtSearchApps.Text = Lower$((txtSearchApps.text))
+    m_core.FillList_All_Mini(Last.text)
+    IconViewCat.UnselectAll()
+    Mouse.Move(txtSearchApps.ScreenX + 20, txtSearchApps.ScreenY + 10)
+  Endif
+  
+End
+
+Public Sub picSys_MouseDown()
+  
+  Shell User.Home &/ "QSettings.gambas"
+  
+End
+
+

@@ -1,0 +1,154 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,91,68)
+  Background = &H042C37&
+  Foreground = &HBBD2D2&
+  Text = ("Acerca de EdulibreOS")
+  Icon = Picture["img/distributor-logo-edulibreos.png"]
+  Resizable = False
+  { pnHeader Panel
+    MoveScaled(-3,0,95,14)
+    Background = &HBBD2D2&
+    Foreground = &H042C37&
+    { lblAboutTitle Label
+      MoveScaled(13,3,58,4)
+      Font = Font["+6"]
+      Foreground = &H042C37&
+      Text = ("EdulibreOS")
+    }
+    { picLogo PictureBox
+      MoveScaled(5,3,6.8571,6.8571)
+      Picture = Picture["img/distributor-logo-edulibreos.png"]
+      Stretch = True
+      Alignment = Align.Center
+    }
+    { lblFramework Label
+      MoveScaled(13,6,41,4)
+      Foreground = &H042C37&
+      Text = ("Version 9.0")
+    }
+  }
+  { picLogo3 PictureBox
+    MoveScaled(1,26,18.2857,18.2857)
+    Picture = Picture["img/distributor-logo-edulibreos.png"]
+    Stretch = True
+    Alignment = Align.Center
+  }
+  { HBox1 HBox
+    MoveScaled(2,62,87,4)
+    Spacing = True
+    Indent = True
+    { Panel1 Panel
+      MoveScaled(11,0,33,4)
+      Expand = True
+      Arrangement = Arrange.Vertical
+    }
+    { btnClose Button
+      MoveScaled(69,0,14,4)
+      Text = Shortcut(("Close"), "C")
+      Picture = Picture["icon:/small/cancel"]
+    }
+  }
+  { tab_Workspace TabPanel
+    MoveScaled(21,16,68,44)
+    Spacing = True
+    Margin = True
+    Padding = 9
+    Count = 4
+    Highlight = True
+    Index = 0
+    Text = ("About")
+    { lblTitle Label
+      MoveScaled(1,1,66,5)
+      Font = Font["Lato,Bold,+2"]
+      Text = ("EdulibreOS")
+      Alignment = Align.Left
+    }
+    { lblAuthor Label
+      MoveScaled(1,35,66,4)
+      Text = ("Copyright (C) 2008-2018")
+      Alignment = Align.Center
+    }
+    { lblVersion Label
+      MoveScaled(1,4,14,4)
+      Font = Font["Bold"]
+      Text = ("v 9.0")
+      Alignment = Align.Left
+    }
+    { URLLabel1 URLLabel
+      MoveScaled(27,32,15,4)
+      Link = "http://edulibre.net"
+      Text = ("EdulibreOS")
+      Alignment = Align.Center
+    }
+    { txtlabelabout TextLabel
+      MoveScaled(1,8,65,24)
+      Text = ("<p><br>EdulibreOS is a GNU / Linux operating system distribution for educational centers, home users and small businesses. It is shown as an alternative for the public and private education sector.</p>\n")
+    }
+    Index = 1
+    Text = ("Alliances")
+    { Panel2 Panel
+      MoveScaled(0,0,69,40)
+      Background = Color.White
+      { picLogo2 PictureBox
+        MoveScaled(1,2,18.2857,18.2857)
+        Picture = Picture["img/Sponsor/la_fabrica.png"]
+        Stretch = True
+        Alignment = Align.Center
+      }
+      { picLogo8 PictureBox
+        MoveScaled(23,3,18.2857,12.7143)
+        Picture = Picture["img/Sponsor/logo_fundacion.png"]
+        Stretch = True
+        Alignment = Align.Center
+      }
+      { picLogo9 PictureBox
+        MoveScaled(46,9,18.2857,3.2857)
+        Picture = Picture["img/Sponsor/logo-xumak.png"]
+        Stretch = True
+        Alignment = Align.Center
+      }
+    }
+    Index = 2
+    Text = ("Educational Centers")
+    { Panel4 Panel
+      MoveScaled(0,0,69,40)
+      Background = Color.White
+    }
+    { picLogo4 PictureBox
+      MoveScaled(1,2,18.2857,18.2857)
+      Picture = Picture["img/Sponsor/logo_usac.png"]
+      Stretch = True
+      Alignment = Align.Center
+    }
+    { picLogo5 PictureBox
+      MoveScaled(25,2,18.2857,18.2857)
+      Picture = Picture["img/Sponsor/cunori.png"]
+      Stretch = True
+      Alignment = Align.Center
+    }
+    { picLogo6 PictureBox
+      MoveScaled(48,2,18.2857,18.2857)
+      Picture = Picture["img/Sponsor/logo_url_1.png"]
+      Stretch = True
+      Alignment = Align.Center
+    }
+    { picLogo7 PictureBox
+      MoveScaled(1,21,18.2857,18.2857)
+      Picture = Picture["img/Sponsor/umg.png"]
+      Stretch = True
+      Alignment = Align.Center
+    }
+    Index = 3
+    Text = ("Donations")
+    { Grid GridView
+      MoveScaled(0,0,68,40)
+      Mouse = Mouse.Pointing
+      Expand = True
+      Mode = Select.Single
+      Header = GridView.Both
+    }
+    Index = 0
+  }
+}

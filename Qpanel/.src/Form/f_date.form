@@ -1,0 +1,67 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,33,37)
+  NoTabFocus = True
+  Resizable = False
+  Border = False
+  Sticky = True
+  SkipTaskbar = True
+  Arrangement = Arrange.Vertical
+  Padding = 4
+  { panDay Panel
+    MoveScaled(1,0,29,5)
+    Font = Font["+7"]
+    Arrangement = Arrange.Horizontal
+    AutoResize = True
+    Spacing = True
+    Margin = True
+    Padding = 4
+    { lblday Label
+      MoveScaled(1,0,17,4)
+      Expand = True
+      AutoResize = True
+    }
+  }
+  { panDate Panel
+    MoveScaled(1,5,29,3)
+    Arrangement = Arrange.Horizontal
+    AutoResize = True
+    Spacing = True
+    Margin = True
+    Padding = 4
+    { lbldate Label
+      MoveScaled(2,0,17,2)
+      Font = Font["+2"]
+      Expand = True
+      AutoResize = True
+      Alignment = Align.Left
+    }
+  }
+  { panweek Panel
+    MoveScaled(1,8,30,3)
+    Arrangement = Arrange.Horizontal
+    AutoResize = True
+    Spacing = True
+    Margin = True
+    Padding = 4
+    { lblweek Label
+      MoveScaled(0,0,13,3)
+      Expand = True
+      AutoResize = True
+      Alignment = Align.Left
+    }
+  }
+  { panDateChooser Panel
+    MoveScaled(1,11,30.1429,24)
+    Arrangement = Arrange.Fill
+    Spacing = True
+    Margin = True
+    Padding = 4
+    { DateChooserTask DateChooser
+      MoveScaled(2,2,22,17)
+      Mouse = Mouse.Pointing
+      Border = False
+    }
+  }
+}

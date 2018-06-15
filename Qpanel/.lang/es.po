@@ -1,0 +1,747 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Qpanel 3.10.0\n"
+"PO-Revision-Date: 2018-03-02 17:58 UTC\n"
+"Last-Translator: edulibreos <edulibreos@edulibreos-OptiPlex-755>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .project:1
+msgid "Qpanel"
+msgstr ""
+
+#: CAbout.class:108
+msgid "The Gambas font is published under the SIL Open Font License."
+msgstr ""
+
+#: CAbout.class:108
+msgid "This program is published under the GNU General Public License."
+msgstr "El programa se publica bajo la GNU General Public License"
+
+#: CWelcome.class:109
+msgid "Is published under the GNU General Public License."
+msgstr ""
+
+#: CWelcome.class:109
+msgid "This operating system EdulibreOS "
+msgstr ""
+
+#: LC_MESSAGES.module:3
+msgid "Theme Registration Error"
+msgstr "Error de registro del tema"
+
+#: LC_MESSAGES.module:4
+msgid "Failed to connect to the DB system"
+msgstr "Error al conectarse a la DB del sistema"
+
+#: LC_MESSAGES.module:5
+msgid "Error processing the system information"
+msgstr "Error al procesar informacion al sistema"
+
+#: LC_MESSAGES.module:6
+msgid "You must select valid windows manager"
+msgstr "Debe de seleccionar gestor de ventanas"
+
+#: LC_MESSAGES.module:7
+msgid "Format not valid"
+msgstr "Formato Inválido"
+
+#: LC_MESSAGES.module:8
+msgid "No item selected to remove"
+msgstr "No hay tema seleccionado para eliminar"
+
+#: LC_MESSAGES.module:12
+msgid "Innova Desktop in execution..."
+msgstr "Escritorio Innova ya está en ejecución."
+
+#: LC_MESSAGES.module:13
+msgid "Splash Screen exists"
+msgstr "Ya existe pantalla de bienvenida"
+
+#: LC_MESSAGES.module:14
+msgid "Appearance Launcher Innova is NOT equal to the Launcher Type selected in the Theme Current. You want to change the Appearance of Launcher...?"
+msgstr "Apariencia de Launcher Innova NO es igual al Tipo de Lanzador seleccionado en el actual Tema. ¿Quier cambiar el aspecto del Launcher...?"
+
+#: LC_MESSAGES.module:15
+msgid "Folder already exists"
+msgstr "Carpeta ya existe"
+
+#: LC_MESSAGES.module:16
+msgid "File already exists"
+msgstr "Archivo ya existe"
+
+#: LC_MESSAGES.module:17
+msgid "Can not delete the files"
+msgstr "No puede eliminar el archivo"
+
+#: LC_MESSAGES.module:18
+msgid "Theme selected already exists in the system."
+msgstr "El tema seleccionado ya existe en el sistema."
+
+#: LC_MESSAGES.module:19
+msgid "Current theme is active, can not be eliminated."
+msgstr "Tema actual está activo, no puede ser eliminado."
+
+#: LC_MESSAGES.module:20
+msgid "You have not selected Innova Theme."
+msgstr "No ha seleccionado ningun Theme Innova"
+
+#: LC_MESSAGES.module:21
+msgid "It has not established a reference Apps."
+msgstr "No se ha establecido una Apps como referencia."
+
+#: LC_MESSAGES.module:23
+msgid "¿Want to delete the select splash?"
+msgstr "¿Desea eliminar el splash seleccionado?diff -iEb"
+
+#: LC_MESSAGES.module:24 f_wallpaper.class:381
+msgid "Enter a Name..."
+msgstr "Ingrese un nombre..."
+
+#: LC_MESSAGES.module:25
+msgid "The files can not be restored after deleted. Do you want continue? "
+msgstr "Los archivos no se pueden restaurar después de eliminar. ¿Quieres continuar?"
+
+#: LC_MESSAGES.module:26
+msgid "Sure you want to move the file to the trash ..? "
+msgstr "Seguro que desea mover el archivo a la papelera..?"
+
+#: LC_MESSAGES.module:27
+msgid "¿Are you sure we want to remove the theme - "
+msgstr "¿está seguro de que desea eliminar el tema? -"
+
+#: LC_MESSAGES.module:28
+msgid "The version of the configuration file Innova_Config.conf has CHANGED. Wants to update.? "
+msgstr "La versión del archivo de configuración Innova_Config.conf ha cambiado. Quiere actualizar. ?"
+
+#: LC_MESSAGES.module:30
+msgid "Destination file exists. OverWrite"
+msgstr "El archivo destino ya existe. Desea sobrescribir"
+
+#: M_Core.module:38
+msgid "AudioVideo"
+msgstr ""
+
+#: M_Core.module:38
+msgid "Development"
+msgstr ""
+
+#: M_Core.module:38
+msgid "Education"
+msgstr ""
+
+#: M_Core.module:38
+msgid "Game"
+msgstr ""
+
+#: M_Core.module:38
+msgid "Graphics"
+msgstr ""
+
+#: M_Core.module:38
+msgid "Network"
+msgstr ""
+
+#: M_Core.module:38
+msgid "Office"
+msgstr ""
+
+#: M_Core.module:38
+msgid "Other"
+msgstr ""
+
+#: M_Core.module:38
+msgid "Settings"
+msgstr "Configuración"
+
+#: f_wallpaper.class:155
+msgid "System"
+msgstr "Sistema"
+
+#: M_Core.module:38
+msgid "Utility"
+msgstr ""
+
+#: M_Core.module:41
+msgid "Básico"
+msgstr ""
+
+#: M_Core.module:41
+msgid "Diversificado"
+msgstr ""
+
+#: M_Core.module:41
+msgid "Preescolar"
+msgstr ""
+
+#: M_Core.module:41
+msgid "Primaria Avanzada"
+msgstr ""
+
+#: M_Core.module:41
+msgid "Primaria Básica"
+msgstr ""
+
+#: M_Core.module:126
+msgid "Mode random background screen, <br> you can not select new background..."
+msgstr "En modo fondo de pantalla aleatorio, <br> no es posible cambiar fondo de pantalla..."
+
+#: M_Core.module:954 f_launcher_mini.class:209
+msgid "Category: "
+msgstr ""
+
+#: f_about.class:26
+msgid "Stable"
+msgstr "Estable"
+
+#: f_about.class:33 f_about_innova.class:118
+msgid "Version "
+msgstr "Versión"
+
+#: f_about.form:34
+msgid "Acerca de Innova Desktop"
+msgstr ""
+
+#: f_about.form:47
+msgid "Innova Desktop Environment"
+msgstr ""
+
+#: f_about.form:60
+msgid "Framework Version 3.10"
+msgstr ""
+
+#: f_properties_mixed.form:129 f_style_launcher.form:57 f_wallpaper.form:175
+msgid "Close"
+msgstr "Cerrar"
+
+#: f_about.form:94 f_about_dist.form:96 f_about_innova.form:56
+msgid "About"
+msgstr "Acerca de"
+
+#: f_about.form:99 f_about_innova.form:167
+msgid "Innova Desktop"
+msgstr "Escritorio Innova"
+
+#: f_about.form:105
+msgid "Copyright (C) 2014-2018"
+msgstr ""
+
+#: f_about.form:123
+msgid "<p><br>Advanced, easy to use, and fast desktop environment developed on Gambas3.</p>\n\n<p>Innova Desktop would not have been possible without the help of:</p></br>\n\n<font color=\"#D8D8D8\">\n<h5><p><u><br>Benoît Minisini</h5></p></u>\n<h5><p><u> Fabien Bodard</h5></p> </u>\n<h5><p><u>Zainudin Ahmad</h5></p></u></br>\n</font>\n"
+msgstr ""
+
+#: f_about.form:126 f_about_innova.form:139
+msgid "License"
+msgstr "Licencia"
+
+#: f_about.form:131
+msgid "    This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License    along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+
+#: f_about.form:137
+msgid "Translators"
+msgstr "Traductor"
+
+#: f_about.form:142
+msgid "Spanish: Herberth Guzmán (herberthguzman@gmail.com)"
+msgstr ""
+
+#: f_about.form:148
+msgid "Update"
+msgstr "Actualizar"
+
+#: f_about.form:160 f_about_innova.form:105
+msgid "Home page"
+msgstr "Pagina Web"
+
+#: f_about.form:167 f_about_innova.form:112
+msgid "Mail"
+msgstr "Correo"
+
+#: f_about.form:182 f_about_innova.form:90
+msgid "Check Update"
+msgstr "Verificar Actualizaciones"
+
+#: f_about.form:187 f_about_innova.form:117
+msgid "Thanks"
+msgstr "Gracias"
+
+#: f_about_dist.class:87
+msgid "Name"
+msgstr "Nombre"
+
+#: f_about_dist.class:89
+msgid "Country"
+msgstr "Pais"
+
+#: f_about_dist.class:91
+msgid "Flag"
+msgstr "Bandera"
+
+#: f_about_dist.form:33
+msgid "Acerca de EdulibreOS"
+msgstr ""
+
+#: f_about_dist.form:46
+msgid "EdulibreOS"
+msgstr ""
+
+#: f_about_dist.form:59
+msgid "Version 9.0"
+msgstr ""
+
+#: f_about_dist.form:107
+msgid "Copyright (C) 2008-2018"
+msgstr ""
+
+#: f_about_dist.form:114
+msgid "v 9.0"
+msgstr ""
+
+#: f_about_dist.form:127
+msgid "<p><br>EdulibreOS is a GNU / Linux operating system distribution for educational centers, home users and small businesses. It is shown as an alternative for the public and private education sector.</p>\n"
+msgstr ""
+
+#: f_about_dist.form:130
+msgid "Alliances"
+msgstr "Alianzas"
+
+#: f_about_dist.form:158
+msgid "Educational Centers"
+msgstr "Centros Educativos"
+
+#: f_about_dist.form:193
+msgid "Donations"
+msgstr "Donaciones"
+
+#: f_about_dist_old.class:189
+msgid "Financial support"
+msgstr ""
+
+#: f_about_dist_old.form:20 f_wallpaper.form:310
+msgid "About EdulibreOS"
+msgstr "Acerca de EdulibreOS"
+
+#: f_about_dist_old.form:48
+msgid "EdulibreOS<br>\nv9.0<br>"
+msgstr ""
+
+#: f_about_dist_old.form:60
+msgid "<h2 align=center>Licence</h2>\n\n<p align=center>This program is FREE SOFTWARE; you can redistribute it AND/OR modify it under the terms of the GNU General Public License as published by the Free Software Foundation ; either version 2, or (at your option) any later version.</p>\n\n<p align=center>This program is distributed in the hope that it will be useful but WITHOUT ANY WARRANTY; without even the implied warranty of  MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>\n"
+msgstr ""
+
+#: f_about_dist_old.form:66
+msgid "<h2 align=center>Authors</h2>\n"
+msgstr "Autores\n"
+
+#: f_about_innova.form:28 f_wallpaper.form:256
+msgid "About Innova Desktop"
+msgstr "Acerca de Innova Desktop"
+
+#: f_about_innova.form:44
+msgid "Close About"
+msgstr "Cerrar Acerca de"
+
+#: f_about_innova.form:74
+msgid "Copyright (C) 2014-2017 by Herberth Guzmán"
+msgstr ""
+
+#: f_about_innova.form:83
+msgid "If Innova Desktop in any way you want \nhandy and would help in the \nfurther development of the project. "
+msgstr ""
+
+#: f_about_innova.form:147
+msgid "GNU LESSER GENERAL PUBLIC LICENSE\n                       Version 3, 29 June 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n\n  This version of the GNU Lesser General Public License incorporates\nthe terms and conditions of version 3 of the GNU General Public\nLicense, supplemented by the additional permissions listed below.\n\n  0. Additional Definitions.\n\n  As used herein, \"this License\" refers to version 3 of the GNU Lesser\nGeneral Public License, and the \"GNU GPL\" refers to version 3 of the GNU\nGeneral Public License.\n\n  \"The Library\" refers to a covered work governed by this License,\nother than an Application or a Combined Work as defined below.\n\n  An \"Application\" is any work that makes use of an interface provided\nby the Library, but which is not otherwise based on the Library.\nDefining a subclass of a class defined by the Library is deemed a mode\nof using an interface provided by the Library.\n\n  A \"Combined Work\" is a work produced by combining or linking an\nApplication with the Library.  The particular version of the Library\nwith which the Combined Work was made is also called the \"Linked\nVersion\".\n\n  The \"Minimal Corresponding Source\" for a Combined Work means the\nCorresponding Source for the Combined Work, excluding any source code\nfor portions of the Combined Work that, considered in isolation, are\nbased on the Application, and not on the Linked Version.\n\n  The \"Corresponding Application Code\" for a Combined Work means the\nobject code and/or source code for the Application, including any data\nand utility programs needed for reproducing the Combined Work from the\nApplication, but excluding the System Libraries of the Combined Work.\n\n  1. Exception to Section 3 of the GNU GPL.\n\n  You may convey a covered work under sections 3 and 4 of this License\nwithout being bound by section 3 of the GNU GPL.\n\n  2. Conveying Modified Versions.\n\n  If you modify a copy of the Library, and, in your modifications, a\nfacility refers to a function or data to be supplied by an Application\nthat uses the facility (other than as an argument passed when the\nfacility is invoked), then you may convey a copy of the modified\nversion:\n\n   a) under this License, provided that you make a good faith effort to\n   ensure that, in the event an Application does not supply the\n   function or data, the facility still operates, and performs\n   whatever part of its purpose remains meaningful, or\n\n   b) under the GNU GPL, with none of the additional permissions of\n   this License applicable to that copy.\n\n  3. Object Code Incorporating Material from Library Header Files.\n\n  The object code form of an Application may incorporate material from\na header file that is part of the Library.  You may convey such object\ncode under terms of your choice, provided that, if the incorporated\nmaterial is not limited to numerical parameters, data structure\nlayouts and accessors, or small macros, inline functions and templates\n(ten or fewer lines in length), you do both of the following:\n\n   a) Give prominent notice with each copy of the object code that the\n   Library is used in it and that the Library and its use are\n   covered by this License.\n\n   b) Accompany the object code with a copy of the GNU GPL and this license\n   document.\n\n  4. Combined Works.\n\n  You may convey a Combined Work under terms of your choice that,\ntaken together, effectively do not restrict modification of the\nportions of the Library contained in the Combined Work and reverse\nengineering for debugging such modifications, if you also do each of\nthe following:\n\n   a) Give prominent notice with each copy of the Combined Work that\n   the Library is used in it and that the Library and its use are\n   covered by this License.\n\n   b) Accompany the Combined Work with a copy of the GNU GPL and this license\n   document.\n\n   c) For a Combined Work that displays copyright notices during\n   execution, include the copyright notice for the Library among\n   these notices, as well as a reference directing the user to the\n   copies of the GNU GPL and this license document.\n\n   d) Do one of the following:\n\n       0) Convey the Minimal Corresponding Source under the terms of this\n       License, and the Corresponding Application Code in a form\n       suitable for, and under terms that permit, the user to\n       recombine or relink the Application with a modified version of\n       the Linked Version to produce a modified Combined Work, in the\n       manner specified by section 6 of the GNU GPL for conveying\n       Corresponding Source.\n\n       1) Use a suitable shared library mechanism for linking with the\n       Library.  A suitable mechanism is one that (a) uses at run time\n       a copy of the Library already present on the user's computer\n       system, and (b) will operate properly with a modified version\n       of the Library that is interface-compatible with the Linked\n       Version.\n\n   e) Provide Installation Information, but only if you would otherwise\n   be required to provide such information under section 6 of the\n   GNU GPL, and only to the extent that such information is\n   necessary to install and execute a modified version of the\n   Combined Work produced by recombining or relinking the\n   Application with a modified version of the Linked Version. (If\n   you use option 4d0, the Installation Information must accompany\n   the Minimal Corresponding Source and Corresponding Application\n   Code. If you use option 4d1, you must provide the Installation\n   Information in the manner specified by section 6 of the GNU GPL\n   for conveying Corresponding Source.)\n\n  5. Combined Libraries.\n\n  You may place library facilities that are a work based on the\nLibrary side by side in a single library together with other library\nfacilities that are not Applications and are not covered by this\nLicense, and convey such a combined library under terms of your\nchoice, if you do both of the following:\n\n   a) Accompany the combined library with a copy of the same work based\n   on the Library, uncombined with any other library facilities,\n   conveyed under the terms of this License.\n\n   b) Give prominent notice with the combined library that part of it\n   is a work based on the Library, and explaining where to find the\n   accompanying uncombined form of the same work.\n\n  6. Revised Versions of the GNU Lesser General Public License.\n\n  The Free Software Foundation may publish revised and/or new versions\nof the GNU Lesser General Public License from time to time. Such new\nversions will be similar in spirit to the present version, but may\ndiffer in detail to address new problems or concerns.\n\n  Each version is given a distinguishing version number. If the\nLibrary as you received it specifies that a certain numbered version\nof the GNU Lesser General Public License \"or any later version\"\napplies to it, you have the option of following the terms and\nconditions either of that published version or of any later version\npublished by the Free Software Foundation. If the Library as you\nreceived it does not specify a version number of the GNU Lesser\nGeneral Public License, you may choose any version of the GNU Lesser\nGeneral Public License ever published by the Free Software Foundation.\n\n  If the Library as you received it specifies that a proxy can decide\nwhether future versions of the GNU Lesser General Public License shall\napply, that proxy's public statement of acceptance of any version is\npermanent authorization for you to choose that version for the\nLibrary."
+msgstr ""
+
+#: f_compress.form:32
+msgid "File Name:"
+msgstr "Nombre del Archivo:"
+
+#: f_compress.form:42
+msgid "Terminal"
+msgstr "Terminal"
+
+#: f_compress.form:60
+msgid "Create"
+msgstr "Crear"
+
+#: f_compress.form:79
+msgid "Path Home:"
+msgstr "Ruta"
+
+#: f_conf_wallpaper.class:49
+msgid "The theme has been changed successfully."
+msgstr "El tema a cambiado con exito."
+
+#: f_conf_wallpaper.class:58 f_launcher_mini.class:81
+msgid "Image Archive"
+msgstr "Archivo de Imagen "
+
+#: f_conf_wallpaper.class:59 f_launcher_mini.class:82
+msgid "Image BMP of Windows"
+msgstr "Imagen BMP de Windows"
+
+#: f_conf_wallpaper.class:59 f_launcher_mini.class:82
+msgid "Image JPEG"
+msgstr "Imagen JPEG"
+
+#: f_conf_wallpaper.class:59 f_launcher_mini.class:82
+msgid "Image JPG"
+msgstr "Imagen JPG"
+
+#: f_conf_wallpaper.class:59 f_launcher_mini.class:82
+msgid "Image PNG"
+msgstr "Imagen PNG"
+
+#: f_conf_wallpaper.class:59 f_launcher_mini.class:82
+msgid "Image SVG"
+msgstr "Imagen SVG"
+
+#: f_conf_wallpaper.form:55
+msgid "Change wallpaper"
+msgstr "Cambiar el fondo de pantalla"
+
+#: f_conf_wallpaper.form:72 f_gallery_wallpaper.form:49 f_wallpaper.class:381
+msgid "Ok"
+msgstr "Aceptar"
+
+#: f_date.class:51
+msgid "Week "
+msgstr "Semana "
+
+#: f_gallery_wallpaper.form:22
+msgid "Desktop Settings - Innova"
+msgstr "Configuración del Escritorio - Innova"
+
+#: f_gallery_wallpaper.form:69
+msgid "Select wallpaper"
+msgstr "Seleccionar Fondo de Pantalla"
+
+#: f_gallery_wallpaper.form:81
+msgid "Folder"
+msgstr "Carpeta"
+
+#: f_gallery_wallpaper.form:101
+msgid "Image"
+msgstr "Imagen"
+
+#: f_gallery_wallpaper.form:118
+msgid "Get New Wallpaper"
+msgstr "Obtener Nuevos Fondos de Escritorio"
+
+#: f_launcher.form:67 f_launcher_cnb_mini.form:41 f_launcher_mini.form:51
+msgid "mnuBookmark"
+msgstr ""
+
+#: f_launcher.form:71 f_launcher_cnb_mini.form:45 f_launcher_mini.form:55
+msgid "Delete Bookmark"
+msgstr "Eliminar de favoritos"
+
+#: f_launcher.form:77 f_launcher_mini.form:61
+msgid "mnuLauncher"
+msgstr ""
+
+#: f_launcher.form:81 f_launcher_mini.form:65 f_wallpaper.form:80
+msgid "Open"
+msgstr "Abrir"
+
+#: f_launcher.form:91 f_launcher_mini.form:73
+msgid "Add to Desktop"
+msgstr ""
+
+#: f_launcher.form:97 f_launcher_mini.form:78
+msgid "Add to Panel"
+msgstr ""
+
+#: f_launcher.form:103 f_launcher_mini.form:83
+msgid "Add to Bookmark"
+msgstr ""
+
+#: f_launcher.form:348
+msgid "test"
+msgstr ""
+
+#: f_launcher_cnb_mini.form:62 f_launcher_mini.form:100
+msgid "Show Categories"
+msgstr "Mostrar Categorias"
+
+#: f_launcher_cnb_mini.form:170
+msgid "User"
+msgstr "Usuario"
+
+#: f_launcher_mini.form:209
+msgid "Change Image"
+msgstr "Cambiar Imagen"
+
+#: f_launcher_mini.form:218
+msgid "usuario"
+msgstr ""
+
+#: f_panel.form:44
+msgid "Main"
+msgstr "Menu"
+
+#: f_panel.form:48
+msgid "Maximized"
+msgstr "Maximizar"
+
+#: f_panel.form:52
+msgid "Minimized"
+msgstr "Minimizar"
+
+#: f_panel.form:62
+msgid "Menu1"
+msgstr ""
+
+#: f_panel.form:66
+msgid "Delete Apps"
+msgstr "Eliminar Apps"
+
+#: f_panel.form:86
+msgid "Launcher"
+msgstr "Lanzador"
+
+#: f_panel.form:190
+msgid "Show Desktop"
+msgstr "Mostrar Escritorio"
+
+#: f_power.form:27
+msgid "Power Off"
+msgstr "Apagar"
+
+#: f_power.form:33
+msgid "Reboot"
+msgstr "Reiniciar"
+
+#: f_power.form:39
+msgid "Close Session"
+msgstr "Cerrar Sesión"
+
+#: f_progressbar.form:14
+msgid "Processing"
+msgstr "Procesando... "
+
+#: f_properties.form:10 f_properties_mixed.form:24
+msgid "Innova Desktop - Properties of files"
+msgstr "Escritorio Innova - Propiedades del Archivo"
+
+#: f_properties_mixed.form:34
+msgid "General"
+msgstr "General"
+
+#: f_properties_mixed.form:56
+msgid "Name:"
+msgstr "Nombre:"
+
+#: f_properties_mixed.form:68
+msgid "Type:"
+msgstr "Tipo:"
+
+#: f_properties_mixed.form:80
+msgid "Directory:"
+msgstr "Directorio:"
+
+#: f_properties_mixed.form:92
+msgid "Owner:"
+msgstr "Propietario:"
+
+#: f_properties_mixed.form:104
+msgid "Size:"
+msgstr "Tamaño:"
+
+#: f_style_launcher.form:14
+msgid "Select Style Launcher - Innova"
+msgstr "Seleccionar Estillo del Launcher - Innova"
+
+#: f_style_launcher.form:34
+msgid "Style Launcher"
+msgstr "Apariencia del Launcher"
+
+#: f_wallpaper.class:160
+msgid "Trash"
+msgstr "Papelera"
+
+#: f_wallpaper.class:381
+msgid "Cancelar"
+msgstr "Cancelar"
+
+#: f_wallpaper.class:394
+msgid "Cannot create directory."
+msgstr "No se puede crear el directorio"
+
+#: f_wallpaper.class:656
+msgid "trash:/"
+msgstr ""
+
+#: f_wallpaper.class:659
+msgid "trash:///"
+msgstr ""
+
+#: f_wallpaper.class:699
+msgid "Multiple Files"
+msgstr "Multiples Archivos"
+
+#: f_wallpaper.class:700
+msgid "Files of different types"
+msgstr "Diferentes tipos de archivo"
+
+#: f_wallpaper.class:950
+msgid "&No"
+msgstr "&No"
+
+#: f_wallpaper.class:950
+msgid "&Yes"
+msgstr "&Si"
+
+#: f_wallpaper.class:1136
+msgid "Innova Desktop - Copy File"
+msgstr "Escritorio Innova - Copiar Archivo"
+
+#: f_wallpaper.class:1137
+msgid " Overwrite it with the new file?"
+msgstr " Sobrescribirlo con el nuevo archivo?"
+
+#: f_wallpaper.class:1137
+msgid "Copy and Replace"
+msgstr "Copiar y reemplazar"
+
+#: f_wallpaper.class:1137
+msgid "Don't Copy"
+msgstr "No Copiar"
+
+#: f_wallpaper.class:1137
+msgid "There is already a file with the same name in this location.  "
+msgstr "Ya existe un archivo con el mismo nombre en esta ubicación. "
+
+#: f_wallpaper.class:1533
+msgid " Items "
+msgstr ""
+
+#: f_wallpaper.class:1533
+msgid "Copying "
+msgstr "Copiando "
+
+#: f_wallpaper.class:1534
+msgid " To "
+msgstr " A "
+
+#: f_wallpaper.class:1570
+msgid "An unknown error has occurred."
+msgstr "Un error desconocido a ocurrido."
+
+#: f_wallpaper.form:76
+msgid "mnuPopup"
+msgstr ""
+
+#: f_wallpaper.form:85
+msgid "Open with"
+msgstr "Abrir con..."
+
+#: f_wallpaper.form:88
+msgid "Select aplication"
+msgstr "Seleccionar aplicación"
+
+#: f_wallpaper.form:96
+msgid "Cut"
+msgstr "Cortar"
+
+#: f_wallpaper.form:103
+msgid "Copy"
+msgstr "Copiar"
+
+#: f_wallpaper.form:112
+msgid "Delete"
+msgstr "Eliminar"
+
+#: f_wallpaper.form:118
+msgid "Move to Trash"
+msgstr "Mover a la Papelera"
+
+#: f_wallpaper.form:126
+msgid "Rename"
+msgstr "Renombrar"
+
+#: f_wallpaper.form:135
+msgid "Create Link"
+msgstr "Crear Enlzace"
+
+#: f_wallpaper.form:144
+msgid "Refresh"
+msgstr "Actualizar"
+
+#: f_wallpaper.form:153
+msgid "Compress"
+msgstr "Comprimir"
+
+#: f_wallpaper.form:158
+msgid "Uncompress"
+msgstr "Descomprimir"
+
+#: f_wallpaper.form:167
+msgid "Properties"
+msgstr "Propiedades"
+
+#: f_wallpaper.form:182
+msgid "mnuPopup2"
+msgstr ""
+
+#: f_wallpaper.form:186
+msgid "File"
+msgstr "Archivo"
+
+#: f_wallpaper.form:189
+msgid "New Folder"
+msgstr "Nuevo Folder"
+
+#: f_wallpaper.form:194
+msgid "New File"
+msgstr "Nuevo Archivo"
+
+#: f_wallpaper.form:203
+msgid "Paste"
+msgstr "Pegar"
+
+#: f_wallpaper.form:209
+msgid "Select All"
+msgstr "Seleccionar todo"
+
+#: f_wallpaper.form:218
+msgid "Sort by File"
+msgstr "Ordenar Archivos"
+
+#: f_wallpaper.form:221
+msgid "Ascending"
+msgstr "Ascendente"
+
+#: f_wallpaper.form:263
+msgid "Menu_Principal"
+msgstr "Menú Principal"
+
+#: f_wallpaper.form:267
+msgid "Open Home"
+msgstr "Abrir Home"
+
+#: f_wallpaper.form:277
+msgid "Pc Info"
+msgstr "Pc Info"
+
+#: f_wallpaper.form:282
+msgid "Control Center"
+msgstr "Centro de Control"
+
+#: f_wallpaper.form:288
+msgid "Innova Settings"
+msgstr "Configurar Innova"
+
+#: f_wallpaper.form:293
+msgid "Widgets"
+msgstr ""
+
+#: f_wallpaper.form:302
+msgid "Change Wallpaper"
+msgstr "Cambiar Fondo de Pantalla"
+

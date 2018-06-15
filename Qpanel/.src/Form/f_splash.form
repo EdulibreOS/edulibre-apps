@@ -1,0 +1,39 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,132.8571,68.5714)
+  Mask = True
+  Border = False
+  Stacking = Window.Above
+  Sticky = True
+  SkipTaskbar = True
+  { PictureBoxBack PictureBox
+    MoveScaled(0,0,38,12)
+    Stretch = True
+    Alignment = Align.Center
+    Border = Border.Plain
+  }
+  { HSplitLoad3 VSplit
+    MoveScaled(6,23,74,14)
+    Border = False
+    { Spinner1 Spinner
+      MoveScaled(35,3,8,8)
+    }
+  }
+  { pnlInfo Panel
+    MoveScaled(59,0,74,5)
+    Expand = True
+    Arrangement = Arrange.Vertical
+    Spacing = True
+    Margin = True
+    { lblapp Label
+      MoveScaled(41,0,31,4)
+      Font = Font["Ubuntu,+6"]
+      Foreground = &HFFFFFF&
+      Expand = True
+      AutoResize = True
+      Alignment = Align.Right
+      Transparent = True
+    }
+  }
+}

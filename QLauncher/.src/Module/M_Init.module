@@ -1,0 +1,72 @@
+' Gambas module file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Public Settings_Core_Innova As New Settings(Desktop.ConfigDir &/ "Innova/Innova_Config.conf")
+
+Public Sub Init_01()
+  ''tmp 
+  If Not Exist(Desktop.ConfigDir &/ "Innova/Innova_Config.conf") Then
+  Try Mkdir Desktop.ConfigDir &/ "Innova/"
+    Shell "cp -R " & Application.Path &/ "config/Innova_Config.conf" & " " & Desktop.ConfigDir &/ "Innova/"
+    Shell "cp -R " & Application.Path &/ "config/Theme" & " " & Desktop.ConfigDir &/ "Innova/"
+    Shell "cp -R " & Application.Path &/ "config/desktop-directories" & " " & Desktop.DataDir
+  Endif
+  ''
+  M_Theme.IconTheme
+    Init_02
+  
+  Wait 0.2
+  
+End
+
+Public Sub Init_02()
+  
+  M_Theme.Show_Theme
+  Init_03
+  Wait 0.2
+  
+End
+
+Public Sub Init_03()
+  
+  Dim sResult As String 
+  Dim iShow As Integer
+  
+  Try sResult = Settings_Core_Innova["Launcher/Style_Launcher"]
+  iShow = Settings_Core_Innova["Launcher/iShow", f_launcher]
+  
+  Wait 0.1
+
+  
+  If sResult = "Tablet" Then
+    f_launcher.Visible = If(f_launcher.Visible = 0, 1, 0)  
+  Else
+    If sResult = "Mini" Then
+      f_launcher_mini.Visible = If(f_launcher_mini.Visible = 0, 1, 0)  
+    Else If sResult = "CNB" Then
+      f_launcher_cnb_mini.Visible = If(f_launcher_cnb_mini.Visible = 0, 1, 0)  
+    Endif
+    
+  Endif
+ ' Catch
+End

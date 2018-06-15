@@ -1,0 +1,147 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,165,16)
+  Tracking = True
+  NoTabFocus = True
+  Persistent = True
+  Resizable = False
+  Border = False
+  Stacking = Window.Above
+  Sticky = True
+  SkipTaskbar = True
+  Transparent = True
+  Arrangement = Arrange.Horizontal
+  Padding = 1
+  { mnuMain Menu
+    Text = ("Main")
+    Visible = False
+    { mnuMaximized Menu
+      Text = ("Maximized")
+    }
+    { mnuMinimizar Menu
+      Text = ("Minimized")
+    }
+    { mnuClose Menu
+      Text = ("Close")
+      Picture = Picture["icon:/small/close"]
+    }
+  }
+  { mnuDelApps Menu
+    Text = ("Menu1")
+    Visible = False
+    { mnuDelApp Menu
+      Text = ("Delete Apps")
+      Picture = Picture["icon:/small/delete"]
+    }
+  }
+  { HBoxMain HBox
+    MoveScaled(0,0,165,6)
+    Expand = True
+    { PanelStart Panel
+      MoveScaled(0,0,6.8571,6.8571)
+      Drop = True
+      Arrangement = Arrange.Horizontal
+      AutoResize = True
+      Spacing = True
+      Padding = 4
+      { CButtonStart CButton
+        MoveScaled(0,0,6,6)
+        Mouse = Mouse.Pointing
+        ToolTip = ("Launcher")
+        Drop = True
+      }
+    }
+    { PanelSep Panel
+      MoveScaled(8,0,3,4)
+    }
+    { AppsDefault Panel
+      MoveScaled(12,0,26,6)
+      Drop = True
+      Arrangement = Arrange.Horizontal
+      AutoResize = True
+      Spacing = True
+      Padding = 1
+    }
+    { PanelSep6 Panel
+      MoveScaled(39,0,3,4)
+    }
+    { AppBookmarks Panel
+      MoveScaled(44,0,8,6)
+      Drop = True
+      Arrangement = Arrange.Horizontal
+      AutoResize = True
+      Spacing = True
+      Padding = 1
+    }
+    { PanelSep5 Panel
+      MoveScaled(54,0,3,4)
+    }
+    { NoDesktop Panel
+      MoveScaled(59,0,9,6)
+      Visible = False
+      Drop = True
+      Arrangement = Arrange.Horizontal
+      AutoResize = True
+      Spacing = True
+      Padding = 1
+      { lsbWind IconView
+        MoveScaled(0,1,9,6)
+        Visible = False
+        Orientation = Arrange.Horizontal
+        Sorted = True
+        IconLines = 1
+      }
+    }
+    { PanelSep3 Panel
+      MoveScaled(71,1,5,4)
+    }
+    { PanelTaskIcon Panel
+      MoveScaled(79,4,18,4.5714)
+      Visible = False
+      Foreground = Color.White
+      Expand = True
+      Arrangement = Arrange.Horizontal
+      Spacing = True
+    }
+    { PanelTaskList HSplit
+      MoveScaled(79,0,18,4.5714)
+      Expand = True
+      Spacing = True
+    }
+    { PanelSep4 Panel
+      MoveScaled(101,0,5,4)
+    }
+    { SystrayDrawingArea DrawingArea
+      MoveScaled(142,0,8,6)
+      Border = Border.Plain
+      Cached = True
+    }
+    { PanelDate Panel
+      MoveScaled(151,0,7,4.5714)
+      Drop = True
+      Arrangement = Arrange.Fill
+      Spacing = True
+      Padding = 4
+      { TextLabelDate TextLabel
+        MoveScaled(0,0,7,8)
+        Font = Font["+2"]
+        Foreground = &HBBD2D2&
+        Mouse = Mouse.Pointing
+        Expand = True
+        AutoResize = True
+        Alignment = Align.Center
+        Transparent = True
+      }
+    }
+    { CButtonDesktop CButton
+      MoveScaled(158,0,6,6)
+      Mouse = Mouse.Pointing
+      ToolTip = ("Show Desktop")
+      Drop = True
+    }
+  }
+  { TimerPanel #Timer
+    #MoveScaled(153,7)
+  }
+}

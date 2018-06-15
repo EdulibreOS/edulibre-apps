@@ -1,0 +1,112 @@
+------------------------------------------
+Herberth Guzmán
+herberthguzman@gmail.com
+Guatemala
+Main developer.
+Project Management
+Español translation
+
+------------------------------------------
+Benoît Minisini
+gambas@users.sourceforge.net
+France
+Main Developer Gambas
+
+------------------------------------------
+Fabien Bodard
+gambas.fr@gmail.com
+France
+Developer Library App Desktop
+Initial Design Improvements
+
+------------------------------------------
+Zainudin Ahmad
+author.ilmi@gmail.com
+Initial Design Improvements Taskbar
+
+------------------------------------------
+Willy Raets 
+willy@develop.earthshipeurope.org
+Netherlands
+App gbEdit
+
+------------------------------------------
+Antonio Orefice
+xt7player@gmail.com 
+Italy
+App Higgins / Xt7-Player
+
+------------------------------------------
+Dulio Samayoa
+dulios@gmail.com
+Guatemala
+Developer
+Initial Design Improvements
+
+------------------------------------------
+Victor Orozco
+caballerodelmetal@gmail.com
+Guatemala
+Developer
+Initial Design Improvements
+
+------------------------------------------
+David Martinez
+davidmf16@gmail.com
+España
+Developer
+
+------------------------------------------
+Javier Hernandez
+javier.javihm77@gmail.com
+Guatemala
+Initial Design Improvements
+
+------------------------------------------
+Fredy Lara
+jag00709@live.com
+Guatemala
+Initial Design Improvements
+
+------------------------------------------
+Eduardo Garcia
+edu.agarcia5@gmail.com
+Guatemala
+Testing
+Bug reports
+
+------------------------------------------
+Melvin Cante
+melvincante@gmail.com
+Guatemala
+Initial Design Improvements
+Testing
+Bug reports
+
+------------------------------------------
+Jose Luis Rodas
+joseluisrod81@gmail.com
+Guatemala
+Testing
+Translation
+
+------------------------------------------
+Juan José Gonzalez
+josego990@gmail.com
+Guatemala
+Initial Design Improvements
+Bug reports
+
+------------------------------------------
+Mario Roberto Guzmán
+mrguzmanmuralles@gmail.com
+Guatemala
+Initial Design Improvements
+Bug reports
+
+Eduardo Garcia
+edu.agarcia5@gmail.com
+Guatemala
+Initial Design Improvements
+Testing
+Bug reports
