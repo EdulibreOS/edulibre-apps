@@ -137,6 +137,7 @@ Public Sub Form_Open()
   M_InfoPc.Info_Pc
   Logo_Distro
   MSG
+  M_InfoPc.graphics
   
 End
 
@@ -274,14 +275,6 @@ Public Sub mnuAboutW_Click()
   
 End
 
-Public Sub Panel23_MouseDown()
-  
-End
 
-Public Sub mnuSO_L_Click()
-  
-End
 
-Public Sub pnlIconsDesk_MouseDown()
-  
-End
+
