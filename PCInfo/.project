@@ -1,17 +1,16 @@
 # Gambas Project File 3.0
-# Compiled with Gambas 3.10.0
 Title=PCInfo
 Startup=Cls_Start
 Icon=img/pcinfo.png
-Version=0.5.19
+Version=0.5.20
 Component=gb.image
 Component=gb.qt5
 Component=gb.form
 Component=gb.db
 Component=gb.db.sqlite3
 Component=gb.dbus
-Component=gb.desktop.x11
 Component=gb.desktop
+Component=gb.desktop.x11
 Component=gb.settings
 Component=gb.form.stock
 Component=gb.gui.trayicon

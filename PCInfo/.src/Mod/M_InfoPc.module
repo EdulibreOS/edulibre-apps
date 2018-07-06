@@ -381,12 +381,16 @@ Public Sub graphics()
   
   'Sets text in labels
   f_PC_Info.TextLabelGraph2.Text = Left$(gCard1, InStr(gCard1, "(") - 1)
+  f_PC_Info.mnuGru1.Text = "VGA 1: " & Left$(gCard1, InStr(gCard1, "(") - 1) 'submenu
     'checks if there's 2nd graphic card
   If band = True Then 
     f_PC_Info.TextLabelGraph4.Text = Left$(gCard2, InStr(gCard2, "(") - 1) 
+    f_PC_Info.mnuGru2.Text = "VGA 2: " & Left$(gCard2, InStr(gCard2, "(") - 1) 'submenu
   Else
     f_PC_Info.TextLabelGraph3.Text = ""
     f_PC_Info.TextLabelGraph4.Text = ""
+    f_PC_Info.mnuGru2.Text = "VGA 2: NONE"
+    
   Endif
   
   
