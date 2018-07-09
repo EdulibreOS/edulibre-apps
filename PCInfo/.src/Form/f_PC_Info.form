@@ -10,23 +10,28 @@
   { mnuMain Menu
     Text = ("Main")
     Visible = False
-    { mnuSO Menu
-      Text = ("Operating System")
-      Picture = Picture["img/pc_info/SO.svg"]
-      { mnuSO_L Menu
-        Text = ("Operating System")
-        Picture = Picture["img/pc_info/SO.svg"]
+    { mnuCPU Menu
+      Text = ("CPU")
+      Picture = Picture["img/pc_info/PC.svg"]
+      { mnuProceVendor Menu
+        Text = ("Vendor")
+        Picture = Picture["img/pc_info/Vendor_P.svg"]
       }
-      { mnuArchitecture Menu
-        Text = ("Architecture")
-        Picture = Picture["img/pc_info/Arch.svg"]
+      { mnuProcessor Menu
+        Text = ("Processor")
+        Picture = Picture["img/pc_info/Info.svg"]
       }
-      { mnuKernel Menu
-        Text = ("Kernel")
-        Picture = Picture["img/pc_info/Kernel.svg"]
+      { mnuRam Menu
+        Text = ("Memory Ram")
+        Picture = Picture["img/pc_info/Mem_Info.svg"]
       }
-      { mnuDistro Menu
-        Text = ("Distribution")
+      { mnuHD Menu
+        Text = ("Hard Disk")
+        Picture = Picture["img/pc_info/Hard-Disk.svg"]
+      }
+      { mnuWorkgropu Menu
+        Text = ("Workgroup")
+        Picture = Picture["img/pc_info/Workgroup.svg"]
       }
     }
     { mnuMemory Menu
@@ -81,9 +86,24 @@
         Picture = Picture["img/pc_info/Disk-Usage.svg"]
       }
     }
-    { Graphics Menu
-      Text = ("Grahics")
-      Picture = Picture["img/pc_info/Graphics.png"]
+    { mnuSO Menu
+      Text = ("Operating System")
+      Picture = Picture["img/pc_info/SO.svg"]
+      { mnuSO_L Menu
+        Text = ("Operating System")
+        Picture = Picture["img/pc_info/SO.svg"]
+      }
+      { mnuArchitecture Menu
+        Text = ("Architecture")
+        Picture = Picture["img/pc_info/Arch.svg"]
+      }
+      { mnuKernel Menu
+        Text = ("Kernel")
+        Picture = Picture["img/pc_info/Kernel.svg"]
+      }
+      { mnuDistro Menu
+        Text = ("Distribution")
+      }
     }
     { mnuDE Menu
       Text = ("Desktop Environment")
@@ -117,28 +137,16 @@
         Picture = Picture["img/pc_info/Timezone.svg"]
       }
     }
-    { mnuCPU Menu
-      Text = ("CPU")
-      Picture = Picture["img/pc_info/PC.svg"]
-      { mnuProceVendor Menu
-        Text = ("Vendor")
-        Picture = Picture["img/pc_info/Vendor_P.svg"]
+    { mnuGr Menu
+      Text = ("Grahics")
+      Picture = Picture["img/pc_info/Graphics.png"]
+      { mnuGru1 Menu
+        Text = ("VGA 1")
+        Picture = Picture["img/pc_info/Graphics.png"]
       }
-      { mnuProcessor Menu
-        Text = ("Processor")
-        Picture = Picture["img/pc_info/Info.svg"]
-      }
-      { mnuRam Menu
-        Text = ("Memory Ram")
-        Picture = Picture["img/pc_info/Mem_Info.svg"]
-      }
-      { mnuHD Menu
-        Text = ("Hard Disk")
-        Picture = Picture["img/pc_info/Hard-Disk.svg"]
-      }
-      { mnuWorkgropu Menu
-        Text = ("Workgroup")
-        Picture = Picture["img/pc_info/Workgroup.svg"]
+      { mnuGru2 Menu
+        Text = ("VGA 2")
+        Picture = Picture["img/pc_info/Graphics.png"]
       }
     }
     { Menu1 Menu
@@ -621,7 +629,7 @@
           Font = Font["+1"]
           Expand = True
           { Panel31 HBox
-            MoveScaled(0,0,40,4)
+            MoveScaled(0,0,54,4)
             Expand = True
             Spacing = True
             Margin = True
@@ -640,7 +648,7 @@
             }
           }
           { Panel33 HBox
-            MoveScaled(0,4,40,4)
+            MoveScaled(0,4,54,4)
             Expand = True
             Spacing = True
             Margin = True
@@ -659,7 +667,7 @@
             }
           }
           { Panel38 HBox
-            MoveScaled(0,8,40,4)
+            MoveScaled(0,8,54,4)
             Spacing = True
             Margin = True
             Padding = 3
@@ -669,14 +677,14 @@
               Arrangement = Arrange.Horizontal
             }
             { txtcapacity Label
-              MoveScaled(4,0,22,4)
+              MoveScaled(4,0,43,4)
               Expand = True
               AutoResize = True
               Alignment = Align.Left
             }
           }
           { Panel44 HBox
-            MoveScaled(0,12,40,4)
+            MoveScaled(0,12,54,4)
             Spacing = True
             Margin = True
             Padding = 3
@@ -697,13 +705,13 @@
               Arrangement = Arrange.Vertical
             }
             { txttype Label
-              MoveScaled(26,0,7,4)
+              MoveScaled(27,0,19,4)
               AutoResize = True
               Alignment = Align.Left
             }
           }
           { Panel47 HBox
-            MoveScaled(0,16,40,4)
+            MoveScaled(0,16,54,4)
             Spacing = True
             Margin = True
             Padding = 3
@@ -713,13 +721,13 @@
               Arrangement = Arrange.Horizontal
             }
             { txtpz Label
-              MoveScaled(4,0,7,4)
+              MoveScaled(4,0,16,4)
               AutoResize = True
               Alignment = Align.Left
             }
           }
           { Panel49 HBox
-            MoveScaled(0,20,40,4)
+            MoveScaled(0,20,54,4)
             Spacing = True
             Margin = True
             Padding = 3
@@ -740,7 +748,7 @@
               Arrangement = Arrange.Vertical
             }
             { txtfree Label
-              MoveScaled(26,0,7,4)
+              MoveScaled(28,0,19,4)
               AutoResize = True
               Alignment = Align.Left
             }
