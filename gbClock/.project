@@ -1,14 +1,13 @@
 # Gambas Project File 3.0
-# Compiled with Gambas 3.9.90
 Title=gbClock
 Startup=Cls_Start
 Icon=IMG/gbClock.png
-Version=0.2.2
+Version=0.2.3
 Component=gb.image
 Component=gb.qt5
 Component=gb.form
-Component=gb.desktop.x11
 Component=gb.desktop
+Component=gb.desktop.x11
 Component=gb.settings
 Description="Widget Clock  for Innova Desktop.\nWidget Clock  pour Innova Desktop.\nWidget Clock  para Innova Desktop."
 Authors="Fabien BODARD\nBenoît MINISINI\nHerberth GUZMAN"

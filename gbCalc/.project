@@ -1,15 +1,14 @@
 # Gambas Project File 3.0
-# Compiled with Gambas 3.10.0
 Title=gbCalc
 Startup=Cls_Start
 Icon=img/gbCalc.png
-Version=0.2.2
+Version=0.2.3
 Component=gb.image
 Component=gb.qt5
 Component=gb.form
 Component=gb.db
-Component=gb.desktop.x11
 Component=gb.desktop
+Component=gb.desktop.x11
 Component=gb.settings
 Description="gbCalc\nCalculator for Innova Desktop"
 Authors="Herberth Guzmán  <innovadesktop@gmail.com>"

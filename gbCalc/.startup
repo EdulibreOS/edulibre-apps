@@ -8,7 +8,7 @@ gb.image
 gb.qt5
 gb.form
 gb.db
-gb.desktop.x11
 gb.desktop
+gb.desktop.x11
 gb.settings
 

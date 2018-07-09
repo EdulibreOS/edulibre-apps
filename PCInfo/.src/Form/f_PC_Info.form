@@ -21,6 +21,10 @@
         Text = ("Processor")
         Picture = Picture["img/pc_info/Info.svg"]
       }
+      { mnuCore Menu
+        Text = ("CPUs")
+        Picture = Picture["img/pc_info/Info.svg"]
+      }
       { mnuRam Menu
         Text = ("Memory Ram")
         Picture = Picture["img/pc_info/Mem_Info.svg"]
@@ -302,19 +306,45 @@
           Alignment = Align.Left
           Transparent = True
         }
+        { Panel25 Panel
+          MoveScaled(29,0,3,4)
+          Mouse = Mouse.Pointing
+          Expand = True
+          Arrangement = Arrange.Vertical
+        }
+        { TextLabelArch3 Label
+          MoveScaled(38,0,22,4)
+          Font = Font["Bold"]
+          AutoResize = True
+          Text = ("CPUs    ")
+          Alignment = Align.Left
+          Transparent = True
+        }
       }
       { hzoPartition20 HBox
         MoveScaled(1,30,72,4)
         Spacing = True
         Padding = 3
         Indent = True
-        { Panel25 Panel
+        { Panel73 Panel
           MoveScaled(1,0,3.4286,4)
           Mouse = Mouse.Pointing
           Arrangement = Arrange.Horizontal
         }
         { TextLabelProcesador Label
-          MoveScaled(10,0,22,4)
+          MoveScaled(5,0,22,4)
+          AutoResize = True
+          Alignment = Align.Left
+          Transparent = True
+        }
+        { Panel74 Panel
+          MoveScaled(29,0,3,4)
+          Mouse = Mouse.Pointing
+          Expand = True
+          Arrangement = Arrange.Vertical
+        }
+        { TextLabelCore Label
+          MoveScaled(38,0,22,4)
           AutoResize = True
           Alignment = Align.Left
           Transparent = True
@@ -1310,7 +1340,7 @@
           }
         }
         { Panel40 HBox
-          MoveScaled(1,4,69,12)
+          MoveScaled(1,4,69,8)
           Spacing = True
           Margin = True
           Padding = 3
@@ -1320,7 +1350,7 @@
             Arrangement = Arrange.Horizontal
           }
           { TextLabelGraph2 Label
-            MoveScaled(4,0,64,11)
+            MoveScaled(4,0,64,6)
             AutoResize = True
             Alignment = Align.Left
           }
@@ -1339,7 +1369,7 @@
           }
         }
         { Panel71 HBox
-          MoveScaled(1,20,69,12)
+          MoveScaled(1,20,69,8)
           Spacing = True
           Margin = True
           Padding = 3
@@ -1349,7 +1379,7 @@
             Arrangement = Arrange.Horizontal
           }
           { TextLabelGraph4 Label
-            MoveScaled(4,0,64,11)
+            MoveScaled(4,0,64,6)
             AutoResize = True
             Alignment = Align.Left
           }
