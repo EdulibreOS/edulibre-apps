@@ -11,7 +11,7 @@ Geometry=[-2,-3,210,210]
 Geometry=[-2,-3,210,210]
 
 [Executable]
-Path="/home/edulibreos/gbCalc.gambas"
+Path="/home/javihm77/gbCalc.gambas"
 
 [OpenFile]
 Count=1
