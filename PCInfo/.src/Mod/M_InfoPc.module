@@ -41,7 +41,7 @@ Public Sub Info_Pc()
   Dim timezone As String
   Dim sTempSessio As String
   Dim sTempVendor As String
-  'Dim jhm As String
+  Dim sCore As String           'No. of cores
   
   Exec ["uname", "-r"] To sTemp
   Exec ["uname", "-o"] To sTempFam
@@ -108,6 +108,12 @@ Public Sub Info_Pc()
   f_PC_Info.mnuProceVendor.Text = ("Vendor: ") & Trim(sTempVendor)
   
   Distro_ID = GetDistribution_ID()
+  
+  'Obtains No. of cores
+  Shell "lscpu -p | egrep -v '^#' | wc -l" Wait To sCore
+  f_PC_Info.TextLabelCore.Text = Trim(sCore) & " Core(s)    "
+  f_PC_Info.mnuCore.Text = ("CPUs: ") & Trim(sCore) & " Core(s)" 'submenu
+  
   
 End
 
@@ -349,3 +355,51 @@ Catch
   Debug "ERROR [ " & DConv(Error.Text) & " ]"
   
 End
+
+'Show GPU graphics card info
+Public Sub graphics()
+  Dim gCard, gCard1, gCard2 As String
+  Dim i As Integer 'contador
+  Dim c As String 'caracter
+  Dim band As Boolean = False 'GPU flag (if it has 1 or 2)
+  
+  'Obtains GPU from console
+  Shell "lspci | grep -i vga" Wait To gCard 
+  
+  'Splits string 
+  For i = 1 To Len(gCard)
+    c = Mid(gCard, i, 1)
+    
+    'flag of number of GPUs
+    If Comp(c, "\n") = 0 Then
+      band = True
+    Endif
+    
+    If band = False Then
+      gCard1 &= c
+    Else
+      gCard2 &= c  
+    Endif
+  Next
+  
+  gCard1 = Mid(gCard1, InStr(gCard1, ":", 5) + 2)
+  gCard2 = Mid(gCard2, InStr(gCard2, ":", 5) + 2)  
+  
+  'Sets text in labels
+  f_PC_Info.TextLabelGraph2.Text = Left$(gCard1, InStr(gCard1, "(") - 1)
+  f_PC_Info.mnuGru1.Text = "VGA 1: " & Left$(gCard1, InStr(gCard1, "(") - 1) 'submenu
+  
+  'checks if there's 2nd graphic card
+  If band = True Then 
+    f_PC_Info.TextLabelGraph4.Text = Left$(gCard2, InStr(gCard2, "(") - 1) 
+    f_PC_Info.mnuGru2.Text = "VGA 2: " & Left$(gCard2, InStr(gCard2, "(") - 1) 'submenu
+  Else
+    f_PC_Info.TextLabelGraph3.Text = ""
+    f_PC_Info.TextLabelGraph4.Text = ""
+    f_PC_Info.mnuGru2.Text = "VGA 2: NONE" 'submenu
+    
+  Endif
+  
+  
+End
+

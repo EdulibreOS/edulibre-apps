@@ -10,23 +10,32 @@
   { mnuMain Menu
     Text = ("Main")
     Visible = False
-    { mnuSO Menu
-      Text = ("Operating System")
-      Picture = Picture["img/pc_info/SO.svg"]
-      { mnuSO_L Menu
-        Text = ("Operating System")
-        Picture = Picture["img/pc_info/SO.svg"]
+    { mnuCPU Menu
+      Text = ("CPU")
+      Picture = Picture["img/pc_info/PC.svg"]
+      { mnuProceVendor Menu
+        Text = ("Vendor")
+        Picture = Picture["img/pc_info/Vendor_P.svg"]
       }
-      { mnuArchitecture Menu
-        Text = ("Architecture")
-        Picture = Picture["img/pc_info/Arch.svg"]
+      { mnuProcessor Menu
+        Text = ("Processor")
+        Picture = Picture["img/pc_info/Info.svg"]
       }
-      { mnuKernel Menu
-        Text = ("Kernel")
-        Picture = Picture["img/pc_info/Kernel.svg"]
+      { mnuCore Menu
+        Text = ("CPUs")
+        Picture = Picture["img/pc_info/Info.svg"]
       }
-      { mnuDistro Menu
-        Text = ("Distribution")
+      { mnuRam Menu
+        Text = ("Memory Ram")
+        Picture = Picture["img/pc_info/Mem_Info.svg"]
+      }
+      { mnuHD Menu
+        Text = ("Hard Disk")
+        Picture = Picture["img/pc_info/Hard-Disk.svg"]
+      }
+      { mnuWorkgropu Menu
+        Text = ("Workgroup")
+        Picture = Picture["img/pc_info/Workgroup.svg"]
       }
     }
     { mnuMemory Menu
@@ -81,6 +90,25 @@
         Picture = Picture["img/pc_info/Disk-Usage.svg"]
       }
     }
+    { mnuSO Menu
+      Text = ("Operating System")
+      Picture = Picture["img/pc_info/SO.svg"]
+      { mnuSO_L Menu
+        Text = ("Operating System")
+        Picture = Picture["img/pc_info/SO.svg"]
+      }
+      { mnuArchitecture Menu
+        Text = ("Architecture")
+        Picture = Picture["img/pc_info/Arch.svg"]
+      }
+      { mnuKernel Menu
+        Text = ("Kernel")
+        Picture = Picture["img/pc_info/Kernel.svg"]
+      }
+      { mnuDistro Menu
+        Text = ("Distribution")
+      }
+    }
     { mnuDE Menu
       Text = ("Desktop Environment")
       Picture = Picture["img/pc_info/Desktop.svg"]
@@ -113,28 +141,16 @@
         Picture = Picture["img/pc_info/Timezone.svg"]
       }
     }
-    { mnuCPU Menu
-      Text = ("CPU")
-      Picture = Picture["img/pc_info/PC.svg"]
-      { mnuProceVendor Menu
-        Text = ("Vendor")
-        Picture = Picture["img/pc_info/Vendor_P.svg"]
+    { mnuGr Menu
+      Text = ("Grahics")
+      Picture = Picture["img/pc_info/Graphics.png"]
+      { mnuGru1 Menu
+        Text = ("VGA 1")
+        Picture = Picture["img/pc_info/Graphics.png"]
       }
-      { mnuProcessor Menu
-        Text = ("Processor")
-        Picture = Picture["img/pc_info/Info.svg"]
-      }
-      { mnuRam Menu
-        Text = ("Memory Ram")
-        Picture = Picture["img/pc_info/Mem_Info.svg"]
-      }
-      { mnuHD Menu
-        Text = ("Hard Disk")
-        Picture = Picture["img/pc_info/Hard-Disk.svg"]
-      }
-      { mnuWorkgropu Menu
-        Text = ("Workgroup")
-        Picture = Picture["img/pc_info/Workgroup.svg"]
+      { mnuGru2 Menu
+        Text = ("VGA 2")
+        Picture = Picture["img/pc_info/Graphics.png"]
       }
     }
     { Menu1 Menu
@@ -195,209 +211,234 @@
     AutoResize = True
     Margin = True
     Padding = 3
-    Count = 5
+    Count = 6
     Border = True
     Index = 0
-    Text = ("Operating System")
-    Picture = Picture["img/pc_info/SO.svg"]
-    { pnlIconsDesk Panel
-      MoveScaled(1,1,76,53)
+    Text = ("CPU")
+    Picture = Picture["img/pc_info/Arch.svg"]
+    { pnlIconsDesk5 Panel
+      MoveScaled(0,0,76,59)
       Arrangement = Arrange.Vertical
       Margin = True
       Padding = 2
       Border = Border.Plain
-      { lbltitletheme Label
+      { lbltitletheme5 Label
         MoveScaled(0,0,45,4)
         Font = Font["+3"]
         Background = &HFFFFFF&
-        Text = ("Operating System")
+        Text = ("CPU")
         Alignment = Align.Center
         Border = Border.Plain
       }
-      { Panel9 Panel
-        MoveScaled(2,4,9,2)
+      { Panel22 Panel
+        MoveScaled(0,4,9,2)
         Mouse = Mouse.Pointing
         Arrangement = Arrange.Vertical
       }
-      { hzoHome HBox
-        MoveScaled(1,6,72,8)
+      { hzoHome5 HBox
+        MoveScaled(1,7,72,8)
         Spacing = True
         Margin = True
         Padding = 3
         Indent = True
-        { PictureBoxLogoDistro PictureBox
-          MoveScaled(1,0,6.8571,6.8571)
-          Stretch = True
-        }
-        { Panel1 Panel
+        { Panel23 Panel
           MoveScaled(8,1,3,4)
           Mouse = Mouse.Pointing
+          Expand = True
           Arrangement = Arrange.Vertical
         }
-        { TextLabelDistro TextLabel
-          MoveScaled(18,1,45,5)
-          Font = Font["Bold,21"]
-          Expand = True
+        { PanelIcons4 Panel
+          MoveScaled(16,0,7.1429,7.1429)
+          Spacing = True
+          Margin = True
+          Padding = 2
+          { PictureBoxPC4 PictureBox
+            MoveScaled(0,0,6.8571,6.8571)
+            Picture = Picture["img/pc_info/PC.svg"]
+            Stretch = True
+          }
+        }
+      }
+      { Separator5 Separator
+        MoveScaled(5,17,13,0.2857)
+      }
+      { hzoPartition18 HBox
+        MoveScaled(1,18,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { TextLabelSO11 Label
+          MoveScaled(5,0,22,4)
+          Font = Font["Bold"]
           AutoResize = True
-          Text = ("Operating System")
+          Text = ("Vendor")
           Alignment = Align.Left
           Transparent = True
         }
-        { Panel16 Panel
-          MoveScaled(60,1,3,4)
+      }
+      { hzoPartition19 HBox
+        MoveScaled(1,22,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { Panel24 Panel
+          MoveScaled(1,0,3.4286,4)
           Mouse = Mouse.Pointing
+          Arrangement = Arrange.Horizontal
+        }
+        { TextLabelVendor Label
+          MoveScaled(10,0,22,4)
+          AutoResize = True
+          Alignment = Align.Left
+          Transparent = True
+        }
+      }
+      { hzoPartition25 HBox
+        MoveScaled(1,26,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { TextLabelArch2 Label
+          MoveScaled(5,0,22,4)
+          Font = Font["Bold"]
+          AutoResize = True
+          Text = ("Processor")
+          Alignment = Align.Left
+          Transparent = True
+        }
+        { Panel25 Panel
+          MoveScaled(29,0,3,4)
+          Mouse = Mouse.Pointing
+          Expand = True
           Arrangement = Arrange.Vertical
         }
-        { imgHome2 PictureBox
-          MoveScaled(63,0,6.8571,6.8571)
-          Picture = Picture["img/pc_info/SO.svg"]
-          Stretch = True
+        { TextLabelArch3 Label
+          MoveScaled(38,0,22,4)
+          Font = Font["Bold"]
+          AutoResize = True
+          Text = ("CPUs    ")
+          Alignment = Align.Left
+          Transparent = True
         }
       }
-      { Panel2 Panel
-        MoveScaled(4,13,69,4)
-        Font = Font["+1"]
-        Arrangement = Arrange.Horizontal
+      { hzoPartition20 HBox
+        MoveScaled(1,30,72,4)
         Spacing = True
-        Margin = True
-        { URLLabel1 URLLabel
-          MoveScaled(19,0,24,4)
-          Text = ("www.edulibre.net")
+        Padding = 3
+        Indent = True
+        { Panel73 Panel
+          MoveScaled(1,0,3.4286,4)
+          Mouse = Mouse.Pointing
+          Arrangement = Arrange.Horizontal
         }
-        { Panel4 Panel
-          MoveScaled(46,0,9,4)
+        { TextLabelProcesador Label
+          MoveScaled(5,0,22,4)
+          AutoResize = True
+          Alignment = Align.Left
+          Transparent = True
+        }
+        { Panel74 Panel
+          MoveScaled(29,0,3,4)
           Mouse = Mouse.Pointing
           Expand = True
-          Arrangement = Arrange.Horizontal
+          Arrangement = Arrange.Vertical
         }
-      }
-      { Separator2 Separator
-        MoveScaled(2,17,13,0.2857)
-      }
-      { hzoPartition7 HBox
-        MoveScaled(1,19,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { TextLabelSO Label
-          MoveScaled(5,0,22,4)
-          Font = Font["Bold"]
+        { TextLabelCore Label
+          MoveScaled(38,0,22,4)
           AutoResize = True
-          Text = ("Operating System")
           Alignment = Align.Left
           Transparent = True
         }
       }
-      { hzoPartition8 HBox
-        MoveScaled(1,23,72,4)
+      { hzoPartition21 HBox
+        MoveScaled(1,34,72,4)
         Spacing = True
         Padding = 3
         Indent = True
-        { Panel8 Panel
+        { TextLabelTitleKernel2 Label
+          MoveScaled(5,0,22,4)
+          Font = Font["Bold"]
+          AutoResize = True
+          Text = ("Memory Ram")
+          Alignment = Align.Left
+          Transparent = True
+        }
+      }
+      { hzoPartition22 HBox
+        MoveScaled(1,38,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { Panel26 Panel
           MoveScaled(1,0,3.4286,4)
           Mouse = Mouse.Pointing
           Arrangement = Arrange.Horizontal
         }
-        { TextLabelLinux Label
+        { TextLabelRam Label
           MoveScaled(10,0,22,4)
           AutoResize = True
-          Text = ("OS")
           Alignment = Align.Left
           Transparent = True
         }
       }
-      { hzoPartition HBox
-        MoveScaled(1,27,72,4)
+      { hzoPartition23 HBox
+        MoveScaled(1,42,72,4)
         Spacing = True
         Padding = 3
         Indent = True
-        { TextLabelArch Label
+        { TextLabelTitleDistro2 Label
           MoveScaled(5,0,22,4)
           Font = Font["Bold"]
           AutoResize = True
-          Text = ("Architecture")
+          Text = ("Hard Disk")
           Alignment = Align.Left
           Transparent = True
         }
       }
-      { hzoPartition2 HBox
-        MoveScaled(1,31,72,4)
+      { hzoPartition24 HBox
+        MoveScaled(1,46,72,4)
         Spacing = True
         Padding = 3
         Indent = True
-        { Panel3 Panel
+        { Panel27 Panel
           MoveScaled(1,0,3.4286,4)
           Mouse = Mouse.Pointing
           Arrangement = Arrange.Horizontal
         }
-        { TextLabelArchitecture Label
+        { TextLabelHarddrive Label
           MoveScaled(10,0,22,4)
           AutoResize = True
-          Text = ("Architecture")
           Alignment = Align.Left
           Transparent = True
         }
       }
-      { hzoPartition3 HBox
-        MoveScaled(1,35,72,4)
+      { hzoPartition26 HBox
+        MoveScaled(1,50,72,4)
         Spacing = True
         Padding = 3
         Indent = True
-        { TextLabelTitleKernel Label
+        { TextLabelTitleDistro3 Label
           MoveScaled(5,0,22,4)
           Font = Font["Bold"]
           AutoResize = True
-          Text = ("Kernel")
+          Text = ("Workgroup")
           Alignment = Align.Left
           Transparent = True
         }
       }
-      { hzoPartition4 HBox
-        MoveScaled(1,39,72,4)
+      { hzoPartition27 HBox
+        MoveScaled(1,54,72,4)
         Spacing = True
         Padding = 3
         Indent = True
-        { Panel5 Panel
+        { Panel29 Panel
           MoveScaled(1,0,3.4286,4)
           Mouse = Mouse.Pointing
           Arrangement = Arrange.Horizontal
         }
-        { TextLabelKernel Label
+        { TextLabelGroup Label
           MoveScaled(10,0,22,4)
           AutoResize = True
-          Text = ("Architecture")
-          Alignment = Align.Left
-          Transparent = True
-        }
-      }
-      { hzoPartition5 HBox
-        MoveScaled(1,43,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { TextLabelTitleDistro Label
-          MoveScaled(5,0,22,4)
-          Font = Font["Bold"]
-          AutoResize = True
-          Text = ("Distribution")
-          Alignment = Align.Left
-          Transparent = True
-        }
-      }
-      { hzoPartition6 HBox
-        MoveScaled(1,47,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { Panel6 Panel
-          MoveScaled(1,0,3.4286,4)
-          Mouse = Mouse.Pointing
-          Arrangement = Arrange.Horizontal
-        }
-        { TextLabelDistro2 Label
-          MoveScaled(10,0,22,4)
-          AutoResize = True
-          Text = ("Architecture")
           Alignment = Align.Left
           Transparent = True
         }
@@ -618,7 +659,7 @@
           Font = Font["+1"]
           Expand = True
           { Panel31 HBox
-            MoveScaled(0,0,40,4)
+            MoveScaled(0,0,54,4)
             Expand = True
             Spacing = True
             Margin = True
@@ -631,13 +672,13 @@
             { lblVendor Label
               MoveScaled(4,0,30,4)
               Font = Font["Bold"]
-              Background = Color.DarkGreen
               Foreground = &HDFDFDF&
               Alignment = Align.Left
+              Border = Border.Plain
             }
           }
           { Panel33 HBox
-            MoveScaled(0,4,40,4)
+            MoveScaled(0,4,54,4)
             Expand = True
             Spacing = True
             Margin = True
@@ -650,13 +691,13 @@
             { lblName Label
               MoveScaled(4,0,30,4)
               Font = Font["Bold"]
-              Background = Color.DarkGreen
               Foreground = &HDFDFDF&
               Alignment = Align.Left
+              Border = Border.Plain
             }
           }
           { Panel38 HBox
-            MoveScaled(0,8,40,4)
+            MoveScaled(0,8,54,4)
             Spacing = True
             Margin = True
             Padding = 3
@@ -666,14 +707,14 @@
               Arrangement = Arrange.Horizontal
             }
             { txtcapacity Label
-              MoveScaled(4,0,22,4)
+              MoveScaled(4,0,43,4)
               Expand = True
               AutoResize = True
               Alignment = Align.Left
             }
           }
           { Panel44 HBox
-            MoveScaled(0,12,40,4)
+            MoveScaled(0,12,54,4)
             Spacing = True
             Margin = True
             Padding = 3
@@ -694,13 +735,13 @@
               Arrangement = Arrange.Vertical
             }
             { txttype Label
-              MoveScaled(26,0,7,4)
+              MoveScaled(27,0,19,4)
               AutoResize = True
               Alignment = Align.Left
             }
           }
           { Panel47 HBox
-            MoveScaled(0,16,40,4)
+            MoveScaled(0,16,54,4)
             Spacing = True
             Margin = True
             Padding = 3
@@ -710,13 +751,13 @@
               Arrangement = Arrange.Horizontal
             }
             { txtpz Label
-              MoveScaled(4,0,7,4)
+              MoveScaled(4,0,16,4)
               AutoResize = True
               Alignment = Align.Left
             }
           }
           { Panel49 HBox
-            MoveScaled(0,20,40,4)
+            MoveScaled(0,20,54,4)
             Spacing = True
             Margin = True
             Padding = 3
@@ -737,7 +778,7 @@
               Arrangement = Arrange.Vertical
             }
             { txtfree Label
-              MoveScaled(26,0,7,4)
+              MoveScaled(28,0,19,4)
               AutoResize = True
               Alignment = Align.Left
             }
@@ -762,6 +803,212 @@
       }
     }
     Index = 3
+    Text = ("Operating System")
+    Picture = Picture["img/pc_info/SO.svg"]
+    { pnlIconsDesk Panel
+      MoveScaled(1,1,76,53)
+      Arrangement = Arrange.Vertical
+      Margin = True
+      Padding = 2
+      Border = Border.Plain
+      { lbltitletheme Label
+        MoveScaled(0,0,45,4)
+        Font = Font["+3"]
+        Background = &HFFFFFF&
+        Text = ("Operating System")
+        Alignment = Align.Center
+        Border = Border.Plain
+      }
+      { Panel9 Panel
+        MoveScaled(2,4,9,2)
+        Mouse = Mouse.Pointing
+        Arrangement = Arrange.Vertical
+      }
+      { hzoHome HBox
+        MoveScaled(1,6,72,8)
+        Spacing = True
+        Margin = True
+        Padding = 3
+        Indent = True
+        { PictureBoxLogoDistro PictureBox
+          MoveScaled(1,0,6.8571,6.8571)
+          Stretch = True
+        }
+        { Panel1 Panel
+          MoveScaled(8,1,3,4)
+          Mouse = Mouse.Pointing
+          Arrangement = Arrange.Vertical
+        }
+        { TextLabelDistro TextLabel
+          MoveScaled(18,1,45,5)
+          Font = Font["Bold,21"]
+          Expand = True
+          AutoResize = True
+          Text = ("Operating System")
+          Alignment = Align.Left
+          Transparent = True
+        }
+        { Panel16 Panel
+          MoveScaled(60,1,3,4)
+          Mouse = Mouse.Pointing
+          Arrangement = Arrange.Vertical
+        }
+        { imgHome2 PictureBox
+          MoveScaled(63,0,6.8571,6.8571)
+          Picture = Picture["img/pc_info/SO.svg"]
+          Stretch = True
+        }
+      }
+      { Panel2 Panel
+        MoveScaled(4,13,69,4)
+        Font = Font["+1"]
+        Arrangement = Arrange.Horizontal
+        Spacing = True
+        Margin = True
+        { URLLabel1 URLLabel
+          MoveScaled(19,0,24,4)
+          Text = ("www.edulibre.net")
+        }
+        { Panel4 Panel
+          MoveScaled(46,0,9,4)
+          Mouse = Mouse.Pointing
+          Expand = True
+          Arrangement = Arrange.Horizontal
+        }
+      }
+      { Separator2 Separator
+        MoveScaled(2,17,13,0.2857)
+      }
+      { hzoPartition7 HBox
+        MoveScaled(1,19,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { TextLabelSO Label
+          MoveScaled(5,0,22,4)
+          Font = Font["Bold"]
+          AutoResize = True
+          Text = ("Operating System")
+          Alignment = Align.Left
+          Transparent = True
+        }
+      }
+      { hzoPartition8 HBox
+        MoveScaled(1,23,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { Panel8 Panel
+          MoveScaled(1,0,3.4286,4)
+          Mouse = Mouse.Pointing
+          Arrangement = Arrange.Horizontal
+        }
+        { TextLabelLinux Label
+          MoveScaled(10,0,22,4)
+          AutoResize = True
+          Text = ("OS")
+          Alignment = Align.Left
+          Transparent = True
+        }
+      }
+      { hzoPartition HBox
+        MoveScaled(1,27,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { TextLabelArch Label
+          MoveScaled(5,0,22,4)
+          Font = Font["Bold"]
+          AutoResize = True
+          Text = ("Architecture")
+          Alignment = Align.Left
+          Transparent = True
+        }
+      }
+      { hzoPartition2 HBox
+        MoveScaled(1,31,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { Panel3 Panel
+          MoveScaled(1,0,3.4286,4)
+          Mouse = Mouse.Pointing
+          Arrangement = Arrange.Horizontal
+        }
+        { TextLabelArchitecture Label
+          MoveScaled(10,0,22,4)
+          AutoResize = True
+          Text = ("Architecture")
+          Alignment = Align.Left
+          Transparent = True
+        }
+      }
+      { hzoPartition3 HBox
+        MoveScaled(1,35,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { TextLabelTitleKernel Label
+          MoveScaled(5,0,22,4)
+          Font = Font["Bold"]
+          AutoResize = True
+          Text = ("Kernel")
+          Alignment = Align.Left
+          Transparent = True
+        }
+      }
+      { hzoPartition4 HBox
+        MoveScaled(1,39,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { Panel5 Panel
+          MoveScaled(1,0,3.4286,4)
+          Mouse = Mouse.Pointing
+          Arrangement = Arrange.Horizontal
+        }
+        { TextLabelKernel Label
+          MoveScaled(10,0,22,4)
+          AutoResize = True
+          Text = ("Architecture")
+          Alignment = Align.Left
+          Transparent = True
+        }
+      }
+      { hzoPartition5 HBox
+        MoveScaled(1,43,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { TextLabelTitleDistro Label
+          MoveScaled(5,0,22,4)
+          Font = Font["Bold"]
+          AutoResize = True
+          Text = ("Distribution")
+          Alignment = Align.Left
+          Transparent = True
+        }
+      }
+      { hzoPartition6 HBox
+        MoveScaled(1,47,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { Panel6 Panel
+          MoveScaled(1,0,3.4286,4)
+          Mouse = Mouse.Pointing
+          Arrangement = Arrange.Horizontal
+        }
+        { TextLabelDistro2 Label
+          MoveScaled(10,0,22,4)
+          AutoResize = True
+          Text = ("Architecture")
+          Alignment = Align.Left
+          Transparent = True
+        }
+      }
+    }
+    Index = 4
     Text = ("Desktop Environment")
     Picture = Picture["img/pc_info/Desktop.svg"]
     { pnlIconsDesk4 Panel
@@ -1028,208 +1275,114 @@
         }
       }
     }
-    Index = 4
-    Text = ("CPU")
-    Picture = Picture["img/pc_info/Arch.svg"]
-    { pnlIconsDesk5 Panel
-      MoveScaled(0,0,76,59)
+    Index = 5
+    Text = ("Graphics")
+    Picture = Picture["img/pc_info/Graphics.png"]
+    { pnlIconsDesk6 Panel
+      MoveScaled(0,0,76,58)
       Arrangement = Arrange.Vertical
       Margin = True
       Padding = 2
       Border = Border.Plain
-      { lbltitletheme5 Label
+      { lblgraph1 Label
         MoveScaled(0,0,45,4)
         Font = Font["+3"]
         Background = &HFFFFFF&
-        Text = ("CPU")
+        Text = ("Graphics")
         Alignment = Align.Center
         Border = Border.Plain
       }
-      { Panel22 Panel
+      { Panel30 Panel
         MoveScaled(0,4,9,2)
         Mouse = Mouse.Pointing
         Arrangement = Arrange.Vertical
       }
-      { hzoHome5 HBox
+      { hzoHome6 HBox
         MoveScaled(1,7,72,8)
         Spacing = True
         Margin = True
         Padding = 3
         Indent = True
-        { Panel23 Panel
+        { Panel34 Panel
           MoveScaled(8,1,3,4)
           Mouse = Mouse.Pointing
           Expand = True
           Arrangement = Arrange.Vertical
         }
-        { PanelIcons4 Panel
+        { PanelIcons5 Panel
           MoveScaled(16,0,7.1429,7.1429)
           Spacing = True
           Margin = True
           Padding = 2
-          { PictureBoxPC4 PictureBox
+          { PictureBoxPC5 PictureBox
             MoveScaled(0,0,6.8571,6.8571)
-            Picture = Picture["img/pc_info/PC.svg"]
+            Picture = Picture["img/pc_info/Graphics.png"]
             Stretch = True
           }
         }
       }
-      { Separator5 Separator
+      { Separator6 Separator
         MoveScaled(5,17,13,0.2857)
       }
-      { hzoPartition18 HBox
-        MoveScaled(1,18,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { TextLabelSO11 Label
-          MoveScaled(5,0,22,4)
-          Font = Font["Bold"]
-          AutoResize = True
-          Text = ("Vendor")
-          Alignment = Align.Left
-          Transparent = True
+      { VBox2 VBox
+        MoveScaled(0,19,76,39)
+        { Panel70 VBox
+          MoveScaled(1,0,69,4)
+          Spacing = True
+          Margin = True
+          { TextLabelGraph1 Label
+            MoveScaled(1,1,22,4)
+            Font = Font["Bold"]
+            AutoResize = True
+            Text = ("VGA Controller 1")
+            Alignment = Align.Left
+            Transparent = True
+          }
         }
-      }
-      { hzoPartition19 HBox
-        MoveScaled(1,22,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { Panel24 Panel
-          MoveScaled(1,0,3.4286,4)
-          Mouse = Mouse.Pointing
-          Arrangement = Arrange.Horizontal
+        { Panel40 HBox
+          MoveScaled(1,4,69,8)
+          Spacing = True
+          Margin = True
+          Padding = 3
+          { Panel69 Panel
+            MoveScaled(0,0,3.4286,4)
+            Mouse = Mouse.Pointing
+            Arrangement = Arrange.Horizontal
+          }
+          { TextLabelGraph2 Label
+            MoveScaled(4,0,64,6)
+            AutoResize = True
+            Alignment = Align.Left
+          }
         }
-        { TextLabelVendor Label
-          MoveScaled(10,0,22,4)
-          AutoResize = True
-          Alignment = Align.Left
-          Transparent = True
+        { Panel39 VBox
+          MoveScaled(1,16,69,4)
+          Spacing = True
+          Margin = True
+          { TextLabelGraph3 Label
+            MoveScaled(1,1,22,4)
+            Font = Font["Bold"]
+            AutoResize = True
+            Text = ("VGA Controller 2")
+            Alignment = Align.Left
+            Transparent = True
+          }
         }
-      }
-      { hzoPartition25 HBox
-        MoveScaled(1,26,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { TextLabelArch2 Label
-          MoveScaled(5,0,22,4)
-          Font = Font["Bold"]
-          AutoResize = True
-          Text = ("Processor")
-          Alignment = Align.Left
-          Transparent = True
-        }
-      }
-      { hzoPartition20 HBox
-        MoveScaled(1,30,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { Panel25 Panel
-          MoveScaled(1,0,3.4286,4)
-          Mouse = Mouse.Pointing
-          Arrangement = Arrange.Horizontal
-        }
-        { TextLabelProcesador Label
-          MoveScaled(10,0,22,4)
-          AutoResize = True
-          Alignment = Align.Left
-          Transparent = True
-        }
-      }
-      { hzoPartition21 HBox
-        MoveScaled(1,34,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { TextLabelTitleKernel2 Label
-          MoveScaled(5,0,22,4)
-          Font = Font["Bold"]
-          AutoResize = True
-          Text = ("Memory Ram")
-          Alignment = Align.Left
-          Transparent = True
-        }
-      }
-      { hzoPartition22 HBox
-        MoveScaled(1,38,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { Panel26 Panel
-          MoveScaled(1,0,3.4286,4)
-          Mouse = Mouse.Pointing
-          Arrangement = Arrange.Horizontal
-        }
-        { TextLabelRam Label
-          MoveScaled(10,0,22,4)
-          AutoResize = True
-          Alignment = Align.Left
-          Transparent = True
-        }
-      }
-      { hzoPartition23 HBox
-        MoveScaled(1,42,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { TextLabelTitleDistro2 Label
-          MoveScaled(5,0,22,4)
-          Font = Font["Bold"]
-          AutoResize = True
-          Text = ("Hard Disk")
-          Alignment = Align.Left
-          Transparent = True
-        }
-      }
-      { hzoPartition24 HBox
-        MoveScaled(1,46,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { Panel27 Panel
-          MoveScaled(1,0,3.4286,4)
-          Mouse = Mouse.Pointing
-          Arrangement = Arrange.Horizontal
-        }
-        { TextLabelHarddrive Label
-          MoveScaled(10,0,22,4)
-          AutoResize = True
-          Alignment = Align.Left
-          Transparent = True
-        }
-      }
-      { hzoPartition26 HBox
-        MoveScaled(1,50,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { TextLabelTitleDistro3 Label
-          MoveScaled(5,0,22,4)
-          Font = Font["Bold"]
-          AutoResize = True
-          Text = ("Workgroup")
-          Alignment = Align.Left
-          Transparent = True
-        }
-      }
-      { hzoPartition27 HBox
-        MoveScaled(1,54,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { Panel29 Panel
-          MoveScaled(1,0,3.4286,4)
-          Mouse = Mouse.Pointing
-          Arrangement = Arrange.Horizontal
-        }
-        { TextLabelGroup Label
-          MoveScaled(10,0,22,4)
-          AutoResize = True
-          Alignment = Align.Left
-          Transparent = True
+        { Panel71 HBox
+          MoveScaled(1,20,69,8)
+          Spacing = True
+          Margin = True
+          Padding = 3
+          { Panel72 Panel
+            MoveScaled(0,0,3.4286,4)
+            Mouse = Mouse.Pointing
+            Arrangement = Arrange.Horizontal
+          }
+          { TextLabelGraph4 Label
+            MoveScaled(4,0,64,6)
+            AutoResize = True
+            Alignment = Align.Left
+          }
         }
       }
     }
