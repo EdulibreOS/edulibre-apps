@@ -80,7 +80,8 @@ Public Sub sListShow()
   M_Core.Show_Cat_Hide_Launcher
   M_Core.Show_IconSize_Launcher
   M_Core.Show_Cat_Mouse_Move_Launcher
-  M_Core.Show_Opacity_Launcher
+  M_Core.Show_Opacity_Launcher  
+  M_Core.Show_Transparent_Launcher
   M_Core.Show_Preview_Background_Launcher
   M_Core.Show_Text_Launcher
   
@@ -1832,5 +1833,15 @@ End
 Public Sub txttextedit_Change()
   
   M_Core.Update_Apps
+  
+End
+
+Public Sub swbLauncherTrans_Click()
+  
+  M_Core.Update_Transparent_Launcher
+  
+End
+
+Public Sub tbtNext_Click()
   
 End

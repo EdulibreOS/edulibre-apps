@@ -1118,7 +1118,6 @@ Public Sub Show_Opacity_Launcher()
   Else
     f_settings.sldOpacity.Value = iResult
   Endif
-  
 Catch
   Debug "ERROR [ " & DConv(Error.Text) & " ]"
   
@@ -1129,6 +1128,29 @@ Public Sub Update_Opacity_Launcher()
   Settings_Core_Innova.Write(f_settings)
   Settings_Core_Innova["Launcher/Opacity"] = f_settings.sldOpacity.Value
   Settings_Core_Innova.Save
+  
+End
+
+Public Sub Update_Transparent_Launcher()
+  
+  Settings_Core_Innova.Write(f_settings)
+  If f_settings.swbLauncherTrans.Value = True Then
+    Settings_Core_Innova["Launcher/Transparent"] = 1
+  Else
+    Settings_Core_Innova["Launcher/Transparent"] = 0
+  Endif 
+  Settings_Core_Innova.Save
+  
+End
+
+Public Sub Show_Transparent_Launcher()
+  
+  Try sResult = Settings_Core_Innova["Launcher/Transparent"]
+  If sResult = 1 Then
+    f_settings.swbLauncherTrans.Value = True 
+  Else
+    f_settings.swbLauncherTrans.Value = False
+  Endif
   
 End
 

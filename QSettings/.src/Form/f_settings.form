@@ -155,7 +155,7 @@
     }
   }
   { ipnInnova IconPanel
-    MoveScaled(116,24,115,87)
+    MoveScaled(123,4,115,87)
     Visible = False
     Expand = True
     Arrangement = Arrange.Fill
@@ -476,7 +476,7 @@
     Text = ("Launcher")
     Picture = Picture["img/Innova/launcher.svg"]
     { pnlLauncher Panel
-      MoveScaled(1,6,87,63)
+      MoveScaled(1,6,87,81)
       Arrangement = Arrange.Vertical
       Spacing = True
       Margin = True
@@ -573,9 +573,23 @@
           Animated = True
         }
       }
+      { HBox22 HBox
+        MoveScaled(2,27,62,4)
+        Spacing = True
+        Indent = True
+        { Label41 Label
+          MoveScaled(1,0,36,4)
+          Expand = True
+          Text = ("Launcher Transparent")
+          Alignment = Align.Justify
+        }
+        { swbLauncherTrans SwitchButton
+          MoveScaled(46,0,16,4)
+          Mouse = Mouse.Pointing
+        }
+      }
       { hzoIOpacity HBox
-        MoveScaled(2,28,72,4)
-        Visible = False
+        MoveScaled(2,36,72,4)
         Spacing = True
         Padding = 3
         Indent = True
@@ -597,7 +611,7 @@
         }
       }
       { hzoCatMouse2 HBox
-        MoveScaled(3,33,65,4)
+        MoveScaled(2,49,65,4)
         Visible = False
         Spacing = True
         Indent = True
@@ -613,7 +627,7 @@
         }
       }
       { hzoLauncherBack HBox
-        MoveScaled(2,38,66,4)
+        MoveScaled(4,54,66,4)
         Spacing = True
         Indent = True
         { lbltitle10 Label
@@ -630,7 +644,7 @@
         }
       }
       { hzoPreviewLaunch HBox
-        MoveScaled(1,43,57,4)
+        MoveScaled(13,58,57,4)
         Background = &HFFFFFF&
         Spacing = True
         Indent = True
@@ -656,7 +670,7 @@
         }
       }
       { pnlPreviewLaunch Panel
-        MoveScaled(4,47,66,16)
+        MoveScaled(13,64,66,16)
         Expand = True
         Arrangement = Arrange.Horizontal
         Spacing = True
@@ -684,7 +698,7 @@
     Index = 0
   }
   { ipnPanel IconPanel
-    MoveScaled(2,37,108,110)
+    MoveScaled(2,39,108,110)
     Visible = False
     Expand = True
     Arrangement = Arrange.Fill
@@ -834,7 +848,7 @@
         Text = ("Look")
       }
       { pnlStylePanel Panel
-        MoveScaled(2,27,65,9)
+        MoveScaled(2,27,76,6)
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
@@ -872,20 +886,28 @@
             Mouse = Mouse.Pointing
           }
         }
-        { HBox44 HBox
-          MoveScaled(1,9,62,4)
+        { hzoIOpacity2 HBox
+          MoveScaled(1,9,72,4)
           Visible = False
           Spacing = True
+          Padding = 3
           Indent = True
-          { Label27 Label
-            MoveScaled(1,0,36,4)
+          { Label32 Label
+            MoveScaled(1,0,26,4)
             Expand = True
-            Text = ("Dock Style")
-            Alignment = Align.Justify
+            Text = ("Background opacity")
           }
-          { swbPanelDock SwitchButton
-            MoveScaled(46,0,16,4)
+          { sldOpacityPanel Slider
+            MoveScaled(31,0,24,4)
             Mouse = Mouse.Pointing
+          }
+          { lblopacitypanel Label
+            MoveScaled(59,0,12,4)
+            Background = Color.Gray
+            Padding = 2
+            AutoResize = True
+            Alignment = Align.Center
+            Border = Border.Plain
           }
         }
         { HBox45 HBox
@@ -920,28 +942,20 @@
             Mouse = Mouse.Pointing
           }
         }
-        { hzoIOpacity2 HBox
-          MoveScaled(1,22,72,4)
+        { HBox44 HBox
+          MoveScaled(1,22,62,4)
           Visible = False
           Spacing = True
-          Padding = 3
           Indent = True
-          { Label32 Label
-            MoveScaled(1,0,15,4)
+          { Label27 Label
+            MoveScaled(1,0,36,4)
             Expand = True
-            Text = ("Background opacity")
+            Text = ("Dock Style")
+            Alignment = Align.Justify
           }
-          { sldOpacityPanel Slider
-            MoveScaled(31,0,24,4)
+          { swbPanelDock SwitchButton
+            MoveScaled(46,0,16,4)
             Mouse = Mouse.Pointing
-          }
-          { lblopacitypanel Label
-            MoveScaled(59,0,6,4)
-            Background = Color.Gray
-            Padding = 2
-            AutoResize = True
-            Alignment = Align.Center
-            Border = Border.Plain
           }
         }
         { hzoPanrlMouse HBox
@@ -962,12 +976,12 @@
         }
       }
       { Label30 Label
-        MoveScaled(3,35,63,3)
+        MoveScaled(3,58,63,3)
         Font = Font["Bold"]
         Text = ("Style")
       }
       { pnlStyle Panel
-        MoveScaled(2,38,77,19)
+        MoveScaled(2,63,77,19)
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
