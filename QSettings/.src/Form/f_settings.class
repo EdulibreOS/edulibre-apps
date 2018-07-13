@@ -619,7 +619,7 @@ End
 
 Public Sub sldOpacity_Change()
   
-  lblopacity.Text = sldOpacity.Value
+  ' lblopacity.Text = sldOpacity.Value
   M_Core.Update_Opacity_Launcher
   
 End

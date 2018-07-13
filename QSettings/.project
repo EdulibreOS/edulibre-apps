@@ -2,11 +2,7 @@
 Title=QSettings
 Startup=Cls_Start
 Icon=img/preferences.svg
-<<<<<<< HEAD
-Version=0.0.35
-=======
-Version=0.0.29
->>>>>>> ead8ff5f9ac9a32b3bbd622e9a7a6c589ab65783
+Version=0.0.30
 Component=gb.image
 Component=gb.qt5
 Component=gb.form

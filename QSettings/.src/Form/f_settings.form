@@ -598,16 +598,9 @@
           Expand = True
           Text = ("Launcher opacity")
         }
-        { sldOpacity Slider
+        { sldOpacity SliderBox
           MoveScaled(39,0,24,4)
-        }
-        { lblopacity Label
-          MoveScaled(65,0,6,4)
-          Background = Color.Gray
-          Padding = 2
-          AutoResize = True
-          Alignment = Align.Center
-          Border = Border.Plain
+          MinValue = 80
         }
       }
       { hzoCatMouse2 HBox

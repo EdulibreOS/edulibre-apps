@@ -1060,7 +1060,9 @@ Public Sub Update_Cat_Hide_Launcher()
     Settings_Core_Innova["Launcher/Show_Cat"] = 0
   Endif 
   Settings_Core_Innova.Save
-  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+
 End
 
 Public Sub Show_Text_Launcher()
@@ -1083,7 +1085,9 @@ Public Sub Update_Text_Launcher()
     Settings_Core_Innova["Launcher/Show_Text"] = 0
   Endif 
   Settings_Core_Innova.Save
-  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+
 End
 
 Public Sub Show_Cat_Mouse_Move_Launcher()
@@ -1094,7 +1098,9 @@ Public Sub Show_Cat_Mouse_Move_Launcher()
   Else
     f_settings.swbCatMouseMove.Value = False
   Endif
-  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+
 End
 
 Public Sub Update_Cat_Mouse_Move_Launcher()
@@ -1128,7 +1134,9 @@ Public Sub Update_Opacity_Launcher()
   Settings_Core_Innova.Write(f_settings)
   Settings_Core_Innova["Launcher/Opacity"] = f_settings.sldOpacity.Value
   Settings_Core_Innova.Save
-  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+
 End
 
 Public Sub Update_Transparent_Launcher()
@@ -1140,7 +1148,9 @@ Public Sub Update_Transparent_Launcher()
     Settings_Core_Innova["Launcher/Transparent"] = 0
   Endif 
   Settings_Core_Innova.Save
-  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+
 End
 
 Public Sub Show_Transparent_Launcher()
