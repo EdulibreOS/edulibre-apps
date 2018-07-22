@@ -363,7 +363,6 @@ Public Sub graphics()
   Dim c As String 'caracter
   Dim band As Boolean = False 'GPU flag
   
-  'Obtains GPU from console
   Shell "lspci | grep -i vga" Wait To gCard 
   
   For i = 1 To Len(gCard)
