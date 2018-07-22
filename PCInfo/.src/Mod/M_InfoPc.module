@@ -356,21 +356,19 @@ Catch
   
 End
 
-'Show GPU graphics card info
+'GPU graphics card info
 Public Sub graphics()
   Dim gCard, gCard1, gCard2 As String
   Dim i As Integer 'contador
   Dim c As String 'caracter
-  Dim band As Boolean = False 'GPU flag (if it has 1 or 2)
+  Dim band As Boolean = False 'GPU flag
   
   'Obtains GPU from console
   Shell "lspci | grep -i vga" Wait To gCard 
   
-  'Splits string 
   For i = 1 To Len(gCard)
     c = Mid(gCard, i, 1)
     
-    'flag of number of GPUs
     If Comp(c, "\n") = 0 Then
       band = True
     Endif
@@ -385,19 +383,16 @@ Public Sub graphics()
   gCard1 = Mid(gCard1, InStr(gCard1, ":", 5) + 2)
   gCard2 = Mid(gCard2, InStr(gCard2, ":", 5) + 2)  
   
-  'Sets text in labels
   f_PC_Info.TextLabelGraph2.Text = Left$(gCard1, InStr(gCard1, "(") - 1)
-  f_PC_Info.mnuGru1.Text = "VGA 1: " & Left$(gCard1, InStr(gCard1, "(") - 1) 'submenu
+  f_PC_Info.mnuGru1.Text = "VGA 1: " & Left$(gCard1, InStr(gCard1, "(") - 1)
   
-  'checks if there's 2nd graphic card
-  If band = True Then 
-    f_PC_Info.TextLabelGraph4.Text = Left$(gCard2, InStr(gCard2, "(") - 1) 
-    f_PC_Info.mnuGru2.Text = "VGA 2: " & Left$(gCard2, InStr(gCard2, "(") - 1) 'submenu
-  Else
+  If IsNull(gCard2) Then 
     f_PC_Info.TextLabelGraph3.Text = ""
     f_PC_Info.TextLabelGraph4.Text = ""
-    f_PC_Info.mnuGru2.Text = "VGA 2: NONE" 'submenu
-    
+    f_PC_Info.mnuGru2.Text = "VGA 2: NONE"
+  Else
+    f_PC_Info.TextLabelGraph4.Text = Left$(gCard2, InStr(gCard2, "(") - 1) 
+    f_PC_Info.mnuGru2.Text = "VGA 2: " & Left$(gCard2, InStr(gCard2, "(") - 1)
   Endif
   
   
