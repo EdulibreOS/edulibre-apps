@@ -346,6 +346,7 @@
         { TextLabelCore Label
           MoveScaled(38,0,22,4)
           AutoResize = True
+          Text = ("Core(s)")
           Alignment = Align.Left
           Transparent = True
         }
@@ -672,7 +673,10 @@
             { lblVendor Label
               MoveScaled(4,0,30,4)
               Font = Font["Bold"]
+<<<<<<< HEAD
               Foreground = &HDFDFDF&
+=======
+>>>>>>> 9ee7da029d7b028c63e4cf20154e18d108304f49
               Alignment = Align.Left
               Border = Border.Plain
             }
@@ -691,7 +695,10 @@
             { lblName Label
               MoveScaled(4,0,30,4)
               Font = Font["Bold"]
+<<<<<<< HEAD
               Foreground = &HDFDFDF&
+=======
+>>>>>>> 9ee7da029d7b028c63e4cf20154e18d108304f49
               Alignment = Align.Left
               Border = Border.Plain
             }
