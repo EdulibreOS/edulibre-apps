@@ -41,7 +41,8 @@ Public Sub Info_Pc()
   Dim timezone As String
   Dim sTempSessio As String
   Dim sTempVendor As String
-  Dim sCore As String           'No. of cores
+  Dim sCore As String
+  Dim sCache As String
   
   Exec ["uname", "-r"] To sTemp
   Exec ["uname", "-o"] To sTempFam
@@ -113,6 +114,11 @@ Public Sub Info_Pc()
   Shell "lscpu -p | egrep -v '^#' | wc -l" Wait To sCore
   f_PC_Info.TextLabelCore.Text = Trim(sCore) & " Core(s)    "
   f_PC_Info.mnuCore.Text = ("CPUs: ") & Trim(sCore) & " Core(s)" 'submenu
+  
+  'Obtains CPU cache
+  Shell "lscpu | grep -e Caché -e Cache" Wait To sCache 
+  f_PC_Info.TextLabelCache.Text = sCache
+  
   
   
 End
