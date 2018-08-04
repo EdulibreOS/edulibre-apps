@@ -388,7 +388,7 @@ Public Sub graphics()
   If IsNull(gCard2) Then 
     f_PC_Info.TextLabelGraph3.Text = ""
     f_PC_Info.TextLabelGraph4.Text = ""
-    f_PC_Info.mnuGru2.Text = "VGA 2: NONE"
+    f_PC_Info.mnuGru2.Visible = False
   Else
     f_PC_Info.TextLabelGraph4.Text = Left$(gCard2, InStr(gCard2, "(") - 1) 
     f_PC_Info.mnuGru2.Text = "VGA 2: " & Left$(gCard2, InStr(gCard2, "(") - 1)
