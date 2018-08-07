@@ -764,6 +764,7 @@ Public Sub BtnDefault_Click()
   Dim sSend As String = Desktop.ConfigDir 
   Dim sOrigen As String = "/usr/share/Innova/"
   Dim sCopy As String
+  Dim i As Integer
   
   Message.Title = ("Innova Desktop - Restore Default")
   If Message.Question("<span style=\"color:#" & "CC0000" & ";margin-left:1em;\">" & ("Are you sure to restore Innova defaults...?  "), ("Yes"), ("No")) = 1 Then
