@@ -28,6 +28,7 @@
       { Menu3 Menu
         Text = ("Cache")
         Picture = Picture["img/pc_info/Info.svg"]
+        Visible = False
       }
       { mnuRam Menu
         Text = ("Memory Ram")
@@ -411,7 +412,7 @@
           MoveScaled(4,0,22,4)
           Font = Font["Bold"]
           AutoResize = True
-          Text = ("Caché    ")
+          Text = ("Cache    ")
           Alignment = Align.Left
           Transparent = True
         }
@@ -441,8 +442,8 @@
           Mouse = Mouse.Pointing
           Arrangement = Arrange.Horizontal
         }
-        { TextLabelCache Label
-          MoveScaled(3,0,24,8)
+        { TextLabelCache1 Label
+          MoveScaled(4,0,24,8)
           AutoResize = True
           Text = ("Caché")
           Alignment = Align.Left
@@ -453,8 +454,15 @@
           Mouse = Mouse.Pointing
           Arrangement = Arrange.Horizontal
         }
+        { TextLabelCache2 Label
+          MoveScaled(33,0,24,8)
+          AutoResize = True
+          Text = ("Caché")
+          Alignment = Align.Left
+          Transparent = True
+        }
         { TextLabelHarddrive Label
-          MoveScaled(37,0,22,4)
+          MoveScaled(52,1,22,4)
           Visible = False
           AutoResize = True
           Alignment = Align.Left

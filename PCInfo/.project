@@ -2,7 +2,7 @@
 Title=PCInfo
 Startup=Cls_Start
 Icon=img/pcinfo.png
-Version=0.5.26
+Version=0.5.27
 Component=gb.image
 Component=gb.qt5
 Component=gb.form
