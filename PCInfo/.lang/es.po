@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PCInfo 3.11.2\n"
-"PO-Revision-Date: 2018-08-09 04:47 UTC\n"
+"PO-Revision-Date: 2018-08-10 13:21 UTC\n"
 "Last-Translator: javihm77 <javihm77@javihm77-K55VD>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -302,7 +302,7 @@ msgid "Core(s)"
 msgstr "Núcleo(s)"
 
 #: f_PC_Info.form:752
-msgid "Caché    "
+msgid "Cache    "
 msgstr "Caché"
 
 #: f_PC_Info.form:790
