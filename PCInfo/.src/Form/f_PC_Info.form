@@ -25,13 +25,20 @@
         Text = ("CPUs")
         Picture = Picture["img/pc_info/Info.svg"]
       }
+      { Menu3 Menu
+        Text = ("Cache")
+        Picture = Picture["img/pc_info/Info.svg"]
+        Visible = False
+      }
       { mnuRam Menu
         Text = ("Memory Ram")
         Picture = Picture["img/pc_info/Mem_Info.svg"]
+        Visible = False
       }
       { mnuHD Menu
         Text = ("Hard Disk")
         Picture = Picture["img/pc_info/Hard-Disk.svg"]
+        Visible = False
       }
       { mnuWorkgropu Menu
         Text = ("Workgroup")
@@ -263,7 +270,7 @@
         MoveScaled(5,17,13,0.2857)
       }
       { hzoPartition18 HBox
-        MoveScaled(1,18,72,4)
+        MoveScaled(1,16,72,4)
         Spacing = True
         Padding = 3
         Indent = True
@@ -277,12 +284,12 @@
         }
       }
       { hzoPartition19 HBox
-        MoveScaled(1,22,72,4)
+        MoveScaled(1,20,72,4)
         Spacing = True
         Padding = 3
         Indent = True
         { Panel24 Panel
-          MoveScaled(1,0,3.4286,4)
+          MoveScaled(0,0,3.4286,4)
           Mouse = Mouse.Pointing
           Arrangement = Arrange.Horizontal
         }
@@ -294,7 +301,7 @@
         }
       }
       { hzoPartition25 HBox
-        MoveScaled(1,26,72,4)
+        MoveScaled(1,24,72,4)
         Spacing = True
         Padding = 3
         Indent = True
@@ -312,22 +319,14 @@
           Expand = True
           Arrangement = Arrange.Vertical
         }
-        { TextLabelArch3 Label
-          MoveScaled(38,0,22,4)
-          Font = Font["Bold"]
-          AutoResize = True
-          Text = ("CPUs    ")
-          Alignment = Align.Left
-          Transparent = True
-        }
       }
       { hzoPartition20 HBox
-        MoveScaled(1,30,72,4)
+        MoveScaled(1,28,72,4)
         Spacing = True
         Padding = 3
         Indent = True
         { Panel73 Panel
-          MoveScaled(1,0,3.4286,4)
+          MoveScaled(0,0,3.4286,4)
           Mouse = Mouse.Pointing
           Arrangement = Arrange.Horizontal
         }
@@ -343,21 +342,29 @@
           Expand = True
           Arrangement = Arrange.Vertical
         }
-        { TextLabelCore Label
-          MoveScaled(38,0,22,4)
-          AutoResize = True
-          Text = ("Core(s)")
-          Alignment = Align.Left
-          Transparent = True
-        }
       }
       { hzoPartition21 HBox
-        MoveScaled(1,34,72,4)
+        MoveScaled(1,32,72,4)
         Spacing = True
         Padding = 3
         Indent = True
-        { TextLabelTitleKernel2 Label
+        { TextLabelArch3 Label
           MoveScaled(5,0,22,4)
+          Font = Font["Bold"]
+          AutoResize = True
+          Text = ("CPUs    ")
+          Alignment = Align.Left
+          Transparent = True
+        }
+        { Panel75 Panel
+          MoveScaled(29,0,3,4)
+          Mouse = Mouse.Pointing
+          Expand = True
+          Arrangement = Arrange.Vertical
+        }
+        { TextLabelTitleKernel2 Label
+          MoveScaled(36,0,22,4)
+          Visible = False
           Font = Font["Bold"]
           AutoResize = True
           Text = ("Memory Ram")
@@ -366,29 +373,58 @@
         }
       }
       { hzoPartition22 HBox
-        MoveScaled(1,38,72,4)
+        MoveScaled(1,36,72,4)
         Spacing = True
         Padding = 3
         Indent = True
         { Panel26 Panel
-          MoveScaled(1,0,3.4286,4)
+          MoveScaled(0,0,3.4286,4)
           Mouse = Mouse.Pointing
           Arrangement = Arrange.Horizontal
         }
+        { TextLabelCore Label
+          MoveScaled(4,0,22,4)
+          AutoResize = True
+          Text = ("Core(s)")
+          Alignment = Align.Left
+          Transparent = True
+        }
+        { Panel76 Panel
+          MoveScaled(29,0,3,4)
+          Mouse = Mouse.Pointing
+          Expand = True
+          Arrangement = Arrange.Vertical
+        }
         { TextLabelRam Label
-          MoveScaled(10,0,22,4)
+          MoveScaled(36,0,22,4)
+          Visible = False
           AutoResize = True
           Alignment = Align.Left
           Transparent = True
         }
       }
       { hzoPartition23 HBox
-        MoveScaled(1,42,72,4)
+        MoveScaled(1,40,72,4)
         Spacing = True
         Padding = 3
         Indent = True
+        { TextLabelArch4 Label
+          MoveScaled(4,0,22,4)
+          Font = Font["Bold"]
+          AutoResize = True
+          Text = ("Cache    ")
+          Alignment = Align.Left
+          Transparent = True
+        }
+        { Panel77 Panel
+          MoveScaled(29,0,3,4)
+          Mouse = Mouse.Pointing
+          Expand = True
+          Arrangement = Arrange.Vertical
+        }
         { TextLabelTitleDistro2 Label
-          MoveScaled(5,0,22,4)
+          MoveScaled(37,0,22,4)
+          Visible = False
           Font = Font["Bold"]
           AutoResize = True
           Text = ("Hard Disk")
@@ -397,24 +433,44 @@
         }
       }
       { hzoPartition24 HBox
-        MoveScaled(1,46,72,4)
+        MoveScaled(1,44,72,8)
         Spacing = True
         Padding = 3
         Indent = True
-        { Panel27 Panel
-          MoveScaled(1,0,3.4286,4)
+        { Panel78 Panel
+          MoveScaled(0,0,4,7)
           Mouse = Mouse.Pointing
           Arrangement = Arrange.Horizontal
         }
+        { TextLabelCache1 Label
+          MoveScaled(4,0,24,8)
+          AutoResize = True
+          Text = ("Caché")
+          Alignment = Align.Left
+          Transparent = True
+        }
+        { Panel27 Panel
+          MoveScaled(29,0,4,7)
+          Mouse = Mouse.Pointing
+          Arrangement = Arrange.Horizontal
+        }
+        { TextLabelCache2 Label
+          MoveScaled(33,0,24,8)
+          AutoResize = True
+          Text = ("Caché")
+          Alignment = Align.Left
+          Transparent = True
+        }
         { TextLabelHarddrive Label
-          MoveScaled(10,0,22,4)
+          MoveScaled(52,1,22,4)
+          Visible = False
           AutoResize = True
           Alignment = Align.Left
           Transparent = True
         }
       }
       { hzoPartition26 HBox
-        MoveScaled(1,50,72,4)
+        MoveScaled(1,52,72,4)
         Spacing = True
         Padding = 3
         Indent = True
@@ -428,7 +484,7 @@
         }
       }
       { hzoPartition27 HBox
-        MoveScaled(1,54,72,4)
+        MoveScaled(1,56,72,4)
         Spacing = True
         Padding = 3
         Indent = True
