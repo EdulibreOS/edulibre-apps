@@ -1,0 +1,169 @@
+' Gambas class file
+
+'This file Is Part Of Pictogram.
+'
+'    Pictogram Is Free software: you can redistribute it And / Or modify
+'    it under the terms Of the GNU General Public License As Published by
+'    the Free Software Foundation, either version 3 Of the License, Or
+'    (at your option)any later version.
+'
+'    Pictogram Is Distributed In the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty Of
+'    MERCHANTABILITY Or FITNESS For A PARTICULAR PURPOSE.See the
+'    GNU General Public License For more details.
+'
+'    You should have received a Copy Of the GNU General Public License
+'    along With Foobar.If Not, see < http: / / www.gnu.org / licenses / > .
+'
+'
+Public pathimg As String
+Public name_ As String
+Public format_ As String
+Public nameshort As String
+Public pathreturn As String
+Public directory As String
+Public current_name As String
+Public WidthPicture As Integer
+Public HeightPicture As Integer
+Public i As Boolean = False
+Public fuente As Integer
+
+Public Sub ConverterImg(path1 As String, origen As Integer)
+  
+  Dim pathFun As New Path
+  Dim w As String
+  Dim h As String
+  Dim sizeGif As String
+  Dim sGif As String[]
+  
+  pathimg = path1
+  fuente = origen
+  pathFun.setPath(pathimg)
+  
+  name_ = pathFun.getImgPath()
+  format_ = pathFun.getImgFormat()
+  nameshort = pathFun.getNameShort()
+  directory = pathFun.getDirectory()
+  
+  If Comp(format_, "gif") == 0 Then
+    
+    Shell "identify -format '%g' '" & pathimg & "[0]" & "'" Wait To sizeGif
+    sGif = Split(sizeGif, "+")
+    sGif = Split(sGif[0], "x")
+    
+    WidthPicture = CInt(sGif[0]) 
+    HeightPicture = CInt(sGif[1])
+    
+    LabelCalidad.Visible = False
+    LabelCalidad2.Visible = False
+    SliderBoxCalidad.Visible = False
+    
+  Else
+    
+    Shell "identify -format '%w' '" & pathimg & "'" Wait To w
+    Shell "identify -format '%h' '" & pathimg & "'" Wait To h    
+    
+    WidthPicture = CInt(w) 
+    HeightPicture = CInt(h)
+    
+  Endif 
+  
+  SpinBoxAncho.Value = WidthPicture
+  SpinBoxAlto.Value = HeightPicture
+  SliderBoxCalidad.Value = 100
+  
+  LabelRes.Text = w & " x " & h
+  LabelName.Text = name_
+  
+End
+
+Public Sub Form_Open()
+  
+End
+
+Public Sub SpinBoxAncho_Change()
+  
+  If i == False Then
+    i = True
+    SpinBoxAlto.Value = (SpinBoxAncho.Value * HeightPicture) / WidthPicture    
+  Else
+    i = False
+  Endif
+  
+End
+
+Public Sub SpinBoxAlto_Change()
+  
+  If i == False Then
+    i = True
+    SpinBoxAncho.Value = (SpinBoxAlto.Value * WidthPicture) / HeightPicture
+  Else
+    i = False
+  Endif
+  
+End
+
+Public Sub Button2_Click()
+  
+  Me.Close()
+  
+End
+
+Public Sub Button1_Click()
+  
+  Dim command As String
+  
+  If CheckBoxSobreEscribir.Value Then
+    
+    pathreturn = directory & nameshort & "." & format_
+    
+    If Comp(format_, "gif") == 0 Then
+      
+      Shell "gifsicle --resize " & SpinBoxAncho.Value & "x" & SpinBoxAlto.Value & " -i '" & pathimg & "' > " & "temporaryPic.gif" Wait
+   '  Shell "rm -f '" & pathimg & "'" Wait
+      Shell "mv temporaryPic.gif '" & pathreturn & "'"
+      
+    Else  
+      
+      Shell "convert -resize " & SpinBoxAncho.Value & "x" & SpinBoxAlto.Value & " -quality " & SliderBoxCalidad.Value & " '" & pathimg & "' '" & pathimg & "'" Wait
+      
+    Endif    
+    
+    current_name = nameshort & "." & format_
+    
+    Message.Title = "Editar Imagen"
+    Message.Info("Se ha cambiado el tamaño de la imagen a: " & SpinBoxAncho.Value & "x" & SpinBoxAlto.Value, "Aceptar")
+  Else
+    
+    pathreturn = directory & nameshort & "-resize." & format_
+    
+    If Comp(format_, "gif") == 0 Then
+      command = "gifsicle --resize " & SpinBoxAncho.Value & "x" & SpinBoxAlto.Value & " -i '" & pathimg & "' > '" & pathreturn & "'"
+    Else  
+      command = "convert -resize " & SpinBoxAncho.Value & "x" & SpinBoxAlto.Value & " -quality " & SliderBoxCalidad.Value & " '" & pathimg & "' '" & pathreturn & "'"
+    Endif   
+  
+    current_name = nameshort & "-resize." & format_
+    
+    Shell command Wait
+    
+    Message.Title = "Editar Imagen"
+    Message.Info("Se ha creado la imagen con las dimensiones: " & SpinBoxAncho.Value & "x" & SpinBoxAlto.Value, "Aceptar")
+    
+  Endif
+  
+  VisorForm.SetPictureTmpFromMain(pathreturn)
+  VisorForm.SetPath(pathreturn)
+  VisorForm.Title = "Picto - " & pathreturn
+  
+  If fuente == 1 Then
+    VisorForm.CreateThumb(current_name)
+    ListImage.GetFromDirectory(ListImage.DirPath)
+    ListImage.UpdateMainPanel()
+  Else
+    VisorForm.Origen(2)
+  Endif  
+  
+  Me.Close()
+  
+End

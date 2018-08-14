@@ -1,0 +1,171 @@
+' Gambas class file
+
+'This file Is Part Of Pictogram.
+'
+'    Pictogram Is Free software: you can redistribute it And / Or modify
+'    it under the terms Of the GNU General Public License As Published by
+'    the Free Software Foundation, either version 3 Of the License, Or
+'    (at your option)any later version.
+'
+'    Pictogram Is Distributed In the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty Of
+'    MERCHANTABILITY Or FITNESS For A PARTICULAR PURPOSE.See the
+'    GNU General Public License For more details.
+'
+'    You should have received a Copy Of the GNU General Public License
+'    along With Foobar.If Not, see < http: / / www.gnu.org / licenses / > .
+'
+'
+
+Public pathimg As String
+Public name_ As String
+Public format_ As String
+Public nameshort As String
+Public pathreturn As String
+Public directory As String
+Public formatChoose As String
+Public current_name As String
+Public fuente As String 
+
+Public Sub ConverterImg(path1 As String, origen As Integer)
+  
+  Dim pathFun As New Path
+  
+  fuente = origen 
+  pathimg = path1
+  pathFun.setPath(path1)
+  
+  name_ = pathFun.getImgPath()
+  format_ = pathFun.getImgFormat()
+  nameshort = pathFun.getNameShort()
+  directory = pathFun.getDirectory()
+  
+  LabelFormat.Text = format_
+  LabelName.Text = name_
+  
+  Select format_
+    Case "jpg"
+      RadioButtonJpg.Enabled = False
+      RadioButtonPng.Value = True
+      formatChoose = ".png"
+    Case "jpeg"
+      RadioButtonJpg.Text = ".jpeg"
+      RadioButtonJpg.Enabled = False
+      RadioButtonPng.Value = True
+      formatChoose = ".png"
+    Case "png"
+      RadioButtonPng.Enabled = False
+      formatChoose = ".jpg"
+    Case "bmp"
+      RadioButtonbmp.Enabled = False
+      formatChoose = ".jpg"
+    Case "gif"
+      RadioButtongif.Enabled = False
+      formatChoose = ".jpg"
+    Case "JPEG"
+      RadioButtonJpg.Text = ".jpeg"
+      RadioButtonJpg.Enabled = False
+      RadioButtonPng.Value = True
+      formatChoose = ".png"
+    Case "JPG"
+      RadioButtonJpg.Enabled = False
+      RadioButtonPng.Value = True
+      formatChoose = ".png"
+    Case "PNG"
+      RadioButtonPng.Enabled = False
+      formatChoose = ".jpg"
+    Case "BMP"
+      RadioButtonbmp.Enabled = False
+      formatChoose = ".jpg"
+    Case "GIF"
+      RadioButtongif.Enabled = False
+      formatChoose = ".jpg"
+  End Select
+  
+End
+
+Public Sub ButtonAccept_Click()
+  
+  Dim command As String
+  
+  pathreturn = directory & nameshort & formatChoose
+  
+  If Comp(format_, "gif") == 0 Then
+    
+    command = "convert '" & pathimg & "[0]" & "' '" & pathreturn & "'"
+    
+  Else
+    
+    command = "convert '" & pathimg & "' '" & pathreturn & "'"
+    
+  Endif
+    
+  current_name = nameshort & formatChoose
+  
+  If CheckBoxSobreEscribir.Value Then
+    
+    Shell command Wait
+    Shell "rm -f '" & pathimg & "'" Wait
+    
+    Message.Title = "Editar Imagen"
+    Message.Info("Se ha cambiado el formato de la imagen a: " & formatChoose, "Aceptar")
+  Else
+    
+    Shell command Wait
+    
+    Message.Title = "Editar Imagen"
+    Message.Info("Se ha creado la imagen con formato: " & formatChoose, "Aceptar")
+    
+  Endif
+  
+  VisorForm.SetPictureTmpFromMain(pathreturn)
+  VisorForm.SetPath(pathreturn)
+  VisorForm.Title = "Pictogram - " & pathreturn
+  
+  If fuente == 1 Then
+    VisorForm.CreateThumb(current_name)
+    ListImage.GetFromDirectory(ListImage.DirPath)
+    ListImage.UpdateMainPanel()
+  Else
+    VisorForm.Origen(2)
+  Endif  
+  
+  Me.Close()
+  
+End
+
+Public Sub ButtonCancel_Click()
+  
+  Me.Close()
+  
+End
+
+Public Sub RadioButtonJpg_Click()
+  
+  formatChoose = ".jpg"
+  
+End
+
+Public Sub RadioButtonPng_Click()
+  
+  formatChoose = ".png"
+  
+End
+
+Public Sub RadioButtonbmp_Click()
+  
+  formatChoose = ".bmp"
+  
+End
+
+Public Sub RadioButtongif_Click()
+  
+  formatChoose = ".gif"
+  
+End
+
+Public Sub EditForm_Open()
+  
+  EditForm.Title = "Cambiar formato de Imagen"
+  
+End

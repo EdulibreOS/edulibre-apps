@@ -1,0 +1,144 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,91,74)
+  Background = &H042C37&
+  Foreground = &HBBD2D2&
+  Mouse = Mouse.Pointing
+  Text = ("About - Pictogram")
+  Icon = Picture["img/LogoPictogram.png"]
+  Resizable = False
+  { pnHeader Panel
+    MoveScaled(-3,0,95,14)
+    Background = &HBBD2D2&
+    Foreground = &H042C37&
+    { lblAboutTitle Label
+      MoveScaled(13,3,58,4)
+      Font = Font["+6"]
+      Foreground = &H042C37&
+      Text = ("Innova Desktop Environment")
+    }
+    { picLogo PictureBox
+      MoveScaled(5,3,6.875,6.875)
+      Picture = Picture["img/gambas3.png"]
+      Stretch = True
+      Alignment = Align.Center
+    }
+    { lblFramework Label
+      MoveScaled(13,7,41,4)
+      Foreground = &H042C37&
+      Text = ("This program uses Gambas version 3.10.0")
+    }
+  }
+  { picLogo3 PictureBox
+    MoveScaled(1,26,18.25,18.25)
+    Picture = Picture["img/LogoPictogram.png"]
+    Stretch = True
+    Alignment = Align.Center
+  }
+  { HBox1 HBox
+    MoveScaled(2,67,87,4)
+    Spacing = True
+    Indent = True
+    { Panel1 Panel
+      MoveScaled(11,0,33,4)
+      Expand = True
+      Arrangement = Arrange.Vertical
+    }
+    { btnClose Button
+      MoveScaled(69,0,14,4)
+      Mouse = Mouse.Pointing
+      Text = Shortcut(("Close"), "C")
+      Picture = Picture["icon:/small/cancel"]
+    }
+  }
+  { tab_Workspace TabPanel
+    MoveScaled(20,16,68,50)
+    Count = 4
+    Highlight = True
+    Index = 0
+    Text = ("About")
+    { lblAuthor Label
+      MoveScaled(1,36,66,4)
+      Text = ("Copyright (C) 2017-2017")
+      Alignment = Align.Center
+    }
+    { URLLabel1 URLLabel
+      MoveScaled(34,33,14,3)
+      Background = &HBBD2D2&
+      Link = "http://sourceforge.net/projects/innovadesktop/"
+      Text = ("Innova Desktop")
+      Alignment = Align.Center
+    }
+    { lblVersion Label
+      MoveScaled(1,4,14,4)
+      Font = Font["Bold"]
+      Alignment = Align.Left
+    }
+    { lblTitle Label
+      MoveScaled(1,1,66,5)
+      Font = Font["Lato,Bold,+2"]
+      Text = ("Pictogram")
+      Alignment = Align.Left
+    }
+    { txtlabelabout TextLabel
+      MoveScaled(2,9,65,23)
+      Text = ("<p><br>Pictogram is an application to view and edit images in a simple and fast way.</p>\n<br><br><br><br><br>\n Contact: erojas@cunori.edu.gt")
+    }
+    { URLLabel2 URLLabel
+      MoveScaled(19,33,14,3)
+      Background = &HBBD2D2&
+      Link = "http://edulibre.net"
+      Text = ("Edulibre")
+      Alignment = Align.Center
+    }
+    Index = 1
+    Text = ("Authors")
+    { TextArea1 TextArea
+      MoveScaled(4,1,62,36)
+      Background = &H042C37&
+      Foreground = Color.White
+      Text = ("Version 1.0.0\n -> Edgar Rubén Rojas Ovando - Development/Design\n----------------------------------------------------------------------\nVersion 0.6.0\n -> Carlos Orlando Paiz Raymundo - Development/Design\n -> Edgar Rubén Rojas Ovando - Development/Design\n -> Boris Josué Mayén Juárez - Development\n----------------------------------------------------------------------\nCollaborators\n -> Benoît Minisini - Gambas3\n -> Herberth Guzman - Edulibre\n -> Ing. Samy Pinto - Cunori\n -> Ing. Carlos Ardón - Cunori\n\n")
+      Border = False
+    }
+    { Label2 Label
+      MoveScaled(0,38,68,7)
+      Font = Font["Bold,+1"]
+      Text = ("CENTRO UNIVERSITARIO DE ORIENTE\nUSAC")
+      Alignment = Align.Center
+    }
+    { PictureBox1 PictureBox
+      MoveScaled(4,38,8,7)
+      Picture = Picture["img/logo-cunori-w.png"]
+      Stretch = True
+    }
+    { PictureBox2 PictureBox
+      MoveScaled(56,37,8,8)
+      Picture = Picture["img/logo-usac-w.png"]
+      Stretch = True
+    }
+    Index = 2
+    Text = ("License")
+    { txt_License TextArea
+      MoveScaled(3,4,61,38)
+      Background = &H042C37&
+      Foreground = Color.White
+      Text = ("This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License    along with this program.  If not, see http://www.gnu.org/licenses/")
+      ReadOnly = True
+      Wrap = True
+      Border = False
+    }
+    Index = 3
+    Text = ("Translators")
+    { txt_Translators TextArea
+      MoveScaled(3,3,50,27)
+      Background = &H042C37&
+      Foreground = Color.White
+      Text = ("Spanish: \tCarlos Paiz, Rubén Rojas, Boris Mayén\nEnglish:  \tEdgar Rubén Rojas Ovando\nFrench:   \tEdgar Rubén Rojas Ovando")
+      ReadOnly = True
+      Wrap = True
+      Border = False
+    }
+    Index = 0
+  }
+}

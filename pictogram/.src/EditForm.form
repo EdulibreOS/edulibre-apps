@@ -1,0 +1,68 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,53,57)
+  Icon = Picture["img/LogoPictogram.png"]
+  { Label1 Label
+    MoveScaled(2,2,50,6)
+    Font = Font["Bold,+3"]
+    AutoResize = True
+    Text = ("Cambiar Formato")
+    Alignment = Align.Center
+  }
+  { Label3 Label
+    MoveScaled(4,15,8,4)
+    Text = ("Formato:")
+  }
+  { Label4 Label
+    MoveScaled(5,20,24,4)
+    Text = ("Elegir Nuevo Formato:")
+  }
+  { Panel1 Panel
+    MoveScaled(4,24,24,17)
+    { RadioButtonJpg RadioButton
+      MoveScaled(1,1,24,4)
+      Text = (".jpg")
+      Value = True
+    }
+    { RadioButtonPng RadioButton
+      MoveScaled(1,5,24,4)
+      Text = (".png")
+    }
+    { RadioButtonbmp RadioButton
+      MoveScaled(1,9,24,4)
+      Text = (".bmp")
+    }
+    { RadioButtongif RadioButton
+      MoveScaled(1,13,24,4)
+      Text = (".gif")
+    }
+  }
+  { ButtonCancel Button
+    MoveScaled(7,49,16,4)
+    Text = ("Cancelar")
+  }
+  { ButtonAccept Button
+    MoveScaled(30,49,16,4)
+    Text = ("Aceptar")
+  }
+  { CheckBoxSobreEscribir CheckBox
+    MoveScaled(4,43,24,4)
+    Text = ("Sobreescribir Imagen")
+    Value = CheckBox.True
+  }
+  { LabelFormat Label
+    MoveScaled(15,15,34,4)
+    Font = Font["Bold"]
+    AutoResize = True
+  }
+  { Label2 Label
+    MoveScaled(4,9,8,4)
+    Text = ("Nombre:")
+  }
+  { LabelName Label
+    MoveScaled(15,9,34,4)
+    Font = Font["Bold"]
+    AutoResize = True
+  }
+}

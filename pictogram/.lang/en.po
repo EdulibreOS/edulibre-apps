@@ -1,0 +1,449 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pictogram 3.10.0\n"
+"POT-Creation-Date: 2017-10-12 09:53 UTC\n"
+"PO-Revision-Date: 2017-10-12 09:59 UTC\n"
+"Last-Translator: bencho <bencho@rfem>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .project:1 f_about.form:117
+msgid "Pictogram"
+msgstr "Pictogram"
+
+#: .project:2
+msgid ""
+"- Pictogram is an application to view and edit images in a simple and fast way\n"
+"Contact rbencho@gmail.com"
+msgstr ""
+"- Pictogram is an application to view and edit images in a simple and fast way\n"
+"Contact rbencho@gmail.com"
+
+#: EditForm.form:27 ListImage.form:70 VisorForm.form:136
+msgid "Cambiar Formato"
+msgstr "Change format"
+
+#: EditForm.form:33 EditResolution.form:36
+msgid "Nombre:"
+msgstr "Name:"
+
+#: EditForm.form:38
+msgid "Formato:"
+msgstr "Format:"
+
+#: EditForm.form:43
+msgid "Elegir Nuevo Formato:"
+msgstr "Choose new format"
+
+#: EditForm.form:51
+msgid ".jpg"
+msgstr ".jpg"
+
+#: EditForm.form:57
+msgid ".png"
+msgstr ".png"
+
+#: EditForm.form:62
+msgid ".bmp"
+msgstr ".bmp"
+
+#: EditForm.form:67
+msgid ".gif"
+msgstr ".gif"
+
+#: EditForm.form:73 EditResolution.form:84
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: EditForm.form:78 EditResolution.form:79
+msgid "Aceptar"
+msgstr "Accept"
+
+#: EditForm.form:83 EditResolution.form:104
+msgid "Sobreescribir Imagen"
+msgstr "Overwrite image"
+
+#: EditResolution.form:30 VisorForm.form:533
+msgid "Cambiar Tamaño"
+msgstr "Change size"
+
+#: EditResolution.form:41
+msgid "Tamaño Actual:"
+msgstr "Current Size:"
+
+#: EditResolution.form:68
+msgid "Ancho:"
+msgstr "Width:"
+
+#: EditResolution.form:74
+msgid "Alto:"
+msgstr "High:"
+
+#: EditResolution.form:94
+msgid "Calidad:"
+msgstr "Quality:"
+
+#: EditResolution.form:99
+msgid "%"
+msgstr "%"
+
+#: Fmain.form:29 ListImage.form:129
+msgid "ictogram"
+msgstr "Pictogram"
+
+#: Fmain.form:34
+msgid "Visor de Imágenes"
+msgstr "Pictures Viewer"
+
+#: Fmain.form:47
+msgid "Abrir Imagen"
+msgstr "Open image"
+
+#: Fmain.form:55
+msgid "Abrir Carpeta"
+msgstr "Open folder"
+
+#: Fmain.form:64
+msgid ""
+"Abrir carpeta \n"
+"de Imágenes"
+msgstr "Open image folder"
+
+#: Fmain.form:71
+msgid "Abrir imagen"
+msgstr "Open image"
+
+#: Fmain.form:77 ListImage.form:47 VisorForm.form:161
+msgid "Salir"
+msgstr "Close"
+
+#: ListImage.form:31 VisorForm.form:99
+msgid "Archivo"
+msgstr "File"
+
+#: ListImage.form:35 VisorForm.form:141
+msgid "Guardar"
+msgstr "Save"
+
+#: ListImage.form:41 VisorForm.form:102
+msgid "Abrir"
+msgstr "Open"
+
+#: ListImage.form:53
+msgid "Ver"
+msgstr "View"
+
+#: ListImage.form:57
+msgid "Barra de Herramientas"
+msgstr "Toolbar"
+
+#: ListImage.form:61
+msgid "Propiedades"
+msgstr "Properties"
+
+#: ListImage.form:66 VisorForm.form:167
+msgid "Imagen"
+msgstr "Image"
+
+#: ListImage.form:75
+msgid "Renombrar"
+msgstr "Rename"
+
+#: ListImage.form:80
+msgid "Girar"
+msgstr "Rotate"
+
+#: ListImage.form:86 VisorForm.form:254
+msgid "Ayuda"
+msgstr "Help"
+
+#: ListImage.form:90
+msgid "Acerca de Pictogram"
+msgstr "About Pictogram"
+
+#: ListImage.form:95
+msgid "PopupMenu"
+msgstr "PopopMenu"
+
+#: ListImage.form:115
+msgid "Seleccionar carpeta"
+msgstr "Select folder"
+
+#: ListImage.form:123
+msgid "path/img"
+msgstr "path/img"
+
+#: VisorForm.form:107
+msgid "Abrir Recientes"
+msgstr "Open Recent"
+
+#: VisorForm.form:110
+msgid "none"
+msgstr "none"
+
+#: VisorForm.form:131
+msgid "Cambiar Tamaño(Resolución)"
+msgstr "Change Size (Resolution)"
+
+#: VisorForm.form:146
+msgid "Copiar"
+msgstr "Copy"
+
+#: VisorForm.form:151
+msgid "Imprimir"
+msgstr "Print"
+
+#: VisorForm.form:156
+msgid "Eliminar imagen"
+msgstr "Delete Image"
+
+#: VisorForm.form:170
+msgid "Acercar(Zoom In)"
+msgstr "Zoom in"
+
+#: VisorForm.form:175
+msgid "Alejar(Zoom Out)"
+msgstr "Zoom out"
+
+#: VisorForm.form:180
+msgid "Rotar a la derecha"
+msgstr "Rotate right"
+
+#: VisorForm.form:185
+msgid "Rotar a la Izquierda"
+msgstr "Rotate left"
+
+#: VisorForm.form:190
+msgid "Flip (Vertical)"
+msgstr "Flip (Vertical)"
+
+#: VisorForm.form:195
+msgid "Flip(Horizontal)"
+msgstr "Flip(Horizontal)"
+
+#: VisorForm.form:200
+msgid "Pantalla Completa"
+msgstr "Fullscreen"
+
+#: VisorForm.form:205
+msgid "Imagen Siguiente"
+msgstr "Next Image"
+
+#: VisorForm.form:210
+msgid "Imagen Anterior"
+msgstr "Previous Image"
+
+#: VisorForm.form:222
+msgid "Vista"
+msgstr "View"
+
+#: VisorForm.form:225
+msgid "Temas"
+msgstr "Themes"
+
+#: VisorForm.form:228
+msgid "Default"
+msgstr "Default"
+
+#: VisorForm.form:232
+msgid "Blue Gray"
+msgstr "Blue Gray"
+
+#: VisorForm.form:236
+msgid "Gray"
+msgstr "Gray"
+
+#: VisorForm.form:240
+msgid "Teal"
+msgstr "Teal"
+
+#: VisorForm.form:244
+msgid "Yellow"
+msgstr "Yellow"
+
+#: VisorForm.form:249
+msgid "Ocultar/Mostrar Menu  (ALT)"
+msgstr "Hide/Show Menu     (ALT)"
+
+#: VisorForm.form:257
+msgid "Acerca de"
+msgstr "About"
+
+#: VisorForm.form:262
+msgid "MenuPopImage"
+msgstr "MenuPopImage"
+
+#: VisorForm.form:355
+msgid "Mostrar/Ocultar Menu  (ALT)"
+msgstr "Show/Hide Menu  (Alt)"
+
+#: VisorForm.form:369
+msgid "MenuPopUP"
+msgstr "MenuPopUP"
+
+#: VisorForm.form:382
+msgid "Menu2"
+msgstr "Menu2"
+
+#: VisorForm.form:386
+msgid "Convertir a formato."
+msgstr "Convert to format"
+
+#: VisorForm.form:391
+msgid "Flip"
+msgstr "Flip\t"
+
+#: VisorForm.form:396
+msgid "Flop"
+msgstr "Flip"
+
+#: VisorForm.form:401
+msgid "Mostrar Menu"
+msgstr "Show Menu"
+
+#: VisorForm.form:408
+msgid "Rotar 90° a la izquierda"
+msgstr "Rotate 90° left"
+
+#: VisorForm.form:414
+msgid "Rotar 90° a la derecha"
+msgstr "Rotate 90° clockwise"
+
+#: VisorForm.form:420
+msgid "Flip Vertical"
+msgstr "flip vertically"
+
+#: VisorForm.form:426
+msgid "Flip Horizontal"
+msgstr "flip horizontally"
+
+#: VisorForm.form:433
+msgid "Regresar"
+msgstr "Return"
+
+#: VisorForm.form:440
+msgid "Eliminar"
+msgstr "Delete"
+
+#: VisorForm.form:479
+msgid "Ajustar a la ventana"
+msgstr "Fit to window"
+
+#: VisorForm.form:526
+msgid "Editar Formato"
+msgstr "Edit format"
+
+#: f_about.form:31
+msgid "About - Pictogram"
+msgstr "About - Pictogram"
+
+#: f_about.form:44
+msgid "Innova Desktop Environment"
+msgstr "Innova Desktop Environment"
+
+#: f_about.form:57
+msgid "This program uses Gambas version 3.10.0"
+msgstr "This program uses Gambas version 3.10.0"
+
+#: f_about.form:82
+msgid "Close"
+msgstr "Close"
+
+#: f_about.form:92
+msgid "About"
+msgstr "About"
+
+#: f_about.form:96
+msgid "Copyright (C) 2017-2017"
+msgstr "Copyright (C) 2017-2017"
+
+#: f_about.form:104
+msgid "Innova Desktop"
+msgstr "Innova Desktop"
+
+#: f_about.form:123
+msgid ""
+"<p><br>Pictogram is an application to view and edit images in a simple and fast way.</p>\n"
+"<br><br><br><br><br>\n"
+" Contact: erojas@cunori.edu.gt"
+msgstr ""
+"<p><br>Pictogram is an application to view and edit images in a simple and fast way.</p>\n"
+"<br><br><br><br><br>\n"
+" Contact: erojas@cunori.edu.gt"
+
+#: f_about.form:130
+msgid "Edulibre"
+msgstr "Edulibre"
+
+#: f_about.form:134
+msgid "Authors"
+msgstr "Authors"
+
+#: f_about.form:140
+msgid ""
+"Version 1.0.0\n"
+" -> Edgar Rubén Rojas Ovando - Development/Design\n"
+"----------------------------------------------------------------------\n"
+"Version 0.6.0\n"
+" -> Carlos Orlando Paiz Raymundo - Developmen/Design\n"
+" -> Edgar Rubén Rojas Ovando - Development/Design\n"
+" -> Boris Josué Mayén Juárez - Development\n"
+"----------------------------------------------------------------------\n"
+" -> Benoît Minisini - Gambas3\n"
+" -> Herberth Guzman - Edulibre\n"
+" -> Ing. Samy Pinto - Cunori\n"
+msgstr ""
+"Version 1.0.0\n"
+" -> Edgar Rubén Rojas Ovando - Development/Design\n"
+"----------------------------------------------------------------------\n"
+"Version 0.6.0\n"
+" -> Carlos Orlando Paiz Raymundo - Developmen/Design\n"
+" -> Edgar Rubén Rojas Ovando - Development/Design\n"
+" -> Boris Josué Mayén Juárez - Development\n"
+"----------------------------------------------------------------------\n"
+" -> Benoît Minisini - Gambas3\n"
+" -> Herberth Guzman - Edulibre\n"
+" -> Ing. Samy Pinto - Cunori\n"
+
+#: f_about.form:147
+msgid ""
+"CENTRO UNIVERSITARIO DE ORIENTE\n"
+"USAC"
+msgstr ""
+"CENTRO UNIVERSITARIO DE ORIENTE\n"
+"USAC"
+
+#: f_about.form:163
+msgid "License"
+msgstr "License"
+
+#: f_about.form:169
+msgid ""
+"This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License    along with this program.  If not, see http://www.gnu.org/licenses/"
+msgstr ""
+"This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License    along with this program.  If not, see http://www.gnu.org/licenses/"
+
+#: f_about.form:175
+msgid "Translators"
+msgstr "Translators"
+
+#: f_about.form:181
+msgid ""
+"Spanish: Carlos Paiz, Rubén Rojas, Boris Mayén\n"
+"English:  Edgar Rubén Rojas Ovando\n"
+"French:   Edgar Rubén Rojas Ovando"
+msgstr ""
+"Spanish: Carlos Paiz, Rubén Rojas, Boris Mayén\n"
+"English:  Edgar Rubén Rojas Ovando\n"
+"French:   Edgar Rubén Rojas Ovando"

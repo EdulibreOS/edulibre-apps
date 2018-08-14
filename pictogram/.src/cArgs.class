@@ -1,0 +1,56 @@
+' Gambas class file
+
+' Copyright (C) Rubén Rojas
+
+' This file Is Part Of Pictogram.
+'
+'    Pictogram Is Free software: you can redistribute it And / Or modify
+'    it under the terms Of the GNU General Public License As Published by
+'    the Free Software Foundation, either version 3 Of the License, Or
+'    (at your option)any later version.
+'
+'    Pictogram Is Distributed In the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty Of
+'    MERCHANTABILITY Or FITNESS For A PARTICULAR PURPOSE.See the
+'    GNU General Public License For more details.
+'
+'    You should have received a Copy Of the GNU General Public License
+'    along With Foobar.If Not, see < http: / / www.gnu.org / licenses / > .
+
+
+Create Static
+
+Property Read Path As String
+
+Private $path As String
+
+Private Sub sanitizePaths(argPaths As String[])
+  
+  Dim sPath As String
+  
+  For Each sPath In argPaths
+    If Not Exist(sPath) Then Continue
+    If DesktopMime.FromFile(sPath).Type Not Begins "image" Then Continue
+    $path = sPath
+    Return
+  Next
+  
+End
+
+Public Sub Parse()
+  
+  Dim sPaths As String[]
+  
+  Args.Begin("Usage : ")
+  
+  sPaths = Args.End()
+  
+  If sPaths.Count > 0 Then sanitizePaths(sPaths)
+  
+End
+
+Private Function Path_Read() As String
+  
+  Return $path
+  
+End

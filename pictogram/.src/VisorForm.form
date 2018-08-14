@@ -1,0 +1,357 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,137.625,78.75)
+  Icon = Picture["img/LogoPictogram.png"]
+  { Menu1 Menu
+    Text = ("Archivo")
+    { MenuAbrir Menu
+      Text = ("Abrir")
+      Shortcut = "Ctrl+O"
+    }
+    { MenuRecientes Menu
+      Text = ("Abrir Recientes")
+      { Reciente0 Menu
+        Text = ("none")
+      }
+      { Reciente1 Menu
+        Text = ("none")
+      }
+      { Reciente2 Menu
+        Text = ("none")
+      }
+      { Reciente3 Menu
+        Text = ("none")
+      }
+      { Reciente4 Menu
+        Text = ("none")
+      }
+    }
+    { MResolucion Menu
+      Text = ("Cambiar Tamaño(Resolución)")
+      Shortcut = "Ctrl+T"
+    }
+    { MChangeFormat Menu
+      Text = ("Cambiar Formato")
+      Shortcut = "Ctrl+F"
+    }
+    { MSave Menu
+      Text = ("Guardar")
+      Shortcut = "Ctrl+S"
+    }
+    { MCopy Menu
+      Text = ("Copiar")
+      Shortcut = "Ctrl+C"
+    }
+    { MPrint Menu
+      Text = ("Imprimir")
+      Shortcut = "Ctrl+P"
+    }
+    { DeleteMenu Menu
+      Text = ("Eliminar imagen")
+      Shortcut = "Del"
+    }
+    { SalirMenu Menu
+      Text = ("Salir")
+      Shortcut = "Alt+F4"
+    }
+  }
+  { ImageMenu Menu
+    Text = ("Imagen")
+    { MZoomIn Menu
+      Text = ("Acercar(Zoom In)")
+      Shortcut = "Ctrl+Up"
+    }
+    { MZoomOut Menu
+      Text = ("Alejar(Zoom Out)")
+      Shortcut = "Ctrl+Down"
+    }
+    { MRotateRight Menu
+      Text = ("Rotar a la derecha")
+      Shortcut = "Ctrl+Right"
+    }
+    { MRotateLeft Menu
+      Text = ("Rotar a la Izquierda")
+      Shortcut = "Ctrl+Left"
+    }
+    { MFlip Menu
+      Text = ("Flip (Vertical)")
+      Shortcut = "Ctrl+Shift+Right"
+    }
+    { MFlop Menu
+      Text = ("Flip(Horizontal)")
+      Shortcut = "Ctrl+Shift+Up"
+    }
+    { MFullscreen Menu
+      Text = ("Pantalla Completa")
+      Shortcut = "F11"
+    }
+    { MNextPicture Menu
+      Text = ("Imagen Siguiente")
+      Shortcut = "Right"
+    }
+    { MPreviousPicture Menu
+      Text = ("Imagen Anterior")
+      Shortcut = "Left"
+    }
+    { CopyMenu Menu
+      Text = ("Copiar")
+      Visible = False
+      Shortcut = "Ctrl+C"
+    }
+  }
+  { MenuVista Menu
+    Text = ("Vista")
+    { menuItemTema Menu
+      Text = ("Temas")
+      { tema1 Menu
+        Text = ("Default")
+      }
+      { tema2 Menu
+        Text = ("Blue Gray")
+      }
+      { tema3 Menu
+        Text = ("Gray")
+      }
+      { tema4 Menu
+        Text = ("Teal")
+      }
+      { tema5 Menu
+        Text = ("Yellow")
+      }
+    }
+    { MenuMostOcultar Menu
+      Text = ("Ocultar/Mostrar Menu  (ALT)")
+    }
+  }
+  { MenuAyuda Menu
+    Text = ("Ayuda")
+    { MenuAbout Menu
+      Text = ("Acerca de")
+    }
+  }
+  { MenuPopImage Menu
+    Text = ("MenuPopImage")
+    Visible = False
+    { MPopCopy Menu
+      Text = ("Copiar")
+      Shortcut = "Ctrl+C"
+    }
+    { MPopAcercar Menu
+      Text = ("Acercar(Zoom In)")
+      Shortcut = "Ctrl+Up"
+    }
+    { MPopAlejar Menu
+      Text = ("Alejar(Zoom Out)")
+      Shortcut = "Ctrl+Down"
+    }
+    { MPopRotarR Menu
+      Text = ("Rotar a la derecha")
+      Shortcut = "Ctrl+Right"
+    }
+    { MPopRotarL Menu
+      Text = ("Rotar a la Izquierda")
+      Shortcut = "Ctrl+Left"
+    }
+    { MPopNextImage Menu
+      Text = ("Imagen Siguiente")
+      Shortcut = "Right"
+    }
+    { MPopPreviousImage Menu
+      Text = ("Imagen Anterior")
+      Shortcut = "Left"
+    }
+    { MPopFlipV Menu
+      Text = ("Flip (Vertical)")
+      Shortcut = "Ctrl+Shift+Right"
+    }
+    { MPopFlipH Menu
+      Text = ("Flip(Horizontal)")
+      Shortcut = "Ctrl+Shift+Up"
+    }
+    { MPopFullScreen Menu
+      Text = ("Pantalla Completa")
+      Shortcut = "F11"
+    }
+    { MPopSize Menu
+      Text = ("Cambiar Tamaño(Resolución)")
+      Shortcut = "Ctrl+T"
+    }
+    { MPopFormat Menu
+      Text = ("Cambiar Formato")
+      Shortcut = "Ctrl+F"
+    }
+    { MPopDelete Menu
+      Text = ("Eliminar imagen")
+      Shortcut = "Del"
+    }
+    { MPopTemas Menu
+      Text = ("Temas")
+      { MPopDefault Menu
+        Text = ("Default")
+      }
+      { MPopBlueGray Menu
+        Text = ("Blue Gray")
+      }
+      { MPopGray Menu
+        Text = ("Gray")
+      }
+      { MPopTeal Menu
+        Text = ("Teal")
+      }
+      { MPopYellow Menu
+        Text = ("Yellow")
+      }
+    }
+    { MPopMostrarMenu Menu
+      Text = ("Mostrar/Ocultar Menu  (ALT)")
+    }
+    { MPopPrint Menu
+      Text = ("Imprimir")
+      Shortcut = "Ctrl+P"
+    }
+    { MPopAbout Menu
+      Text = ("Acerca de")
+    }
+  }
+  { menuPopUp Menu
+    Text = ("MenuPopUP")
+    Visible = False
+    { MenuMostrarMenuPop Menu
+      Text = ("Mostrar/Ocultar Menu  (ALT)")
+    }
+    { MenuAboutPop Menu
+      Text = ("Acerca de")
+    }
+  }
+  { Menu2 Menu
+    Text = ("Menu2")
+    Visible = False
+    { ConvertMenu Menu
+      Text = ("Convertir a formato.")
+      Shortcut = "Ctrl+F"
+    }
+    { MFlip1 Menu
+      Text = ("Flip")
+      Shortcut = "Ctrl+Shift+Left"
+    }
+    { MFlop1 Menu
+      Text = ("Flop")
+      Shortcut = "Ctrl+Shift+Down"
+    }
+    { Mostrar_menu Menu
+      Text = ("Mostrar Menu")
+      Shortcut = "Alt+Up"
+    }
+  }
+  { ToolButtonLeft ToolButton
+    MoveScaled(37,2,4,4)
+    ToolTip = ("Rotar 90° a la izquierda")
+    Picture = Picture["img/rotateLeft.png"]
+  }
+  { ToolButtonRight ToolButton
+    MoveScaled(42,2,4,4)
+    ToolTip = ("Rotar 90° a la derecha")
+    Picture = Picture["img/rotateRigth.png"]
+  }
+  { ToolButtonFlop ToolButton
+    MoveScaled(47,2,4,4)
+    ToolTip = ("Flip Vertical")
+    Picture = Picture["img/flipH.png"]
+  }
+  { ToolButtonFlip ToolButton
+    MoveScaled(52,2,4,4)
+    ToolTip = ("Flip Horizontal")
+    Picture = Picture["img/flipV.png"]
+  }
+  { ToolButtonBack ToolButton
+    MoveScaled(114,1,4,4)
+    Mouse = Mouse.Pointing
+    ToolTip = ("Regresar")
+    Picture = Picture["img/back.png"]
+  }
+  { ToolButtonDelete ToolButton
+    MoveScaled(119,1,4,4)
+    Mouse = Mouse.Pointing
+    ToolTip = ("Eliminar")
+    Picture = Picture["img/delete.png"]
+  }
+  { ToolButtonSave ToolButton
+    MoveScaled(124,1,4,4)
+    Mouse = Mouse.Pointing
+    ToolTip = ("Guardar")
+    Picture = Picture["img/save.png"]
+  }
+  { ToolButtonFullscreen ToolButton
+    MoveScaled(131,1,4,4)
+    Mouse = Mouse.Pointing
+    ToolTip = ("Pantalla Completa")
+    Picture = Picture["img/fullScreen.png"]
+  }
+  { Separator1 Separator
+    MoveScaled(10,127,4,4)
+    Visible = False
+  }
+  { Separator2 Separator
+    MoveScaled(129,2,1,4)
+  }
+  { Printer1 #Printer
+    #MoveScaled(1,68)
+  }
+  { ToolButtonPrint ToolButton
+    MoveScaled(108,1,4,4)
+    Mouse = Mouse.Pointing
+    ToolTip = ("Imprimir")
+    Picture = Picture["img/Print.png"]
+  }
+  { ToolButtonFit ToolButton
+    MoveScaled(28,2,4,4)
+    ToolTip = ("Ajustar a la ventana")
+    Picture = Picture["icon:/32/zoom-fit"]
+  }
+  { SliderZoom Slider
+    MoveScaled(2,2,24,4)
+    MinValue = 1
+    MaxValue = 200
+  }
+  { Separator3 Separator
+    MoveScaled(34,2,1,4)
+  }
+  { Panel1 Panel
+    MoveScaled(95,10,43,5)
+  }
+  { ScrollViewPicture ScrollView
+    MoveScaled(40,18,59,47)
+    Tracking = True
+    { PictureBoxPreview PictureBox
+      MoveScaled(4,2,21,19)
+      Mouse = Mouse.SizeAll
+    }
+  }
+  { ButtonRightPicture Button
+    MoveScaled(128,34,6,6)
+    NoTabFocus = True
+    Mouse = Mouse.Pointing
+    Picture = Picture["img/flecha-derecha.png"]
+    Border = False
+  }
+  { ButtonLeftPicture Button
+    MoveScaled(4,35,6,6)
+    NoTabFocus = True
+    Mouse = Mouse.Pointing
+    Picture = Picture["img/flecha-izquierda.png"]
+    Border = False
+  }
+  { ToolButtonEditFormat ToolButton
+    MoveScaled(102,1,4,4)
+    Mouse = Mouse.Pointing
+    ToolTip = ("Editar Formato")
+    Picture = Picture["img/EditFormat.png"]
+  }
+  { ToolButtonEditSize ToolButton
+    MoveScaled(97,1,4,4)
+    Mouse = Mouse.Pointing
+    ToolTip = ("Cambiar Tamaño")
+    Picture = Picture["img/EditSize.png"]
+  }
+}
