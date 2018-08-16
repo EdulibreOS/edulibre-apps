@@ -1,0 +1,1456 @@
+' Gambas class file
+
+'This file Is Part Of Pictogram.
+'
+'    Pictogram Is Free software: you can redistribute it And / Or modify
+'    it under the terms Of the GNU General Public License As Published by
+'    the Free Software Foundation, either version 3 Of the License, Or
+'    (at your option)any later version.
+'
+'    Pictogram Is Distributed In the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty Of
+'    MERCHANTABILITY Or FITNESS For A PARTICULAR PURPOSE.See the
+'    GNU General Public License For more details.
+'
+'    You should have received a Copy Of the GNU General Public License
+'    along With Foobar.If Not, see < http: / / www.gnu.org / licenses / > .
+'
+'
+
+Public WidthPicture As Integer = 1
+Public HeightPicture As Integer = 1
+Public Const TOOLBAR_HEIGHT As Integer = 60
+Public pathbase As String
+Public pathtemp As String
+Public save As Boolean = True
+Public toolsPanel As New Panel(Me)
+Public tool1 As New Panel(Me)
+Public FactorResize As Float
+Public fullscreenMode As Boolean
+Public img_name As String
+Public directorypath As String
+Public imagespath As String[]
+Public imgposition As Integer
+Public viewMenu As Boolean = True
+Public fuente As Integer = 1
+Public Set_Pictogram As New Settings(Desktop.ConfigDir &/ "Innova/Pictogram.conf")
+Public sResult_Latest_Img As New String[5]
+Public iResult_Style_Theme As Integer
+Private spx As Short
+Private spy As Short
+
+Public Sub Form_Open()
+  
+  Dim b As Byte
+  Dim aFolders As String[]
+  Dim s As String
+  
+  PictureBoxPreview.PopupMenu = "MenuPopImage"
+  Me.PopupMenu = "menuPopUp"
+  ToolbarPanel()
+  
+  aFolders = Split("/tmp/pictogram/viewer", "/")
+  
+  For b = 1 To aFolders.Max
+    s &= "/" & aFolders[b]
+    If Not Exist(s) Then Mkdir s
+  Next
+  
+    Show_Conf_Settings
+    Show_theme
+  
+End
+
+Public Sub Show_Conf_Settings()
+  
+  sResult_Latest_Img = M_Settings.sResult_Latest_Img
+  
+  Reciente0.Text = "1. " & getImgFormat(sResult_Latest_Img[0])
+  Reciente1.Text = "2. " & getImgFormat(sResult_Latest_Img[1])
+  Reciente2.Text = "3. " & getImgFormat(sResult_Latest_Img[2])
+  Reciente3.Text = "4. " & getImgFormat(sResult_Latest_Img[3])
+  Reciente4.Text = "5. " & getImgFormat(sResult_Latest_Img[4])
+  
+End
+
+Public Sub Show_theme()
+
+  iResult_Style_Theme = M_Settings.iResult_Style_Theme
+  
+  theme(iResult_Style_Theme)
+  
+End
+
+
+Public Sub Save_Latest_Img()
+  
+  Dim k As Integer
+  Dim eq As Integer = 0 
+  Dim sCad As String
+  Dim sCad2 As String
+  
+  For k = 4 DownTo 0 Step 1
+    
+    sCad = Trim(pathbase)
+    sCad2 = Trim(sResult_Latest_Img[k])
+    
+    If (sCad == sCad2) Or (eq == 1) Then
+      
+      eq = 1
+      
+      If (k <> 0) Then
+        sResult_Latest_Img[k] = sResult_Latest_Img[k - 1]
+      Else
+        sResult_Latest_Img[k] = pathbase
+      Endif
+      
+    Endif
+  Next
+  
+  Set_Pictogram.Write(VisorForm)
+  
+  If eq == 0 Then
+    
+    Set_Pictogram["Latest/Img0"] = pathbase
+    Set_Pictogram["Latest/Img1"] = sResult_Latest_Img[0]
+    Set_Pictogram["Latest/Img2"] = sResult_Latest_Img[1]
+    Set_Pictogram["Latest/Img3"] = sResult_Latest_Img[2]
+    Set_Pictogram["Latest/Img4"] = sResult_Latest_Img[3]
+    
+  Else
+    
+    Set_Pictogram["Latest/Img0"] = pathbase
+    Set_Pictogram["Latest/Img1"] = sResult_Latest_Img[1]
+    Set_Pictogram["Latest/Img2"] = sResult_Latest_Img[2]
+    Set_Pictogram["Latest/Img3"] = sResult_Latest_Img[3]
+    Set_Pictogram["Latest/Img4"] = sResult_Latest_Img[4]
+    
+  Endif
+  
+  Set_Pictogram.Save
+  
+End
+
+Public Sub theme(selected_theme As Integer)
+  
+  Select Case selected_theme
+      
+    Case 1
+      VisorForm.Background = Color.Default
+      
+      If (fuente == 1) Then
+        ListImage.Background = Color.Default
+        ListImage.dirPathLabel.Foreground = Color.Default
+        ListImage.LabelPictogram.Foreground = Color.Default
+      Endif
+      
+      Set_Pictogram.Write(VisorForm)
+      Set_Pictogram["Style/Theme"] = 1
+      Set_Pictogram.Save
+      
+    Case 2
+      
+      VisorForm.Background = &00455A64&
+      
+      If (fuente == 1) Then
+        ListImage.Background = &H37474F&
+        ListImage.dirPathLabel.Foreground = &00FFFFFF&
+        ListImage.LabelPictogram.Foreground = &00FFFFFF&
+      Endif
+      
+      Set_Pictogram.Write(VisorForm)
+      Set_Pictogram["Style/Theme"] = 2
+      Set_Pictogram.Save
+      
+    Case 3
+      
+      VisorForm.Background = &H616161&
+      
+      If (fuente == 1) Then
+        ListImage.Background = &H424242&
+        ListImage.dirPathLabel.Foreground = &00FFFFFF&
+        ListImage.LabelPictogram.Foreground = &00FFFFFF&
+      Endif
+      
+      Set_Pictogram.Write(VisorForm)
+      Set_Pictogram["Style/Theme"] = 3
+      Set_Pictogram.Save
+      
+    Case 4
+      
+      VisorForm.Background = &H00796B&
+      
+      If (fuente == 1) Then
+        ListImage.Background = &H00695C&
+        ListImage.dirPathLabel.Foreground = &00FFFFFF&
+        ListImage.LabelPictogram.Foreground = &00FFFFFF&
+      Endif
+      
+      Set_Pictogram.Write(VisorForm)
+      Set_Pictogram["Style/Theme"] = 4
+      Set_Pictogram.Save
+      
+    Case 5
+      VisorForm.Background = &HFDD835&
+      
+      If (fuente == 1) Then
+        ListImage.Background = &HFBC02D&
+        ListImage.dirPathLabel.Foreground = Color.Black
+        ListImage.LabelPictogram.Foreground = Color.Black
+      Endif
+      
+      Set_Pictogram.Write(VisorForm)
+      Set_Pictogram["Style/Theme"] = 5
+      Set_Pictogram.Save
+      
+  End Select
+  
+End
+
+Public Sub SetPictureFromMain(path As String)
+  
+  Dim w As String
+  Dim h As String
+  Dim sizeGif As String
+  Dim sGif As String[]
+  Dim pathTest As New Path
+  
+  pathTest.setPath(path)
+  
+  If Comp(pathTest.getImgFormat(), "gif") == 0 Or Comp(pathTest.getImgFormat(), "jpg") == 0 Or Comp(pathTest.getImgFormat(), "png") == 0 Or Comp(pathTest.getImgFormat(), "bmp") == 0 Or Comp(pathTest.getImgFormat(), "jpeg") == 0 Or Comp(pathTest.getImgFormat(), "GIF") == 0 Or Comp(pathTest.getImgFormat(), "JPG") == 0 Or Comp(pathTest.getImgFormat(), "PNG") == 0 Or Comp(pathTest.getImgFormat(), "BMP") == 0 Or Comp(pathTest.getImgFormat(), "JPEG") == 0 Then
+    
+    pathbase = path  
+    
+    Show_Conf_Settings
+    Save_Latest_Img
+    Show_Conf_Settings
+    
+    ArrayPath(pathbase)
+    
+    Picture.Flush()
+    PictureBoxPreview.Picture = Picture[path]
+    PictureBoxPreview.Refresh()
+    
+    If Comp(pathTest.getImgFormat(), "gif") == 0 Or Comp(pathTest.getImgFormat(), "GIF") Then
+      
+      Shell "identify -format '%g' '" & path & "[0]" & "'" Wait To sizeGif
+      sGif = Split(sizeGif, "+")
+      sGif = Split(sGif[0], "x")
+      
+      WidthPicture = CInt(sGif[0]) 
+      HeightPicture = CInt(sGif[1])
+      
+    Else
+      
+      Shell "identify -format '%w' '" & path & "'" Wait To w
+      Shell "identify -format '%h' '" & path & "'" Wait To h    
+      
+      WidthPicture = CInt(w) 
+      HeightPicture = CInt(h)
+      
+    Endif
+    
+    PictureBoxPreview.AutoResize = True
+    PictureBoxPreview.Stretch = True
+    
+    FactorResize = (Me.Height - TOOLBAR_HEIGHT) / HeightPicture
+    
+    SliderZoom.Value = FactorResize * 100
+    
+    ScrollViewPicture.X = 0 
+    ScrollViewPicture.Y = TOOLBAR_HEIGHT
+    ScrollViewPicture.ScrollBar = 0
+    ScrollViewPicture.Height = Me.Height - TOOLBAR_HEIGHT
+    ScrollViewPicture.Width = Me.Width 
+    PictureBoxPreview.Height = HeightPicture * FactorResize
+    PictureBoxPreview.Width = WidthPicture * FactorResize
+    PictureBoxPreview.X = (Me.Width - PictureBoxPreview.Width) / 2
+    PictureBoxPreview.Y = (Me.Height - TOOLBAR_HEIGHT - PictureBoxPreview.Height) / 2
+    
+    SliderZoom_Change()
+    VisorForm.Title = pathbase & " - Pictogram"
+    
+    
+  Else
+    
+    Message.Warning("Formato de imagen no soportado")
+    Me.Close
+    
+  Endif
+  
+End
+
+Public Sub SetPictureTmpFromMain(path_ As String)
+  
+  Dim w As String
+  Dim h As String
+  Dim sizeGif As String
+  Dim sGif As String[]
+  Dim pathTest As New Path
+  
+  pathTest.setPath(path_)
+  
+  If Comp(pathTest.getImgFormat(), "gif") == 0 Then
+    
+    Shell "identify -format '%g' '" & path_ & "[0]" & "'" Wait To sizeGif
+    sGif = Split(sizeGif, "+")
+    sGif = Split(sGif[0], "x")
+    
+    WidthPicture = CInt(sGif[0]) 
+    HeightPicture = CInt(sGif[1])
+    
+  Else
+    
+    Shell "identify -format '%w' '" & path_ & "'" Wait To w
+    Shell "identify -format '%h' '" & path_ & "'" Wait To h    
+    
+    WidthPicture = CInt(w) 
+    HeightPicture = CInt(h)
+    
+  Endif
+  
+  Print path_
+  Picture.Flush()
+  PictureBoxPreview.Picture = Picture[path_]
+  PictureBoxPreview.Refresh()
+  
+  PictureBoxPreview.AutoResize = True
+  PictureBoxPreview.Stretch = True
+  
+  FactorResize = (Me.Height - TOOLBAR_HEIGHT) / HeightPicture
+  SliderZoom.Value = FactorResize * 100
+  
+  ScrollViewPicture.X = 0 
+  ScrollViewPicture.Y = TOOLBAR_HEIGHT
+  ScrollViewPicture.ScrollBar = 0
+  
+  PictureBoxPreview.X = (Me.Width - WidthPicture * FactorResize) / 2
+  PictureBoxPreview.Y = 0
+  
+  PictureBoxPreview.Height = HeightPicture * FactorResize
+  PictureBoxPreview.Width = WidthPicture * FactorResize
+  
+  SliderZoom_Change()
+  
+End
+
+Public Sub SliderZoom_Change()
+  
+  PictureBoxPreview.Height = HeightPicture * SliderZoom.Value / 100
+  PictureBoxPreview.Width = WidthPicture * SliderZoom.Value / 100
+  PictureBoxPreview.X = (Me.Width - PictureBoxPreview.Width) / 2
+  PictureBoxPreview.Y = (Me.Height - TOOLBAR_HEIGHT - PictureBoxPreview.Height) / 2
+  
+End
+
+Public Sub Origen(ff As Integer)
+  
+  fuente = ff
+  
+End
+
+Public Sub ArrayPath(pathI As String)
+  
+  Dim nameImg As String
+  Dim pathR As New Path
+  Dim var As String
+  Dim i As Integer
+  
+  pathR.setPath(pathI)
+  nameImg = pathR.getImgPath()
+  directorypath = pathR.getDirectory()
+  
+  ' Se carga en el arreglo las imagenes contenidas en el directorio
+  
+  If fuente == 2 Then
+    Shell "ls '" & directorypath & "' | grep -e .jpg -e .jpeg -e .png -e .bmp -e.gif -e .JPG -e .JPEG -e .PNG -e .BMP -e.GIF " Wait To var
+    imagespath = Split(var, "\n")
+    
+    For i = 0 To imagespath.Max
+      If nameImg == imagespath[i] Then
+        imgposition = i
+      Endif
+    Next
+    
+    If imagespath.Count > 1 Then     
+      
+      ButtonLeftPicture.Visible = True
+      ButtonRightPicture.Visible = True
+      
+      If imgposition == 0 Then
+        ButtonLeftPicture.Visible = False
+      Else If imgposition == imagespath.Max - 1 
+        ButtonRightPicture.Visible = False
+      Endif
+    Else
+      ButtonLeftPicture.Visible = False
+      ButtonRightPicture.Visible = False
+      
+    Endif
+    
+  Else
+    
+    For i = 0 To ListImage.Pictures.Max 
+      If nameImg == ListImage.Pictures[i]
+        imgposition = i
+      Endif
+    Next
+    
+    If ListImage.Pictures.Count > 1 Then     
+      
+      ButtonLeftPicture.Visible = True
+      ButtonRightPicture.Visible = True
+      
+      If imgposition == 0 Then
+        ButtonLeftPicture.Visible = False
+      Else If imgposition == ListImage.Pictures.Max 
+        ButtonRightPicture.Visible = False
+      Endif
+    Else
+      ButtonLeftPicture.Visible = False
+      ButtonRightPicture.Visible = False
+      
+    Endif
+    
+  Endif
+  
+End
+
+Public Sub ImageMagick(Op As String)
+  
+  Dim dire As String[]
+  Dim command As String
+  
+  If save == True Then
+    dire = Split(pathbase, "/")
+    img_name = dire[dire.Length - 1]
+    
+    pathtemp = "/tmp/pictogram/viewer/" & img_name
+    
+    command = "convert " & Op & " '" & pathbase & "' '" & pathtemp & "'"
+    
+    save = False
+    
+  Else
+    
+    command = "convert " & Op & " '" & pathtemp & "' '" & pathtemp & "'"
+    
+  Endif
+  
+  Print command
+  
+  Shell command Wait
+  
+  SetPictureTmpFromMain(pathtemp)
+  
+End
+
+Public Sub ToolbarPanel()
+  
+  toolsPanel.Width = 367
+  toolsPanel.Height = TOOLBAR_HEIGHT
+  toolsPanel.Y = 0
+  toolsPanel.X = Me.Width - 367
+  
+  ToolButtonBack.Reparent(toolsPanel, 14.8, 14)
+  ToolButtonEditSize.Reparent(toolsPanel, 61.4, 14)
+  ToolButtonEditFormat.Reparent(toolsPanel, 108.4, 14)
+  ToolButtonDelete.Reparent(toolsPanel, 155.2, 14)
+  ToolButtonPrint.Reparent(toolsPanel, 202, 14)
+  ToolButtonSave.Reparent(toolsPanel, 248.6, 14)
+  Separator2.Reparent(toolsPanel, 270.6, 14)
+  ToolButtonFullscreen.Reparent(toolsPanel, 292.6, 14)
+  
+End
+
+Public Sub CreateThumb(file_name As String)
+  
+  Dim tmp_dir As String
+  
+  tmp_dir = ListImage.TEMP_DIR_THUMBS
+  'Shell "convert -define jpeg:size=500x240 '" & pathbase & "' -auto-orient -thumbnail 250x120   -unsharp 0x.5  '" & tmp_dir &/ file_name & "'" Wait
+  Shell "convert -define jpeg:size=280x240 '" & pathbase & "' -thumbnail 140x120^ -gravity center -extent 140x120 '" & tmp_dir &/ file_name & "'" Wait
+  
+End
+
+Public Sub UpdateThumbnails()
+  
+  'ListImage.GetFromDirectory(pathbase)
+  ListImage.UpdateMainPanel()
+  
+End
+
+Public Sub SetPath(paths As String)
+  
+  pathbase = paths
+  
+End
+
+Private Sub FullScreen_Action()
+  
+  Me.Resizable = True
+  
+  If fullscreenMode Then
+    Me.FullScreen = True
+    fullscreenMode = False
+  Else
+    Me.FullScreen = False
+    fullscreenMode = True
+  Endif
+  
+End
+
+''' Actions
+
+Private Sub RotateRight_Action()
+  
+  ImageMagick("-rotate 90")
+  
+End
+
+Public Sub RotateLeft_Action()
+  
+  ImageMagick("-rotate 270")
+  
+End
+
+Public Sub Save_Action()
+  
+  If save == False Then
+    Shell "mv -f '" & pathtemp & "' '" & pathbase & "' " Wait
+    
+    Message.Title = "Cambios Guardados"
+    Message.Info("La imagen se guardó correctamente.", "Aceptar")  
+    save = True
+    
+    CreateThumb(img_name)
+    UpdateThumbnails()
+    
+  Else
+    Message.Title = "No se han realizado Cambios"
+    Message.Info("La imagen no ha sido modificada, no es necesario guardar.", "Aceptar")   
+  Endif
+  
+End
+
+Private Sub Delete_Action()
+  
+  Dim respuesta As Integer
+  Dim currentDirPath As String
+  
+  currentDirPath = ListImage.DirPath
+  
+  Message.Title = "Borrar Imagen"
+  respuesta = Message.Delete("¿Está seguro que desea eliminar la imagen?", "Cancelar", "Si")
+  If respuesta = 2 Then
+    Shell "rm  '" & pathbase & "' " Wait
+    ListImage.GetFromDirectory(currentDirPath)
+    UpdateThumbnails()
+    
+    Me.Close()
+  Else
+    
+  Endif
+  
+End
+
+Private Sub Print_Action()
+  
+  Me.Enabled = False
+  Inc Application.Busy
+  Printer1.Print
+  Dec Application.Busy
+  Me.Enabled = True
+  
+End
+
+Private Sub EditFormat()
+  
+  If save == False Then
+    
+    Message.Title = "Editar Imagen"
+    Message.Info("La imagen ha sido modificada, guarde cambios para poder editar formato", "Aceptar")
+    
+  Else
+    EditForm.ConverterImg(pathbase, fuente)
+    EditForm.Show()
+    
+  Endif
+  
+End
+
+Private Sub EditRes()
+  
+  If save == False Then
+    
+    Message.Title = "Editar Imagen"
+    Message.Info("La imagen ha sido modificada, guarde cambios para poder editar su tamaño", "Aceptar")
+    
+  Else
+    EditResolution.ConverterImg(pathbase, fuente)
+    EditResolution.Show()
+    
+  Endif
+  
+End
+
+Private Sub Copy_Action()
+  
+  Clipboard.Copy(PictureBoxPreview.Picture.Image)
+  Message.Title = "Copiar Imagen"
+  Message.Info("La imagen ha sido copiada.", "Aceptar")
+  
+End
+
+Private Sub NextPicture()
+  
+  Dim respuesta As Integer
+  
+  If save == False Then
+    
+    If fuente == 2 Then
+      
+      If imgposition <> (imagespath.Max - 1) Then
+        
+        Message.Title = "Desea Guardar Cambios"
+        respuesta = Message.Warning("La imagen ha sido modificada., ¿desea guardar cambios?", "No guardar", "Cancelar", "Guardar")
+        If respuesta = 1 Then
+          
+          SetPictureFromMain(directorypath & imagespath[imgposition + 1])
+          Save = True
+        Else If respuesta = 3 Then
+          Shell "mv -f '" & pathtemp & "' '" & pathbase & "' " Wait
+          save = True
+          SetPictureFromMain(directorypath & imagespath[imgposition + 1])
+        Endif
+      Endif
+    Else
+      
+      If imgposition <> ListImage.Pictures.Max Then
+        
+        Message.Title = "Desea Guardar Cambios"
+        respuesta = Message.Warning("La imagen ha sido modificada., ¿desea guardar cambios?", "No guardar", "Cancelar", "Guardar")
+        
+        If respuesta = 1 Then
+          SetPictureFromMain(directorypath & ListImage.Pictures[imgposition + 1]) 
+          Save = True
+        Else If respuesta = 3 Then
+          Shell "mv -f '" & pathtemp & "' '" & pathbase & "' " Wait
+          save = True
+          SetPictureFromMain(directorypath & ListImage.Pictures[imgposition + 1]) 
+          
+        Endif
+      Endif
+    Endif
+    
+  Else
+    If fuente == 2 Then
+      If imgposition <> (imagespath.Max - 1) Then
+        SetPictureFromMain(directorypath & imagespath[imgposition + 1])
+      Endif 
+    Else
+      If imgposition <> ListImage.Pictures.Max Then
+        SetPictureFromMain(directorypath & ListImage.Pictures[imgposition + 1])   
+      Endif
+    Endif
+  Endif
+  
+End
+
+Private Sub PreviousPicture()
+  
+  Dim respuesta As Integer
+  
+  If save == False Then
+    
+    Message.Title = "Desea Guardar Cambios"
+    respuesta = Message.Warning("La imagen ha sido modificada, ¿desea guardar cambios?", "No guardar", "Cancelar", "Guardar")
+    
+    If fuente == 2 Then
+      
+      If imgposition <> 0 Then
+        If respuesta = 1 Then
+          SetPictureFromMain(directorypath & imagespath[imgposition - 1])
+          Save = True
+        Else If respuesta = 3 Then
+          Shell "mv -f '" & pathtemp & "' '" & pathbase & "' " Wait
+          save = True
+          SetPictureFromMain(directorypath & imagespath[imgposition - 1])
+        Endif
+      Endif
+      
+    Else
+      If respuesta = 1 Then
+        SetPictureFromMain(directorypath & ListImage.Pictures[imgposition - 1]) 
+        Save = True
+      Else If respuesta = 3 Then
+        Shell "mv -f '" & pathtemp & "' '" & pathbase & "' " Wait
+        save = True
+        SetPictureFromMain(directorypath & ListImage.Pictures[imgposition - 1]) 
+        
+      Endif
+    Endif
+    
+  Else
+    If fuente == 2 Then
+      SetPictureFromMain(directorypath & imagespath[imgposition - 1])
+    Else
+      SetPictureFromMain(directorypath & ListImage.Pictures[imgposition - 1])   
+    Endif
+  Endif
+  
+End
+
+Public Sub Printer1_Draw()
+  
+  Dim hImg As Image
+  
+  Message.Title = "Imprimir Imagen"
+  Message.Info("La impresión ha sido iniciada.")
+  
+  hImg = Image.Load(pathbase)
+  Paint.Brush = Paint.Image(hImg, 0, 0)
+  Paint.Rectangle(0, 0, hImg.Width, hImg.Height)
+  Paint.Fill
+  
+End
+
+''' ToolButtons Actions
+
+Public Sub ToolButtonRight_Click()
+  
+  RotateRight_Action()
+  
+End
+
+Public Sub ToolButtonLeft_Click()
+  
+  RotateLeft_Action()
+  
+End
+
+Public Sub ToolButtonFlop_Click()
+  
+  ImageMagick("-flop")
+  
+End
+
+Public Sub ToolButtonFlip_Click()
+  
+  ImageMagick("-flip")
+  
+End
+
+Public Sub ToolButtonSave_Click()
+  
+  Save_Action()
+  
+End
+
+Public Sub ToolButtonDelete_Click()
+  
+  Delete_Action()
+  
+End
+
+Public Sub ToolButtonBack_Click()
+  
+  Dim respuesta As Integer
+  
+  If save == False Then
+    
+    Message.Title = "Desea Guardar Cambios"
+    respuesta = Message.Warning("La imagen ha sido modificada., ¿desea guardar cambios?", "No guardar", "Cancelar", "Guardar")
+    Print "Mensaje Warning: respuesta elegida ", respuesta
+    
+    If respuesta = 1 Then
+      Me.Close()
+    Else If respuesta = 3 Then
+      Shell "mv -f '" & pathtemp & "' '" & pathbase & "' " Wait
+      save = True
+      Me.Close()
+    Endif
+  Else
+    Me.Close() 
+  Endif
+  
+End
+
+Public Sub ToolButtonFullscreen_Click()
+  
+  FullScreenView()
+  
+End
+
+Public Sub PictureBoxPreview_DblClick()
+  
+  FullScreenView()
+  
+End
+
+Private Sub FullScreenView()
+  
+  FullScreen_Action()
+  
+End
+
+Public Sub ToolButtonPrint_Click()
+  
+  Print_Action()
+  
+End
+
+Public Sub ToolButtonEditFormat_Click()
+  
+  EditFormat()
+  
+End
+
+Public Sub ToolButtonEditSize_Click()
+  
+  EditRes()
+  
+End
+
+Public Sub ToolButtonFit_Click()
+  
+  PictureBoxPreview.Height = HeightPicture * FactorResize
+  PictureBoxPreview.Width = WidthPicture * FactorResize
+  PictureBoxPreview.X = (Me.Width - PictureBoxPreview.Width) / 2
+  PictureBoxPreview.Y = (Me.Height - TOOLBAR_HEIGHT - PictureBoxPreview.Height) / 2
+  SliderZoom.Value = FactorResize * 100
+  
+End
+
+''' Menu Actions '''
+
+Public Sub MFullscreen_Click()
+  
+  FullScreen_Action()
+  
+End
+
+Public Sub MZoomIn_Click()
+  
+  SliderZoom.Value = SliderZoom.Value + 5 
+  
+End
+
+Public Sub MZoomOut_Click()
+  
+  SliderZoom.Value = SliderZoom.Value - 5 
+  
+End
+
+Public Sub MRotateRight_Click()
+  
+  RotateRight_Action()
+  
+End
+
+Public Sub MRotateLeft_Click()
+  
+  RotateLeft_Action()
+  
+End
+
+Public Sub MFlip_Click()
+  
+  ImageMagick("-flip")
+  
+End
+
+Public Sub MFlip1_Click()
+  
+  ImageMagick("-flip")
+  
+End
+
+Public Sub MFlop_Click()
+  
+  ImageMagick("-flop")
+  
+End
+
+Public Sub MFlop1_Click()
+  
+  ImageMagick("-flop")
+  
+End
+
+Public Sub MPrint_Click()
+  
+  Print_Action()
+  
+End
+
+Public Sub MSave_Click()
+  
+  Save_Action()
+  
+End
+
+Public Sub MCopy_Click()
+  
+  Copy_Action
+  
+End
+
+Public Sub MChangeFormat_Click()
+  
+  EditFormat()
+  
+End
+
+Public Sub MNextPicture_Click()
+  
+  NextPicture()
+  
+End
+
+Public Sub MPreviousPicture_Click()
+  
+  If imgposition <> 0 Then
+    PreviousPicture()
+  Endif
+  
+End
+
+Public Sub CopyMenu_Click()
+  
+  Copy_Action()
+  
+End
+
+Public Sub ConvertMenu_Click()
+  
+  EditFormat()
+  
+End
+
+Public Sub DeleteMenu_Click()
+  
+  Delete_Action()
+  
+End
+
+Public Sub ButtonRightPicture_Click()
+  
+  NextPicture()
+  PictureBoxPreview.SetFocus
+  
+Catch
+  
+  Print "Error flecha derecha"
+  
+End
+
+Public Sub ButtonLeftPicture_Click()
+  
+  If imgposition <> 0 Then
+    PreviousPicture()
+    PictureBoxPreview.SetFocus
+  Endif
+  
+Catch  
+  Print "Error flecha derecha izquierda"
+  
+End
+
+Public Sub Mostrar_menu_Click()
+  
+  If viewMenu = False Then
+    Menu1.Visible = True
+    viewMenu = True
+  Else
+    Menu1.Visible = False
+    viewMenu = False
+  Endif
+  
+End
+
+Public Sub MResolucion_Click()
+  
+  EditRes()
+  
+End
+
+Public Sub MenuAbout_Click()
+  
+  f_about.ShowModal()
+  
+End
+
+Public Sub MenuAbrir_Click()
+  
+  Dim path1 As New Path
+  Dim DirPath As String
+  Dim respuesta As Integer
+  Dim name_ As String
+  Dim format_ As String
+  Dim nameshort As String
+  Dim directory As String
+  
+  Dialog.Filter = ["*.jpg", "JPG", "*.jpeg", "JPEG", "*.png", "PNG", "*.gif", "GIF", "*.bmp", "bmp"]
+  If Dialog.OpenFile(False) == False Then
+    
+    DirPath = Dialog.Path  
+    path1.setPath(DirPath)
+    name_ = path1.getImgPath()
+    format_ = path1.getImgFormat()
+    nameshort = path1.getNameShort()
+    directory = path1.getDirectory()
+    
+    If save == False Then
+      
+      Message.Title = "Guardar cambios antes de abrir imagen"
+      respuesta = Message.Warning("La imagen ha sido modificada. ¿desea guardar cambios?", "No guardar y seguir", "Cancelar", "Guardar y seguir")
+      If respuesta == 1 Then
+        
+        If fuente == 1 Then
+          ListImage.setPath(directory)
+        Endif
+        
+        SetPictureFromMain(DirPath)
+        
+        Save = True
+      Else If respuesta == 3 Then
+        Shell "mv -f '" & pathtemp & "' '" & pathbase & "' " Wait
+        save = True
+        If fuente == 1 Then
+          ListImage.setPath(directory)
+        Endif
+        SetPictureFromMain(DirPath)
+      Endif
+    Else
+      If fuente == 1 Then
+        ListImage.setPath(directory)
+      Endif
+      SetPictureFromMain(DirPath)   
+    Endif
+    
+  Endif
+  
+End
+
+Public Sub Reciente0_Click()
+  
+  AbrirReciente(sResult_Latest_Img[0])
+  
+End
+
+Public Sub Reciente1_Click()
+  
+  AbrirReciente(sResult_Latest_Img[1])
+  
+End
+
+Public Sub Reciente2_Click()
+  
+  AbrirReciente(sResult_Latest_Img[2])
+  
+End
+
+Public Sub Reciente3_Click()
+  
+  AbrirReciente(sResult_Latest_Img[3])
+  
+End
+
+Public Sub Reciente4_Click()
+  
+  AbrirReciente(sResult_Latest_Img[4])
+  
+End
+
+Public Sub MenuAboutPop_Click()
+  
+  f_about.ShowModal()
+  
+End
+
+Public Sub MenuMostrarMenuPop_Click()
+  
+  OcultarMostrarMenu
+  
+End
+
+Public Sub tema1_Click()
+  
+  theme(1)
+  
+End
+
+Public Sub tema2_Click()
+  
+  theme(2)
+  
+End
+
+Public Sub tema3_Click()
+  
+  theme(3)
+  
+End
+
+Public Sub tema4_Click()
+  
+  theme(4)
+  
+End
+
+Public Sub tema5_Click()
+  
+  theme(5)
+  
+End
+
+Public Sub ToolButtonEditFormat2_Click()
+  
+  EditRes()
+  
+End
+
+Public Sub MenuMostOcultar_Click()
+  
+  OcultarMostrarMenu
+  
+End
+
+Public Sub SalirMenu_Click()
+  
+  Me.Close
+  
+End
+
+''  Funciones --------------------------------------------------------------------------------------------
+
+Public Sub Form_Resize()
+  
+  ToolbarPanel()
+  
+  ButtonRightPicture.Move(Me.Width - 100, (Me.Height + TOOLBAR_HEIGHT - ButtonRightPicture.Height) / 2)
+  ButtonLeftPicture.Move(ButtonLeftPicture.X, (Me.Height + TOOLBAR_HEIGHT - ButtonLeftPicture.Height) / 2)
+  
+  FactorResize = (Me.Height - TOOLBAR_HEIGHT) / HeightPicture
+  SliderZoom.Value = FactorResize * 100
+  
+  PictureBoxPreview.Height = HeightPicture * FactorResize
+  PictureBoxPreview.Width = WidthPicture * FactorResize
+  
+  PictureBoxPreview.X = (Me.Width - PictureBoxPreview.Width) / 2
+  PictureBoxPreview.Y = (Me.Height - TOOLBAR_HEIGHT - PictureBoxPreview.Height) / 2
+  
+  ScrollViewPicture.Height = Me.Height - TOOLBAR_HEIGHT
+  ScrollViewPicture.Width = Me.Width 
+  ScrollViewPicture.X = 0 
+  ScrollViewPicture.Y = TOOLBAR_HEIGHT
+  ScrollViewPicture.ScrollBar = 0
+  
+  ButtonLeftPicture.Show
+  
+  ResizeVisor()
+  
+End
+
+Public Sub Form_Close()
+  
+  Shell "rm -rf /tmp/pictogram/viewer" Wait
+  
+End
+
+Public Sub ResizeVisor()
+  
+  Dim MinWidth As Integer = 766 'Ancho mínimo calculado, podría variar
+  Dim MinHeight As Integer = 447 'Altura mínima calculada, podría variar
+  Dim LimitFlag As Boolean = False
+  
+  If Me.Width < MinWidth And LimitFlag = False Then
+    Me.Width = 770
+    Me.Resizable = False
+    LimitFlag = True
+  Endif
+  
+  If Me.Height < MinHeight And LimitFlag = False Then
+    Me.Height = 450
+    Me.Resizable = False
+    LimitFlag = True
+  Endif
+  
+  If LimitFlag Then
+    Me.Resizable = True
+    LimitFlag = False
+  Endif
+  
+End
+
+Public Sub Form_KeyPress()
+  
+  'Muestra/oculta el menu al presionar la tecla alt  
+  Dim altSet As Boolean
+  
+  Try altSet = Key.Alt
+  altSet = IIf( Error , False, altSet)
+  If altSet Then
+    OcultarMostrarMenu
+  Endif
+  
+End
+
+Public Sub OcultarMostrarMenu()
+  
+  If viewMenu = False Then
+    Menu1.Visible = True
+    ImageMenu.Visible = True
+    MenuAyuda.Visible = True
+    MenuVista.Visible = True
+    viewMenu = True
+    
+  Else
+    Menu1.Visible = False
+    ImageMenu.Visible = False
+    MenuAyuda.Visible = False
+    MenuVista.Visible = False
+    viewMenu = False
+  Endif
+  
+End
+
+Public Sub PictureBoxPreview_MouseWheel()
+  
+  If Mouse.Delta > 0 Then
+    If imgposition <> 0 Then
+      PreviousPicture()
+    Endif
+    
+  Else
+    
+    NextPicture()
+    
+  Endif
+  
+End
+
+Public Sub AbrirReciente(pathReciente As String)
+  
+  Dim path1 As New Path
+  Dim DirPath As String
+  Dim respuesta As Integer
+  Dim name_ As String
+  Dim format_ As String
+  Dim nameshort As String
+  Dim directory As String
+  
+  DirPath = pathReciente  
+  path1.setPath(DirPath)
+  name_ = path1.getImgPath()
+  format_ = path1.getImgFormat()
+  nameshort = path1.getNameShort()
+  directory = path1.getDirectory()
+  
+  If save == False Then
+    
+    Message.Title = "Guardar cambios antes de abrir imagen"
+    respuesta = Message.Warning("La imagen ha sido modificada. ¿desea guardar cambios?", "No guardar y seguir", "Cancelar", "Guardar y seguir")
+    If respuesta == 1 Then
+      
+      If fuente == 1 Then
+        ListImage.setPath(directory)
+      Endif
+      
+      SetPictureFromMain(DirPath)
+      
+      Save = True
+    Else If respuesta == 3 Then
+      Shell "mv -f '" & pathtemp & "' '" & pathbase & "' " Wait
+      save = True
+      If fuente == 1 Then
+        ListImage.setPath(directory)
+      Endif
+      SetPictureFromMain(DirPath)
+    Endif
+  Else
+    If fuente == 1 Then
+      ListImage.setPath(directory)
+    Endif
+    SetPictureFromMain(DirPath)   
+  Endif
+  
+  Save_Latest_Img
+  Show_Conf_Settings
+  
+  
+Catch
+  
+  Message.Error("No se puede abrir la imagen, es posible que la ruta haya cambiado o el archivo ya no exista")
+  
+End
+
+Public Function getImgFormat(pathImg As String) As String
+  
+  Dim dire_ As String[]
+  Dim name1 As String
+  
+  dire_ = Split(pathImg, "/")
+  name1 = dire_[dire_.Length - 1]
+  
+  Return name1
+  
+Catch 
+  
+  Return "-------"
+  
+End
+
+Public Sub ScrollViewPicture_MouseWheel()
+  
+  If Mouse.Delta > 0 Then
+    If imgposition <> 0 Then
+      PreviousPicture()
+    Endif
+    
+  Else
+    
+    NextPicture()
+    
+  Endif
+  
+End
+
+Public Sub Form_MouseWheel()
+  
+  If Mouse.Delta > 0 Then
+    If imgposition <> 0 Then
+      PreviousPicture()
+    Endif
+    
+  Else
+    
+    NextPicture()
+    
+  Endif
+  
+End
+
+'' PopMenu
+
+Public Sub MPopAcercar_Click()
+  
+  MZoomIn_Click()
+  
+End
+
+Public Sub MPopAlejar_Click()
+  
+  MZoomOut_Click()
+  
+End
+
+Public Sub MPopRotarR_Click()
+  
+  MRotateRight_Click()
+  
+End
+
+Public Sub MPopRotarL_Click()
+  
+  MRotateLeft_Click()
+  
+End
+
+Public Sub MPopFlipV_Click()
+  
+  MFlip_Click()
+  
+End
+
+Public Sub MPopFlipH_Click()
+  
+  MFlop_Click()
+  
+End
+
+Public Sub MPopFullScreen_Click()
+  
+  MFullscreen_Click()
+  
+End
+
+Public Sub MPopNextImage_Click()
+  
+  MNextPicture_Click()
+  
+End
+
+Public Sub MPopPreviousImage_Click()
+  
+  MPreviousPicture_Click()
+  
+End
+
+Public Sub MPopSize_Click()
+  
+  MResolucion_Click()
+  
+End
+
+Public Sub MPopFormat_Click()
+  
+  MChangeFormat_Click()
+  
+End
+
+Public Sub MPopDelete_Click()
+  
+  DeleteMenu_Click()
+  
+End
+
+Public Sub MPopPrint_Click()
+  
+  MPrint_Click()
+  
+End
+
+Public Sub MPopMostrarMenu_Click()
+  
+  MenuMostOcultar_Click()
+  
+End
+
+Public Sub MPopAbout_Click()
+  
+  MenuAbout_Click()
+  
+End
+
+Public Sub ScrollViewPicture_DblClick()
+  
+  FullScreenView()
+  
+End
+
+'' Navegar por imagen con el mouse cuando tiene zoom
+
+Public Sub PictureBoxPreview_MouseDown()
+  
+  spx = Mouse.X
+  spy = Mouse.Y
+  
+End
+
+Public Sub PictureBoxPreview_MouseMove()
+  
+  With PictureBoxPreview
+    
+    If (PictureBoxPreview.Height > ScrollViewPicture.Height + 10) Then
+      .Y = .Y + Mouse.Y - spy
+    Endif    
+    
+    If (PictureBoxPreview.Width > ScrollViewPicture.Width + 10) Then
+      .X = .X + Mouse.X - spx
+    Endif  
+    
+  End With
+  
+End

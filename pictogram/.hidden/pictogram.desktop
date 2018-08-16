@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=pictogram
+Comment=image viewer.
+Exec=/usr/bin/pictogram
+Icon=/usr/share/pixmaps/LogoPictogram.png
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Graphics;ImageProcessing;
+MimeType=image/jpeg;image/png;image/gif
+

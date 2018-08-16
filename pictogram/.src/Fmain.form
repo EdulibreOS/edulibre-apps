@@ -1,0 +1,65 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,106,74)
+  Background = &H2F535F&
+  Icon = Picture["img/LogoPictogram.png"]
+  Resizable = False
+  Border = False
+  { Panel1 Panel
+    MoveScaled(-1,-1,108,16)
+    Background = Color.LightBackground
+    { Label1 Label
+      MoveScaled(19,6,41,9)
+      Font = Font["DejaVu Sans,+11"]
+      Text = ("ictogram")
+    }
+    { Label4 Label
+      MoveScaled(88,11,17,4)
+      Text = ("Visor de Imágenes")
+    }
+  }
+  { PictureBox1 PictureBox
+    MoveScaled(4,1,15,13)
+    Picture = Picture["img/LogoPictogram.png"]
+    Stretch = True
+  }
+  { ButtonImg Button
+    MoveScaled(61,27,22,22)
+    Mouse = Mouse.Pointing
+    ToolTip = ("Abrir Imagen")
+    Picture = Picture["img/image.png"]
+    Border = False
+  }
+  { ButtonDir Button
+    MoveScaled(21,26,23,22)
+    Mouse = Mouse.Pointing
+    ToolTip = ("Abrir Carpeta")
+    Picture = Picture["img/carpet.png"]
+    Border = False
+  }
+  { Label2 Label
+    MoveScaled(22,48,22,11)
+    Font = Font["+5"]
+    Foreground = Color.White
+    Text = ("Abrir carpeta \nde Imágenes")
+  }
+  { Label3 Label
+    MoveScaled(62,49,22,11)
+    Font = Font["+5"]
+    Foreground = Color.White
+    Text = ("Abrir imagen")
+  }
+  { Button1 Button
+    MoveScaled(99,67,6,6)
+    Mouse = Mouse.Pointing
+    ToolTip = ("Salir")
+    Picture = Picture["img/exit.png"]
+    Border = False
+  }
+  { Button2 Button
+    MoveScaled(1,67,6,6)
+    Picture = Picture["img/info.png"]
+    Border = False
+  }
+}

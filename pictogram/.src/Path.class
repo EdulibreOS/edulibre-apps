@@ -1,0 +1,55 @@
+' Gambas class file
+
+' Copyright (C) Rubén Rojas
+
+' This file Is Part Of Pictogram.
+'
+'    Pictogram Is Free software: you can redistribute it And / Or modify
+'    it under the terms Of the GNU General Public License As Published by
+'    the Free Software Foundation, either version 3 Of the License, Or
+'    (at your option)any later version.
+'
+'    Pictogram Is Distributed In the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty Of
+'    MERCHANTABILITY Or FITNESS For A PARTICULAR PURPOSE.See the
+'    GNU General Public License For more details.
+'
+'    You should have received a Copy Of the GNU General Public License
+'    along With Foobar.If Not, see < http: / / www.gnu.org / licenses / > .
+
+Public dire As String[]
+Public name_ As String
+Public formm As String[]
+Public format_ As String
+Public nameshort As String
+Public directory As String
+
+
+
+Public Sub setPath(path As String)
+  
+  dire = Split(path, "/")
+  name_ = dire[dire.Length - 1]
+  formm = Split(path, ".")
+  format_ = formm[formm.Length - 1]
+  nameshort = Mid(name_, 1, (Len(format_) + 1) * -1)
+  directory = Mid(path, 1, (Len(name_) + 1) * -1) & "/"
+  
+End
+
+Public Function getImgPath() As String
+  Return name_
+End
+
+Public Function getImgFormat() As String
+  Return format_
+End
+
+Public Function getNameShort() As String
+  Return nameshort
+End
+
+Public Function getDirectory() As String
+  Return directory
+End
+
