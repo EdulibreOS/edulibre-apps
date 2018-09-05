@@ -1,19 +1,18 @@
 # Gambas Project File 3.0
-# Compiled with Gambas 3.10.0
 Title=Pictogram
 Startup=Fmain
 Icon=img/LogoPictogram.png
-Version=1.0.0
+Version=1.0.1
 Component=gb.args
 Component=gb.image
 Component=gb.qt5
 Component=gb.form
-Component=gb.desktop.x11
 Component=gb.desktop
+Component=gb.desktop.x11
 Component=gb.settings
-Component=gb.mime
 Component=gb.term
-Description="- Pictogram is an application to view and edit images in a simple and fast way\nContact erojas@cunori.edu.gt"
+Component=gb.mime
+Description="- Pictogram is an application to view and edit images in a simple and fast way\nContact rbencho@gmail.com"
 Authors="Edgar Ruben Rojas Ovando\nCarlos Orlando Paiz Raymundo\nBoris Josue Mayen Juarez"
 TabSize=2
 Translate=1

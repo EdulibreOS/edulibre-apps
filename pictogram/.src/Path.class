@@ -24,8 +24,6 @@ Public format_ As String
 Public nameshort As String
 Public directory As String
 
-
-
 Public Sub setPath(path As String)
   
   dire = Split(path, "/")
@@ -38,18 +36,25 @@ Public Sub setPath(path As String)
 End
 
 Public Function getImgPath() As String
+  
   Return name_
+  
 End
 
 Public Function getImgFormat() As String
+  
   Return format_
+  
 End
 
 Public Function getNameShort() As String
+  
   Return nameshort
+  
 End
 
 Public Function getDirectory() As String
+  
   Return directory
+  
 End
-

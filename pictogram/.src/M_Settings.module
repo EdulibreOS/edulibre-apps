@@ -34,7 +34,7 @@ Public Sub Init_Settings_Pictogram()
   Set_Pictogram["Latest/Img3"] = "Ninguna"
   Set_Pictogram["Latest/Img4"] = "Ninguna"
   Set_Pictogram["Style/Theme"] = 2
-
+  
   Set_Pictogram.Save
   
   Show_Settings_Pictogram
@@ -42,15 +42,13 @@ Public Sub Init_Settings_Pictogram()
 End
 
 Public Sub Show_Settings_Pictogram()
-
-   sResult_Latest_Img[0] = Set_Pictogram["Latest/Img0"]
-   sResult_Latest_Img[1] = Set_Pictogram["Latest/Img1"] 
-   sResult_Latest_Img[2] = Set_Pictogram["Latest/Img2"]  
-   sResult_Latest_Img[3] = Set_Pictogram["Latest/Img3"]  
-   sResult_Latest_Img[4] = Set_Pictogram["Latest/Img4"]  
   
-   iResult_Style_Theme = Set_Pictogram["Style/Theme"]
+  sResult_Latest_Img[0] = Set_Pictogram["Latest/Img0"]
+  sResult_Latest_Img[1] = Set_Pictogram["Latest/Img1"] 
+  sResult_Latest_Img[2] = Set_Pictogram["Latest/Img2"]  
+  sResult_Latest_Img[3] = Set_Pictogram["Latest/Img3"]  
+  sResult_Latest_Img[4] = Set_Pictogram["Latest/Img4"]  
   
-   
+  iResult_Style_Theme = Set_Pictogram["Style/Theme"]
+  
 End
-

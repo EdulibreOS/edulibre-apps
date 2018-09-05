@@ -104,6 +104,7 @@ Public Sub _new()
   M_InfoPc._inits_DD
   M_InfoPc.Dat_DD
   TimerRam.Start
+  
   'Me.TopOnly = Not Me.TopOnly
   
 End
@@ -138,6 +139,8 @@ Public Sub Form_Open()
   Logo_Distro
   MSG
   M_InfoPc.graphics
+  
+  f_PC_Info.ipnPCInfo.Foreground = Color.Black
   
 End
 
@@ -274,7 +277,3 @@ Public Sub mnuAboutW_Click()
   f_about.ShowModal
   
 End
-
-
-
-

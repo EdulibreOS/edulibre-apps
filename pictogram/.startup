@@ -2,15 +2,15 @@ Fmain
 Pictogram
 0
 0
-1.0.0
+1.0.1
 
 gb.args
 gb.image
 gb.qt5
 gb.form
-gb.desktop.x11
 gb.desktop
+gb.desktop.x11
 gb.settings
-gb.mime
 gb.term
+gb.mime
 

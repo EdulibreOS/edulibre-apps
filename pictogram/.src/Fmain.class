@@ -17,7 +17,6 @@
 '    You should have received a Copy Of the GNU General Public License
 '    along With Foobar.If Not, see < http: / / www.gnu.org / licenses / > .
 
-
 Public DirPath As String
 
 Public Sub Form_Open()
@@ -46,7 +45,7 @@ End
 
 Public Sub ButtonDir_Click()
   
-  Dialog.Filter = ["*.jpg", "JPG", "*.jpeg", "JPEG", "*.png", "PNG", "*.gif", "GIF", "*.bmp", "BMP"]
+  Dialog.Filter = ["*.jpg", "JPG", "*.png", "PNG", "*.gif", "GIF", "*.bmp", "bmp"]
   
   If Dialog.SelectDirectory() == False Then
     DirPath = Dialog.Path  
@@ -61,7 +60,7 @@ End
 
 Public Sub ButtonImg_Click()
   
-  Dialog.Filter = ["*.jpg", "JPG", "*.jpeg", "JPEG", "*.png", "PNG", "*.gif", "GIF", "*.bmp", "BMP"]
+  Dialog.Filter = ["*.jpg", "JPG", "*.png", "PNG", "*.gif", "GIF", "*.bmp", "bmp"]
   
   If Dialog.OpenFile(False) == False Then
     DirPath = Dialog.Path  
@@ -77,13 +76,13 @@ Public Sub ButtonImg_Click()
 End
 
 Public Sub Button1_Click()
-
+  
   Me.Close
-
+  
 End
 
 Public Sub Button2_Click()
-
-   f_about.ShowModal()
-
+  
+  f_about.ShowModal()
+  
 End
