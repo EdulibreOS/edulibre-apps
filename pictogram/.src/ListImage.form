@@ -1,0 +1,106 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,134,78)
+  Icon = Picture["img/LogoPictogram.png"]
+  { Menu_Archivo Menu
+    Text = ("Archivo")
+    Visible = False
+    { Menu_Guardar Menu
+      Text = ("Guardar")
+      Visible = False
+      Shortcut = "Ctrl+G"
+    }
+    { Menu_Abrir Menu
+      Text = ("Abrir")
+      Shortcut = "Ctrl+Shift+A"
+    }
+    { Menu_Salir Menu
+      Action = "Me.Close"
+      Text = ("Salir")
+      Shortcut = "Alt+F4"
+    }
+  }
+  { Menu_Ver Menu
+    Text = ("Ver")
+    Visible = False
+    { Menu_BarraHerramientas Menu
+      Text = ("Barra de Herramientas")
+    }
+    { Menu_Propiedades Menu
+      Text = ("Propiedades")
+    }
+  }
+  { Menu_Imagen Menu
+    Text = ("Imagen")
+    Visible = False
+    { Menu_CambiarFormato Menu
+      Text = ("Cambiar Formato")
+      Visible = False
+    }
+    { Menu_Renombrar Menu
+      Text = ("Renombrar")
+      Visible = False
+    }
+    { Menu_Girar Menu
+      Text = ("Girar")
+      Visible = False
+    }
+  }
+  { Menu_Ayuda Menu
+    Text = ("Ayuda")
+    Visible = False
+    { Menu_AcercaDe Menu
+      Text = ("Acerca de Pictogram")
+    }
+  }
+  { MenuForm Menu
+    Text = ("PopupMenu")
+    Visible = False
+    { OpenMenu Menu
+      Text = ("Abrir")
+      Shortcut = "Ctrl+O"
+    }
+    { AboutMenu Menu
+      Text = ("Acerca de Pictogram")
+    }
+    { ExitMenu Menu
+      Text = ("Salir")
+      Shortcut = "Alt+F4"
+    }
+  }
+  { choiceDirButton ToolButton
+    MoveScaled(6,4,6,5)
+    ToolTip = ("Seleccionar carpeta")
+    Picture = Picture["icon:/32/directory"]
+  }
+  { !dirPathLabel Label
+    MoveScaled(14,5,66,4)
+    #Public = True
+    Font = Font["+5"]
+    AutoResize = True
+    Text = ("path/img")
+  }
+  { !LabelPictogram Label
+    MoveScaled(105,3,31,7)
+    #Public = True
+    Font = Font["DejaVu Sans,+10"]
+    Text = ("ictogram")
+    Alignment = Align.Left
+  }
+  { picLogo3 PictureBox
+    MoveScaled(97,3,8,7)
+    Picture = Picture["img/LogoPictogram.png"]
+    Stretch = True
+    Alignment = Align.Center
+  }
+}
+
+# Gambas Action File 3.0
+
+{ Actions
+  { Action Me.Close
+    Text = "Salir"
+    Shortcut = "Alt+F4"
+  }
+}

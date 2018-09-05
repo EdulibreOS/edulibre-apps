@@ -1,0 +1,302 @@
+' Gambas class file
+
+'This file Is Part Of Pictogram.
+'
+'    Pictogram Is Free software: you can redistribute it And / Or modify
+'    it under the terms Of the GNU General Public License As Published by
+'    the Free Software Foundation, either version 3 Of the License, Or
+'    (at your option)any later version.
+'
+'    Pictogram Is Distributed In the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty Of
+'    MERCHANTABILITY Or FITNESS For A PARTICULAR PURPOSE.See the
+'    GNU General Public License For more details.
+'
+'    You should have received a Copy Of the GNU General Public License
+'    along With Foobar.If Not, see < http: / / www.gnu.org / licenses / > .
+'
+
+Public MainPanel As New HPanel(Me)
+Public ScrollPane As New ScrollView(Me)
+Public Pictures As String[]
+Public DirPath As String
+Private PicBoxes As PictureBox[]
+Private Const IMG_WIDTH As Integer = 140
+Private Const IMG_HEIGHT As Integer = 120
+Private Const MARGIN As Integer = 100
+Private Const BOX_IN_WIDTH As Integer = 8
+Private Const SPACING As Integer = 8
+Public Const TEMP_DIR_THUMBS As String = "/tmp/pictogram/thumbs"
+Public Set_Pictogram As New Settings(Desktop.ConfigDir &/ "Innova/Pictogram.conf")
+Public iResult_Style_Theme As Integer
+
+
+Public Sub Open()
+  
+  Dim properties As String
+  Dim content As String[]
+  Dim props As String[]
+  Dim element As String
+  
+  Me.Width = Desktop.Width
+  Me.Height = Desktop.Height
+  Me.Resizable = True
+  Shell "mkdir /tmp/pictogram" Wait
+  Shell "mkdir " & TEMP_DIR_THUMBS Wait
+  
+  If Exist("/tmp/pictogram/picto.properties") Then
+    properties = File.Load("/tmp/pictogram/picto.properties")
+    
+    content = New String[]
+    content = Split(properties, "\n")
+    
+    For Each element In content
+      If element Like "dir_path*=*" Then
+        LoadLastDir(element)
+      Endif
+    Next
+  Else 
+    
+    Shell "touch /tmp/pictogram/picto.properties" Wait
+    
+    props = New String[]
+    props.Add("dir_path=" & DirPath)
+    
+    File.Save("/tmp/pictogram/picto.properties", props.Join("\n"))    
+  Endif
+  
+  Me.PopupMenu = "MenuForm"
+  
+  picLogo3.X = (Me.Width - picLogo3.Width - LabelPictogram.Width - 25)
+  LabelPictogram.X = picLogo3.X + picLogo3.Width
+  
+  iResult_Style_Theme = M_Settings.iResult_Style_Theme
+  VisorForm.theme(iResult_Style_Theme)
+End
+
+Public Sub setPath(pt As String)
+  
+  DirPath = pt
+  dirPathLabel.Text = DirPath
+  GetFromDirectory(DirPath)
+  CreateThumbnails() 
+  UpdateMainPanel()
+  
+End
+
+'Public Sub choiceDirButton_Click()
+
+'  Dialog.Filter = ["*.jpg", "JPG", "*.png", "PNG", "*.gif", "GIF", "*.bmp", "bmp"]
+'  If Dialog.SelectDirectory() == False Then
+'    DirPath = Dialog.Path  
+'    dirPathLabel.Text = DirPath
+'    GetFromDirectory(DirPath)
+'    CreateThumbnails() 
+'    UpdateMainPanel()
+'  Endif
+
+'End
+
+Public Function LoadPictures(Count As Integer)
+  
+  Dim pBoxes As New PictureBox(MainPanel) As "PictureBoxes"  
+  
+  pBoxes.Height = IMG_HEIGHT
+  pBoxes.Width = IMG_WIDTH
+  pBoxes.Stretch = True  
+  pBoxes.Border = Border.Dotted
+  pBoxes.Picture = Picture[TEMP_DIR_THUMBS &/ Pictures[Count]]  
+  pBoxes.Tag = DirPath &/ Pictures[Count]
+  pBoxes.Mouse = Mouse.Arrow
+  pBoxes.Tooltip = "Doble Clic para abrir"
+  
+End
+
+Public Function UpdateMainPanel()
+  
+  Dim i As Integer
+  
+  ' BoxesInWidth almacena el número de PBoxes que caben en su contenedor
+  Dim BoxesInWidth As Integer
+  Dim BoxesInHeight As Integer
+  
+  BoxesInWidth = Floor(Me.Width / IMG_WIDTH)
+  
+  PicBoxes = New PictureBox[]
+  
+  MainPanel.Delete
+  MainPanel = New HPanel(Me)
+  MainPanel.Spacing = True
+  MainPanel.Expand = True
+  MainPanel.Width = IMG_WIDTH * BOX_IN_WIDTH + ((BOX_IN_WIDTH - 1) * SPACING) 
+  MainPanel.Height = Me.Height - MARGIN
+  MainPanel.X = (Me.Width - MainPanel.Width) / 2
+  MainPanel.Y = MARGIN
+  
+  If IsNull(Pictures) Then
+    Print "none"
+  Else
+    For i = 0 To Pictures.Count - 1
+      LoadPictures(i)
+      MainPanel.Refresh
+    Next
+  Endif
+  
+  If PicBoxes.Length > 40 Then
+    BoxesInHeight = Pictures.Length / BoxesInWidth
+    
+    ScrollPane = New ScrollView(Me)
+    ScrollPane.X = (Me.Width - MainPanel.Width) / 2
+    ScrollPane.Y = MARGIN
+    ScrollPane.Width = IMG_WIDTH * BOX_IN_WIDTH + ((BOX_IN_WIDTH - 1) * SPACING) 
+    ScrollPane.Height = Me.Height - 125
+    ScrollPane.ScrollBar = 2
+    ScrollPane.Expand = True
+    
+    MainPanel.Reparent(ScrollPane)
+    MainPanel.Width = ScrollPane.Width
+    MainPanel.Height = IMG_HEIGHT * BoxesInHeight + ((BoxesInHeight - 1) * SPACING)
+    MainPanel.X = 0
+    MainPanel.Y = 0
+    
+  Else
+    ScrollPane.Visible = False
+    MainPanel.Width = IMG_WIDTH * BOX_IN_WIDTH + ((BOX_IN_WIDTH - 1) * SPACING) 
+    MainPanel.Height = Me.Height - MARGIN
+    
+    If MainPanel.Width > Me.Width Then
+      MainPanel.X = (Me.Width - MainPanel.Width + 106) / 2
+    Else
+      MainPanel.X = (Me.Width - MainPanel.Width) / 2
+    Endif
+    
+    MainPanel.Y = MARGIN
+  Endif
+  
+End
+
+Public Sub GetFromDirectory(Directory As String)
+  
+  Dim FileName As String
+  
+  Pictures = Dir(Directory, "*.png")
+  Pictures.Insert(Dir(Directory, "*.jpg"))
+  Pictures.Insert(Dir(Directory, "*.jpeg"))
+  Pictures.Insert(Dir(Directory, "*.gif"))
+  Pictures.Insert(Dir(Directory, "*.bmp"))
+  
+  For Each FileName In Pictures
+    Print FileName
+  Next
+  
+  ' imprimir los nombres de archivos obtenidos
+  Print "Items: " & Pictures.Count
+  
+End
+
+Public Sub CreateThumbnails()
+  
+  Dim item As String 
+  
+  For Each item In Pictures
+    'Shell "convert -define jpeg:size=500x240 '" & DirPath &/ item & "' -auto-orient -thumbnail 250x120   -unsharp 0x.5  '" & TEMP_DIR_THUMBS &/ item & "'" Wait
+    ' El siguiente comando permite ajustar la imagen proporcionalmente, util en posteriores versiones
+    Shell "convert -define jpeg:size=280x240 '" & DirPath &/ item & "' -thumbnail 140x120^ -gravity center -extent 140x120 '" & TEMP_DIR_THUMBS &/ item & "'" Wait
+  Next
+  
+End
+
+Private Sub LoadLastDir(path As String)
+  
+  Dim val As String[]
+  
+  val = Split(path, "=")
+  If val.Length >= 2 Then
+    val[0] = ""
+    path = val.Join("")
+  Else
+    path = ""
+  Endif
+  
+  GetFromDirectory(path)
+  UpdateMainPanel()
+  
+  dirPathLabel.Text = path
+  DirPath = path
+  
+End
+
+Public Sub PictureBoxes_DblClick()
+  
+  'VisorForm.SetPictureFromMain(Last.Picture, Last.tag)
+  VisorForm.fullscreenMode = True
+  VisorForm.SetPictureFromMain(Last.tag)
+  VisorForm.Show()
+  
+End
+
+Public Sub Menu_Salir_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub Menu_AcercaDe_Click()
+  
+  f_about.ShowModal()
+  
+End
+
+Public Sub OpenMenu_Click()
+  
+  If VisorForm.Closed == False Then
+    VisorForm.Close
+  Endif
+  
+  Dialog.Filter = ["*.jpg", "JPG", "*.png", "PNG", "*.gif", "GIF", "*.bmp", "bmp"]
+  If Dialog.SelectDirectory() == False Then
+    DirPath = Dialog.Path  
+    dirPathLabel.Text = DirPath
+    GetFromDirectory(DirPath)
+    CreateThumbnails() 
+    UpdateMainPanel()
+  Endif
+  
+End
+
+Public Sub ExitMenu_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub AboutMenu_Click()
+  
+  f_about.ShowModal()
+  
+End
+
+Public Sub Form_Resize()
+  
+  UpdateMainPanel()
+  
+End
+
+Public Sub Form_Close()
+  
+  Dim properties As String[]
+  
+  properties = New String[]
+  properties.Add("dir_path=" & DirPath)
+  
+  File.Save("/tmp/pictogram/picto.properties", properties.Join("\n"))
+  'Shell "rm -rf " & TEMP_DIR_THUMBS
+  
+End
+
+Public Sub choiceDirButton_Click()
+
+  OpenMenu_Click
+
+End
+

@@ -1,0 +1,42 @@
+' Gambas class file
+
+' Copyright (C) Rubén Rojas
+
+' This file Is Part Of Pictogram.
+'
+'    Pictogram Is Free software: you can redistribute it And / Or modify
+'    it under the terms Of the GNU General Public License As Published by
+'    the Free Software Foundation, either version 3 Of the License, Or
+'    (at your option)any later version.
+'
+'    Pictogram Is Distributed In the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty Of
+'    MERCHANTABILITY Or FITNESS For A PARTICULAR PURPOSE.See the
+'    GNU General Public License For more details.
+'
+'    You should have received a Copy Of the GNU General Public License
+'    along With Foobar.If Not, see < http: / / www.gnu.org / licenses / > .
+
+
+Public Sub Form_Open()
+  
+  lblVersion.Text = Application.Version
+  
+End
+
+Public Sub btnClose_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub Form_KeyPress()
+  
+  If Key.Code = Key.Esc Then
+    Me.Close
+  Endif
+  
+End
+
+
+

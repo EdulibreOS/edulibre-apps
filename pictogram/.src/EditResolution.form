@@ -1,0 +1,79 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,75,39)
+  Icon = Picture["img/LogoPictogram.png"]
+  { Label1 Label
+    MoveScaled(4,2,67,6)
+    Font = Font["Bold,+3"]
+    AutoResize = True
+    Text = ("Cambiar Tamaño")
+    Alignment = Align.Center
+  }
+  { Label2 Label
+    MoveScaled(5,10,12,4)
+    Text = ("Nombre:")
+  }
+  { Label3 Label
+    MoveScaled(5,13,13,4)
+    Text = ("Tamaño Actual:")
+  }
+  { LabelName Label
+    MoveScaled(19,9,55,4)
+    Font = Font["Bold"]
+    AutoResize = True
+  }
+  { LabelRes Label
+    MoveScaled(19,13,55,4)
+    Font = Font["Bold"]
+  }
+  { SpinBoxAncho SpinBox
+    MoveScaled(23,20,9,4)
+    MaxValue = 100000
+  }
+  { SpinBoxAlto SpinBox
+    MoveScaled(47,20,9,4)
+    MaxValue = 100000
+  }
+  { Label4 Label
+    MoveScaled(14,20,9,4)
+    Foreground = Color.TextForeground
+    Text = ("Ancho:")
+  }
+  { Label5 Label
+    MoveScaled(40,20,5,4)
+    Foreground = Color.TextForeground
+    Text = ("Alto:")
+  }
+  { Button1 Button
+    MoveScaled(41,33,26,4)
+    Text = ("Aceptar")
+  }
+  { Button2 Button
+    MoveScaled(7,33,26,4)
+    Text = ("Cancelar")
+  }
+  { SliderBoxCalidad SliderBox
+    MoveScaled(44,27,21,4)
+    DefaultValue = 100
+  }
+  { LabelCalidad Label
+    MoveScaled(36,27,8,4)
+    Text = ("Calidad:")
+  }
+  { LabelCalidad2 Label
+    MoveScaled(66,27,4,4)
+    Text = ("%")
+  }
+  { CheckBoxSobreEscribir CheckBox
+    MoveScaled(6,27,24,4)
+    Text = ("Sobreescribir Imagen")
+    Value = CheckBox.True
+  }
+  { Separator1 Separator
+    MoveScaled(3,17,68,1)
+  }
+  { Separator2 Separator
+    MoveScaled(3,25,68,1)
+  }
+}

@@ -1,0 +1,56 @@
+' Gambas module file
+
+' Copyright (C) Rubén Rojas
+
+'This file Is Part Of Pictogram.
+'
+'    Pictogram Is Free software: you can redistribute it And / Or modify
+'    it under the terms Of the GNU General Public License As Published by
+'    the Free Software Foundation, either version 3 Of the License, Or
+'    (at your option)any later version.
+'
+'    Pictogram Is Distributed In the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty Of
+'    MERCHANTABILITY Or FITNESS For A PARTICULAR PURPOSE.See the
+'    GNU General Public License For more details.
+'
+'    You should have received a Copy Of the GNU General Public License
+'    along With Foobar.If Not, see < http: / / www.gnu.org / licenses / > .
+
+Public Set_Pictogram As New Settings(Desktop.ConfigDir &/ "Innova/Pictogram.conf")
+Public sResult_Latest_Img As New String[5]
+Public iResult_Style_Theme As Integer
+
+Public Sub Init_Settings_Pictogram()
+  
+  If Not Exist(Desktop.ConfigDir &/ "Innova") Then
+    Mkdir (Desktop.ConfigDir &/ "Innova")
+  Endif
+  
+  Set_Pictogram.Write(VisorForm)
+  Set_Pictogram["Latest/Img0"] = "Ninguna"
+  Set_Pictogram["Latest/Img1"] = "Ninguna"
+  Set_Pictogram["Latest/Img2"] = "Ninguna"
+  Set_Pictogram["Latest/Img3"] = "Ninguna"
+  Set_Pictogram["Latest/Img4"] = "Ninguna"
+  Set_Pictogram["Style/Theme"] = 2
+
+  Set_Pictogram.Save
+  
+  Show_Settings_Pictogram
+  
+End
+
+Public Sub Show_Settings_Pictogram()
+
+   sResult_Latest_Img[0] = Set_Pictogram["Latest/Img0"]
+   sResult_Latest_Img[1] = Set_Pictogram["Latest/Img1"] 
+   sResult_Latest_Img[2] = Set_Pictogram["Latest/Img2"]  
+   sResult_Latest_Img[3] = Set_Pictogram["Latest/Img3"]  
+   sResult_Latest_Img[4] = Set_Pictogram["Latest/Img4"]  
+  
+   iResult_Style_Theme = Set_Pictogram["Style/Theme"]
+  
+   
+End
+

@@ -1,0 +1,26 @@
+#---------------------------------------------------------------------------------------------------#
+#PICTOGRAM#
+#Pictogram es una aplicación para ver y editar imágenes de una manera simple y rápida..#
+#Ha sido desarrollada en Gambas 3#
+#Su uso será destinado a EdulibreOS#
+
+#Autores:#
+
+#v1.0
+#Edgar Rubén Rojas Ovando#
+
+
+#v0.6
+#Edgar Rubén Rojas Ovando#
+#Carlos Orlando Paiz Raymundo#
+#Boris Josué Mayén Juárez#
+
+#Estudiantes de:#
+#Universidad San Carlos de Guatemala#
+#Facultad de Ingeniería#
+#Ingeniería en Ciencias y Sistemas#
+
+
+#Con el asesoramiento de Herberth Guzman y Sammy Pinto
+
+#---------------------------------------------------------------------------------------------------#

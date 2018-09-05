@@ -1,0 +1,89 @@
+' Gambas class file
+
+' Copyright (C) Rubén Rojas
+
+' This file Is Part Of Pictogram.
+'
+'    Pictogram Is Free software: you can redistribute it And / Or modify
+'    it under the terms Of the GNU General Public License As Published by
+'    the Free Software Foundation, either version 3 Of the License, Or
+'    (at your option)any later version.
+'
+'    Pictogram Is Distributed In the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty Of
+'    MERCHANTABILITY Or FITNESS For A PARTICULAR PURPOSE.See the
+'    GNU General Public License For more details.
+'
+'    You should have received a Copy Of the GNU General Public License
+'    along With Foobar.If Not, see < http: / / www.gnu.org / licenses / > .
+
+
+Public DirPath As String
+
+Public Sub Form_Open()
+  
+  Dim pathInicial As String
+  
+  cArgs.Parse()
+  pathInicial = cArgs.Path  
+  
+  If Not Exist(Desktop.ConfigDir &/ "Innova/Pictogram.conf")
+    M_Settings.Init_Settings_Pictogram
+  Else
+    M_Settings.Show_Settings_Pictogram
+  Endif
+  
+  If Len(pathInicial) > 0 Then
+    
+    VisorForm.Origen(2)
+    VisorForm.fullscreenMode = True
+    VisorForm.SetPictureFromMain(cArgs.Path)
+    VisorForm.Show()
+    Me.Close    
+  Endif
+  
+End
+
+Public Sub ButtonDir_Click()
+  
+  Dialog.Filter = ["*.jpg", "JPG", "*.jpeg", "JPEG", "*.png", "PNG", "*.gif", "GIF", "*.bmp", "BMP"]
+  
+  If Dialog.SelectDirectory() == False Then
+    DirPath = Dialog.Path  
+    ListImage.Open()
+    ListImage.setPath(DirPath)
+    ListImage.Show()
+    Me.Close
+    
+  Endif
+  
+End
+
+Public Sub ButtonImg_Click()
+  
+  Dialog.Filter = ["*.jpg", "JPG", "*.jpeg", "JPEG", "*.png", "PNG", "*.gif", "GIF", "*.bmp", "BMP"]
+  
+  If Dialog.OpenFile(False) == False Then
+    DirPath = Dialog.Path  
+    
+    VisorForm.Origen(2)
+    VisorForm.SetPictureFromMain(DirPath)
+    VisorForm.fullscreenMode = True
+    VisorForm.Show()
+    Me.Close
+    
+  Endif
+  
+End
+
+Public Sub Button1_Click()
+
+  Me.Close
+
+End
+
+Public Sub Button2_Click()
+
+   f_about.ShowModal()
+
+End
