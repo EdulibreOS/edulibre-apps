@@ -223,7 +223,7 @@
     Index = 0
     Text = ("CPU")
     Picture = Picture["img/pc_info/Arch.svg"]
-    { pnlIconsDesk5 Panel
+    { pnlIconsCPU Panel
       MoveScaled(0,0,76,59)
       Arrangement = Arrange.Vertical
       Margin = True
@@ -504,7 +504,7 @@
     Index = 1
     Text = ("Memory")
     Picture = Picture["img/pc_info/Mem_Info.svg"]
-    { pnlIconsDesk2 Panel
+    { pnlIconsMemory Panel
       MoveScaled(0,1,76,53)
       Arrangement = Arrange.Vertical
       Margin = True
@@ -650,7 +650,7 @@
     Index = 2
     Text = ("Hard Disk")
     Picture = Picture["img/pc_info/Hard-Disk.svg"]
-    { pnlIconsDesk3 Panel
+    { pnlIconsHD Panel
       MoveScaled(0,0,76,55)
       Arrangement = Arrange.Vertical
       Margin = True
@@ -860,7 +860,7 @@
     Index = 3
     Text = ("Operating System")
     Picture = Picture["img/pc_info/SO.svg"]
-    { pnlIconsDesk Panel
+    { pnlIconsSO Panel
       MoveScaled(1,1,76,53)
       Arrangement = Arrange.Vertical
       Margin = True
@@ -1066,7 +1066,7 @@
     Index = 4
     Text = ("Desktop Environment")
     Picture = Picture["img/pc_info/Desktop.svg"]
-    { pnlIconsDesk4 Panel
+    { pnlIconsDE Panel
       MoveScaled(0,0,76,53)
       Arrangement = Arrange.Vertical
       Margin = True
@@ -1333,7 +1333,7 @@
     Index = 5
     Text = ("Graphics")
     Picture = Picture["img/pc_info/Graphics.png"]
-    { pnlIconsDesk6 Panel
+    { pnlIconsGraphics Panel
       MoveScaled(0,0,76,58)
       Arrangement = Arrange.Vertical
       Margin = True

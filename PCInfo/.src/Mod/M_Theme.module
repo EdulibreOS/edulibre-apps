@@ -136,9 +136,18 @@ Public Function Show_Theme()
       sColor = (sResult_Inn_Font_Color)
       
       For Each ctrl In f_PC_Info.Controls
-        Try ctrl.Foreground = Val(sColor) 
+        '' Try ctrl.Foreground = Val(sColor) 
+        f_PC_Info.pnlIconsCPU.Foreground = Val(sColor) 
+        f_PC_Info.pnlIconsMemory.Foreground = Val(sColor) 
+        f_PC_Info.pnlIconsHD.Foreground = Val(sColor) 
+        
+        f_PC_Info.pnlIconsSO.Foreground = Val(sColor) 
+        f_PC_Info.pnlIconsDE.Foreground = Val(sColor) 
+        f_PC_Info.pnlIconsGraphics.Foreground = Val(sColor) 
+        
       Next
-      
+    Else
+      f_PC_Info.ipnPCInfo.Foreground = Color.Black
     Endif
     
     If IsNull(sResult_Inn_Font_Color) Then
@@ -146,6 +155,7 @@ Public Function Show_Theme()
       
       For Each ctrl In f_PC_Info.Controls
         Try ctrl.Foreground = Val(sColor) 
+        
       Next
       
     Endif
