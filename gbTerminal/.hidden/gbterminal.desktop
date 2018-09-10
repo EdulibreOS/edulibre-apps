@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=gbTerminal
+GenericName=Terminal emulator
+GenericName[fr]=Terminal emulator
+GenericName[es]=Emulador de terminal
+
+Comment=Terminal emulator
+Comment[fr]=Terminal
+Comment[es]=Emulador de terminal
+
+Exec=/usr/bin/gbTerminal
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=System;Utility;

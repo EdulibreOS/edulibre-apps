@@ -26,7 +26,7 @@
     { lblFramework Label
       MoveScaled(13,7,41,4)
       Foreground = &H042C37&
-      Text = ("Framework Version 3.11.2")
+      Text = ("Framework Version 3.11.3")
     }
   }
   { picLogo3 PictureBox
@@ -53,34 +53,46 @@
   }
   { tab_Workspace TabPanel
     MoveScaled(21,16,68,44)
+    Arrangement = Arrange.Vertical
     Count = 3
     Highlight = True
     Index = 0
     Text = ("About")
     { lblTitle Label
       MoveScaled(1,1,66,5)
-      Font = Font["Lato,Bold,+2"]
+      Font = Font["Free,+2"]
       Text = ("gbTerminal")
       Alignment = Align.Left
+    }
+    { lblVersion Label
+      MoveScaled(1,4,14,4)
+      Alignment = Align.Left
+    }
+    { ScrollApps ScrollView
+      MoveScaled(1,9,66,23)
+      Expand = True
+      Arrangement = Arrange.Vertical
+      Spacing = True
+      Margin = True
+      Padding = 27
+      ScrollBar = Scroll.None
+      { txtlabelabout TextLabel
+        MoveScaled(1,1,65,27)
+        Expand = True
+        Text = ("<p><br>gbTerminal is a terminal emulator based on VT-100 for the Lightweight Desktop Environment (Innova Desktop).</p>\n\n<p>gbTerminal would not have been possible without the help of:</p></br>\n\n<h><p><br>Benoît Minisini - Gambas3</h></p>\n<h><p>Benoît Minisini / Fabien Bodard - gb.form.terminal</h></p> \n<h><p>Herberth Guzmán - Customization Development </h></p>\n<h><p>Hans Lehmann - Bug reports </h></p>\n\n")
+      }
+    }
+    { URLLabel1 URLLabel
+      MoveScaled(1,32,65,4)
+      Foreground = Color.ButtonBackground
+      Link = "http://sourceforge.net/projects/innovadesktop/"
+      Text = ("Innova Desktop")
+      Alignment = Align.Center
     }
     { lblAuthor Label
       MoveScaled(1,36,66,4)
       Text = ("Copyright (C) 2016-2018")
       Alignment = Align.Center
-    }
-    { lblVersion Label
-      MoveScaled(1,4,14,4)
-      Font = Font["Bold"]
-      Alignment = Align.Left
-    }
-    { URLLabel1 URLLabel
-      MoveScaled(27,33,15,4)
-      Link = "http://sourceforge.net/projects/innovadesktop/"
-      Text = ("Innova Desktop")
-    }
-    { txtlabelabout TextLabel
-      MoveScaled(1,6,65,27)
-      Text = ("<p><br>gbTerminal is a terminal emulator based on VT-100 for the Lightweight Desktop Environment (Innova Desktop).</p>\n\n<p>gbTerminal would not have been possible without the help of:</p></br>\n\n<font color=\"#D8D8D8\">\n<h5><p><u><br>Benoît Minisini - Gambas3</h5></p></u>\n<h5><p><u>Benoît Minisini / Fabien Bodard - gb.form.terminal</h5></p> </u>\n<h5><p><u>Herberth Guzmán - Customization Development </h5></p></u></br>\n</font>\n")
     }
     Index = 1
     Text = ("License")
