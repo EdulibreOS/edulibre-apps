@@ -13,6 +13,7 @@ Component=gb.term
 Component=gb.form.terminal
 Description="gbTerminal is a terminal emulator based on VT-100 for the Lightweight Desktop Environment (Innova Desktop).\n\nA few features \n • Split terminals (horizontally and vertically).\n • It can contain multiple terminal sessions.\n • Multiple tabs.\n • Customizable shortcuts.\n • Various themes.\n • Blinking text supported.\n • Mouse support.\n • Opacity.\n • Transparent."
 Authors="Benoît Minisini\nFabien Bodard\nHerberth Guzmán\nJulio Sanchez"
+Environment="GB_GUI=gb.qt5"
 TabSize=2
 Translate=1
 Language=en_US
