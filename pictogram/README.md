@@ -8,6 +8,6 @@ Pictogram es una aplicación para ver y editar imágenes de una manera simple y 
 
 ### Dependencias ###
 
-* Tener instalado ImageMagick y gifsicle, de no ser así ejecute el comando
-  $ sudo apt-get install imagemagick gifsicle
+* Tener instalado ImageMagick, de no ser así ejecute el comando
+  $ sudo apt-get install imagemagick
 

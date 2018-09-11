@@ -56,8 +56,8 @@ Public Sub Form_Open()
     If Not Exist(s) Then Mkdir s
   Next
   
-    Show_Conf_Settings
-    Show_theme
+  Show_Conf_Settings
+  Show_theme
   
 End
 
@@ -74,13 +74,12 @@ Public Sub Show_Conf_Settings()
 End
 
 Public Sub Show_theme()
-
+  
   iResult_Style_Theme = M_Settings.iResult_Style_Theme
   
   theme(iResult_Style_Theme)
   
 End
-
 
 Public Sub Save_Latest_Img()
   
@@ -217,7 +216,7 @@ Public Sub SetPictureFromMain(path As String)
   
   pathTest.setPath(path)
   
-  If Comp(pathTest.getImgFormat(), "gif") == 0 Or Comp(pathTest.getImgFormat(), "jpg") == 0 Or Comp(pathTest.getImgFormat(), "png") == 0 Or Comp(pathTest.getImgFormat(), "bmp") == 0 Or Comp(pathTest.getImgFormat(), "jpeg") == 0 Or Comp(pathTest.getImgFormat(), "GIF") == 0 Or Comp(pathTest.getImgFormat(), "JPG") == 0 Or Comp(pathTest.getImgFormat(), "PNG") == 0 Or Comp(pathTest.getImgFormat(), "BMP") == 0 Or Comp(pathTest.getImgFormat(), "JPEG") == 0 Then
+  If Comp(pathTest.getImgFormat(), "gif") == 0 Or Comp(pathTest.getImgFormat(), "jpg") == 0 Or Comp(pathTest.getImgFormat(), "png") == 0 Or Comp(pathTest.getImgFormat(), "bmp") == 0 Or Comp(pathTest.getImgFormat(), "GIF") == 0 Or Comp(pathTest.getImgFormat(), ".PG") == 0 Or Comp(pathTest.getImgFormat(), "PNG") == 0 Or Comp(pathTest.getImgFormat(), "BMP") == 0 Then
     
     pathbase = path  
     
@@ -231,7 +230,7 @@ Public Sub SetPictureFromMain(path As String)
     PictureBoxPreview.Picture = Picture[path]
     PictureBoxPreview.Refresh()
     
-    If Comp(pathTest.getImgFormat(), "gif") == 0 Or Comp(pathTest.getImgFormat(), "GIF") Then
+    If Comp(pathTest.getImgFormat(), "gif") == 0 Then
       
       Shell "identify -format '%g' '" & path & "[0]" & "'" Wait To sizeGif
       sGif = Split(sizeGif, "+")
@@ -269,7 +268,6 @@ Public Sub SetPictureFromMain(path As String)
     
     SliderZoom_Change()
     VisorForm.Title = pathbase & " - Pictogram"
-    
     
   Else
     
@@ -363,7 +361,7 @@ Public Sub ArrayPath(pathI As String)
   ' Se carga en el arreglo las imagenes contenidas en el directorio
   
   If fuente == 2 Then
-    Shell "ls '" & directorypath & "' | grep -e .jpg -e .jpeg -e .png -e .bmp -e.gif -e .JPG -e .JPEG -e .PNG -e .BMP -e.GIF " Wait To var
+    Shell "ls '" & directorypath & "' | grep -e .jpg -e .png -e .bmp -e.gif -e .JPG -e .PNG -e .BMP -e.GIF " Wait To var
     imagespath = Split(var, "\n")
     
     For i = 0 To imagespath.Max
@@ -991,7 +989,7 @@ Public Sub MenuAbrir_Click()
   Dim nameshort As String
   Dim directory As String
   
-  Dialog.Filter = ["*.jpg", "JPG", "*.jpeg", "JPEG", "*.png", "PNG", "*.gif", "GIF", "*.bmp", "bmp"]
+  Dialog.Filter = ["*.jpg", "JPG", "*.png", "PNG", "*.gif", "GIF", "*.bmp", "bmp"]
   If Dialog.OpenFile(False) == False Then
     
     DirPath = Dialog.Path  
@@ -1278,7 +1276,6 @@ Public Sub AbrirReciente(pathReciente As String)
   
   Save_Latest_Img
   Show_Conf_Settings
-  
   
 Catch
   

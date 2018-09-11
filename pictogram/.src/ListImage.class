@@ -30,7 +30,6 @@ Public Const TEMP_DIR_THUMBS As String = "/tmp/pictogram/thumbs"
 Public Set_Pictogram As New Settings(Desktop.ConfigDir &/ "Innova/Pictogram.conf")
 Public iResult_Style_Theme As Integer
 
-
 Public Sub Open()
   
   Dim properties As String
@@ -72,6 +71,7 @@ Public Sub Open()
   
   iResult_Style_Theme = M_Settings.iResult_Style_Theme
   VisorForm.theme(iResult_Style_Theme)
+  
 End
 
 Public Sub setPath(pt As String)
@@ -295,8 +295,7 @@ Public Sub Form_Close()
 End
 
 Public Sub choiceDirButton_Click()
-
+  
   OpenMenu_Click
-
+  
 End
-

@@ -120,7 +120,7 @@ Public Sub Button1_Click()
     If Comp(format_, "gif") == 0 Then
       
       Shell "gifsicle --resize " & SpinBoxAncho.Value & "x" & SpinBoxAlto.Value & " -i '" & pathimg & "' > " & "temporaryPic.gif" Wait
-   '  Shell "rm -f '" & pathimg & "'" Wait
+      '  Shell "rm -f '" & pathimg & "'" Wait
       Shell "mv temporaryPic.gif '" & pathreturn & "'"
       
     Else  
@@ -142,7 +142,7 @@ Public Sub Button1_Click()
     Else  
       command = "convert -resize " & SpinBoxAncho.Value & "x" & SpinBoxAlto.Value & " -quality " & SliderBoxCalidad.Value & " '" & pathimg & "' '" & pathreturn & "'"
     Endif   
-  
+    
     current_name = nameshort & "-resize." & format_
     
     Shell command Wait

@@ -17,7 +17,6 @@
 '    You should have received a Copy Of the GNU General Public License
 '    along With Foobar.If Not, see < http: / / www.gnu.org / licenses / > .
 
-
 Create Static
 
 Property Read Path As String

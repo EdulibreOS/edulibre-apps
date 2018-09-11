@@ -59,9 +59,11 @@ Public Sub Info_Pc()
   f_PC_Info.mnuSO_L.Text = ("Operating System: ") & sTempFam
   f_PC_Info.mnuArchitecture.Text = ("Architecture: ") & System.Architecture 
   f_PC_Info.TextLabelArchitecture.Text = System.Architecture 
+  f_PC_Info.TextLabelArchitecture2.Text = System.Architecture 
   f_PC_Info.TextLabelKernel.Text = Trim(sTemp)
   f_PC_Info.mnuKernel.Text = ("Kernel: ") & Trim(sTemp)
   f_PC_Info.TextLabelProcesador.Text = Trim(sTempPro)
+  f_PC_Info.TextLabelProcesador2.Text = Trim(sTempPro)
   f_PC_Info.mnuProcessor.Text = ("Processor: ") & Trim(sTempPro)
   
   Try sTempRam = Scan(sTempRam, "*MemTotal:*\n*")[1]
@@ -80,6 +82,7 @@ Public Sub Info_Pc()
     
     f_PC_Info.TextLabelRam2.Text = "Total : " & (sTempRam)
     f_PC_Info.TextLabelRam.Text = "Total : " & (sTempRam)
+    f_PC_Info.TextLabelRam4.Text = "Total : " & (sTempRam)
     f_PC_Info.mnuRamT.Text = ("Total: ") & sTempRam 
     f_PC_Info.mnuRam.Text = ("Memory: ") & sTempRam 
   Endif
@@ -96,7 +99,7 @@ Public Sub Info_Pc()
   f_PC_Info.mnuDesktop.Text = ("Desktop: ") & Desktop.Type 
   f_PC_Info.TextLabelSession.Text = sTempSessio
   f_PC_Info.mnuSession.Text = ("Session: ") & sTempSessio
-  f_PC_Info.TextLabelGroup.Text = System.Domain
+  f_PC_Info.TextLabelGroup2.Text = System.Domain
   f_PC_Info.mnuWorkgropu.Text = ("Workgroup: ") & System.Domain
   f_PC_Info.TextLabelNameComputer.Text = System.Host
   f_PC_Info.mnuCN.Text = ("Computer Name: ") & System.Host
@@ -334,6 +337,7 @@ Public Sub Dat_DD()
       f_PC_Info.txtcapacity.Text = ("Hard Drive Capacity : ") & sReal_Size
       f_PC_Info.mnuDDCapacity.Text = ("Hard Drive Capacity: ") & sReal_Size
       f_PC_Info.TextLabelHarddrive.Text = sReal_Size
+      f_PC_Info.TextLabelHarddrive2.Text = sReal_Size
       f_PC_Info.mnuHD.Text = ("Hard Drive: ") & sReal_Size
       
       Shell "df -h  | awk {'print $1'} | sed -n '4p' " Wait To sPart 

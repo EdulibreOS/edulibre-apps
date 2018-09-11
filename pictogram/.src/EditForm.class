@@ -48,11 +48,6 @@ Public Sub ConverterImg(path1 As String, origen As Integer)
       RadioButtonJpg.Enabled = False
       RadioButtonPng.Value = True
       formatChoose = ".png"
-    Case "jpeg"
-      RadioButtonJpg.Text = ".jpeg"
-      RadioButtonJpg.Enabled = False
-      RadioButtonPng.Value = True
-      formatChoose = ".png"
     Case "png"
       RadioButtonPng.Enabled = False
       formatChoose = ".jpg"
@@ -62,11 +57,6 @@ Public Sub ConverterImg(path1 As String, origen As Integer)
     Case "gif"
       RadioButtongif.Enabled = False
       formatChoose = ".jpg"
-    Case "JPEG"
-      RadioButtonJpg.Text = ".jpeg"
-      RadioButtonJpg.Enabled = False
-      RadioButtonPng.Value = True
-      formatChoose = ".png"
     Case "JPG"
       RadioButtonJpg.Enabled = False
       RadioButtonPng.Value = True
@@ -99,7 +89,7 @@ Public Sub ButtonAccept_Click()
     command = "convert '" & pathimg & "' '" & pathreturn & "'"
     
   Endif
-    
+  
   current_name = nameshort & formatChoose
   
   If CheckBoxSobreEscribir.Value Then
