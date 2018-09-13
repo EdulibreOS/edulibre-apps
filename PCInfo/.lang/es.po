@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PCInfo 3.11.2\n"
-"PO-Revision-Date: 2018-08-10 13:21 UTC\n"
+"PO-Revision-Date: 2018-09-09 05:58 UTC\n"
 "Last-Translator: javihm77 <javihm77@javihm77-K55VD>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -25,325 +25,329 @@ msgstr "Sistema Operativo: "
 msgid "Architecture: "
 msgstr "Arquitectura: "
 
-#: M_InfoPc.module:63
+#: M_InfoPc.module:64
 msgid "Kernel: "
 msgstr "Nucleo: "
 
-#: M_InfoPc.module:65
+#: M_InfoPc.module:67
 msgid "Processor: "
 msgstr "Procesador: "
 
-#: M_InfoPc.module:83
+#: M_InfoPc.module:86
 msgid "Total: "
 msgstr "Total: "
 
-#: M_InfoPc.module:84
+#: M_InfoPc.module:87
 msgid "Memory: "
 msgstr "Memoria: "
 
-#: M_InfoPc.module:94
+#: M_InfoPc.module:97
 msgid "Distribution: "
 msgstr "Distribución: "
 
-#: M_InfoPc.module:96
+#: M_InfoPc.module:99
 msgid "Desktop: "
 msgstr "Escritorio: "
 
-#: M_InfoPc.module:98
+#: M_InfoPc.module:101
 msgid "Session: "
 msgstr "Sesión: "
 
-#: M_InfoPc.module:100
+#: M_InfoPc.module:103
 msgid "Workgroup: "
 msgstr "Grupo de Trabajo: "
 
-#: M_InfoPc.module:102
+#: M_InfoPc.module:105
 msgid "Computer Name: "
 msgstr "Nombre de la PC: "
 
-#: M_InfoPc.module:104
+#: M_InfoPc.module:107
 msgid "User: "
 msgstr "Usuario: "
 
-#: M_InfoPc.module:106
+#: M_InfoPc.module:109
 msgid "Language: "
 msgstr "Lenguaje: "
 
-#: M_InfoPc.module:108
+#: M_InfoPc.module:111
 msgid "Time Zone: "
 msgstr "Zona Horaria: "
 
-#: M_InfoPc.module:110
+#: M_InfoPc.module:113
 msgid "Development Version: "
-msgstr "Version de Desarrollo: "
+msgstr "Versión de Desarrollo: "
 
-#: M_InfoPc.module:112
+#: M_InfoPc.module:115
 msgid "Vendor: "
 msgstr "Vendedor: "
 
-#: M_InfoPc.module:119
+#: M_InfoPc.module:122
 msgid "CPUs: "
 msgstr ""
 
-#: M_InfoPc.module:267
+#: M_InfoPc.module:270
 msgid "Used: "
 msgstr "Utilizado: "
 
-#: M_InfoPc.module:270
+#: M_InfoPc.module:273
 msgid "Free : "
 msgstr "Libre : "
 
-#: M_InfoPc.module:271
+#: M_InfoPc.module:274
 msgid "Free:"
 msgstr "Libre: "
 
-#: M_InfoPc.module:329
+#: M_InfoPc.module:332
 msgid "Name: "
 msgstr "Nombre: "
 
-#: M_InfoPc.module:334
+#: M_InfoPc.module:337
 msgid "Hard Drive Capacity : "
 msgstr "Capacidad del Disco Duro : "
 
-#: M_InfoPc.module:335
+#: M_InfoPc.module:338
 msgid "Hard Drive Capacity: "
 msgstr "Capacidad del Disco Duro: "
 
-#: M_InfoPc.module:337
+#: M_InfoPc.module:341
 msgid "Hard Drive: "
 msgstr "Disco Duro: "
 
-#: M_InfoPc.module:349
+#: M_InfoPc.module:353
 msgid "Partition : "
 msgstr "Partición : "
 
-#: M_InfoPc.module:350
+#: M_InfoPc.module:354
 msgid "Partition: "
 msgstr "Partición: "
 
-#: M_InfoPc.module:351
+#: M_InfoPc.module:355
 msgid "Partition Size : "
 msgstr "Tamaño de la Partición : "
 
-#: M_InfoPc.module:352
+#: M_InfoPc.module:356
 msgid "Partition Size: "
 msgstr "Tamaño de la Partición: "
 
-#: M_InfoPc.module:353
+#: M_InfoPc.module:357
 msgid "Used : "
 msgstr "Utilizado : "
 
-#: M_InfoPc.module:356
+#: M_InfoPc.module:360
 msgid "Free: "
 msgstr "Libre:  "
 
-#: M_InfoPc.module:363
+#: M_InfoPc.module:367
 msgid "Type : "
 msgstr "Tipo : "
 
-#: M_InfoPc.module:364
+#: M_InfoPc.module:368
 msgid "Type: "
 msgstr "Tipo: "
 
-#: f_PC_Info.form:262
+#: f_PC_Info.form:303
 msgid "Information of System"
 msgstr "Información del Sistema"
 
-#: f_PC_Info.form:268
+#: f_PC_Info.form:309
 msgid "Main"
-msgstr ""
+msgstr "Principal"
 
-#: f_PC_Info.form:272
+#: f_PC_Info.form:313
 msgid "CPU"
 msgstr ""
 
-#: f_PC_Info.form:276
+#: f_PC_Info.form:317
 msgid "Vendor"
 msgstr "Vendedor"
 
-#: f_PC_Info.form:281
+#: f_PC_Info.form:322
 msgid "Processor"
 msgstr "Procesador"
 
-#: f_PC_Info.form:286
+#: f_PC_Info.form:327
 msgid "CPUs"
 msgstr ""
 
-#: f_PC_Info.form:291
+#: f_PC_Info.form:332
 msgid "Cache"
 msgstr "Caché"
 
-#: f_PC_Info.form:297
+#: f_PC_Info.form:338
 msgid "Memory Ram"
 msgstr "Memoria Ram"
 
-#: f_PC_Info.form:303
+#: f_PC_Info.form:344
 msgid "Hard Disk"
 msgstr "Disco Duro"
 
-#: f_PC_Info.form:309
-msgid "Workgroup"
-msgstr "Grupo de Trabajo"
-
-#: f_PC_Info.form:315
+#: f_PC_Info.form:351
 msgid "Memory"
 msgstr "Memoria"
 
-#: f_PC_Info.form:319
+#: f_PC_Info.form:355
 msgid "Total"
 msgstr "Total"
 
-#: f_PC_Info.form:324
+#: f_PC_Info.form:360
 msgid "Free"
 msgstr "Libre"
 
-#: f_PC_Info.form:329
+#: f_PC_Info.form:365
 msgid "Used"
 msgstr "Utilizado"
 
-#: f_PC_Info.form:344
+#: f_PC_Info.form:380
 msgid "Name"
 msgstr "Nombre"
 
-#: f_PC_Info.form:349
+#: f_PC_Info.form:385
 msgid "Capacity"
 msgstr "Capacidad"
 
-#: f_PC_Info.form:354
+#: f_PC_Info.form:390
 msgid "Dev"
 msgstr ""
 
-#: f_PC_Info.form:359
+#: f_PC_Info.form:395
 msgid "Type"
 msgstr "Tipo"
 
-#: f_PC_Info.form:364
+#: f_PC_Info.form:400
 msgid "Partition Size"
 msgstr "Tamaño de la Partición"
 
-#: f_PC_Info.form:380
+#: f_PC_Info.form:416
 msgid "Operating System"
 msgstr "Sistema Operativo"
 
-#: f_PC_Info.form:389
+#: f_PC_Info.form:425
 msgid "Architecture"
 msgstr "Arquitectura"
 
-#: f_PC_Info.form:394
+#: f_PC_Info.form:430
 msgid "Kernel"
 msgstr "Nucleo"
 
-#: f_PC_Info.form:399
+#: f_PC_Info.form:435
 msgid "Distribution"
 msgstr "Distribución"
 
-#: f_PC_Info.form:404
+#: f_PC_Info.form:440
 msgid "Desktop Environment"
 msgstr "Entorno de Escritorio"
 
-#: f_PC_Info.form:408
+#: f_PC_Info.form:444
 msgid "Desktop"
 msgstr "Escritorio"
 
-#: f_PC_Info.form:413
+#: f_PC_Info.form:449
 msgid "Development Version"
-msgstr "Version de Desarrollo"
+msgstr "Versión de Desarrollo"
 
-#: f_PC_Info.form:418
+#: f_PC_Info.form:454
 msgid "Session"
 msgstr "Sesión"
 
-#: f_PC_Info.form:423
+#: f_PC_Info.form:459
 msgid "Computer Name"
 msgstr "Nombre de la PC"
 
-#: f_PC_Info.form:428
+#: f_PC_Info.form:464
 msgid "User"
 msgstr "Usuario"
 
-#: f_PC_Info.form:433
+#: f_PC_Info.form:469
 msgid "Language"
 msgstr "Lenguaje"
 
-#: f_PC_Info.form:438
+#: f_PC_Info.form:474
 msgid "Timezone"
 msgstr "Zona Horaria"
 
-#: f_PC_Info.form:444
+#: f_PC_Info.form:479
+msgid "Workgroup"
+msgstr "Grupo de Trabajo"
+
+#: f_PC_Info.form:485
 msgid "Grahics"
 msgstr "Gráficos"
 
-#: f_PC_Info.form:448
+#: f_PC_Info.form:489
 msgid "VGA 1"
 msgstr ""
 
-#: f_PC_Info.form:453
+#: f_PC_Info.form:494
 msgid "VGA 2"
 msgstr ""
 
-#: f_PC_Info.form:462 f_about.form:87
+#: f_PC_Info.form:503 f_about.form:87
 msgid "About"
 msgstr "Acerca de"
 
-#: f_PC_Info.form:474 f_about.form:77
+#: f_PC_Info.form:515 f_about.form:77
 msgid "Close"
 msgstr "Cerrar"
 
-#: f_PC_Info.form:501
-msgid "General System Information"
-msgstr "Información General del Sistema"
+#: f_PC_Info.form:542
+msgid "Information about your computer"
+msgstr "Información acerca del equipo"
 
-#: f_PC_Info.form:683
+#: f_PC_Info.form:571
+msgid "General"
+msgstr ""
+
+#: f_PC_Info.form:962
 msgid "CPUs    "
 msgstr ""
 
-#: f_PC_Info.form:721
+#: f_PC_Info.form:1000
 msgid "Core(s)"
 msgstr "Núcleo(s)"
 
-#: f_PC_Info.form:752
+#: f_PC_Info.form:1031
 msgid "Cache    "
 msgstr "Caché"
 
-#: f_PC_Info.form:790
+#: f_PC_Info.form:1069
 msgid "Caché"
 msgstr "Caché"
 
-#: f_PC_Info.form:986
+#: f_PC_Info.form:1267
 msgid "Ram used:"
 msgstr "Memoria Utilizada : "
 
-#: f_PC_Info.form:992
+#: f_PC_Info.form:1273
 msgid "N/A"
 msgstr ""
 
-#: f_PC_Info.form:999
+#: f_PC_Info.form:1280
 msgid "Release the cache RAM"
 msgstr "Liberar la caché de memoria RAM"
 
-#: f_PC_Info.form:1349
+#: f_PC_Info.form:1630
 msgid "www.edulibre.net"
 msgstr ""
 
-#: f_PC_Info.form:1395
+#: f_PC_Info.form:1676
 msgid "OS"
 msgstr "SO"
 
-#: f_PC_Info.form:1823
+#: f_PC_Info.form:2158
 msgid "Graphics"
 msgstr "Gráficos"
 
-#: f_PC_Info.form:1892
+#: f_PC_Info.form:2227
 msgid "VGA Controller 1"
 msgstr "Controlador VGA 1"
 
-#: f_PC_Info.form:1926
+#: f_PC_Info.form:2261
 msgid "VGA Controller 2"
 msgstr "Controlador VGA 2"
 
 #: f_about.form:26
 msgid "About - PCInfo"
-msgstr ""
+msgstr "Acerca de PCInfo"
 
 #: f_about.form:39
 msgid "Innova Desktop Environment"
@@ -371,7 +375,7 @@ msgstr ""
 
 #: f_about.form:119
 msgid "License"
-msgstr ""
+msgstr "Licencia"
 
 #: f_about.form:124
 msgid "    This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License    along with this program.  If not, see <http://www.gnu.org/licenses/>."
