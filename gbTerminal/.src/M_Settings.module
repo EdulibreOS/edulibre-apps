@@ -44,9 +44,9 @@ Public sResult_Shortcut_Paste As String
 
 Public Sub Init_Settings_gbTerminal()
   
-  If Not Exist(Desktop.ConfigDir &/ "Innova") Then
-    Mkdir (Desktop.ConfigDir &/ "Innova")
-  Endif
+  ' If Not Exist(Desktop.ConfigDir &/ "Innova") Then
+  '  Mkdir (Desktop.ConfigDir &/ "Innova")
+  'Endif
   
   Set_gbTerminal.Write(f_settings)
   Set_gbTerminal["Style/FontName"] = "Monospace"
@@ -65,7 +65,8 @@ Public Sub Init_Settings_gbTerminal()
   Set_gbTerminal["Shortcut/Close_Tab"] = "CTRL+W"
   Set_gbTerminal["Shortcut/Copy"] = "SHIFT+C" '"CTRL+SHIFT+C"
   Set_gbTerminal["Shortcut/Paste"] = "SHIFT+V"
-  
+  Set_gbTerminal.Save
+  Wait 0.2
   Show_Settings_gbTerminal
   
 End

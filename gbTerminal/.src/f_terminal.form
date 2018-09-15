@@ -46,6 +46,7 @@
     Text = ("View")
     { mnuViewFull Menu
       Text = ("Fullscreen")
+      Picture = Picture["icon:/small/fullscreen"]
       Shortcut = "F11"
     }
   }
@@ -56,7 +57,7 @@
       Picture = Picture["icon:/small/bookmark"]
     }
   }
-  { TabPanelTerminal TabStrip
+  { TabPanelTerminal TabPanel
     MoveScaled(6,10,53,48)
     Mouse = Mouse.Pointing
     Expand = True
