@@ -1,0 +1,37 @@
+' Gambas class file
+
+
+
+
+
+Public Sub Form_Open()
+
+'LLena la informacion del cmb_nivel
+M_Init.ObtenerCmbNivel
+'Obtiene el listado de actividades
+M_Init.ObtenerActividad
+'Obtiene la información de la actividad
+M_Init.ObtenerInfo(2)
+
+End
+
+
+
+
+
+Public Sub cmb_bnivel_Change()
+
+
+  M_Init.ObtenerCmbGrado(EdulibCap.cmb_bnivel.Index)
+  EdulibCap.cmb_bgrado.Enabled = True
+
+End
+
+Public Sub cmb_bgrado_Change()
+
+  If EdulibCap.cmb_bgrado.Index > 0 Then
+    M_Init.ObtenerCmbMateria(EdulibCap.cmb_bgrado.Current.Text)
+    EdulibCap.cmb_materia.Enabled = True
+  Endif
+
+End

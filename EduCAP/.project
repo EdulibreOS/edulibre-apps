@@ -1,0 +1,11 @@
+# Gambas Project File 3.0
+Title=Edulibre CAP
+Startup=EdulibCap
+Version=0.0.1
+Component=gb.image
+Component=gb.gui.qt
+Component=gb.form
+Component=gb.db
+TabSize=2
+Language=en_US
+Packager=1
