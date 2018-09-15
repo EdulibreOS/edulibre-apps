@@ -1,0 +1,163 @@
+' Gambas module file
+
+
+Private cone As New Connection
+
+
+Public Sub Main()
+  
+   
+  
+End
+
+Public Sub ObtenerCmbNivel()
+  Dim rs As Result
+  Dim consulta As String
+    
+    consulta = "SELECT * " &
+              "FROM tbl_nivel " & 
+              "ORDER BY idtbl_nivel asc"
+    
+    cone = MDB_Connection.Conectar()
+    
+              EdulibCap.cmb_bnivel.Add("Todos", "0")
+    
+    rs = cone.Exec(consulta)
+       While (rs.Available)
+             EdulibCap.cmb_bnivel.Add(rs["descripcion"], rs["idtbl_nivel"])
+             rs.MoveNext
+       Wend
+End
+
+Public Sub ObtenerCmbGrado(id_nivel As Integer)
+  
+  Dim rs As Result
+  Dim consulta As String
+  Dim grado As Integer
+  
+  EdulibCap.cmb_bgrado.Clear
+  EdulibCap.cmb_bgrado.Add("Todos", "0")
+    
+    consulta = "SELECT * " &
+              "FROM tbl_grado " &
+              "WHERE id_nivel = " & id_nivel & " " &
+              "ORDER BY idtbl_grado asc"
+    Print consulta
+    
+    cone = MDB_Connection.Conectar()
+    
+    rs = cone.Exec(consulta)
+       While (rs.Available)
+             EdulibCap.cmb_bgrado.Add(rs["descripcion"], rs["idtbl_grado"])
+             rs.MoveNext
+       Wend
+  
+End
+
+Public Sub ObtenerCmbMateria(grado As String)
+  
+  Dim rs As Result
+  Dim consulta As String
+  
+  EdulibCap.cmb_materia.Clear
+  EdulibCap.cmb_materia.Add("Todos", "0")
+    
+    consulta = "SELECT m.* " &
+              "FROM tbl_grado g, " &
+              "tbl_grado_materia gm, " &
+              "tbl_materia m " &
+              "where g.idtbl_grado = gm.id_grado " &
+              "AND gm.id_materia = m.idtbl_materia " &
+              "AND g.descripcion = '" & grado & "' " &
+              "ORDER BY g.descripcion, m.descripcion"
+    Print consulta
+    
+    cone = MDB_Connection.Conectar()
+    
+    rs = cone.Exec(consulta)
+       While (rs.Available)
+             EdulibCap.cmb_materia.Add(rs["descripcion"], rs["idtbl_materia"])
+             rs.MoveNext
+       Wend
+  
+End
+
+
+Public Sub ObtenerInfo(id_actividad As String)
+    Dim rs As Result
+    Dim consulta As String
+    
+    consulta = "SELECT c.descripcion as Categoria, " &
+               					"p.descripcion As Programa, " &
+               					"a.nombre As Actividad, " &
+               					"n.descripcion As Nivel, " &
+               					"g.descripcion As Grado, " &
+               					"m.descripcion As Materia, " &
+               					"a.competencia_grado As Competencia, " &
+               					"a.indicador_logro As Indicador, " &
+               					"a.contenido As Contenido " &
+              "FROM tbl_actividad a, " &
+              		"tbl_grado_materia gm, " &
+              		"tbl_grado g, " &
+              		"tbl_materia m, " &
+              		"tbl_nivel n, " &
+              		"tbl_programa p, " &
+              		"tbl_categoria c " &
+              "WHERE a.idtbl_actividad = " & id_actividad & " " &
+              "AND a.id_grado_materia = gm.idtbl_grado_materia " &
+              "AND gm.id_grado = g.idtbl_grado " &
+              "AND gm.id_materia = m.idtbl_materia " &
+              "AND a.id_nivel = n.idtbl_nivel " &
+              "AND a.id_programa = p.idtbl_programa " &
+              "AND p.id_categoria = c.idtbl_categoria "
+    
+    cone = MDB_Connection.Conectar()
+    
+    rs = cone.Exec(consulta)
+       While (rs.Available)
+             EdulibCap.lbl_categoria_edit.Text = rs["Categoria"]
+             EdulibCap.lbl_programa_edit.Text = rs["Programa"]
+             EdulibCap.lbl_actividad_edit.Text = rs["Actividad"]
+             EdulibCap.lbl_nivel_edit.Text = rs["Nivel"]
+             EdulibCap.lbl_grado_edit.Text = rs["Grado"]
+             EdulibCap.lbl_materia_edit.Text = rs["Materia"]
+             EdulibCap.lbl_competenciagrado_edit.Text = rs["Competencia"]
+             EdulibCap.lbl_indicadorlogro_edit.Text = rs["Indicador"]
+             EdulibCap.lbl_contenido_edit.Text = rs["Contenido"]
+             rs.MoveNext
+       Wend    
+  
+  ObtenerImagen(id_actividad)
+End
+
+Public Sub ObtenerImagen(id_actividad As String)
+  
+  EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "1.png")
+  EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "2.png") '
+  'EdulibCap.lblquitar.Text = Application.path &/ "Images/" &/ id_actividad &/ "1.png"
+  
+End
+
+Public Sub ObtenerActividad()
+  
+  Dim rs As Result
+  Dim consulta As String
+  
+  EdulibCap.lst_iconos.Clear
+      
+    consulta = "SELECT idtbl_actividad, nombre " &
+              "FROM tbl_actividad " &
+              "ORDER BY nombre ASC "
+                
+    cone = MDB_Connection.Conectar()
+    
+    rs = cone.Exec(consulta)
+       While (rs.Available)
+             EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load("/usr/share/pixmaps/innova.png"))
+             rs.MoveNext
+       Wend
+  
+End
+
+
+
