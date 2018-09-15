@@ -1,8 +1,8 @@
 ' Gambas class file
 
-' Innova Project 
+' Innova Project - Launcher of APP
+'
 ' Copyright (C) Herberth Guzmán
-' herberthguzman@gmail.com
 '
 ' This program is free software; you can redistribute it and/or modify
 ' it under the terms of the GNU General Public License as published by
@@ -56,6 +56,8 @@ End
 
 Public Sub MyDTWatcher_ActiveWindow()
   
+  M_Settings.Show_Settings_gbTerminal
+  
   M_Settings.Show_Theme
   
 End
@@ -66,8 +68,8 @@ Public Sub Form_Open()
   sTerminal_Init  
   Conf_Shortcut
   
-  sTerminal.Clear
   With sTerminal
+    .Clear
     .Blink = True
     .Border = False
     .Expand = True
@@ -197,6 +199,7 @@ End
 Public Sub mnuNewTab_Click()
   
   TabPanelTerminal.Count += 1
+  TabPanelTerminal.index = TabPanelTerminal.Count - 1
   
   sTerminal_Init
   With sTerminal
@@ -281,7 +284,12 @@ End
 
 Public Sub mnuCloseTab_Click()
   
-  Close_sTerminal
+  If TabPanelTerminal.Count > 1 Then
+    sTerminal = TabPanelTerminal.Children[0]
+    sTerminal.Delete()
+    TabPanelTerminal.Current.Delete()
+    
+  Endif
   
 End
 

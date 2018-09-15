@@ -24,13 +24,18 @@
 
 Static Public Sub Main()
   
+  If Not Exist(Desktop.ConfigDir &/ "Innova") Then
+    Mkdir (Desktop.ConfigDir &/ "Innova")
+  Endif
+  
   If Not Exist(Desktop.ConfigDir &/ "Innova/gbTerminal.conf")
     M_Settings.Init_Settings_gbTerminal
   Else
     M_Settings.Show_Settings_gbTerminal
   Endif
-  f_terminal.Show
   M_Settings.Theme_Application
+  f_terminal.Show
+  
   Wait 0.1
   
 End

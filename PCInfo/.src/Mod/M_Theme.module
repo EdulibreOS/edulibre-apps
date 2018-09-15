@@ -140,6 +140,8 @@ Public Function Show_Theme()
         f_PC_Info.pnlIconsCPU.Foreground = Val(sColor) 
         f_PC_Info.pnlIconsMemory.Foreground = Val(sColor) 
         f_PC_Info.pnlIconsHD.Foreground = Val(sColor) 
+        f_PC_Info.pnlIconsGeneral.Foreground = Val(sColor) 
+        
         
         f_PC_Info.pnlIconsSO.Foreground = Val(sColor) 
         f_PC_Info.pnlIconsDE.Foreground = Val(sColor) 
