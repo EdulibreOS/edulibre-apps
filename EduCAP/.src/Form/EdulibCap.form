@@ -149,9 +149,10 @@
     #Public = True
     Alignment = Align.Justify
   }
-  { !lblquitar TextLabel
-    MoveScaled(40,78,58,4)
+  { !lblprogexe TextLabel
+    MoveScaled(60,48,11,4)
     #Public = True
+    Visible = False
   }
   { pnlTitulo Panel
     MoveScaled(0,0,128,7)

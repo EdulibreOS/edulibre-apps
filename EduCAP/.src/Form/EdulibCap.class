@@ -53,3 +53,11 @@ Public Sub lst_iconos_Click()
 
 
 End
+
+Public Sub btn_programa_Click()
+
+  Dim url As String
+  
+  url = EdulibCap.lblprogexe.Text
+  Exec [url] 
+End

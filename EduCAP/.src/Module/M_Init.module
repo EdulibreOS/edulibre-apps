@@ -98,7 +98,8 @@ Public Sub ObtenerInfo(id_actividad As String)
                					"a.competencia_grado As Competencia, " &
                					"a.indicador_logro As Indicador, " &
                					"a.contenido As Contenido, " &
-               					"p.url_icono As Icono " &
+               					"p.url_icono As Icono, " &
+               					"p.url_exe As Url_exe " &
               "FROM tbl_actividad a, " &
               		"tbl_grado_materia gm, " &
               		"tbl_grado g, " &
@@ -128,6 +129,7 @@ Public Sub ObtenerInfo(id_actividad As String)
              EdulibCap.lbl_indicadorlogro_edit.Text = rs["Indicador"]
              EdulibCap.lbl_contenido_edit.Text = rs["Contenido"]
              EdulibCap.btn_programa.Picture = Picture.Load(rs["Icono"]).Image.Stretch(40, 40).Picture
+             EdulibCap.lblprogexe.Text = rs["Url_exe"]
              rs.MoveNext
        Wend    
   MDB_Connection.Desconectar(cone)
@@ -171,7 +173,6 @@ Public Sub ObtenerActividad()
        Wend
   MDB_Connection.Desconectar(cone)
 End
-
 
 
 
