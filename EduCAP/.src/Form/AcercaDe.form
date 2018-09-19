@@ -1,0 +1,66 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,64,58)
+  Background = Color.White
+  Text = ("Acerca De")
+  { Archivo Menu
+    Text = ("Archivo")
+    { Salir Menu
+      Text = ("Salir")
+    }
+  }
+  { pnlTitulo Panel
+    MoveScaled(0,0,64,10)
+    Background = Color.White
+    { lblTitulo TextLabel
+      MoveScaled(4,3,53,4)
+      Font = Font["Bold,+3"]
+      Text = ("Centro de Ayuda Pedagogica (EduCap)")
+    }
+  }
+  { tabPanel TabPanel
+    MoveScaled(15,10,49,38)
+    Count = 2
+    Highlight = True
+    Index = 0
+    Text = ("Acerca De")
+    { lblAcercaDe TextLabel
+      MoveScaled(0,0,13,4)
+      Font = Font["Bold,+4"]
+      Text = ("EduCap")
+    }
+    { !lblVersion_edit Label
+      MoveScaled(10,4,14,4)
+      #Public = True
+    }
+    { lblInformacion TextLabel
+      MoveScaled(0,8,44,25)
+      Text = ("El Centro de Ayuda Pedagogica (EduCap) es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\nEduCap fue desarrollado en base al apoyo de:\n</br>\n</br>\n\n<ul> \n<li>TIGO </li>\n</ul>  ")
+      Alignment = Align.Justify
+    }
+    { lblVersion Label
+      MoveScaled(1,4,8,4)
+      Font = Font["Bold"]
+      Text = ("Version:")
+    }
+    Index = 1
+    Text = ("Licencia")
+    { TextLabel1 TextLabel
+      MoveScaled(0,0,48,30)
+      Text = ("<p>Este programa es software libre: puede redistribuirlo y / o modificarlo bajo los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia, o (a su elección) cualquier versión posterior.</p>\n</br>\n   <p> Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de COMERCIABILIDAD o IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Ver la Licencia Pública General de GNU para más detalles.</p>\n</br>\n  <p>  Debería haber recibido una copia de la Licencia Pública General de GNU junto con este programa. De lo contrario, consulte <http://www.gnu.org/licenses/>.</p>")
+      Alignment = Align.Justify
+    }
+    Index = 0
+  }
+  { picbox_logo PictureBox
+    MoveScaled(0,22,14.2857,14.2857)
+    Picture = Picture["Images/edulogo.jpeg"]
+    Stretch = True
+  }
+  { btnSalir Button
+    MoveScaled(46,50,16,4)
+    Text = ("Salir")
+    Picture = Picture["icon:/small/close"]
+  }
+}

@@ -6,11 +6,11 @@
   Text = ("Edulibre - Centro de Ayuda Pedagogica (EduCAP)")
   { Archivo Menu
     Text = ("Archivo")
-    { AcercaDe Menu
+    { mnuAcercaDe Menu
       Text = ("Acerca De")
     }
-    { Licencia Menu
-      Text = ("Licencia")
+    { mnuSalir Menu
+      Text = ("Salir")
     }
   }
   { lbl_bnivel Label
@@ -58,8 +58,9 @@
       Font = Font["Bold"]
       Text = ("Abrir Programa:")
     }
-    { btn_programa Button
+    { !btn_programa Button
       MoveScaled(23,28,7,6)
+      #Public = True
       Picture = Picture["icon:/large/game"]
     }
   }
@@ -148,9 +149,10 @@
     #Public = True
     Alignment = Align.Justify
   }
-  { !lblquitar TextLabel
-    MoveScaled(40,78,58,4)
+  { !lblprogexe TextLabel
+    MoveScaled(60,48,11,4)
     #Public = True
+    Visible = False
   }
   { pnlTitulo Panel
     MoveScaled(0,0,128,7)

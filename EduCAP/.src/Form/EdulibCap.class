@@ -16,9 +16,6 @@ M_Init.ObtenerInfo(2)
 End
 
 
-
-
-
 Public Sub cmb_bnivel_Change()
 
 
@@ -34,4 +31,33 @@ Public Sub cmb_bgrado_Change()
     EdulibCap.cmb_materia.Enabled = True
   Endif
 
+End
+
+
+
+Public Sub mnuAcercaDe_Click()
+
+  AcercaDe.ShowModal
+
+End
+
+Public Sub mnuSalir_Click()
+
+  Me.Close
+
+End
+
+Public Sub lst_iconos_Click()
+
+ M_Init.ObtenerInfo(lst_iconos.Current.Key)
+
+
+End
+
+Public Sub btn_programa_Click()
+
+  Dim url As String
+  
+  url = EdulibCap.lblprogexe.Text
+  Exec [url] 
 End
