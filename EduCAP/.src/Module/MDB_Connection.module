@@ -10,8 +10,15 @@ Public Procedure Conectar() As Connection
     $con.Name = "edulibcap.db"    ' nombre de la base de datos es el nombre del archivo base de datos
     $con.Open()                  ' Activamos y Abrimos la conexion, el try es para que permita un error
   
-    Print "Conectado? : " & $con.Opened ' Devolvera TRUE o FALSE segun si "try $con.Open()" fue exitoso en "conectarodbc()"
+    'Print "Conectado? : " & $con.Opened ' Devolvera TRUE o FALSE segun si "try $con.Open()" fue exitoso en "conectarodbc()"
   
     Return $con
+End
+
+Public Sub Desconectar($con As Connection)
+  
+  $con.Close
+  $con = Null
+  
 End
 

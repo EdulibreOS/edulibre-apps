@@ -1,0 +1,25 @@
+' Gambas class file
+
+Public Sub Form_Open()
+  
+  ObtenerVersion
+  
+End
+
+Public Sub ObtenerVersion()
+  
+  lblVersion_edit.Text = Application.Version
+  
+End
+
+Public Sub btnSalir_Click()
+
+  Me.Close
+
+End
+
+Public Sub Salir_Click()
+
+Me.Close  
+
+End

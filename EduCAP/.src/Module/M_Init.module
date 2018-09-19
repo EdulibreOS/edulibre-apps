@@ -27,6 +27,8 @@ Public Sub ObtenerCmbNivel()
              EdulibCap.cmb_bnivel.Add(rs["descripcion"], rs["idtbl_nivel"])
              rs.MoveNext
        Wend
+       
+     MDB_Connection.Desconectar(cone)
 End
 
 Public Sub ObtenerCmbGrado(id_nivel As Integer)
@@ -42,7 +44,7 @@ Public Sub ObtenerCmbGrado(id_nivel As Integer)
               "FROM tbl_grado " &
               "WHERE id_nivel = " & id_nivel & " " &
               "ORDER BY idtbl_grado asc"
-    Print consulta
+    'Print consulta
     
     cone = MDB_Connection.Conectar()
     
@@ -51,7 +53,7 @@ Public Sub ObtenerCmbGrado(id_nivel As Integer)
              EdulibCap.cmb_bgrado.Add(rs["descripcion"], rs["idtbl_grado"])
              rs.MoveNext
        Wend
-  
+  MDB_Connection.Desconectar(cone)
 End
 
 Public Sub ObtenerCmbMateria(grado As String)
@@ -70,7 +72,7 @@ Public Sub ObtenerCmbMateria(grado As String)
               "AND gm.id_materia = m.idtbl_materia " &
               "AND g.descripcion = '" & grado & "' " &
               "ORDER BY g.descripcion, m.descripcion"
-    Print consulta
+    'Print consulta
     
     cone = MDB_Connection.Conectar()
     
@@ -79,7 +81,7 @@ Public Sub ObtenerCmbMateria(grado As String)
              EdulibCap.cmb_materia.Add(rs["descripcion"], rs["idtbl_materia"])
              rs.MoveNext
        Wend
-  
+  MDB_Connection.Desconectar(cone)
 End
 
 
@@ -95,7 +97,8 @@ Public Sub ObtenerInfo(id_actividad As String)
                					"m.descripcion As Materia, " &
                					"a.competencia_grado As Competencia, " &
                					"a.indicador_logro As Indicador, " &
-               					"a.contenido As Contenido " &
+               					"a.contenido As Contenido, " &
+               					"p.url_icono As Icono " &
               "FROM tbl_actividad a, " &
               		"tbl_grado_materia gm, " &
               		"tbl_grado g, " &
@@ -124,17 +127,21 @@ Public Sub ObtenerInfo(id_actividad As String)
              EdulibCap.lbl_competenciagrado_edit.Text = rs["Competencia"]
              EdulibCap.lbl_indicadorlogro_edit.Text = rs["Indicador"]
              EdulibCap.lbl_contenido_edit.Text = rs["Contenido"]
+             EdulibCap.btn_programa.Picture = Picture.Load(rs["Icono"]).Image.Stretch(40, 40).Picture
              rs.MoveNext
        Wend    
-  
+  MDB_Connection.Desconectar(cone)
   ObtenerImagen(id_actividad)
 End
 
 Public Sub ObtenerImagen(id_actividad As String)
   
-  EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "1.png")
-  EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "2.png") '
-  'EdulibCap.lblquitar.Text = Application.path &/ "Images/" &/ id_actividad &/ "1.png"
+  EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/2/1.png")
+  EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/2/2.png")
+  
+  'Estos de abajo son lo que deben de quedar.
+  'EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "1.png")
+  'EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "2.png")
   
 End
 
@@ -145,19 +152,26 @@ Public Sub ObtenerActividad()
   
   EdulibCap.lst_iconos.Clear
       
-    consulta = "SELECT idtbl_actividad, nombre " &
-              "FROM tbl_actividad " &
+    consulta = "SELECT a.idtbl_actividad, a.nombre, p.url_icono " &
+              "FROM tbl_actividad a, " &
+              "tbl_programa p " &
+              "WHERE a.id_programa = p.idtbl_programa " &
               "ORDER BY nombre ASC "
                 
     cone = MDB_Connection.Conectar()
     
     rs = cone.Exec(consulta)
        While (rs.Available)
-             EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load("/usr/share/pixmaps/innova.png"))
+          If rs["url_icono"] <> Null Then
+              EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load(rs["url_icono"]).Image.Stretch(30, 30).Picture)
+          Else
+               EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load("/usr/share/pixmaps/innova.png").Image.Stretch(30, 30).Picture)
+          Endif
              rs.MoveNext
        Wend
-  
+  MDB_Connection.Desconectar(cone)
 End
+
 
 
 
