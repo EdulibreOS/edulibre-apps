@@ -16,7 +16,7 @@
     { lblTitulo TextLabel
       MoveScaled(4,3,53,4)
       Font = Font["Bold,+3"]
-      Text = ("Centro de Ayuda Pedagogica (EduCap)")
+      Text = ("Centro de Ayuda Pedagogica Edulibre")
     }
   }
   { tabPanel TabPanel
@@ -36,7 +36,7 @@
     }
     { lblInformacion TextLabel
       MoveScaled(0,8,44,25)
-      Text = ("El Centro de Ayuda Pedagogica (EduCap) es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\nEduCap fue desarrollado en base al apoyo de:\n</br>\n</br>\n\n<ul> \n<li>TIGO </li>\n</ul>  ")
+      Text = ("El Centro de Ayuda Edulibre es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\nEduCap fue desarrollado en base al apoyo de:\n</br>\n</br>\n\n<ul> \n<li>TIGO </li>\n</ul>  ")
       Alignment = Align.Justify
     }
     { lblVersion Label

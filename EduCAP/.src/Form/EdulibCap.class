@@ -11,7 +11,8 @@ M_Init.ObtenerCmbNivel
 'Obtiene el listado de actividades
 M_Init.ObtenerActividad
 'Obtiene la información de la actividad
-M_Init.ObtenerInfo(2)
+'M_Init.ObtenerInfo(2)
+M_Init.LlenarGvInfo(2)
 
 End
 
@@ -49,8 +50,8 @@ End
 
 Public Sub lst_iconos_Click()
 
- M_Init.ObtenerInfo(lst_iconos.Current.Key)
-
+ 'M_Init.ObtenerInfo(lst_iconos.Current.Key)
+  M_Init.LlenarGvInfo(lst_iconos.Current.Key)
 
 End
 
