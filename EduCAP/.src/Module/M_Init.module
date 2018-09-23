@@ -95,9 +95,9 @@ Public Sub ObtenerInfo(id_actividad As String)
                					"n.descripcion As Nivel, " &
                					"g.descripcion As Grado, " &
                					"m.descripcion As Materia, " &
-               					"a.competencia_grado As Competencia, " &
-               					"a.indicador_logro As Indicador, " &
-               					"a.contenido As Contenido, " &
+               					"cg.descripcion As Competencia, " &
+               					"ig.descripcion As Indicador, " &
+               					"cont.descripcion As Contenido, " &
                					"p.url_icono As Icono, " &
                					"p.url_exe As Url_exe " &
               "FROM tbl_actividad a, " &
@@ -106,14 +106,20 @@ Public Sub ObtenerInfo(id_actividad As String)
               		"tbl_materia m, " &
               		"tbl_nivel n, " &
               		"tbl_programa p, " &
-              		"tbl_categoria c " &
+              		"tbl_categoria c, " &
+              		"tbl_competencia_grado cg, " &
+              		"tbl_indicador_grado ig, " &
+              		"tbl_contenido cont " &
               "WHERE a.idtbl_actividad = " & id_actividad & " " &
               "AND a.id_grado_materia = gm.idtbl_grado_materia " &
               "AND gm.id_grado = g.idtbl_grado " &
               "AND gm.id_materia = m.idtbl_materia " &
               "AND a.id_nivel = n.idtbl_nivel " &
               "AND a.id_programa = p.idtbl_programa " &
-              "AND p.id_categoria = c.idtbl_categoria "
+              "AND p.id_categoria = c.idtbl_categoria " &
+              "AND cg.id_actividad = a.idtbl_actividad " &
+              "AND ig.id_competencia_grado = cg.idtbl_competencia_grado " &
+              "AND cont.id_indicador_grado = ig.idtbl_indicador_grado "
     
     cone = MDB_Connection.Conectar()
     
@@ -173,6 +179,95 @@ Public Sub ObtenerActividad()
        Wend
   MDB_Connection.Desconectar(cone)
 End
+
+Public Sub LlenarGvInfo(id_actividad As String)
+  
+    Dim rs As Result
+    Dim consulta As String
+    Dim crow As Integer
+    
+    consulta = "SELECT c.descripcion as Categoria, " &
+               					"p.descripcion As Programa, " &
+               					"a.nombre As Actividad, " &
+               					"n.descripcion As Nivel, " &
+               					"g.descripcion As Grado, " &
+               					"m.descripcion As Materia, " &
+               					"cg.descripcion As Competencia, " &
+               					"ig.descripcion As Indicador, " &
+               					"cont.descripcion As Contenido, " &
+               					"p.url_icono As Icono, " &
+               					"p.url_exe As Url_exe " &
+              "FROM tbl_actividad a, " &
+              		"tbl_grado_materia gm, " &
+              		"tbl_grado g, " &
+              		"tbl_materia m, " &
+              		"tbl_nivel n, " &
+              		"tbl_programa p, " &
+              		"tbl_categoria c, " &
+              		"tbl_competencia_grado cg, " &
+              		"tbl_indicador_grado ig, " &
+              		"tbl_contenido cont " &
+              "WHERE a.idtbl_actividad = " & id_actividad & " " &
+              "AND a.id_grado_materia = gm.idtbl_grado_materia " &
+              "AND gm.id_grado = g.idtbl_grado " &
+              "AND gm.id_materia = m.idtbl_materia " &
+              "AND a.id_nivel = n.idtbl_nivel " &
+              "AND a.id_programa = p.idtbl_programa " &
+              "AND p.id_categoria = c.idtbl_categoria " &
+              "AND cg.id_actividad = a.idtbl_actividad " &
+              "AND ig.id_competencia_grado = cg.idtbl_competencia_grado " &
+              "AND cont.id_indicador_grado = ig.idtbl_indicador_grado "
+    
+    cone = MDB_Connection.Conectar()
+      
+      
+            'EdulibCap.gvinfo.Rows.count = 2
+            EdulibCap.gvinfo.Columns.count = 3
+            'EdulibCap.gvinfo.Columns[0].Width = 100
+            'EdulibCap.gvinfo.rows[0].Height = 300
+            EdulibCap.gvinfo.Rows.Resizable = True
+            EdulibCap.gvinfo.Columns.Resizable = True
+            EdulibCap.gvinfo.Columns[0].Text = "Competencia de Grado"
+            'EdulibCap.gvinfo.Columns[1].Width = 100
+            EdulibCap.gvinfo.Columns[1].Text = "Indicador de Logro"
+            'EdulibCap.gvinfo.Columns[2].Width = 100
+            EdulibCap.gvinfo.Columns[2].Text = "Contenido"
+            crow = 0
+    
+    rs = cone.Exec(consulta)
+    
+       While (rs.Available)
+             EdulibCap.gvinfo.Rows.count = crow + 1
+             EdulibCap.gvinfo.rows[crow].Height = 170
+             EdulibCap.lbl_categoria_edit.Text = rs["Categoria"]
+             EdulibCap.lbl_programa_edit.Text = rs["Programa"]
+             EdulibCap.lbl_actividad_edit.Text = rs["Actividad"]
+             EdulibCap.lbl_nivel_edit.Text = rs["Nivel"]
+             EdulibCap.lbl_grado_edit.Text = rs["Grado"]
+             EdulibCap.lbl_materia_edit.Text = rs["Materia"]
+             EdulibCap.gvinfo[crow, 0].Text = rs["Competencia"]
+             EdulibCap.gvinfo[crow, 0].WordWrap = True
+             'EdulibCap.lbl_competenciagrado_edit.Text = rs["Competencia"]
+             EdulibCap.gvinfo[crow, 1].Text = rs["Indicador"]
+             EdulibCap.gvinfo[crow, 1].WordWrap = True
+             'EdulibCap.lbl_indicadorlogro_edit.Text = rs["Indicador"]
+             EdulibCap.gvinfo[crow, 2].Text = rs["Contenido"]
+             EdulibCap.gvinfo[crow, 2].WordWrap = True
+             'EdulibCap.lbl_contenido_edit.Text = rs["Contenido"]
+             EdulibCap.btn_programa.Picture = Picture.Load(rs["Icono"]).Image.Stretch(40, 40).Picture
+             EdulibCap.lblprogexe.Text = rs["Url_exe"]
+             crow = crow + 1
+             rs.MoveNext
+       Wend    
+  MDB_Connection.Desconectar(cone)
+  ObtenerImagen(id_actividad)
+  
+End
+
+
+
+
+
 
 
 

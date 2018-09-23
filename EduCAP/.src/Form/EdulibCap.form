@@ -3,7 +3,9 @@
 { Form Form
   MoveScaled(0,0,127,85)
   Background = Color.White
-  Text = ("Edulibre - Centro de Ayuda Pedagogica (EduCAP)")
+  Text = ("Centro de Ayuda Edulibre")
+  Resizable = False
+  AutoResize = True
   { Archivo Menu
     Text = ("Archivo")
     { mnuAcercaDe Menu
@@ -32,17 +34,6 @@
     MoveScaled(28,19,99,71)
     Background = Color.White
     Border = Border.Plain
-    { lbl_contenido Label
-      MoveScaled(41,23,16,4)
-      Font = Font["Bold"]
-      Text = ("Contenido:")
-      Alignment = Align.Right
-    }
-    { !lbl_contenido_edit TextLabel
-      MoveScaled(58,22,39,7)
-      #Public = True
-      Alignment = Align.Justify
-    }
     { lbl_grado Label
       MoveScaled(2,19,11,4)
       Font = Font["Bold"]
@@ -62,6 +53,19 @@
       MoveScaled(23,28,7,6)
       #Public = True
       Picture = Picture["icon:/large/game"]
+    }
+    { HBox1 HBox
+      MoveScaled(38,2,59,30)
+      { VBox1 VBox
+        MoveScaled(0,0,59,30)
+        { !gvinfo TableView
+          MoveScaled(27,4,16,16)
+          #Public = True
+          Expand = True
+          Mode = Select.Single
+          Header = GridView.Both
+        }
+      }
     }
   }
   { !lbl_categoria_edit Label
@@ -108,18 +112,6 @@
     MoveScaled(43,42,22,4)
     #Public = True
   }
-  { lbl_competenciagrado Label
-    MoveScaled(62,22,23,4)
-    Font = Font["Bold"]
-    Text = ("Competencia de grado:")
-    Alignment = Align.Right
-  }
-  { lbl_indicador_logro Label
-    MoveScaled(64,32,21,4)
-    Font = Font["Bold"]
-    Text = ("Indicador de Logro:")
-    Alignment = Align.Right
-  }
   { !picbox1 PictureBox
     MoveScaled(32,53,42.8571,28.5714)
     #Public = True
@@ -139,16 +131,6 @@
       #Public = True
     }
   }
-  { !lbl_competenciagrado_edit TextLabel
-    MoveScaled(86,20,39,9)
-    #Public = True
-    Alignment = Align.Justify
-  }
-  { !lbl_indicadorlogro_edit TextLabel
-    MoveScaled(86,29,39,11.4286)
-    #Public = True
-    Alignment = Align.Justify
-  }
   { !lblprogexe TextLabel
     MoveScaled(60,48,11,4)
     #Public = True
@@ -160,9 +142,9 @@
     AutoResize = True
     Border = Border.Plain
     { LblTitulo TextLabel
-      MoveScaled(45,2,36,3)
+      MoveScaled(49,2,31,3)
       Font = Font["Bold,+2"]
-      Text = ("Centro de Ayuda Pedagogica")
+      Text = ("Centro de Ayuda Edulibre")
     }
   }
   { lbl_bgrado Label
