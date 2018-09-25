@@ -1,0 +1,137 @@
+' Gambas module file
+
+
+Private cone As New Connection
+
+
+Public Sub Main()
+  
+   
+  
+End
+
+'Busqueda por medio de los combo box y contenido.
+Public Sub Buscar(Nivel As String, Grado As String, Materia As String, Contenido As String)
+  
+  Dim rs As Result
+  Dim consulta, aux_palabras As String
+  Dim nivel_text, grado_text, materia_text, contenido_text As String
+  Dim cant_palabras As Integer
+  Dim Palabras As String[]
+
+  cant_palabras = Split(Contenido, " ").Count
+  Palabras = Split(Contenido, " ")
+  
+  If cant_palabras > 1 Then
+    
+    For Each aux_palabras In Palabras
+            consulta = consulta & Cadena_Consulta(Nivel, Grado, Materia, aux_palabras)
+            consulta = consulta & " UNION "
+    Next
+            consulta = Left(consulta, -6)
+            consulta = consulta & " ORDER BY a.nombre "
+            Print consulta
+            cone = MDB_Connection.Conectar()
+            EdulibCap.lst_iconos.Clear ' Limpiar todos los elementos del Listbox de actividades
+            rs = cone.Exec(consulta)
+               While (rs.Available)
+                  If rs["Icono"] <> Null Then
+                    EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load(rs["Icono"]).Image.Stretch(30, 30).Picture)
+                Else
+                     EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load("/usr/share/pixmaps/innova.png").Image.Stretch(30, 30).Picture)
+                Endif
+                   rs.MoveNext
+               Wend
+          MDB_Connection.Desconectar(cone)
+  Else 'Si es una sola palabra en el contenido se realiza una sola busqueda
+    
+        consulta = Cadena_Consulta(Nivel, Grado, Materia, Contenido)
+        consulta = consulta & " ORDER BY a.nombre "
+        cone = MDB_Connection.Conectar()
+          EdulibCap.lst_iconos.Clear ' Limpiar todos los elementos del Listbox de actividades
+          rs = cone.Exec(consulta)
+             While (rs.Available)
+                If rs["Icono"] <> Null Then
+                  EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load(rs["Icono"]).Image.Stretch(30, 30).Picture)
+              Else
+                   EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load("/usr/share/pixmaps/innova.png").Image.Stretch(30, 30).Picture)
+              Endif
+                 rs.MoveNext
+             Wend
+        MDB_Connection.Desconectar(cone)
+    
+  Endif
+  
+  M_Log.Set_Log(EdulibCap.lbl_user.Text, "Buscar", Contenido)
+  
+End
+
+Public Function Cadena_Consulta(Nivel As String, Grado As String, Materia As String, Contenido As String) As String
+  
+  Dim nivel_text, grado_text, materia_text, contenido_text As String
+  Dim consulta As String
+  
+          If Nivel <> "Todos" And If Nivel <> "" Then
+             nivel_text = "AND n.descripcion = '" & Nivel & "' "
+          Else
+             nivel_text = " "
+          Endif
+          If Grado <> "Todos" And If Grado <> "" Then
+              grado_text = "AND g.descripcion = '" & Grado & "' "
+          Else
+              grado_text = " "
+          Endif
+          If Materia <> "Todos" And If Materia <> "" Then
+              materia_text = "AND m.descripcion = '" & Materia & "' "
+          Else
+              materia_text = " "
+          Endif
+          If Contenido <> "Todos" And If Contenido <> "" Then
+              contenido_text = "AND c.descripcion Like '%" & Contenido & "%' "
+          Else
+              contenido_text = " "
+          Endif
+  
+  consulta = "SELECT a.idtbl_actividad as ID, " & 
+  		            "a.nombre as Actividad, " & 
+  		            "p.url_icono as Icono " &
+              "FROM tbl_actividad a, " &
+                    "tbl_grado_materia gm, " &
+                    "tbl_nivel n, " &
+                    "tbl_grado g," &
+                    "tbl_materia m, " &
+                    "tbl_competencia_grado cg, " &
+                    "tbl_indicador_grado ig, " &
+                    "tbl_contenido c, " &
+                    "tbl_programa p " &
+              "WHERE a.id_programa = p.idtbl_programa " &
+              "AND a.id_nivel = n.idtbl_nivel " &
+              "AND a.id_grado_materia = gm.idtbl_grado_materia " &
+              "AND gm.id_grado = g.idtbl_grado " &
+              "AND gm.id_materia = m.idtbl_materia " &
+              "AND a.idtbl_actividad = cg.id_actividad " &
+              "AND cg.idtbl_competencia_grado = ig.id_competencia_grado " &
+              "AND ig.idtbl_indicador_grado = c.id_indicador_grado " &
+              nivel_text & grado_text & materia_text & contenido_text
+  
+Return consulta
+End
+
+Public Sub Limpiar_Contenido()
+  
+  EdulibCap.lbl_categoria_edit.Text = ""
+  EdulibCap.lbl_programa_edit.Text = ""
+  EdulibCap.lbl_actividad_edit.Text = ""
+  EdulibCap.lbl_nivel_edit.Text = ""
+  EdulibCap.lbl_grado_edit.Text = ""
+  EdulibCap.lbl_grado_edit.Text = ""
+  EdulibCap.lbl_materia_edit.Text = ""
+  EdulibCap.btn_programa.Picture = Null
+  EdulibCap.lblprogexe.Text = Null
+  EdulibCap.gvinfo.Clear
+  EdulibCap.picbox1.Picture = Null
+  EdulibCap.picbox2.Picture = Null
+End
+
+
+

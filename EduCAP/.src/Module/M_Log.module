@@ -1,0 +1,31 @@
+' Gambas module file
+
+Private cone As New Connection
+
+
+Public Sub Main()
+  
+   
+  
+End
+
+Public Sub Set_NewUser(Aplicacion As String)
+  
+  EdulibCap.lbl_user.Text = Aplicacion & Day(Now) & Month(Now) & Year(Now) & Hour(Now) & Minute(Now) & Second(Now)
+  
+End
+
+
+Public Sub Set_Log(Usuario As String, Accion As String, Actividad As String)
+  Dim consulta As String
+  
+   consulta = "INSERT INTO tbl_log VALUES (busqueda, usuario, fecha_hora, id_actividad ) VALUES ( '" &
+              Accion & "','" & Usuario & "','" & Now & "','" & Actividad & "')"
+    Print consulta
+    
+    'cone = MDB_Connection.Conectar()
+    'rs = cone.Exec(consulta)
+  
+End
+
+

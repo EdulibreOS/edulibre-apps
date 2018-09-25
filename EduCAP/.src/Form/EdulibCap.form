@@ -26,7 +26,7 @@
     #Public = True
   }
   { btn_buscar Button
-    MoveScaled(50,13,12,4)
+    MoveScaled(59,13,12,4)
     Text = ("Buscar")
     Picture = Picture["icon:/small/find"]
   }
@@ -164,7 +164,7 @@
     Text = ("Materia:")
     Alignment = Align.Right
   }
-  { !cmb_materia ComboBox
+  { !cmb_bmateria ComboBox
     MoveScaled(68,8,28,4)
     #Public = True
     Enabled = False
@@ -175,8 +175,9 @@
     Text = ("Contenido:")
     Alignment = Align.Right
   }
-  { txt_busqueda ButtonBox
-    MoveScaled(13,13,35.7143,4)
+  { !txt_busqueda ButtonBox
+    MoveScaled(13,13,45,4)
+    #Public = True
     Picture = Picture["icon:/small/close"]
     Button = False
     ClearButton = True
@@ -186,5 +187,9 @@
     Font = Font["Bold"]
     Text = ("Categoria:")
     Alignment = Align.Right
+  }
+  { !lbl_user Label
+    MoveScaled(101,8,25,4)
+    #Public = True
   }
 }

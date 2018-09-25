@@ -12,7 +12,10 @@ M_Init.ObtenerCmbNivel
 M_Init.ObtenerActividad
 'Obtiene la información de la actividad
 'M_Init.ObtenerInfo(2)
-M_Init.LlenarGvInfo(2)
+M_Init.LlenarGvInfo(87)
+'Genera nuevo usuario para el log
+M_Log.Set_NewUser("CAEdulibre")
+
 
 End
 
@@ -29,7 +32,7 @@ Public Sub cmb_bgrado_Change()
 
   If EdulibCap.cmb_bgrado.Index > 0 Then
     M_Init.ObtenerCmbMateria(EdulibCap.cmb_bgrado.Current.Text)
-    EdulibCap.cmb_materia.Enabled = True
+    EdulibCap.cmb_bmateria.Enabled = True
   Endif
 
 End
@@ -60,5 +63,13 @@ Public Sub btn_programa_Click()
   Dim url As String
   
   url = EdulibCap.lblprogexe.Text
-  Exec [url] 
+  If url <> Null Then
+    Exec [url] 
+  Endif
+End
+
+Public Sub btn_buscar_Click()
+
+  M_Busqueda.Buscar(EdulibCap.cmb_bnivel.Text, EdulibCap.cmb_bgrado.Text, EdulibCap.cmb_bmateria.Text, EdulibCap.txt_busqueda.Text)
+  M_Busqueda.Limpiar_Contenido()
 End
