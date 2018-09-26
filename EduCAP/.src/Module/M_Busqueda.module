@@ -62,8 +62,6 @@ Public Sub Buscar(Nivel As String, Grado As String, Materia As String, Contenido
     
   Endif
   
-  M_Log.Set_Log(EdulibCap.lbl_user.Text, "Buscar", Contenido)
-  
 End
 
 Public Function Cadena_Consulta(Nivel As String, Grado As String, Materia As String, Contenido As String) As String

@@ -15,6 +15,8 @@ M_Init.ObtenerActividad
 M_Init.LlenarGvInfo(87)
 'Genera nuevo usuario para el log
 M_Log.Set_NewUser("CAEdulibre")
+'Se ingresa el log del ingreso a la App
+M_Log.Set_Log(Null, Null, Null, Null, "Ingreso", EdulibCap.lbl_user.Text, "87")
 
 
 End
@@ -42,20 +44,21 @@ End
 Public Sub mnuAcercaDe_Click()
 
   AcercaDe.ShowModal
-
+  M_Log.Set_Log(Null, Null, Null, Null, "Acerca De", EdulibCap.lbl_user.Text, "87")
 End
 
 Public Sub mnuSalir_Click()
 
   Me.Close
-
+  M_Log.Set_Log(Null, Null, Null, Null, "Salir Aplicacion", EdulibCap.lbl_user.Text, "87")
 End
 
 Public Sub lst_iconos_Click()
 
  'M_Init.ObtenerInfo(lst_iconos.Current.Key)
   M_Init.LlenarGvInfo(lst_iconos.Current.Key)
-
+  M_Log.Set_Log(Null, Null, Null, Null, "Click", EdulibCap.lbl_user.Text, lst_iconos.Current.Key)
+  
 End
 
 Public Sub btn_programa_Click()
@@ -64,7 +67,8 @@ Public Sub btn_programa_Click()
   
   url = EdulibCap.lblprogexe.Text
   If url <> Null Then
-    Exec [url] 
+    Exec [url]
+    M_Log.Set_Log(Null, Null, Null, Null, "Abrir Programa", EdulibCap.lbl_user.Text, lst_iconos.Current.Key)
   Endif
 End
 
@@ -72,4 +76,15 @@ Public Sub btn_buscar_Click()
 
   M_Busqueda.Buscar(EdulibCap.cmb_bnivel.Text, EdulibCap.cmb_bgrado.Text, EdulibCap.cmb_bmateria.Text, EdulibCap.txt_busqueda.Text)
   M_Busqueda.Limpiar_Contenido()
+  M_Log.Set_Log(EdulibCap.cmb_bnivel.Text, EdulibCap.cmb_bgrado.Text, EdulibCap.cmb_bmateria.Text, 
+  EdulibCap.txt_busqueda.Text, "Buscar", EdulibCap.lbl_user.Text, "87")
 End
+
+Public Sub Form_Close() 
+  
+  M_Log.Set_Log(Null, Null, Null, Null, "Salir Aplicacion", EdulibCap.lbl_user.Text, "87")
+  
+End
+
+
+

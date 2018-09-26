@@ -41,7 +41,7 @@
       Alignment = Align.Right
     }
     { !lbl_grado_edit Label
-      MoveScaled(15,19,18,4)
+      MoveScaled(15,19,22,4)
       #Public = True
     }
     { lbl_abrirprograma Label
@@ -69,7 +69,7 @@
     }
   }
   { !lbl_categoria_edit Label
-    MoveScaled(43,22,17,4)
+    MoveScaled(43,22,22,4)
     #Public = True
   }
   { lbl_programa Label
@@ -79,7 +79,7 @@
     Alignment = Align.Right
   }
   { !lbl_programa_edit Label
-    MoveScaled(43,26,17,4)
+    MoveScaled(43,26,22,4)
     #Public = True
   }
   { lbl_actividad Label
@@ -89,7 +89,7 @@
     Alignment = Align.Right
   }
   { !lbl_actividad_edit Label
-    MoveScaled(43,30,17,4)
+    MoveScaled(43,30,22,4)
     #Public = True
   }
   { lbl_nivel Label
@@ -99,7 +99,7 @@
     Alignment = Align.Right
   }
   { !lbl_nivel_edit Label
-    MoveScaled(43,34,17,4)
+    MoveScaled(43,34,22,4)
     #Public = True
   }
   { lbl_materia Label
@@ -191,5 +191,6 @@
   { !lbl_user Label
     MoveScaled(101,8,25,4)
     #Public = True
+    Visible = False
   }
 }

@@ -4,6 +4,7 @@
   MoveScaled(0,0,64,58)
   Background = Color.White
   Text = ("Acerca De")
+  Resizable = False
   { Archivo Menu
     Text = ("Archivo")
     { Salir Menu
@@ -14,9 +15,9 @@
     MoveScaled(0,0,64,10)
     Background = Color.White
     { lblTitulo TextLabel
-      MoveScaled(4,3,53,4)
+      MoveScaled(13,3,36,4)
       Font = Font["Bold,+3"]
-      Text = ("Centro de Ayuda Pedagogica Edulibre")
+      Text = ("Centro de Ayuda Edulibre")
     }
   }
   { tabPanel TabPanel
