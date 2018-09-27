@@ -10,6 +10,26 @@
   { mnuMain Menu
     Text = ("Main")
     Visible = False
+    { mnuGeneral Menu
+      Text = ("General")
+      Picture = Picture["img/pc_info/Arch.svg"]
+      { mnuGrlProcesor Menu
+        Text = ("Processor")
+        Picture = Picture["img/pc_info/Info.svg"]
+      }
+      { mnuGrlRam Menu
+        Text = ("RAM")
+        Picture = Picture["img/pc_info/Mem_3.svg"]
+      }
+      { mnuGrlArquitecture Menu
+        Text = ("Architecture")
+        Picture = Picture["img/pc_info/Arch.svg"]
+      }
+      { mnuGrlDisk Menu
+        Text = ("Hard Disk")
+        Picture = Picture["img/pc_info/Disk-Usage.svg"]
+      }
+    }
     { mnuCPU Menu
       Text = ("CPU")
       Picture = Picture["img/pc_info/Hardinfo.svg"]

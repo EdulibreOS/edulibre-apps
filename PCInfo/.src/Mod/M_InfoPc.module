@@ -57,7 +57,8 @@ Public Sub Info_Pc()
   
   f_PC_Info.TextLabelLinux.Text = sTempFam
   f_PC_Info.mnuSO_L.Text = ("Operating System: ") & sTempFam
-  f_PC_Info.mnuArchitecture.Text = ("Architecture: ") & System.Architecture 
+  f_PC_Info.mnuArchitecture.Text = ("Architecture: ") & System.Architecture
+  f_PC_Info.mnuGrlArquitecture.Text = ("Architecture: ") & System.Architecture
   f_PC_Info.TextLabelArchitecture.Text = System.Architecture 
   f_PC_Info.TextLabelArchitecture2.Text = System.Architecture 
   f_PC_Info.TextLabelKernel.Text = Trim(sTemp)
@@ -65,6 +66,7 @@ Public Sub Info_Pc()
   f_PC_Info.TextLabelProcesador.Text = Trim(sTempPro)
   f_PC_Info.TextLabelProcesador2.Text = Trim(sTempPro)
   f_PC_Info.mnuProcessor.Text = ("Processor: ") & Trim(sTempPro)
+  f_PC_Info.mnuGrlProcesor.Text = ("Processor: ") & Trim(sTempPro)
   
   Try sTempRam = Scan(sTempRam, "*MemTotal:*\n*")[1]
   If Error Then 
@@ -84,6 +86,7 @@ Public Sub Info_Pc()
     f_PC_Info.TextLabelRam.Text = "Total : " & (sTempRam)
     f_PC_Info.TextLabelRam4.Text = "Total : " & (sTempRam)
     f_PC_Info.mnuRamT.Text = ("Total: ") & sTempRam 
+    f_PC_Info.mnuGrlRam.Text = ("RAM: ") & sTempRam
     f_PC_Info.mnuRam.Text = ("Memory: ") & sTempRam 
   Endif
   
@@ -339,6 +342,7 @@ Public Sub Dat_DD()
       f_PC_Info.TextLabelHarddrive.Text = sReal_Size
       f_PC_Info.TextLabelHarddrive2.Text = sReal_Size
       f_PC_Info.mnuHD.Text = ("Hard Drive: ") & sReal_Size
+      f_PC_Info.mnuGrlDisk.Text = ("Hard Drive: ") & sReal_Size
       
       Shell "df -h  | awk {'print $1'} | sed -n '4p' " Wait To sPart 
       If (InStr(sPart, "udev")) Then 
