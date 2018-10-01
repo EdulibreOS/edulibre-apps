@@ -16,18 +16,12 @@ End
 Public Sub Salir_Click()
 
 Me.Close  
-M_Log.Set_Log(Null, Null, Null, Null, "Salir Acerca De", EdulibCap.lbl_user.Text, "87")
+M_Log.Set_Log(Null, Null, Null, Null, "Salir Acerca De", EdulibCap.lbl_user.Text, "")
 End
 
 Public Sub btnSalir_Click()
 
   Me.Close  
-  M_Log.Set_Log(Null, Null, Null, Null, "Salir Acerca De", EdulibCap.lbl_user.Text, "87")
+  M_Log.Set_Log(Null, Null, Null, Null, "Salir Acerca De", EdulibCap.lbl_user.Text, "")
 
-End
-
-Public Sub Form_Close() 
-  
-  M_Log.Set_Log(Null, Null, Null, Null, "Salir Acerca De", EdulibCap.lbl_user.Text, "87")
-  
 End

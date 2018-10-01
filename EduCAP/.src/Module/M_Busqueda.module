@@ -35,10 +35,10 @@ Public Sub Buscar(Nivel As String, Grado As String, Materia As String, Contenido
             EdulibCap.lst_iconos.Clear ' Limpiar todos los elementos del Listbox de actividades
             rs = cone.Exec(consulta)
                While (rs.Available)
-                  If rs["Icono"] <> Null Then
+                  If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
                     EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load(rs["Icono"]).Image.Stretch(30, 30).Picture)
                 Else
-                     EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load("/usr/share/pixmaps/innova.png").Image.Stretch(30, 30).Picture)
+                     EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load("~/edulibre-apps/EduCAP/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture)
                 Endif
                    rs.MoveNext
                Wend
@@ -51,10 +51,10 @@ Public Sub Buscar(Nivel As String, Grado As String, Materia As String, Contenido
           EdulibCap.lst_iconos.Clear ' Limpiar todos los elementos del Listbox de actividades
           rs = cone.Exec(consulta)
              While (rs.Available)
-                If rs["Icono"] <> Null Then
+                If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
                   EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load(rs["Icono"]).Image.Stretch(30, 30).Picture)
               Else
-                   EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load("/usr/share/pixmaps/innova.png").Image.Stretch(30, 30).Picture)
+                  EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load("~/edulibre-apps/EduCAP/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture)
               Endif
                  rs.MoveNext
              Wend

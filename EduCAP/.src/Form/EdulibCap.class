@@ -44,13 +44,13 @@ End
 Public Sub mnuAcercaDe_Click()
 
   AcercaDe.ShowModal
-  M_Log.Set_Log(Null, Null, Null, Null, "Acerca De", EdulibCap.lbl_user.Text, "87")
+  M_Log.Set_Log(Null, Null, Null, Null, "Acerca De", EdulibCap.lbl_user.Text, "")
 End
 
 Public Sub mnuSalir_Click()
 
   Me.Close
-  M_Log.Set_Log(Null, Null, Null, Null, "Salir Aplicacion", EdulibCap.lbl_user.Text, "87")
+  M_Log.Set_Log(Null, Null, Null, Null, "Salir Aplicacion", EdulibCap.lbl_user.Text, "")
 End
 
 Public Sub lst_iconos_Click()
@@ -66,10 +66,12 @@ Public Sub btn_programa_Click()
   Dim url As String
   
   url = EdulibCap.lblprogexe.Text
-  If url <> Null Then
+  If url <> Null And Exist(url) Then
     Exec [url]
-    M_Log.Set_Log(Null, Null, Null, Null, "Abrir Programa", EdulibCap.lbl_user.Text, lst_iconos.Current.Key)
+   Else 
+    Message.Info("El programa " & EdulibCap.lbl_programa_edit.Text & " no se encuentra instalado.", "OK")
   Endif
+   M_Log.Set_Log(Null, Null, Null, Null, "Abrir Programa", EdulibCap.lbl_user.Text, lst_iconos.Current.Key)
 End
 
 Public Sub btn_buscar_Click()
@@ -77,12 +79,12 @@ Public Sub btn_buscar_Click()
   M_Busqueda.Buscar(EdulibCap.cmb_bnivel.Text, EdulibCap.cmb_bgrado.Text, EdulibCap.cmb_bmateria.Text, EdulibCap.txt_busqueda.Text)
   M_Busqueda.Limpiar_Contenido()
   M_Log.Set_Log(EdulibCap.cmb_bnivel.Text, EdulibCap.cmb_bgrado.Text, EdulibCap.cmb_bmateria.Text, 
-  EdulibCap.txt_busqueda.Text, "Buscar", EdulibCap.lbl_user.Text, "87")
+  EdulibCap.txt_busqueda.Text, "Buscar", EdulibCap.lbl_user.Text, "")
 End
 
 Public Sub Form_Close() 
   
-  M_Log.Set_Log(Null, Null, Null, Null, "Salir Aplicacion", EdulibCap.lbl_user.Text, "87")
+  M_Log.Set_Log(Null, Null, Null, Null, "Salir Aplicacion", EdulibCap.lbl_user.Text, "")
   
 End
 
