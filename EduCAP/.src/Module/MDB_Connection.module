@@ -1,0 +1,24 @@
+' Gambas module file
+
+Public $con As Connection
+
+Public Procedure Conectar() As Connection
+    $con = New Connection
+    Try $con.Close()             ' Cierra la conexion el try permite falle sin error
+    $con.Type = "sqlite3"        ' Define el tipo de Conexion
+    $con.Host = (Application.path &/ "DB/") ' Host sera la ruta en donde esta el archivo de la db sqlite
+    $con.Name = "edulibcap.db"    ' nombre de la base de datos es el nombre del archivo base de datos
+    $con.Open()                  ' Activamos y Abrimos la conexion, el try es para que permita un error
+  
+    'Print "Conectado? : " & $con.Opened ' Devolvera TRUE o FALSE segun si "try $con.Open()" fue exitoso en "conectarodbc()"
+  
+    Return $con
+End
+
+Public Sub Desconectar($con As Connection)
+  
+  $con.Close
+  $con = Null
+  
+End
+
