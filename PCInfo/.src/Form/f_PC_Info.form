@@ -1606,7 +1606,7 @@
         Arrangement = Arrange.Vertical
       }
       { hzoHome6 HBox
-        MoveScaled(1,7,72,8)
+        MoveScaled(1,6,72,8)
         Spacing = True
         Margin = True
         Padding = 3
@@ -1630,10 +1630,10 @@
         }
       }
       { Separator6 Separator
-        MoveScaled(5,17,13,0.2857)
+        MoveScaled(5,15,13,0.2857)
       }
       { VBox2 VBox
-        MoveScaled(0,19,76,39)
+        MoveScaled(2,16,76,30)
         { Panel70 VBox
           MoveScaled(1,0,69,4)
           Spacing = True
@@ -1690,6 +1690,37 @@
             MoveScaled(4,0,64,6)
             AutoResize = True
             Alignment = Align.Left
+          }
+        }
+      }
+      { Panel95 Panel
+        MoveScaled(3,46,3,3)
+        Mouse = Mouse.Pointing
+        Expand = True
+        Arrangement = Arrange.Vertical
+      }
+      { hzoHome8 HBox
+        MoveScaled(2,49,72,10)
+        Spacing = True
+        Margin = True
+        Padding = 3
+        Indent = True
+        { Panel94 Panel
+          MoveScaled(8,1,3,4)
+          Mouse = Mouse.Pointing
+          Expand = True
+          Arrangement = Arrange.Vertical
+        }
+        { PanelIcons7 Panel
+          MoveScaled(51,0,8.8571,8.8571)
+          Arrangement = Arrange.Fill
+          Spacing = True
+          Margin = True
+          Padding = 2
+          { picGraphics PictureBox
+            MoveScaled(1,1,7,6)
+            Expand = True
+            Stretch = True
           }
         }
       }

@@ -59,7 +59,7 @@ Public Sub Info_Pc()
   f_PC_Info.mnuSO_L.Text = ("Operating System: ") & sTempFam
   f_PC_Info.mnuArchitecture.Text = ("Architecture: ") & System.Architecture 
   f_PC_Info.TextLabelArchitecture.Text = System.Architecture 
-  f_PC_Info.TextLabelArchitecture2.Text = System.Architecture 
+  f_PC_Info.TextLabelArchitecture2.Text = GetDistribution() & " " & System.Architecture
   f_PC_Info.TextLabelKernel.Text = Trim(sTemp)
   f_PC_Info.mnuKernel.Text = ("Kernel: ") & Trim(sTemp)
   f_PC_Info.TextLabelProcesador.Text = Trim(sTempPro)
@@ -393,6 +393,7 @@ End
 
 'GPU graphics card info
 Public Sub graphics()
+  
   Dim gCard, gCard1, gCard2 As String
   Dim i As Integer 'contador
   Dim c As String 'caracter
@@ -425,10 +426,43 @@ Public Sub graphics()
     f_PC_Info.TextLabelGraph4.Text = ""
     f_PC_Info.mnuGru2.Visible = False
   Else
+    
     f_PC_Info.TextLabelGraph4.Text = Left$(gCard2, InStr(gCard2, "(") - 1) 
     f_PC_Info.mnuGru2.Text = "VGA 2: " & Left$(gCard2, InStr(gCard2, "(") - 1)
   Endif
   
+  ''LOGO
+  
+  If (InStr(gCard1, "Intel")) Or (InStr(gCard2, "Intel")) Then
+    f_PC_Info.picGraphics.Picture = Picture["img/graphics//intel.png"]
+  Endif
+  
+  If (InStr(gCard1, "Gigabyte")) Or (InStr(gCard2, "Gigabyte")) Then
+    f_PC_Info.picGraphics.Picture = Picture["img/graphics/gigabyte.png"]
+  Endif
+  
+  If (InStr(gCard1, "Nvidia")) Or (InStr(gCard2, "Nvidia")) Then
+    f_PC_Info.picGraphics.Picture = Picture["img/graphics/nvidia.png"]
+  Endif
+  
+  If (InStr(gCard1, "AMD")) Or (InStr(gCard2, "AMD")) Then
+    f_PC_Info.picGraphics.Picture = Picture["img/graphics/amd.png"]
+  Endif
+  
+  If (InStr(gCard1, "ATI")) Or (InStr(gCard2, "ATI")) Then
+    f_PC_Info.picGraphics.Picture = Picture["img/graphics/amd.png"]
+  Endif
+  
+  If (InStr(gCard1, "ASUS")) Or (InStr(gCard2, "ASUS")) Then
+    f_PC_Info.picGraphics.Picture = Picture["img/graphics/asus.png"]
+  Endif
+  
+  If (InStr(gCard1, "EVGA")) Or (InStr(gCard2, "EVGA")) Then
+    f_PC_Info.picGraphics.Picture = Picture["img/graphics/evga.png"]
+  Endif
+  
+  If (InStr(gCard1, "MSI")) Or (InStr(gCard2, "MSI")) Then
+    f_PC_Info.picGraphics.Picture = Picture["img/graphics/msi.png"]
+  Endif
   
 End
-
