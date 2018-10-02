@@ -66,6 +66,17 @@ Public Sub Info_Pc()
   f_PC_Info.TextLabelProcesador2.Text = Trim(sTempPro)
   f_PC_Info.mnuProcessor.Text = ("Processor: ") & Trim(sTempPro)
   
+  If (InStr(sTempPro, "Intel")) Then
+    f_PC_Info.picProcessor.Picture = Picture["img/processor/intel.png"]
+    f_PC_Info.picProcessor2.Picture = Picture["img/processor/intel.png"]
+    
+  Endif
+  
+  If (InStr(sTempPro, "AMD")) Then
+    f_PC_Info.picProcessor.Picture = Picture["img/processor/amd.png"]
+    f_PC_Info.picProcessor2.Picture = Picture["img/processor/amd.png"]
+  Endif
+  
   Try sTempRam = Scan(sTempRam, "*MemTotal:*\n*")[1]
   If Error Then 
     sTempRam = ""
