@@ -61,8 +61,8 @@ Public Sub ObtenerCmbMateria(grado As String)
   Dim rs As Result
   Dim consulta As String
   
-  EdulibCap.cmb_materia.Clear
-  EdulibCap.cmb_materia.Add("Todos", "0")
+  EdulibCap.cmb_bmateria.Clear
+  EdulibCap.cmb_bmateria.Add("Todos", "0")
     
     consulta = "SELECT m.* " &
               "FROM tbl_grado g, " &
@@ -78,68 +78,10 @@ Public Sub ObtenerCmbMateria(grado As String)
     
     rs = cone.Exec(consulta)
        While (rs.Available)
-             EdulibCap.cmb_materia.Add(rs["descripcion"], rs["idtbl_materia"])
+             EdulibCap.cmb_bmateria.Add(rs["descripcion"], rs["idtbl_materia"])
              rs.MoveNext
        Wend
   MDB_Connection.Desconectar(cone)
-End
-
-
-Public Sub ObtenerInfo(id_actividad As String)
-    Dim rs As Result
-    Dim consulta As String
-    
-    consulta = "SELECT c.descripcion as Categoria, " &
-               					"p.descripcion As Programa, " &
-               					"a.nombre As Actividad, " &
-               					"n.descripcion As Nivel, " &
-               					"g.descripcion As Grado, " &
-               					"m.descripcion As Materia, " &
-               					"cg.descripcion As Competencia, " &
-               					"ig.descripcion As Indicador, " &
-               					"cont.descripcion As Contenido, " &
-               					"p.url_icono As Icono, " &
-               					"p.url_exe As Url_exe " &
-              "FROM tbl_actividad a, " &
-              		"tbl_grado_materia gm, " &
-              		"tbl_grado g, " &
-              		"tbl_materia m, " &
-              		"tbl_nivel n, " &
-              		"tbl_programa p, " &
-              		"tbl_categoria c, " &
-              		"tbl_competencia_grado cg, " &
-              		"tbl_indicador_grado ig, " &
-              		"tbl_contenido cont " &
-              "WHERE a.idtbl_actividad = " & id_actividad & " " &
-              "AND a.id_grado_materia = gm.idtbl_grado_materia " &
-              "AND gm.id_grado = g.idtbl_grado " &
-              "AND gm.id_materia = m.idtbl_materia " &
-              "AND a.id_nivel = n.idtbl_nivel " &
-              "AND a.id_programa = p.idtbl_programa " &
-              "AND p.id_categoria = c.idtbl_categoria " &
-              "AND cg.id_actividad = a.idtbl_actividad " &
-              "AND ig.id_competencia_grado = cg.idtbl_competencia_grado " &
-              "AND cont.id_indicador_grado = ig.idtbl_indicador_grado "
-    
-    cone = MDB_Connection.Conectar()
-    
-    rs = cone.Exec(consulta)
-       While (rs.Available)
-             EdulibCap.lbl_categoria_edit.Text = rs["Categoria"]
-             EdulibCap.lbl_programa_edit.Text = rs["Programa"]
-             EdulibCap.lbl_actividad_edit.Text = rs["Actividad"]
-             EdulibCap.lbl_nivel_edit.Text = rs["Nivel"]
-             EdulibCap.lbl_grado_edit.Text = rs["Grado"]
-             EdulibCap.lbl_materia_edit.Text = rs["Materia"]
-             EdulibCap.lbl_competenciagrado_edit.Text = rs["Competencia"]
-             EdulibCap.lbl_indicadorlogro_edit.Text = rs["Indicador"]
-             EdulibCap.lbl_contenido_edit.Text = rs["Contenido"]
-             EdulibCap.btn_programa.Picture = Picture.Load(rs["Icono"]).Image.Stretch(40, 40).Picture
-             EdulibCap.lblprogexe.Text = rs["Url_exe"]
-             rs.MoveNext
-       Wend    
-  MDB_Connection.Desconectar(cone)
-  ObtenerImagen(id_actividad)
 End
 
 Public Sub ObtenerImagen(id_actividad As String)
@@ -170,10 +112,10 @@ Public Sub ObtenerActividad()
     
     rs = cone.Exec(consulta)
        While (rs.Available)
-          If rs["url_icono"] <> Null Then
+          If rs["url_icono"] <> Null And Exist(rs["url_icono"]) Then
               EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load(rs["url_icono"]).Image.Stretch(30, 30).Picture)
           Else
-               EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load("/usr/share/pixmaps/innova.png").Image.Stretch(30, 30).Picture)
+               EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load("~/edulibre-apps/EduCAP/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture)
           Endif
              rs.MoveNext
        Wend
@@ -219,19 +161,17 @@ Public Sub LlenarGvInfo(id_actividad As String)
               "AND cont.id_indicador_grado = ig.idtbl_indicador_grado "
     
     cone = MDB_Connection.Conectar()
-      
-      
-            'EdulibCap.gvinfo.Rows.count = 2
+    
+            EdulibCap.lst_iconos[id_actividad].Selected = True
             EdulibCap.gvinfo.Columns.count = 3
-            'EdulibCap.gvinfo.Columns[0].Width = 100
-            'EdulibCap.gvinfo.rows[0].Height = 300
             EdulibCap.gvinfo.Rows.Resizable = True
             EdulibCap.gvinfo.Columns.Resizable = True
             EdulibCap.gvinfo.Columns[0].Text = "Competencia de Grado"
-            'EdulibCap.gvinfo.Columns[1].Width = 100
+            EdulibCap.gvinfo.Columns[0].Alignment = Align.Center
             EdulibCap.gvinfo.Columns[1].Text = "Indicador de Logro"
-            'EdulibCap.gvinfo.Columns[2].Width = 100
+            EdulibCap.gvinfo.Columns[1].Alignment = Align.Center
             EdulibCap.gvinfo.Columns[2].Text = "Contenido"
+            EdulibCap.gvinfo.Columns[2].Alignment = Align.Center
             crow = 0
     
     rs = cone.Exec(consulta)
@@ -247,14 +187,18 @@ Public Sub LlenarGvInfo(id_actividad As String)
              EdulibCap.lbl_materia_edit.Text = rs["Materia"]
              EdulibCap.gvinfo[crow, 0].Text = rs["Competencia"]
              EdulibCap.gvinfo[crow, 0].WordWrap = True
-             'EdulibCap.lbl_competenciagrado_edit.Text = rs["Competencia"]
+             EdulibCap.gvinfo[crow, 0].Alignment = Align.left
              EdulibCap.gvinfo[crow, 1].Text = rs["Indicador"]
              EdulibCap.gvinfo[crow, 1].WordWrap = True
-             'EdulibCap.lbl_indicadorlogro_edit.Text = rs["Indicador"]
+             EdulibCap.gvinfo[crow, 1].Alignment = Align.left
              EdulibCap.gvinfo[crow, 2].Text = rs["Contenido"]
              EdulibCap.gvinfo[crow, 2].WordWrap = True
-             'EdulibCap.lbl_contenido_edit.Text = rs["Contenido"]
-             EdulibCap.btn_programa.Picture = Picture.Load(rs["Icono"]).Image.Stretch(40, 40).Picture
+             EdulibCap.gvinfo[crow, 2].Alignment = Align.left
+             If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
+                  EdulibCap.btn_programa.Picture = Picture.Load(rs["Icono"]).Image.Stretch(40, 40).Picture
+              Else
+                  EdulibCap.btn_programa.Picture = Picture.Load("~/edulibre-apps/EduCAP/Images/edulogo.jpeg").Image.Stretch(40, 40).Picture
+              Endif
              EdulibCap.lblprogexe.Text = rs["Url_exe"]
              crow = crow + 1
              rs.MoveNext

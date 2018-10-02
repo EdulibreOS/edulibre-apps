@@ -12,7 +12,12 @@ M_Init.ObtenerCmbNivel
 M_Init.ObtenerActividad
 'Obtiene la información de la actividad
 'M_Init.ObtenerInfo(2)
-M_Init.LlenarGvInfo(2)
+M_Init.LlenarGvInfo(87)
+'Genera nuevo usuario para el log
+M_Log.Set_NewUser("CAEdulibre")
+'Se ingresa el log del ingreso a la App
+M_Log.Set_Log(Null, Null, Null, Null, "Ingreso", EdulibCap.lbl_user.Text, "87")
+
 
 End
 
@@ -29,7 +34,7 @@ Public Sub cmb_bgrado_Change()
 
   If EdulibCap.cmb_bgrado.Index > 0 Then
     M_Init.ObtenerCmbMateria(EdulibCap.cmb_bgrado.Current.Text)
-    EdulibCap.cmb_materia.Enabled = True
+    EdulibCap.cmb_bmateria.Enabled = True
   Endif
 
 End
@@ -39,20 +44,21 @@ End
 Public Sub mnuAcercaDe_Click()
 
   AcercaDe.ShowModal
-
+  M_Log.Set_Log(Null, Null, Null, Null, "Acerca De", EdulibCap.lbl_user.Text, "")
 End
 
 Public Sub mnuSalir_Click()
 
   Me.Close
-
+  M_Log.Set_Log(Null, Null, Null, Null, "Salir Aplicacion", EdulibCap.lbl_user.Text, "")
 End
 
 Public Sub lst_iconos_Click()
 
  'M_Init.ObtenerInfo(lst_iconos.Current.Key)
   M_Init.LlenarGvInfo(lst_iconos.Current.Key)
-
+  M_Log.Set_Log(Null, Null, Null, Null, "Click", EdulibCap.lbl_user.Text, lst_iconos.Current.Key)
+  
 End
 
 Public Sub btn_programa_Click()
@@ -60,5 +66,27 @@ Public Sub btn_programa_Click()
   Dim url As String
   
   url = EdulibCap.lblprogexe.Text
-  Exec [url] 
+  If url <> Null And Exist(url) Then
+    Exec [url]
+   Else 
+    Message.Info("El programa " & EdulibCap.lbl_programa_edit.Text & " no se encuentra instalado.", "OK")
+  Endif
+   M_Log.Set_Log(Null, Null, Null, Null, "Abrir Programa", EdulibCap.lbl_user.Text, lst_iconos.Current.Key)
 End
+
+Public Sub btn_buscar_Click()
+
+  M_Busqueda.Buscar(EdulibCap.cmb_bnivel.Text, EdulibCap.cmb_bgrado.Text, EdulibCap.cmb_bmateria.Text, EdulibCap.txt_busqueda.Text)
+  M_Busqueda.Limpiar_Contenido()
+  M_Log.Set_Log(EdulibCap.cmb_bnivel.Text, EdulibCap.cmb_bgrado.Text, EdulibCap.cmb_bmateria.Text, 
+  EdulibCap.txt_busqueda.Text, "Buscar", EdulibCap.lbl_user.Text, "")
+End
+
+Public Sub Form_Close() 
+  
+  M_Log.Set_Log(Null, Null, Null, Null, "Salir Aplicacion", EdulibCap.lbl_user.Text, "")
+  
+End
+
+
+

@@ -1,0 +1,31 @@
+' Gambas module file
+
+Private cone As New Connection
+
+
+Public Sub Main()
+  
+   
+  
+End
+
+Public Sub Set_NewUser(Aplicacion As String)
+  
+  EdulibCap.lbl_user.Text = Aplicacion & Day(Now) & Month(Now) & Year(Now) & Hour(Now) & Minute(Now) & Second(Now)
+  
+End
+
+
+Public Sub Set_Log(Nivel As String, Grado As String, Materia As String, Contenido As String, Accion As String, Usuario As String, Actividad As String)
+  Dim insert As String
+  
+   insert = "INSERT INTO tbl_log (nivel, grado, materia, contenido, accion, usuario, fecha_hora, id_actividad) VALUES ('" &
+              Nivel & "','" & Grado & "','" & Materia & "','" & Contenido & "','" & Accion & "','" & Usuario & "',datetime('now','localtime'),'" & Actividad & "')"
+    'Print insert
+    
+    cone = MDB_Connection.Conectar()
+    cone.Exec(insert)
+    MDB_Connection.Desconectar(cone)
+End
+
+

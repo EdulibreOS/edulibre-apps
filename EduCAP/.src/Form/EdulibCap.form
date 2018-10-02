@@ -26,7 +26,7 @@
     #Public = True
   }
   { btn_buscar Button
-    MoveScaled(50,13,12,4)
+    MoveScaled(59,13,12,4)
     Text = ("Buscar")
     Picture = Picture["icon:/small/find"]
   }
@@ -41,7 +41,7 @@
       Alignment = Align.Right
     }
     { !lbl_grado_edit Label
-      MoveScaled(15,19,18,4)
+      MoveScaled(15,19,22,4)
       #Public = True
     }
     { lbl_abrirprograma Label
@@ -69,7 +69,7 @@
     }
   }
   { !lbl_categoria_edit Label
-    MoveScaled(43,22,17,4)
+    MoveScaled(43,22,22,4)
     #Public = True
   }
   { lbl_programa Label
@@ -79,7 +79,7 @@
     Alignment = Align.Right
   }
   { !lbl_programa_edit Label
-    MoveScaled(43,26,17,4)
+    MoveScaled(43,26,22,4)
     #Public = True
   }
   { lbl_actividad Label
@@ -89,7 +89,7 @@
     Alignment = Align.Right
   }
   { !lbl_actividad_edit Label
-    MoveScaled(43,30,17,4)
+    MoveScaled(43,30,22,4)
     #Public = True
   }
   { lbl_nivel Label
@@ -99,7 +99,7 @@
     Alignment = Align.Right
   }
   { !lbl_nivel_edit Label
-    MoveScaled(43,34,17,4)
+    MoveScaled(43,34,22,4)
     #Public = True
   }
   { lbl_materia Label
@@ -164,7 +164,7 @@
     Text = ("Materia:")
     Alignment = Align.Right
   }
-  { !cmb_materia ComboBox
+  { !cmb_bmateria ComboBox
     MoveScaled(68,8,28,4)
     #Public = True
     Enabled = False
@@ -175,8 +175,9 @@
     Text = ("Contenido:")
     Alignment = Align.Right
   }
-  { txt_busqueda ButtonBox
-    MoveScaled(13,13,35.7143,4)
+  { !txt_busqueda ButtonBox
+    MoveScaled(13,13,45,4)
+    #Public = True
     Picture = Picture["icon:/small/close"]
     Button = False
     ClearButton = True
@@ -186,5 +187,10 @@
     Font = Font["Bold"]
     Text = ("Categoria:")
     Alignment = Align.Right
+  }
+  { !lbl_user Label
+    MoveScaled(101,8,25,4)
+    #Public = True
+    Visible = False
   }
 }

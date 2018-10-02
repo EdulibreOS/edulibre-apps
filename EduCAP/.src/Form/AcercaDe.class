@@ -12,14 +12,16 @@ Public Sub ObtenerVersion()
   
 End
 
-Public Sub btnSalir_Click()
-
-  Me.Close
-
-End
 
 Public Sub Salir_Click()
 
 Me.Close  
+M_Log.Set_Log(Null, Null, Null, Null, "Salir Acerca De", EdulibCap.lbl_user.Text, "")
+End
+
+Public Sub btnSalir_Click()
+
+  Me.Close  
+  M_Log.Set_Log(Null, Null, Null, Null, "Salir Acerca De", EdulibCap.lbl_user.Text, "")
 
 End
