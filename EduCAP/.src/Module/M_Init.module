@@ -115,7 +115,7 @@ Public Sub ObtenerActividad()
           If rs["url_icono"] <> Null And Exist(rs["url_icono"]) Then
               EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load(rs["url_icono"]).Image.Stretch(30, 30).Picture)
           Else
-               EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load("~/edulibre-apps/EduCAP/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture)
+               EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load(Application.Dir & "/edulibre-apps/EduCAP/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture)
           Endif
              rs.MoveNext
        Wend
@@ -197,7 +197,7 @@ Public Sub LlenarGvInfo(id_actividad As String)
              If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
                   EdulibCap.btn_programa.Picture = Picture.Load(rs["Icono"]).Image.Stretch(40, 40).Picture
               Else
-                  EdulibCap.btn_programa.Picture = Picture.Load("~/edulibre-apps/EduCAP/Images/edulogo.jpeg").Image.Stretch(40, 40).Picture
+                  EdulibCap.btn_programa.Picture = Picture.Load(Application.Dir & "/edulibre-apps/EduCAP/Images/edulogo.jpeg").Image.Stretch(40, 40).Picture
               Endif
              EdulibCap.lblprogexe.Text = rs["Url_exe"]
              crow = crow + 1

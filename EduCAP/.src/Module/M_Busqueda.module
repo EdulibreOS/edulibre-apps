@@ -38,7 +38,7 @@ Public Sub Buscar(Nivel As String, Grado As String, Materia As String, Contenido
                   If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
                     EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load(rs["Icono"]).Image.Stretch(30, 30).Picture)
                 Else
-                     EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load("~/edulibre-apps/EduCAP/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture)
+                     EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load(Application.Dir & "/edulibre-apps/EduCAP/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture)
                 Endif
                    rs.MoveNext
                Wend
@@ -54,7 +54,7 @@ Public Sub Buscar(Nivel As String, Grado As String, Materia As String, Contenido
                 If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
                   EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load(rs["Icono"]).Image.Stretch(30, 30).Picture)
               Else
-                  EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load("~/edulibre-apps/EduCAP/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture)
+                  EdulibCap.lst_iconos.Add(rs["ID"], rs["Actividad"], Picture.Load(Application.Dir & "/edulibre-apps/EduCAP/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture)
               Endif
                  rs.MoveNext
              Wend
