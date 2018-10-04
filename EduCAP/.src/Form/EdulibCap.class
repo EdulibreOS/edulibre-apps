@@ -19,6 +19,7 @@ M_Log.Set_NewUser("CAEdulibre")
 M_Log.Set_Log(Null, Null, Null, Null, "Ingreso", EdulibCap.lbl_user.Text, "87")
 
 
+
 End
 
 
