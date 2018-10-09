@@ -30,8 +30,9 @@
     Text = ("Buscar")
     Picture = Picture["icon:/small/find"]
   }
-  { pnlderecha Panel
+  { !pnlderecha Panel
     MoveScaled(28,19,99,71)
+    #Public = True
     Background = Color.White
     Border = Border.Plain
     { lbl_grado Label
@@ -67,10 +68,6 @@
         }
       }
     }
-  }
-  { !lbl_categoria_edit Label
-    MoveScaled(43,22,22,4)
-    #Public = True
   }
   { lbl_programa Label
     MoveScaled(29,26,12,4)
@@ -122,8 +119,9 @@
     #Public = True
     Stretch = True
   }
-  { pnlicons Panel
+  { !pnlicons Panel
     MoveScaled(0,19,28,66)
+    #Public = True
     Background = &HDFDFFF&
     Border = Border.Plain
     { !lst_iconos ListView
@@ -136,8 +134,9 @@
     #Public = True
     Visible = False
   }
-  { pnlTitulo Panel
+  { !pnlTitulo Panel
     MoveScaled(0,0,128,7)
+    #Public = True
     Background = Color.White
     AutoResize = True
     Border = Border.Plain
@@ -192,5 +191,9 @@
     MoveScaled(101,8,25,4)
     #Public = True
     Visible = False
+  }
+  { !lbl_categoria_edit Label
+    MoveScaled(43,22,22,4)
+    #Public = True
   }
 }

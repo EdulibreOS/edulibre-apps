@@ -2,7 +2,6 @@
 
 { Form Form
   MoveScaled(0,0,64,58)
-  Background = Color.White
   Text = ("Acerca De")
   Resizable = False
   { Archivo Menu
@@ -11,25 +10,27 @@
       Text = ("Salir")
     }
   }
-  { pnlTitulo Panel
-    MoveScaled(0,0,64,10)
+  { !pnlTitulo Panel
+    MoveScaled(0,0,64,5)
+    #Public = True
     Background = Color.White
     { lblTitulo TextLabel
-      MoveScaled(13,3,36,4)
+      MoveScaled(14,1,36,4)
       Font = Font["Bold,+3"]
       Text = ("Centro de Ayuda Edulibre")
     }
   }
-  { tabPanel TabPanel
-    MoveScaled(15,10,49,38)
+  { !tabPanel TabPanel
+    MoveScaled(15,5,49,44)
+    #Public = True
     Count = 2
     Highlight = True
     Index = 0
     Text = ("Acerca De")
     { lblAcercaDe TextLabel
-      MoveScaled(0,0,13,4)
+      MoveScaled(0,0,41,4)
       Font = Font["Bold,+4"]
-      Text = ("EduCap")
+      Text = ("Centro de Ayuda Edulibre")
     }
     { !lblVersion_edit Label
       MoveScaled(10,4,14,4)
@@ -55,7 +56,7 @@
     Index = 0
   }
   { picbox_logo PictureBox
-    MoveScaled(0,22,14.2857,14.2857)
+    MoveScaled(0,20,14.2857,14.2857)
     Picture = Picture["Images/edulogo.jpeg"]
     Stretch = True
   }

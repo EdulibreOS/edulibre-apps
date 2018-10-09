@@ -1,0 +1,115 @@
+' Gambas module file
+
+
+
+Public Theme_Config As New Settings(User.Home &/ ".config/Innova/Innova_Config.conf")
+
+
+Public Function Get_Theme(Forma As Form)
+  
+  Dim ctrl As Control
+  Dim Meta_Theme_Config As Settings
+  Dim Theme_Path As String
+  Dim sColor As String
+  Dim Font_Name As String
+  Dim Font_Size As Integer
+  
+  Dim S_Font_Name As String 
+  Dim S_Font_Size As Integer
+  Dim S_Font_Color As String 
+  
+  
+  Dim Config_Dir As String
+  Dim Theme As String
+  Dim Path As String
+  
+  Dim M_Font_Color As String 
+  Dim M_Font_Name As String 
+  Dim M_Font_Size As String 
+  Dim M_Img_Look As String
+  
+  Theme_Config.Reload()
+  For Each Config_Dir In ["/usr/share/Innova/Theme/", Desktop.ConfigDir &/ "Innova/Theme/"]
+    Try Theme = Theme_Config["Style_Desktop/Theme_Name_Innova"]
+
+  Next
+  
+  Path = Config_Dir & Theme &/ Theme & ".Inn"
+  Meta_Theme_Config = New Settings(Path)
+  Theme_Path = File.Dir(Path) 
+  
+  Try S_Font_Color = Theme_Config["Style_Desktop/Font_Color"]
+  Try S_Font_Size = Theme_Config["Style_Desktop/Font_Size"]
+  Try S_Font_Name = Theme_Config["Style_Desktop/Font_Name"]
+  
+  
+  Try M_Img_Look = Meta_Theme_Config["Meta_Theme/Inn_Look_Img"]
+  Try M_Font_Color = Meta_Theme_Config["Meta_Theme/Inn_Font_Color"]
+  Try M_Font_Name = Meta_Theme_Config["Meta_Theme/Inn_Font_Name"]
+  Try M_Font_Size = Meta_Theme_Config["Meta_Theme/Inn_Font_Size"]
+  
+  If Theme Then
+    
+    'Back Picture
+    Forma.Picture = Picture[Theme_Path &/ M_Img_Look]
+    
+    'Font Color
+    
+    If Not IsNull(S_Font_Color) Then
+      sColor = (M_Font_Color)
+      
+      For Each ctrl In Forma.Controls
+        Forma.Foreground = Val(sColor)
+      Next
+       Else
+      Forma.Foreground = Color.Black
+    Endif
+
+    If IsNull(M_Font_Color) & M_Font_Color <> "&FFFFFF&" Then
+      sColor = (S_Font_Color)
+      
+      For Each ctrl In Forma.Controls
+        Try ctrl.Foreground = Val(sColor) 
+      Next
+    Else
+       sColor = ("&000000&")
+      For Each ctrl In Forma.Controls
+        Try ctrl.Foreground = Val(sColor) 
+      Next
+    Endif
+    
+    'Font Name
+    
+    If IsNull(S_Font_Name) Then
+      Font_Name = (M_Font_Name)
+      
+      For Each ctrl In Forma.Controls
+        ctrl.Font.Name = (Font_Name) 
+      Next
+    Else If Not IsNull(M_Font_Name) Then
+      Font_Name = (S_Font_Name)
+      
+      For Each ctrl In Forma.Controls
+        Try ctrl.Font.Name = (Font_Name) 
+      Next
+    Endif
+    
+    'Font Size
+    
+    If IsNull(S_Font_Size) Then
+      Font_Size = (M_Font_Size)
+      
+      For Each ctrl In Forma.Controls
+        ctrl.Font.Size = (Font_Size) 
+      Next
+    Else If Not IsNull(M_Font_Size) Then
+      Try Font_Size = Val(S_Font_Size)
+      
+      For Each ctrl In Forma.Controls
+        Try ctrl.Font.Size = (Font_Size) 
+      Next
+    Endif 
+    
+  Endif
+  
+End

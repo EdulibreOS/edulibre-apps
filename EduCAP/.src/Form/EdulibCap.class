@@ -5,7 +5,8 @@
 
 
 Public Sub Form_Open()
-
+'Carga el Tema del SO
+M_Theme.Get_Theme(EdulibCap)
 'LLena la informacion del cmb_nivel
 M_Init.ObtenerCmbNivel
 'Obtiene el listado de actividades
@@ -42,7 +43,7 @@ End
 
 
 Public Sub mnuAcercaDe_Click()
-
+  M_Theme.Get_Theme(AcercaDe)
   AcercaDe.ShowModal
   M_Log.Set_Log(Null, Null, Null, Null, "Acerca De", EdulibCap.lbl_user.Text, "")
 End
@@ -87,6 +88,4 @@ Public Sub Form_Close()
   M_Log.Set_Log(Null, Null, Null, Null, "Salir Aplicacion", EdulibCap.lbl_user.Text, "")
   
 End
-
-
 
