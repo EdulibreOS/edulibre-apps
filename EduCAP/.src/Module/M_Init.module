@@ -3,13 +3,6 @@
 
 Private cone As New Connection
 
-
-Public Sub Main()
-  
-   
-  
-End
-
 Public Sub ObtenerCmbNivel()
   Dim rs As Result
   Dim consulta As String
@@ -35,7 +28,6 @@ Public Sub ObtenerCmbGrado(id_nivel As Integer)
   
   Dim rs As Result
   Dim consulta As String
-  Dim grado As Integer
   
   EdulibCap.cmb_bgrado.Clear
   EdulibCap.cmb_bgrado.Add("Todos", "0")

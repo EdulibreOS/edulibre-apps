@@ -8,4 +8,6 @@ gb.image
 gb.gui.qt
 gb.form
 gb.db
+gb.desktop
+gb.settings
 
