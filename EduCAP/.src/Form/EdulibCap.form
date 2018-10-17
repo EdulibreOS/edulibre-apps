@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,127,85)
+  MoveScaled(0,0,142.8571,85)
   Background = Color.White
   Text = ("Centro de Ayuda Edulibre")
   Resizable = False
@@ -31,7 +31,7 @@
     Picture = Picture["icon:/small/find"]
   }
   { !pnlderecha Panel
-    MoveScaled(28,19,99,71)
+    MoveScaled(28,19,115,71)
     #Public = True
     Background = Color.White
     Border = Border.Plain
@@ -51,14 +51,14 @@
       Text = ("Abrir Programa:")
     }
     { !btn_programa Button
-      MoveScaled(23,28,7,6)
+      MoveScaled(21,27,7,6)
       #Public = True
       Picture = Picture["icon:/large/game"]
     }
     { HBox1 HBox
-      MoveScaled(38,2,59,30)
+      MoveScaled(38,2,76,30)
       { VBox1 VBox
-        MoveScaled(0,0,59,30)
+        MoveScaled(0,0,76,30)
         { !gvinfo TableView
           MoveScaled(27,4,16,16)
           #Public = True
@@ -110,12 +110,12 @@
     #Public = True
   }
   { !picbox1 PictureBox
-    MoveScaled(32,53,42.8571,28.5714)
+    MoveScaled(39,53,42.8571,28.5714)
     #Public = True
     Stretch = True
   }
   { !picbox2 PictureBox
-    MoveScaled(81,53,42.8571,28.5714)
+    MoveScaled(90,53,42.8571,28.5714)
     #Public = True
     Stretch = True
   }
@@ -135,13 +135,13 @@
     Visible = False
   }
   { !pnlTitulo Panel
-    MoveScaled(0,0,128,7)
+    MoveScaled(0,0,143,7)
     #Public = True
     Background = Color.White
     AutoResize = True
     Border = Border.Plain
     { LblTitulo TextLabel
-      MoveScaled(49,2,31,3)
+      MoveScaled(55,2,31,3)
       Font = Font["Bold,+2"]
       Text = ("Centro de Ayuda Edulibre")
     }

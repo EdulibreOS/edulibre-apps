@@ -37,8 +37,8 @@
       #Public = True
     }
     { lblInformacion TextLabel
-      MoveScaled(0,8,44,25)
-      Text = ("El Centro de Ayuda Edulibre es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\nEduCap fue desarrollado en base al apoyo de:\n</br>\n</br>\n\n<ul> \n<li>TIGO </li>\n</ul>  ")
+      MoveScaled(1,8,46,32)
+      Text = ("El Centro de Ayuda Edulibre es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\n<p>El Centro de Ayuda Edulibre no hubiera sido posible sin la ayuda de:</p></br>\n\n\n<h5><p><u><br>Asociación Civil Edulibre - Proyecto</h5></p></u>\n<h5><p><u>Fundación TIGO - Patrocinador Oficial</h5></p> </u>\n<h5><p><u>Jorge Recinos - Desarrollador</h5></p></u></br>\n")
       Alignment = Align.Justify
     }
     { lblVersion Label
@@ -49,20 +49,25 @@
     Index = 1
     Text = ("Licencia")
     { TextLabel1 TextLabel
-      MoveScaled(0,0,48,30)
-      Text = ("<p>Este programa es software libre: puede redistribuirlo y / o modificarlo bajo los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia, o (a su elección) cualquier versión posterior.</p>\n</br>\n   <p> Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de COMERCIABILIDAD o IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Ver la Licencia Pública General de GNU para más detalles.</p>\n</br>\n  <p>  Debería haber recibido una copia de la Licencia Pública General de GNU junto con este programa. De lo contrario, consulte <http://www.gnu.org/licenses/>.</p>")
+      MoveScaled(0,0,48,40)
+      Text = ("<p>Este programa es software libre: puede redistribuirlo y / o modificarlo bajo los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia, o (a su elección) cualquier versión posterior.</p>\n</br>\n   <p> Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de COMERCIABILIDAD o IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Ver la Licencia Pública General de GNU para más detalles.</p>\n</br>\n  <p>  Debería haber recibido una copia de la Licencia Pública General de GNU junto con este programa. De lo contrario, consulte http://www.gnu.org/licenses/.</p>\n</br>\n<p>Copyright © Asociación Civil Edulibre</p>\n<p>email: info@edulibre.net</p>")
       Alignment = Align.Justify
     }
     Index = 0
   }
   { picbox_logo PictureBox
-    MoveScaled(0,20,14.2857,14.2857)
-    Picture = Picture["Images/edulogo.jpeg"]
+    MoveScaled(0.4286,11,14.2857,14.2857)
+    Picture = Picture["Images/Edulibre.png"]
     Stretch = True
   }
   { btnSalir Button
     MoveScaled(46,50,16,4)
     Text = ("Salir")
     Picture = Picture["icon:/small/close"]
+  }
+  { picbox_logo2 PictureBox
+    MoveScaled(0.4286,28,14.2857,14.2857)
+    Picture = Picture["Images/FundacionTigo.jpeg"]
+    Stretch = True
   }
 }
