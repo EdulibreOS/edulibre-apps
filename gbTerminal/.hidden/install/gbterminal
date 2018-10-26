@@ -1,0 +1,4 @@
+?package(gbterminal):needs="X11" section="Applications/Terminal Emulators"\
+title="gbTerminal"\
+command="/usr/bin/gbTerminal"\
+icon="/usr/share/pixmaps/gbterminal.xpm"

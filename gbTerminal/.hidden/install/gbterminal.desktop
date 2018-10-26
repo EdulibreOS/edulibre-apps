@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=gbTerminal
+Comment=gbTerminal is a terminal emulator based on VT-100 for the Lightweight Desktop Environment (Innova Desktop). A few features   • Split terminals (horizontally and vertically).  • It can contain multiple terminal sessions.  • Multiple tabs.  • Customizable shortcuts.  • Various themes.  • Blinking text supported.  • Mouse support.  • Opacity.  • Transparent.
+Exec=/usr/bin/gbTerminal
+Icon=gbterminal
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=System;Utility;
