@@ -25,8 +25,9 @@
     MoveScaled(2,12,21.4286,4)
     #Public = True
   }
-  { btn_buscar Button
-    MoveScaled(119.8571,12,12,4)
+  { !btn_buscar Button
+    MoveScaled(119.1429,12,12,4)
+    #Public = True
     Text = ("Buscar")
     Picture = Picture["icon:/small/find"]
   }
@@ -136,6 +137,7 @@
       MoveScaled(0,0,40.5714,64)
       #Public = True
       Font = Font["-1"]
+      Background = Color.Transparent
       ScrollBar = Scroll.Vertical
     }
   }
@@ -151,7 +153,7 @@
     AutoResize = True
     Border = Border.Plain
     { picboxTitulo PictureBox
-      MoveScaled(62,-4.1429,16,14.2857)
+      MoveScaled(62,-3.8571,16,14.2857)
       Picture = Picture["Images/Edulibre.png"]
       Stretch = True
     }
