@@ -1,0 +1,10 @@
+
+.hidden/install/icon/16x16/logo.png /usr/share/icons/hicolor/16x16/apps/
+.hidden/install/icon/22x22/logo.png /usr/share/icons/hicolor/22x22/apps/
+.hidden/install/icon/32x32/logo.png /usr/share/icons/hicolor/32x32/apps/
+.hidden/install/icon/48x48/logo.png /usr/share/icons/hicolor/48x48/apps/
+.hidden/install/gbterminal /usr/share/menu/
+.hidden/install/gbterminal.desktop /usr/share/applications/
+gbterminal.xpm /usr/share/pixmaps/
+gbTerminal  /usr/bin/
+

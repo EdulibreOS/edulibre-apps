@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+build:
+	dh_testdir
+	/usr/bin/gbc3 -e -a -g -t -p -m -x
+	/usr/bin/gba3 -o 'gbTerminal'
+
+build-arch:
+	dh_testdir
+	/usr/bin/gbc3 -e -a -g -t -p -m -x
+	/usr/bin/gba3 -o 'gbTerminal'
+	
+%:
+	dh $@ 
+
+

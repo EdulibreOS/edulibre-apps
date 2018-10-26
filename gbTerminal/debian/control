@@ -1,0 +1,15 @@
+Source: gbterminal
+Section: contrib/admin
+Priority: optional
+Maintainer: Herberth Guzmán <herberthguzman@gmail.com>
+Build-Depends: debhelper (>=9), gambas3 (>=3.11.4), gambas3-gb-qt5 (>=3.11.4)
+Standards-Version: 3.9.6
+Homepage: http://edulibre.net
+
+Package: gbterminal
+Architecture: any
+Depends: gambas3-runtime (>= 3.11), gambas3-runtime (<< 3.99.0), gambas3-gb-image (>= 3.11), gambas3-gb-image (<< 3.99.0), gambas3-gb-qt5 (>= 3.11), gambas3-gb-qt5 (<< 3.99.0), gambas3-gb-form (>= 3.11), gambas3-gb-form (<< 3.99.0), gambas3-gb-desktop (>= 3.11), gambas3-gb-desktop (<< 3.99.0), gambas3-gb-desktop-x11 (>= 3.11), gambas3-gb-desktop-x11 (<< 3.99.0), gambas3-gb-settings (>= 3.11), gambas3-gb-settings (<< 3.99.0), gambas3-gb-term (>= 3.11), gambas3-gb-term (<< 3.99.0), gambas3-gb-form-terminal (>= 3.11), gambas3-gb-form-terminal (<< 3.99.0)
+Description: gbterminal - Edulibre software
+ Pictogram is an application to view and edit images in a simple and fast way
+ Contact rbencho@gmail.com.
+
