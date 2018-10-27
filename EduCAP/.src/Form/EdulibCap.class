@@ -47,7 +47,11 @@ End
 
 Public Sub cmb_bnivel_Change()
 
-
+   If EdulibCap.cmb_bnivel.Index = 0 Then
+    M_Init.ObtenerCmbMateria(0)
+    EdulibCap.cmb_bmateria.Enabled = True
+  Endif
+  
   M_Init.ObtenerCmbGrado(EdulibCap.cmb_bnivel.Index)
   EdulibCap.cmb_bgrado.Enabled = True
 

@@ -11,14 +11,9 @@
     }
   }
   { !pnlTitulo Panel
-    MoveScaled(0,0,64,5)
+    MoveScaled(0,5,64,44)
     #Public = True
     Background = Color.White
-    { lblTitulo TextLabel
-      MoveScaled(14,1,36,4)
-      Font = Font["Bold,+3"]
-      Text = ("Centro de Ayuda Edulibre")
-    }
   }
   { !tabPanel TabPanel
     MoveScaled(15,5,49,44)
@@ -69,5 +64,10 @@
     MoveScaled(0.4286,28,14.2857,14.2857)
     Picture = Picture["Images/FundacionTigo.jpeg"]
     Stretch = True
+  }
+  { lblTitulo Label
+    MoveScaled(14,0,37,4)
+    Font = Font["Bold,+3"]
+    Text = ("Centro de Ayuda Edulibre")
   }
 }

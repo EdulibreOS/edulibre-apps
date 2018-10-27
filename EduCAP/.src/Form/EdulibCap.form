@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,142.8571,85)
+  MoveScaled(0,0,142.8571,85.7143)
   Background = Color.White
   Text = ("Centro de Ayuda Edulibre")
   Resizable = False
@@ -16,121 +16,133 @@
     }
   }
   { lbl_bnivel Label
-    MoveScaled(5,8,6,4)
+    MoveScaled(2,8,6,4)
     Font = Font["Bold"]
     Text = ("Nivel:")
     Alignment = Align.Right
   }
   { !cmb_bnivel ComboBox
-    MoveScaled(13,8,21.4286,4)
+    MoveScaled(2,12,21.4286,4)
     #Public = True
   }
-  { btn_buscar Button
-    MoveScaled(59,13,12,4)
+  { !btn_buscar Button
+    MoveScaled(119.1429,12,12,4)
+    #Public = True
     Text = ("Buscar")
     Picture = Picture["icon:/small/find"]
   }
   { !pnlderecha Panel
-    MoveScaled(28,19,115,71)
+    MoveScaled(41,19,103,71)
     #Public = True
     Background = Color.White
     Border = Border.Plain
     { lbl_grado Label
-      MoveScaled(2,19,11,4)
+      MoveScaled(0,17,11,4)
       Font = Font["Bold"]
       Text = ("Grado:")
       Alignment = Align.Right
     }
     { !lbl_grado_edit Label
-      MoveScaled(15,19,22,4)
+      MoveScaled(12,17,23.5714,4)
       #Public = True
-    }
-    { lbl_abrirprograma Label
-      MoveScaled(5,29,16,4)
-      Font = Font["Bold"]
-      Text = ("Abrir Programa:")
     }
     { !btn_programa Button
-      MoveScaled(21,27,7,6)
+      MoveScaled(2,26,23,5.7143)
       #Public = True
+      AutoResize = True
+      Text = ("Abrir Programa")
       Picture = Picture["icon:/large/game"]
     }
     { HBox1 HBox
-      MoveScaled(38,2,76,30)
+      MoveScaled(2,33,99.2857,30)
       { VBox1 VBox
-        MoveScaled(0,0,76,30)
+        MoveScaled(0,0,99.2857,33)
         { !gvinfo TableView
-          MoveScaled(27,4,16,16)
+          MoveScaled(51,6,16,16)
           #Public = True
           Expand = True
           Mode = Select.Single
-          Header = GridView.Both
+          Header = GridView.Horizontal
         }
       }
     }
+    { lblPaso1 Label
+      MoveScaled(48,4,7,4)
+      Font = Font["Bold"]
+      Text = ("Paso 1")
+    }
+    { lblPaso2 Label
+      MoveScaled(81,4,7,4)
+      Font = Font["Bold"]
+      Text = ("Paso 2")
+    }
   }
   { lbl_programa Label
-    MoveScaled(29,26,12,4)
+    MoveScaled(40,24,12,4)
     Font = Font["Bold"]
     Text = ("Programa:")
     Alignment = Align.Right
   }
   { !lbl_programa_edit Label
-    MoveScaled(43,26,22,4)
+    MoveScaled(53,24,23.5714,4)
     #Public = True
   }
   { lbl_actividad Label
-    MoveScaled(29,30,12,4)
+    MoveScaled(40,20,12,4)
     Font = Font["Bold"]
     Text = ("Actividad:")
     Alignment = Align.Right
   }
   { !lbl_actividad_edit Label
-    MoveScaled(43,30,22,4)
+    MoveScaled(53,20,67,4)
     #Public = True
+    Font = Font["Bold,+3"]
   }
   { lbl_nivel Label
-    MoveScaled(29,34,12,4)
+    MoveScaled(40,32,12,4)
     Font = Font["Bold"]
     Text = ("Nivel:")
     Alignment = Align.Right
   }
   { !lbl_nivel_edit Label
-    MoveScaled(43,34,22,4)
+    MoveScaled(53,32,23.5714,4)
     #Public = True
   }
   { lbl_materia Label
-    MoveScaled(29,42,12,4)
+    MoveScaled(40,40,12,4)
     Font = Font["Bold"]
     Text = ("Materia:")
     Alignment = Align.Right
   }
   { !lbl_materia_edit Label
-    MoveScaled(43,42,22,4)
+    MoveScaled(53,40,23.5714,4)
     #Public = True
   }
   { !picbox1 PictureBox
-    MoveScaled(39,53,42.8571,28.5714)
+    MoveScaled(77,26,32.1429,25.7143)
     #Public = True
     Stretch = True
   }
   { !picbox2 PictureBox
-    MoveScaled(90,53,42.8571,28.5714)
+    MoveScaled(110,26,32.1429,25.7143)
     #Public = True
     Stretch = True
   }
   { !pnlicons Panel
-    MoveScaled(0,19,28,66)
+    MoveScaled(0,19,40.5714,66)
     #Public = True
     Background = &HDFDFFF&
     Border = Border.Plain
     { !lst_iconos ListView
-      MoveScaled(0,0,28,64)
+      MoveScaled(0,0,40.5714,64)
       #Public = True
+      Font = Font["-1"]
+      Background = Color.Transparent
+      ScrollBar = Scroll.Vertical
     }
   }
   { !lblprogexe TextLabel
-    MoveScaled(60,48,11,4)
+    MoveScaled(67,47,11,4)
     #Public = True
     Visible = False
   }
@@ -140,60 +152,60 @@
     Background = Color.White
     AutoResize = True
     Border = Border.Plain
-    { LblTitulo TextLabel
-      MoveScaled(55,2,31,3)
-      Font = Font["Bold,+2"]
-      Text = ("Centro de Ayuda Edulibre")
+    { picboxTitulo PictureBox
+      MoveScaled(62,-3.8571,16,14.2857)
+      Picture = Picture["Images/Edulibre.png"]
+      Stretch = True
     }
   }
   { lbl_bgrado Label
-    MoveScaled(35,8,7,4)
+    MoveScaled(26,8,7,4)
     Font = Font["Bold"]
     Text = ("Grado:")
     Alignment = Align.Right
   }
   { !cmb_bgrado ComboBox
-    MoveScaled(43,8,15,4)
+    MoveScaled(26,12,15,4)
     #Public = True
     Enabled = False
   }
   { lbl_bmateria Label
-    MoveScaled(58,8,9,4)
+    MoveScaled(44,8,9,4)
     Font = Font["Bold"]
     Text = ("Materia:")
     Alignment = Align.Right
   }
   { !cmb_bmateria ComboBox
-    MoveScaled(68,8,28,4)
+    MoveScaled(44,12,28,4)
     #Public = True
     Enabled = False
   }
   { lbl_bcontenido Label
-    MoveScaled(1,13,11,4)
+    MoveScaled(75,8,11,4)
     Font = Font["Bold"]
     Text = ("Contenido:")
     Alignment = Align.Right
   }
   { !txt_busqueda ButtonBox
-    MoveScaled(13,13,45,4)
+    MoveScaled(75,12,45,4)
     #Public = True
     Picture = Picture["icon:/small/close"]
     Button = False
     ClearButton = True
   }
   { lbl_categoria Label
-    MoveScaled(29,22,12,4)
+    MoveScaled(40,28,12,4)
     Font = Font["Bold"]
     Text = ("Categoria:")
     Alignment = Align.Right
   }
   { !lbl_user Label
-    MoveScaled(101,8,25,4)
+    MoveScaled(91,8,25,4)
     #Public = True
     Visible = False
   }
   { !lbl_categoria_edit Label
-    MoveScaled(43,22,22,4)
+    MoveScaled(53,28,23.5714,4)
     #Public = True
   }
 }
