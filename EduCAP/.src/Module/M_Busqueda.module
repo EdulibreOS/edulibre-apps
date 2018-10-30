@@ -38,7 +38,6 @@ Public Sub Buscar(Nivel As String, Grado As String, Materia As String, Contenido
   
   Dim rs As Result
   Dim consulta, aux_palabras As String
-  Dim nivel_text, grado_text, materia_text, contenido_text As String
   Dim cant_palabras As Integer
   Dim Palabras As String[]
 
