@@ -40,7 +40,7 @@ M_Init.LlenarGvInfo(87)
 M_Log.Set_NewUser("CAEdulibre")
 'Se ingresa el log del ingreso a la App
 M_Log.Set_Log(Null, Null, Null, Null, "Ingreso", EdulibCap.lbl_user.Text, "87")
-
+EdulibCap.txt_busqueda.SetFocus
 
 End
 

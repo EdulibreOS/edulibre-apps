@@ -16,17 +16,17 @@
     }
   }
   { lbl_bnivel Label
-    MoveScaled(2,2,6,4)
+    MoveScaled(59,4,6,4)
     Font = Font["Bold"]
     Text = ("Nivel:")
     Alignment = Align.Right
   }
   { !cmb_bnivel ComboBox
-    MoveScaled(2,6,21.4286,4)
+    MoveScaled(59,8,21.4286,4)
     #Public = True
   }
   { !btn_buscar Button
-    MoveScaled(111,6,12,4)
+    MoveScaled(129,8,12,4)
     #Public = True
     Text = ("Buscar")
     Picture = Picture["icon:/small/find"]
@@ -144,47 +144,36 @@
     #Public = True
     Visible = False
   }
-  { !pnlTitulo Panel
-    MoveScaled(126,-1,17,16)
-    #Public = True
-    Background = Color.White
-    AutoResize = True
-    { picboxTitulo PictureBox
-      MoveScaled(0.7143,0.4286,16,15.1429)
-      Picture = Picture["Images/LogoCAP.png"]
-      Stretch = True
-    }
-  }
   { lbl_bgrado Label
-    MoveScaled(26,2,7,4)
+    MoveScaled(82,4,7,4)
     Font = Font["Bold"]
     Text = ("Grado:")
     Alignment = Align.Right
   }
   { !cmb_bgrado ComboBox
-    MoveScaled(26,6,15,4)
+    MoveScaled(82,8,15,4)
     #Public = True
     Enabled = False
   }
   { lbl_bmateria Label
-    MoveScaled(44,2,9,4)
+    MoveScaled(99,4,9,4)
     Font = Font["Bold"]
     Text = ("Materia:")
     Alignment = Align.Right
   }
   { !cmb_bmateria ComboBox
-    MoveScaled(44,6,28,4)
+    MoveScaled(99,8,28,4)
     #Public = True
     Enabled = False
   }
   { lbl_bcontenido Label
-    MoveScaled(75,2,11,4)
+    MoveScaled(21,4,11,4)
     Font = Font["Bold"]
     Text = ("Contenido:")
     Alignment = Align.Right
   }
   { !txt_busqueda ButtonBox
-    MoveScaled(75,6,37,4)
+    MoveScaled(21,8,37,4)
     #Public = True
     Picture = Picture["icon:/small/close"]
     Button = False
@@ -197,12 +186,17 @@
     Alignment = Align.Right
   }
   { !lbl_user Label
-    MoveScaled(91,1,25,4)
+    MoveScaled(117,-1,25,4)
     #Public = True
     Visible = False
   }
   { !lbl_categoria_edit Label
     MoveScaled(53,24,23.5714,4)
     #Public = True
+  }
+  { pboxlogo PictureBox
+    MoveScaled(0,0,16,15.1429)
+    Picture = Picture["Images/LogoCAP.png"]
+    Stretch = True
   }
 }
