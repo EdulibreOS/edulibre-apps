@@ -112,7 +112,7 @@ Public Function Cadena_Consulta(Nivel As String, Grado As String, Materia As Str
               contenido_text = " "
           Endif
   
-  consulta = "SELECT a.idtbl_actividad as ID, " & 
+  consulta = "SELECT distinct a.idtbl_actividad as ID, " & 
   		            "a.nombre as Actividad, " & 
   		            "p.url_icono as Icono " &
               "FROM tbl_actividad a, " &
@@ -125,8 +125,8 @@ Public Function Cadena_Consulta(Nivel As String, Grado As String, Materia As Str
                     "tbl_contenido c, " &
                     "tbl_programa p " &
               "WHERE a.id_programa = p.idtbl_programa " &
-              "AND a.id_nivel = n.idtbl_nivel " &
-              "AND a.id_grado_materia = gm.idtbl_grado_materia " &
+              "AND g.id_nivel = n.idtbl_nivel " &
+              "AND a.idtbl_actividad = gm.id_actividad " &
               "AND gm.id_grado = g.idtbl_grado " &
               "AND gm.id_materia = m.idtbl_materia " &
               "AND a.idtbl_actividad = cg.id_actividad " &

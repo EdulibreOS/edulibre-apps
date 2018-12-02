@@ -46,7 +46,7 @@
       #Public = True
     }
     { !btn_programa Button
-      MoveScaled(2,26,23,5.7143)
+      MoveScaled(2,26,23,7.1429)
       #Public = True
       AutoResize = True
       Text = ("Abrir Programa")
@@ -66,12 +66,12 @@
       }
     }
     { lblPaso1 Label
-      MoveScaled(48,4,7,4)
+      MoveScaled(49,4,7,4)
       Font = Font["Bold"]
       Text = ("Paso 1")
     }
     { lblPaso2 Label
-      MoveScaled(81,4,7,4)
+      MoveScaled(82,4,7,4)
       Font = Font["Bold"]
       Text = ("Paso 2")
     }
@@ -114,16 +114,16 @@
     Alignment = Align.Right
   }
   { !lbl_materia_edit Label
-    MoveScaled(53,36,23.5714,4)
+    MoveScaled(53,36,25,4)
     #Public = True
   }
   { !picbox1 PictureBox
-    MoveScaled(77,22,32.1429,25.7143)
+    MoveScaled(78,22,32.1429,24.2857)
     #Public = True
     Stretch = True
   }
   { !picbox2 PictureBox
-    MoveScaled(110,22,32.1429,25.7143)
+    MoveScaled(111,22,32.1429,24.2857)
     #Public = True
     Stretch = True
   }
@@ -198,5 +198,10 @@
     MoveScaled(0,0,16,15.1429)
     Picture = Picture["Images/LogoCAP.png"]
     Stretch = True
+  }
+  { !lbl_app Label
+    MoveScaled(92,0,24,4)
+    #Public = True
+    Visible = False
   }
 }

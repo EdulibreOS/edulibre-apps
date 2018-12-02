@@ -24,23 +24,47 @@
 
 ' Homepage: http://http://sourceforge.net/projects/innovadesktop
 
+Public Settings_App_Educap As New Settings(Desktop.ConfigDir &/ "Innova/EdulibCap.Conf")
+
+Public Sub Show_Name_App()
+  Dim sResult As String
+  lbl_app.Text = ""
+  Try sResult = Settings_App_Educap["Educap/Name_App"]
+  
+  If Not IsNull(sResult) Then
+    'Print sResult
+    lbl_app.Text = sResult
+  Endif
+  
+End
 
 
 Public Sub Form_Open()
+'Obtener informacion de directorio
+Show_Name_App()
 'Carga el Tema del SO
 M_Theme.Get_Theme(EdulibCap)
 'LLena la informacion del cmb_nivel
 M_Init.ObtenerCmbNivel
 'Obtiene el listado de actividades
 M_Init.ObtenerActividad
-'Obtiene la información de la actividad
-'M_Init.ObtenerInfo(2)
-M_Init.LlenarGvInfo(87)
 'Genera nuevo usuario para el log
 M_Log.Set_NewUser("CAEdulibre")
-'Se ingresa el log del ingreso a la App
-M_Log.Set_Log(Null, Null, Null, Null, "Ingreso", EdulibCap.lbl_user.Text, "87")
+'Obtiene la información de la actividad
+If lbl_app.Text <> "" Then
+  M_Init.LlenarGvInfo(lbl_app.Text)
+  M_Log.Set_Log(Null, Null, Null, Null, "Ingreso", EdulibCap.lbl_user.Text, lbl_app.Text)
+  txt_busqueda.Text = lbl_app.Text
+  Try Settings_App_Educap["Educap/Name_App"] = ""
+Else
+  'Obtiene la información de la actividad
+  M_Init.LlenarGvInfo(295)
+  'Se ingresa el log del ingreso a la App
+  M_Log.Set_Log(Null, Null, Null, Null, "Ingreso", EdulibCap.lbl_user.Text, "295")
+End If
+
 EdulibCap.txt_busqueda.SetFocus
+'Limpiar variables
 
 End
 
