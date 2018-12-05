@@ -211,7 +211,7 @@ Public Sub BtnInstall_Click()
     
     If application.busy = 0 Then
       'iOKWallpaper = Message.Question(("Desea aplicar el fondo"), ("YES"), ("NO"))
-      
+      Message.Title = ("Innova Desktop")
       Select Message.Question(("Desea aplicar el fondo"), ("&Yes"), ("&No"))
         Case 1
           
