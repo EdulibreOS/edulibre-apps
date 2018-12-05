@@ -102,12 +102,12 @@ End
 
 Public Sub ObtenerImagen(id_actividad As String)
   
-  EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/2/1.png")
-  EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/2/2.png")
+  'EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/2/1.png")
+  'EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/2/2.png")
   
   'Estos de abajo son lo que deben de quedar.
-  'EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "1.png")
-  'EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "2.png")
+  Try EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "1.png")
+  Try EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "2.png")
   
 End
 
@@ -124,6 +124,34 @@ Public Sub ObtenerActividad()
               "WHERE a.id_programa = p.idtbl_programa " &
               "ORDER BY nombre ASC "
                 
+    cone = MDB_Connection.Conectar()
+    
+    rs = cone.Exec(consulta)
+       While (rs.Available)
+          If rs["url_icono"] <> Null And Exist(rs["url_icono"]) Then
+              EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load(rs["url_icono"]).Image.Stretch(30, 30).Picture)
+          Else
+               EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture)
+          Endif
+             rs.MoveNext
+       Wend
+  MDB_Connection.Desconectar(cone)
+End
+
+Public Sub ObtenerActividad_Nombre(Programa As String)
+  
+  Dim rs As Result
+  Dim consulta As String
+  
+  EdulibCap.lst_iconos.Clear
+      
+    consulta = "SELECT a.idtbl_actividad, a.nombre, p.url_icono " &
+              "FROM tbl_actividad a, " &
+              "tbl_programa p " &
+              "WHERE p.descripcion = '" & Programa & "' " &
+              "AND a.id_programa = p.idtbl_programa " &
+              "ORDER BY nombre ASC "
+    'Print consulta         
     cone = MDB_Connection.Conectar()
     
     rs = cone.Exec(consulta)
@@ -246,11 +274,3 @@ Public Sub LlenarGvInfo(id_actividad As String)
   ObtenerImagen(id_actividad)
   
 End
-
-
-
-
-
-
-
-

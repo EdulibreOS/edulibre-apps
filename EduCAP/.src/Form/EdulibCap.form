@@ -204,4 +204,15 @@
     #Public = True
     Visible = False
   }
+  { !lblprog Label
+    MoveScaled(21,0,14,4)
+    #Public = True
+    Font = Font["Bold,+2"]
+    Text = ("Programa:")
+  }
+  { !lbl_programaTitulo Label
+    MoveScaled(34,0,48,4)
+    #Public = True
+    Font = Font["+2"]
+  }
 }
