@@ -48,6 +48,7 @@ Public Sub sListShow()
   M_Core.Show_Desktop_Partitions
   M_Core.Show_Desktop_Network
   M_Core.Show_Color_Solid
+  M_Core.Show_PopupInfo
   
   M_Core.Show_Preview_Wallpaper
   M_Core.Show_Time_Wallpaper_Rnd
@@ -269,6 +270,7 @@ End
 Public Sub btnDownload_Click()
   
   If bChangeHTTP = True Then
+    Message.Title = ("Innova Desktop")
     Message(("Error of Connection... ") & hGetFileClient.Status)
   Else
     Inc Application.Busy
@@ -308,7 +310,8 @@ End
 Public Sub btoSelWall_Click()
   
   Dialog.Title = ("Image Archive")
-  Dialog.Filter = ["*.png", ("Image PNG"), "*.jpg", ("Image JPG"), "*.jpeg", ("Image JPEG"), "*.svg", ("Image SVG"), "*.bmp", ("Image BMP of Windows")] 
+  ' Dialog.Filter = ["*.png", ("Image PNG"), "*.jpg", ("Image JPG"), "*.jpeg", ("Image JPEG"), "*.svg", ("Image SVG"), "*.bmp", ("Image BMP of Windows")] 
+  Dialog.Filter = ["*.png;*.jpg;*.jpeg;*.bmp", ("Picture files"), "*.svg;*.wmf", ("Drawing files")]
   
   If Not Dialog.OpenFile() Then
     
@@ -316,6 +319,7 @@ Public Sub btoSelWall_Click()
     Try imgPreview.Picture = Picture.Load(Dialog.Path)
     
     If Error Then 
+      Message.Title = ("Innova Desktop")
       Message.Error("Unable to open the file : " & Dialog.Path)
       Return
     Endif
@@ -636,6 +640,7 @@ Public Sub btoLauncherBack_Click()
     
     If Error Then 
       'if can't open the file then show an error message and quit sub
+      Message.Title = ("Innova Desktop")
       Message.Error("Unable to open the file : " & Dialog.Path)
       Return
     Endif
@@ -1248,10 +1253,10 @@ Public Sub Del_Ext()
   sId = rs!id
   
   If (rs!status = True) Then
-    
+    Message.Title = ("Innova Desktop")
     Message.Info(LC_MESSAGES.MSG_INF_EXT_ACTIVE)
   Else
-    
+    Message.Title = ("Innova Desktop")
     Select Message.Question((LC_MESSAGES.MSG_QUESTION_DEL_EXT) & "<span style=\"color:#" & "CC0000" & ";margin-left:1em;\">" & "<b>" & (GridExt[GridExt.row, 1].Text) & "...?",, ("Yes"), ("No")) 
         
       Case 1
@@ -1280,10 +1285,10 @@ Public Sub Del_Widget()
   sId = rs!id
   
   If (rs!status = True) Then
-    
+    Message.Title = ("Innova Desktop")
     Message.Info(LC_MESSAGES.MSG_INF_WIDGET_ACTIVE)
   Else
-    
+    Message.Title = ("Innova Desktop")
     Select Message.Question((LC_MESSAGES.MSG_QUESTION_WIDGET_EXT) & "<span style=\"color:#" & "CC0000" & ";margin-left:1em;\">" & "<b>" & (GridWidget[GridWidget.row, 1].Text) & "...?",, ("Yes"), ("No")) 
       Case 1
         
@@ -1307,6 +1312,7 @@ Public Sub tlbDelExt_Click()
   Try s = GridExt[GridExt.Row, 1].Text      
   
   If IsNull(s) Then
+    Message.Title = ("Innova Desktop")
     Message.Info(LC_MESSAGES.MSG_INF_CAD_NULL)
   Else
     Del_Ext
@@ -1359,6 +1365,7 @@ Public Sub tlbDelWidget_Click()
   Try s = GridWidget[GridWidget.Row, 1].Text      
   
   If IsNull(s) Then
+    Message.Title = ("Innova Desktop")
     Message.Info(LC_MESSAGES.MSG_INF_CAD_NULL)
   Else
     Del_Widget
@@ -1631,6 +1638,7 @@ Public Sub ListBoxSplash_Select()
   
   M_Core.Update_Splash_Innova
 Catch
+  Message.Title = ("Innova Desktop")
   Message.Info(LC_MESSAGES.MSG_INF_SPLASH_EXIST)
   
 End
@@ -1784,6 +1792,7 @@ End
 Public Sub tlbokcursor_Click()
   
   If (LtvCursor.Selection.Count - 1) Or (InStr(lbltitlecursor2.Text, ":")) Then
+    Message.Title = ("Innova Desktop")
     Message(("You must select a theme..."))
   Else
     M_Core.Update_Theme_Cursor    
@@ -1844,5 +1853,18 @@ Public Sub swbLauncherTrans_Click()
 End
 
 Public Sub tbtNext_Click()
+  
+End
+
+Public Sub swbShowPopupInfo_Click()
+  
+  M_Core.Update_PopupInfo
+  
+End
+
+Public Sub mnuAbout_Click()
+  
+  Balloon.Info(Lower(Application.Name) & "</span>" & " - " & ("Innova Desktop Settings") & 
+    "<TD colspan=2 bgcolor=lightgreen>" & "Version " & Application.Version, Me)
   
 End

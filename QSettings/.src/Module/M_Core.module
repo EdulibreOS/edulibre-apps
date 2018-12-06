@@ -1393,6 +1393,7 @@ Public Sub Show_PopupHelp_Panel()
   
 End
 
+
 Public Sub Update_PopupHelp_Panel()
   
   Settings_Core_Innova.Write(f_settings)
@@ -1404,6 +1405,34 @@ Public Sub Update_PopupHelp_Panel()
   Settings_Core_Innova.Save
   
 End
+
+
+Public Sub Show_PopupInfo()
+  
+  Try iResult = Settings_Core_Innova["Desktop/Popup_Info"]
+  If iResult = 1 Then
+    f_settings.swbShowPopupInfo.Value = True 
+  Else
+    f_settings.swbShowPopupInfo.Value = False
+  Endif
+  
+End
+
+
+Public Sub Update_PopupInfo()
+  
+  Settings_Core_Innova.Write(f_settings)
+  If f_settings.swbShowPopupInfo.Value = True Then
+    Settings_Core_Innova["Desktop/Popup_Info"] = 1
+  Else
+    Settings_Core_Innova["Desktop/Popup_Info"] = 0
+  Endif 
+  Settings_Core_Innova.Save
+  
+End
+
+
+
 
 Public Sub Show_Opacity_Panel()
   
@@ -1821,7 +1850,7 @@ Public Sub Update_Theme_Icons()
       "gtk-font-name = " & sFont & " " & iFont_Size & "\n"
     hFile.Save(sFile_GTK3, sDat)  
   Endif
-  
+  Catch
 End
 
 Public Sub Show_Title_Theme_Cursor()
@@ -1903,12 +1932,12 @@ Public Function Show_Apps()
   Dim sResult_Edit As String 
   Dim sResult_Windows_Manager As String 
   
-  sResult_File_Manager = Settings_Core_Innova["Panel_Command/File_Manager", f_settings]
+  Try sResult_File_Manager = Settings_Core_Innova["Panel_Command/File_Manager", f_settings]
   Try sResult_Browser = Settings_Core_Innova["Panel_Command/Browser", f_settings]
   Try sResult_Terminal = Settings_Core_Innova["Panel_Command/Terminal", f_settings]
   Try sResult_VP = Settings_Core_Innova["Panel_Command/Video_Player", f_settings]
   Try sResult_Edit = Settings_Core_Innova["Panel_Command/Text_Edit", f_settings]
-  sResult_Windows_Manager = Settings_Core_Innova["Session_Windows_Manager/Windows_Manager", f_settings]
+  Try sResult_Windows_Manager = Settings_Core_Innova["Session_Windows_Manager/Windows_Manager", f_settings]
   
   f_settings.txtgestor.Text = (sResult_File_Manager)
   f_settings.txtterminal.Text = (sResult_Terminal)

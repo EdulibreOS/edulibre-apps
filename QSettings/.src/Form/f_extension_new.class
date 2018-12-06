@@ -52,11 +52,13 @@ Public Sub btnNew_Click()
   cx = M_DB.Connect_Config()
   
   If IsNull(txtname.Text) Or IsNull(txtexec.Text) Or IsNull(lswicon.Text) Or IsNull(cmbstatus.Text) Then
+     Message.Title = ("Innova Desktop")
     Message.Info(LC_MESSAGES.MSG_INF_CAD_NULL)
     Return
   Else
     Try rs = cx.Exec("insert into tb_extensions (name, exec, icon, status) values ('" & txtname.Text & "', '" & txtexec.Text & "', '" & lswicon.Current.Text & "','" & cmbstatus.Text & "')")
     M_DB.Close(cx)
+     Message.Title = ("Innova Desktop")
     Message.Info(LC_MESSAGES.MSG_INFO_REC_ADD)
   Endif
   
