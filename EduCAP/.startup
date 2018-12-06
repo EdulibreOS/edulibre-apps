@@ -2,7 +2,11 @@ EdulibCap
 Edulibre CAP
 0
 0
+<<<<<<< HEAD
 0.0.5
+=======
+0.0.4
+>>>>>>> master
 
 gb.image
 gb.gui.qt

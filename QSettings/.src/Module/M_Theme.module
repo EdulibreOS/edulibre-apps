@@ -144,8 +144,16 @@ Public Sub Show_Theme()
         f_settings.ipnInnova.Foreground = Val(sColor) 
         f_settings.ipnWallpaper.Foreground = Val(sColor) 
         f_settings.ipnPanel.Foreground = Val(sColor) 
+        f_settings.ipnWidget.Foreground = Val(sColor) 
+        f_settings.ipnStyle.Foreground = Val(sColor) 
+        f_settings.ipnApps.Foreground = Val(sColor) 
         
       Next
+      f_settings.lbltitletheme.Foreground = Color.Black
+      f_settings.lbltitlethemeapp.Foreground = Color.Black
+      f_settings.ListViewTheme.Foreground = Color.Black
+      f_settings.lbltitlethemeicon.Foreground = Color.Black
+      f_settings.ListViewIcons.Foreground = Color.Black
       
       For Each ctrl In f_gallery_wallpaper.Controls
         Try ctrl.Foreground = Val(sColor)    

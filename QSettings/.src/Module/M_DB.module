@@ -35,6 +35,7 @@ Public Procedure Connect() As Connection
   Return $Con
   
   If Error Then
+     Message.Title = ("Innova Desktop")
     Message.Error("Error DB Theme")
     $Con = Null
     Return True 
@@ -58,6 +59,7 @@ Public Procedure Connect_Config() As Connection
   Return $Con
   
   If Error Then
+    Message.Title = ("Innova Desktop")
     Message.Error("Error DB Theme")
     $Con = Null
     Return True 
@@ -81,6 +83,7 @@ Public Procedure Connect_Theme() As Connection
   Return $Con
   
   If Error Then
+   Message.Title = ("Innova Desktop")
     Message.Error("Error DB Theme")
     $Con = Null
     Return True 
