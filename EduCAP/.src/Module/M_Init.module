@@ -80,14 +80,14 @@ Public Sub ObtenerCmbMateria(grado As String)
   EdulibCap.cmb_bmateria.Clear
   EdulibCap.cmb_bmateria.Add("Todos", "0")
     
-    consulta = "SELECT m.* " &
+    consulta = "SELECT distinct m.* " &
               "FROM tbl_grado g, " &
               "tbl_grado_materia gm, " &
               "tbl_materia m " &
               "where g.idtbl_grado = gm.id_grado " &
               "AND gm.id_materia = m.idtbl_materia " &
               "AND g.descripcion = '" & grado & "' " &
-              "ORDER BY g.descripcion, m.descripcion"
+              "ORDER BY m.descripcion asc"
     'Print consulta
     
     cone = MDB_Connection.Conectar()
@@ -122,7 +122,7 @@ Public Sub ObtenerActividad()
               "FROM tbl_actividad a, " &
               "tbl_programa p " &
               "WHERE a.id_programa = p.idtbl_programa " &
-              "ORDER BY nombre ASC "
+              "ORDER BY a.nombre ASC "
                 
     cone = MDB_Connection.Conectar()
     
@@ -145,12 +145,12 @@ Public Sub ObtenerActividad_Nombre(Programa As String)
   
   EdulibCap.lst_iconos.Clear
       
-    consulta = "SELECT a.idtbl_actividad, a.nombre, p.url_icono " &
+    consulta = "SELECT p.nombre as nombrep, a.idtbl_actividad, a.nombre, p.url_icono " &
               "FROM tbl_actividad a, " &
               "tbl_programa p " &
               "WHERE p.descripcion = '" & Programa & "' " &
               "AND a.id_programa = p.idtbl_programa " &
-              "ORDER BY nombre ASC "
+              "ORDER BY a.nombre ASC "
     'Print consulta         
     cone = MDB_Connection.Conectar()
     
@@ -158,6 +158,7 @@ Public Sub ObtenerActividad_Nombre(Programa As String)
        While (rs.Available)
           If rs["url_icono"] <> Null And Exist(rs["url_icono"]) Then
               EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load(rs["url_icono"]).Image.Stretch(30, 30).Picture)
+              EdulibCap.lbl_programaTitulo.Text = rs["nombrep"]
           Else
                EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture)
           Endif
@@ -171,9 +172,34 @@ Public Sub LlenarGvInfo(id_actividad As String)
     Dim rs As Result
     Dim consulta As String
     Dim crow As Integer
+    Dim Grado As String
+    Dim Nivel As String
+    Dim Materia As String
+    
+    If EdulibCap.cmb_bnivel.Text == "" Or If EdulibCap.cmb_bnivel.Text == "Todos" Then
+      Nivel = ""
+      Grado = ""
+      Materia = ""
+    Else 
+      Nivel = "AND n.descripcion = '" & EdulibCap.cmb_bnivel.Text & "' "
+      
+      If EdulibCap.cmb_bgrado.Text == "" Or If EdulibCap.cmb_bgrado.Text == "Todos" Then
+        Grado = ""
+        Materia = ""
+      Else 
+        Grado = "AND g.descripcion = '" & EdulibCap.cmb_bgrado.Text & "' "
+        
+        If EdulibCap.cmb_bmateria.Text == "" Or If EdulibCap.cmb_bmateria.Text == "Todos" Then
+        Materia = ""
+        Else 
+          Materia = "AND m.descripcion = '" & EdulibCap.cmb_bmateria.Text & "' "
+        Endif
+      Endif
+    Endif
+    
     
     consulta = "SELECT distinct c.descripcion as Categoria, " &
-               					"p.descripcion As Programa, " &
+               					"p.nombre As Programa, " &
                					"a.nombre As Actividad, " &
                					"n.descripcion As Nivel, " &
                					"g.descripcion As Grado, " &
@@ -201,11 +227,18 @@ Public Sub LlenarGvInfo(id_actividad As String)
               "AND gm.id_grado = g.idtbl_grado " &
               "AND gm.id_materia = m.idtbl_materia " &
               "AND g.id_nivel = n.idtbl_nivel " &
+              Nivel & Grado & Materia &
               "AND a.id_programa = p.idtbl_programa " &
               "AND p.id_categoria = c.idtbl_categoria " &
               "AND cg.id_actividad = a.idtbl_actividad " &
               "AND ig.id_competencia_grado = cg.idtbl_competencia_grado " &
-              "AND cont.id_indicador_grado = ig.idtbl_indicador_grado "
+              "AND cont.id_indicador_grado = ig.idtbl_indicador_grado " &
+              "AND cg.id_nivel = n.idtbl_nivel " &
+              "AND cg.id_grado = g.idtbl_grado " &
+              "AND cg.id_materia = m.idtbl_materia "
+              
+              
+    Print consulta
 
     cone = MDB_Connection.Conectar()
     
@@ -274,3 +307,4 @@ Public Sub LlenarGvInfo(id_actividad As String)
   ObtenerImagen(id_actividad)
   
 End
+

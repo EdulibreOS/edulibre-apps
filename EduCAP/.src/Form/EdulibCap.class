@@ -57,9 +57,10 @@ If Not IsNull(sResult) Then
   'M_Init.LlenarGvInfo_Nombre(lbl_app.Text)
   M_Log.Set_Log(Null, Null, Null, Null, "Ingreso", EdulibCap.lbl_user.Text, lbl_app.Text)
   lblprog.Visible = True
-  lbl_programaTitulo.Text = sResult
+  'lbl_programaTitulo.Text = sResult
   Try Settings_App_Educap["Educap/Name_App"] = ""
 Else
+  lblprog.Visible = False
   'Obtiene el listado de actividades
   M_Init.ObtenerActividad
   'Obtiene la información de la actividad
@@ -69,7 +70,6 @@ Else
 End If
 
 EdulibCap.txt_busqueda.SetFocus
-'Limpiar variables
 
 End
 

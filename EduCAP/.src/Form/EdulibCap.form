@@ -46,7 +46,7 @@
       #Public = True
     }
     { !btn_programa Button
-      MoveScaled(2,26,23,7.1429)
+      MoveScaled(2,26,28.5714,7)
       #Public = True
       AutoResize = True
       Text = ("Abrir Programa")
@@ -118,12 +118,12 @@
     #Public = True
   }
   { !picbox1 PictureBox
-    MoveScaled(78,22,32.1429,24.2857)
+    MoveScaled(78,22,31.4286,24.2857)
     #Public = True
     Stretch = True
   }
   { !picbox2 PictureBox
-    MoveScaled(111,22,32.1429,24.2857)
+    MoveScaled(110,22,31.4286,24.2857)
     #Public = True
     Stretch = True
   }
