@@ -80,14 +80,14 @@ Public Sub ObtenerCmbMateria(grado As String)
   EdulibCap.cmb_bmateria.Clear
   EdulibCap.cmb_bmateria.Add("Todos", "0")
     
-    consulta = "SELECT m.* " &
+    consulta = "SELECT distinct m.* " &
               "FROM tbl_grado g, " &
               "tbl_grado_materia gm, " &
               "tbl_materia m " &
               "where g.idtbl_grado = gm.id_grado " &
               "AND gm.id_materia = m.idtbl_materia " &
               "AND g.descripcion = '" & grado & "' " &
-              "ORDER BY g.descripcion, m.descripcion"
+              "ORDER BY m.descripcion asc"
     'Print consulta
     
     cone = MDB_Connection.Conectar()
@@ -102,12 +102,12 @@ End
 
 Public Sub ObtenerImagen(id_actividad As String)
   
-  EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/2/1.png")
-  EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/2/2.png")
+  'EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/2/1.png")
+  'EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/2/2.png")
   
   'Estos de abajo son lo que deben de quedar.
-  'EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "1.png")
-  'EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "2.png")
+  Try EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "1.png")
+  Try EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/" &/ id_actividad &/ "2.png")
   
 End
 
@@ -122,7 +122,7 @@ Public Sub ObtenerActividad()
               "FROM tbl_actividad a, " &
               "tbl_programa p " &
               "WHERE a.id_programa = p.idtbl_programa " &
-              "ORDER BY nombre ASC "
+              "ORDER BY a.nombre ASC "
                 
     cone = MDB_Connection.Conectar()
     
@@ -138,14 +138,68 @@ Public Sub ObtenerActividad()
   MDB_Connection.Desconectar(cone)
 End
 
+Public Sub ObtenerActividad_Nombre(Programa As String)
+  
+  Dim rs As Result
+  Dim consulta As String
+  
+  EdulibCap.lst_iconos.Clear
+      
+    consulta = "SELECT p.nombre as nombrep, a.idtbl_actividad, a.nombre, p.url_icono " &
+              "FROM tbl_actividad a, " &
+              "tbl_programa p " &
+              "WHERE p.descripcion = '" & Programa & "' " &
+              "AND a.id_programa = p.idtbl_programa " &
+              "ORDER BY a.nombre ASC "
+    'Print consulta         
+    cone = MDB_Connection.Conectar()
+    
+    rs = cone.Exec(consulta)
+       While (rs.Available)
+          If rs["url_icono"] <> Null And Exist(rs["url_icono"]) Then
+              EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load(rs["url_icono"]).Image.Stretch(30, 30).Picture)
+              EdulibCap.lbl_programaTitulo.Text = rs["nombrep"]
+          Else
+               EdulibCap.lst_iconos.Add(rs["idtbl_actividad"], rs["nombre"], Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture)
+          Endif
+             rs.MoveNext
+       Wend
+  MDB_Connection.Desconectar(cone)
+End
+
 Public Sub LlenarGvInfo(id_actividad As String)
   
     Dim rs As Result
     Dim consulta As String
     Dim crow As Integer
+    Dim Grado As String
+    Dim Nivel As String
+    Dim Materia As String
     
-    consulta = "SELECT c.descripcion as Categoria, " &
-               					"p.descripcion As Programa, " &
+    If EdulibCap.cmb_bnivel.Text == "" Or If EdulibCap.cmb_bnivel.Text == "Todos" Then
+      Nivel = ""
+      Grado = ""
+      Materia = ""
+    Else 
+      Nivel = "AND n.descripcion = '" & EdulibCap.cmb_bnivel.Text & "' "
+      
+      If EdulibCap.cmb_bgrado.Text == "" Or If EdulibCap.cmb_bgrado.Text == "Todos" Then
+        Grado = ""
+        Materia = ""
+      Else 
+        Grado = "AND g.descripcion = '" & EdulibCap.cmb_bgrado.Text & "' "
+        
+        If EdulibCap.cmb_bmateria.Text == "" Or If EdulibCap.cmb_bmateria.Text == "Todos" Then
+        Materia = ""
+        Else 
+          Materia = "AND m.descripcion = '" & EdulibCap.cmb_bmateria.Text & "' "
+        Endif
+      Endif
+    Endif
+    
+    
+    consulta = "SELECT distinct c.descripcion as Categoria, " &
+               					"p.nombre As Programa, " &
                					"a.nombre As Actividad, " &
                					"n.descripcion As Nivel, " &
                					"g.descripcion As Grado, " &
@@ -169,15 +223,22 @@ Public Sub LlenarGvInfo(id_actividad As String)
               		"tbl_indicador_grado ig, " &
               		"tbl_contenido cont " &
               "WHERE a.idtbl_actividad = " & id_actividad & " " &
-              "AND a.id_grado_materia = gm.idtbl_grado_materia " &
+              "AND a.idtbl_actividad = gm.id_actividad " &
               "AND gm.id_grado = g.idtbl_grado " &
               "AND gm.id_materia = m.idtbl_materia " &
-              "AND a.id_nivel = n.idtbl_nivel " &
+              "AND g.id_nivel = n.idtbl_nivel " &
+              Nivel & Grado & Materia &
               "AND a.id_programa = p.idtbl_programa " &
               "AND p.id_categoria = c.idtbl_categoria " &
               "AND cg.id_actividad = a.idtbl_actividad " &
               "AND ig.id_competencia_grado = cg.idtbl_competencia_grado " &
-              "AND cont.id_indicador_grado = ig.idtbl_indicador_grado "
+              "AND cont.id_indicador_grado = ig.idtbl_indicador_grado " &
+              "AND cg.id_nivel = n.idtbl_nivel " &
+              "AND cg.id_grado = g.idtbl_grado " &
+              "AND cg.id_materia = m.idtbl_materia "
+              
+              
+    Print consulta
 
     cone = MDB_Connection.Conectar()
     
@@ -186,15 +247,17 @@ Public Sub LlenarGvInfo(id_actividad As String)
             EdulibCap.gvinfo.Rows.Resizable = True
             EdulibCap.gvinfo.Columns.Resizable = True
             EdulibCap.gvinfo.Columns[0].Text = "No."
-            EdulibCap.gvinfo.Columns[0].Width = 30
+            EdulibCap.gvinfo.Columns[0].Width = 40
             EdulibCap.gvinfo.Columns[0].Alignment = Align.Center
             EdulibCap.gvinfo.Columns[1].Text = "Competencia de Grado"
             EdulibCap.gvinfo.Columns[1].Alignment = Align.Center
+            EdulibCap.gvinfo.Columns[1].Width = 200
             EdulibCap.gvinfo.Columns[2].Text = "No."
-            EdulibCap.gvinfo.Columns[2].Width = 30
+            EdulibCap.gvinfo.Columns[2].Width = 40
             EdulibCap.gvinfo.Columns[2].Alignment = Align.Center
             EdulibCap.gvinfo.Columns[3].Text = "Indicador de Logro"
             EdulibCap.gvinfo.Columns[3].Alignment = Align.Center
+            EdulibCap.gvinfo.Columns[3].Width = 200
             EdulibCap.gvinfo.Columns[4].Text = "No."
             EdulibCap.gvinfo.Columns[4].Width = 40
             EdulibCap.gvinfo.Columns[4].Alignment = Align.Center
@@ -244,11 +307,4 @@ Public Sub LlenarGvInfo(id_actividad As String)
   ObtenerImagen(id_actividad)
   
 End
-
-
-
-
-
-
-
 

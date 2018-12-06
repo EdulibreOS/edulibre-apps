@@ -16,17 +16,17 @@
     }
   }
   { lbl_bnivel Label
-    MoveScaled(2,2,6,4)
+    MoveScaled(59,4,6,4)
     Font = Font["Bold"]
     Text = ("Nivel:")
     Alignment = Align.Right
   }
   { !cmb_bnivel ComboBox
-    MoveScaled(2,6,21.4286,4)
+    MoveScaled(59,8,21.4286,4)
     #Public = True
   }
   { !btn_buscar Button
-    MoveScaled(111,6,12,4)
+    MoveScaled(129,8,12,4)
     #Public = True
     Text = ("Buscar")
     Picture = Picture["icon:/small/find"]
@@ -46,7 +46,7 @@
       #Public = True
     }
     { !btn_programa Button
-      MoveScaled(2,26,23,5.7143)
+      MoveScaled(2,26,28.5714,7)
       #Public = True
       AutoResize = True
       Text = ("Abrir Programa")
@@ -66,12 +66,12 @@
       }
     }
     { lblPaso1 Label
-      MoveScaled(48,4,7,4)
+      MoveScaled(49,4,7,4)
       Font = Font["Bold"]
       Text = ("Paso 1")
     }
     { lblPaso2 Label
-      MoveScaled(81,4,7,4)
+      MoveScaled(82,4,7,4)
       Font = Font["Bold"]
       Text = ("Paso 2")
     }
@@ -114,16 +114,16 @@
     Alignment = Align.Right
   }
   { !lbl_materia_edit Label
-    MoveScaled(53,36,23.5714,4)
+    MoveScaled(53,36,25,4)
     #Public = True
   }
   { !picbox1 PictureBox
-    MoveScaled(77,22,32.1429,25.7143)
+    MoveScaled(78,22,31.4286,24.2857)
     #Public = True
     Stretch = True
   }
   { !picbox2 PictureBox
-    MoveScaled(110,22,32.1429,25.7143)
+    MoveScaled(110,22,31.4286,24.2857)
     #Public = True
     Stretch = True
   }
@@ -144,47 +144,36 @@
     #Public = True
     Visible = False
   }
-  { !pnlTitulo Panel
-    MoveScaled(126,-1,17,16)
-    #Public = True
-    Background = Color.White
-    AutoResize = True
-    { picboxTitulo PictureBox
-      MoveScaled(0.7143,0.4286,16,15.1429)
-      Picture = Picture["Images/LogoCAP.png"]
-      Stretch = True
-    }
-  }
   { lbl_bgrado Label
-    MoveScaled(26,2,7,4)
+    MoveScaled(82,4,7,4)
     Font = Font["Bold"]
     Text = ("Grado:")
     Alignment = Align.Right
   }
   { !cmb_bgrado ComboBox
-    MoveScaled(26,6,15,4)
+    MoveScaled(82,8,15,4)
     #Public = True
     Enabled = False
   }
   { lbl_bmateria Label
-    MoveScaled(44,2,9,4)
+    MoveScaled(99,4,9,4)
     Font = Font["Bold"]
     Text = ("Materia:")
     Alignment = Align.Right
   }
   { !cmb_bmateria ComboBox
-    MoveScaled(44,6,28,4)
+    MoveScaled(99,8,28,4)
     #Public = True
     Enabled = False
   }
   { lbl_bcontenido Label
-    MoveScaled(75,2,11,4)
+    MoveScaled(21,4,11,4)
     Font = Font["Bold"]
     Text = ("Contenido:")
     Alignment = Align.Right
   }
   { !txt_busqueda ButtonBox
-    MoveScaled(75,6,37,4)
+    MoveScaled(21,8,37,4)
     #Public = True
     Picture = Picture["icon:/small/close"]
     Button = False
@@ -197,12 +186,33 @@
     Alignment = Align.Right
   }
   { !lbl_user Label
-    MoveScaled(91,1,25,4)
+    MoveScaled(117,-1,25,4)
     #Public = True
     Visible = False
   }
   { !lbl_categoria_edit Label
     MoveScaled(53,24,23.5714,4)
     #Public = True
+  }
+  { pboxlogo PictureBox
+    MoveScaled(0,0,16,15.1429)
+    Picture = Picture["Images/LogoCAP.png"]
+    Stretch = True
+  }
+  { !lbl_app Label
+    MoveScaled(92,0,24,4)
+    #Public = True
+    Visible = False
+  }
+  { !lblprog Label
+    MoveScaled(21,0,14,4)
+    #Public = True
+    Font = Font["Bold,+2"]
+    Text = ("Programa:")
+  }
+  { !lbl_programaTitulo Label
+    MoveScaled(34,0,48,4)
+    #Public = True
+    Font = Font["+2"]
   }
 }
