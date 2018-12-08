@@ -4,6 +4,7 @@
   MoveScaled(0,0,64,58)
   Background = Color.White
   Text = ("Acerca De")
+  Icon = Picture["Images/IconCAP.png"]
   Resizable = False
   { Archivo Menu
     Text = ("Archivo")
