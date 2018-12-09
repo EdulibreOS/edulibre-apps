@@ -4,6 +4,7 @@
   MoveScaled(0,0,142.8571,85.7143)
   Background = Color.White
   Text = ("Centro de Ayuda Edulibre")
+  Icon = Picture["Images/IconCAP.png"]
   Resizable = False
   AutoResize = True
   { Archivo Menu

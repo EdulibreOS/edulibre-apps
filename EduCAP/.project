@@ -1,7 +1,8 @@
 # Gambas Project File 3.0
 Title=Edulibre CAP
 Startup=EdulibCap
-Version=0.0.6
+Icon=Images/LogoCAP.png
+Version=0.0.11
 Component=gb.image
 Component=gb.gui.qt
 Component=gb.form
@@ -10,12 +11,4 @@ Component=gb.desktop
 Component=gb.settings
 TabSize=2
 Language=en_US
-Maintainer=edulibreos
-Address=edulibreos@edulibreos-HP-ProBook-450-G3
-License=General Public License
-PackageName=educap-0.0.4
 Packager=1
-Systems=ubuntu
-Menus=ubuntu:"Applications/Education"
-Categories=ubuntu:"Education"
-Groups=ubuntu:"admin"
