@@ -43,9 +43,11 @@ End
 Public Sub Set_Log(Nivel As String, Grado As String, Materia As String, Contenido As String, Accion As String, Usuario As String, Actividad As String)
   Dim insert As String
   
+  Contenido = M_Busqueda.RemoveChar(Contenido, "'")
+  
    insert = "INSERT INTO tbl_log (nivel, grado, materia, contenido, accion, usuario, fecha_hora, id_actividad) VALUES ('" &
               Nivel & "','" & Grado & "','" & Materia & "','" & Contenido & "','" & Accion & "','" & Usuario & "',datetime('now','localtime'),'" & Actividad & "')"
-    'Print insert
+
     
     cone = MDB_Connection.Conectar()
     cone.Exec(insert)
