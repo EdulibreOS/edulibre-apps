@@ -33,6 +33,19 @@ Public Sub Main()
   
 End
 
+'Parser para quitar comillas
+Public Procedure RemoveChar(Texto As String, Quitar As String) As String
+  Dim Cantidad As Integer
+  
+  For Cantidad = 1 To Len(Quitar)
+    Texto = Replace(Texto, Mid(Quitar, Cantidad, 1), "")
+  Next
+  
+  Return Texto
+End
+
+
+
 'Busqueda por medio de los combo box y contenido.
 Public Sub Buscar(Nivel As String, Grado As String, Materia As String, Contenido As String)
   
@@ -40,6 +53,8 @@ Public Sub Buscar(Nivel As String, Grado As String, Materia As String, Contenido
   Dim consulta, aux_palabras As String
   Dim cant_palabras As Integer
   Dim Palabras As String[]
+  
+  Contenido = Trim(RemoveChar(Contenido, "'"))
 
   cant_palabras = Split(Contenido, " ").Count
   Palabras = Split(Contenido, " ")
@@ -52,7 +67,7 @@ Public Sub Buscar(Nivel As String, Grado As String, Materia As String, Contenido
     Next
             consulta = Left(consulta, -6)
             consulta = consulta & " ORDER BY a.nombre "
-            Print consulta
+            'Print consulta
             cone = MDB_Connection.Conectar()
             EdulibCap.lst_iconos.Clear ' Limpiar todos los elementos del Listbox de actividades
             rs = cone.Exec(consulta)

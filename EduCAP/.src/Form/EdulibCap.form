@@ -94,7 +94,7 @@
     Alignment = Align.Right
   }
   { !lbl_actividad_edit Label
-    MoveScaled(53,16,67,4)
+    MoveScaled(53,16,88,4)
     #Public = True
     Font = Font["Bold,+3"]
   }
