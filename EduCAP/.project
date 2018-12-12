@@ -2,7 +2,7 @@
 Title=Edulibre CAP
 Startup=EdulibCap
 Icon=Images/LogoCAP.png
-Version=0.0.11
+Version=0.0.12
 Component=gb.image
 Component=gb.gui.qt
 Component=gb.form
