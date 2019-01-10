@@ -1606,8 +1606,8 @@ Public Sub List_Theme_Innova()
   For Each sTheme In aThemes
     
     ImgButtonStyle = New PushButton(f_settings.sclStyle) As "CButtonStyle"
-    ImgButtonStyle.w = 225
-    ImgButtonStyle.h = 128
+    ImgButtonStyle.w = 250 '225
+    ImgButtonStyle.h = 140 '128
     ImgButtonStyle.Mouse = 13
     ImgButtonStyle.Text = sTheme
     
