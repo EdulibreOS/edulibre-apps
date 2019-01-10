@@ -466,6 +466,10 @@ End
 Public Sub Form_Show()
   
   M_Core.Show_Preview_Wallpaper_RND
+  lblangsel.Foreground = Color.Black
+  lblangselcountry.Foreground = Color.Black
+  sclStyle.Foreground = Color.Black
+   sclStyle.Background = Color.white
   
 End
 
@@ -1600,6 +1604,9 @@ Public Sub Windows_Manager()
   
   If Exist("/usr/bin/muffin") Then
     txtwindows.Add("muffin")
+  Endif
+  If Exist("/usr/bin/tinywm") Then
+    txtwindows.Add("tinywm")
   Endif
   
 End
