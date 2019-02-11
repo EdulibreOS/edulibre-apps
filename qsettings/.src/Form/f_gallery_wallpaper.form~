@@ -1,0 +1,87 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,103,59)
+  Text = ("Select wallpaper - Innova Settings")
+  Icon = Picture["icon:/32/image"]
+  Resizable = False
+  Spacing = True
+  Margin = True
+  Padding = 2
+  { PicImgFondo PictureBox
+    MoveScaled(61,12,41,39)
+    Stretch = True
+  }
+  { HBox5 HBox
+    MoveScaled(36,53,66,4)
+    Spacing = True
+    Indent = True
+    { Panel24 Panel
+      MoveScaled(1,0,29,4)
+      Expand = True
+      Arrangement = Arrange.Vertical
+    }
+    { BtnOk ToolButton
+      MoveScaled(33,0,16,4)
+      Enabled = False
+      Mouse = Mouse.Pointing
+      Text = Shortcut(("Ok"), "O")
+      Picture = Picture["icon:/small/apply"]
+    }
+    { BtnClose ToolButton
+      MoveScaled(50,0,16,4)
+      Mouse = Mouse.Pointing
+      Text = Shortcut(("Close"), "C")
+      Picture = Picture["icon:/small/cancel"]
+    }
+  }
+  { ListViewImage ListView
+    MoveScaled(1,15,57,37)
+    Mouse = Mouse.Pointing
+  }
+  { lbltitle Label
+    MoveScaled(1,0,41,4)
+    Font = Font["Ubuntu,+4"]
+    Text = ("Select wallpaper")
+  }
+  { HBox3 HBox
+    MoveScaled(1,5,57.1429,4)
+    Expand = True
+    Spacing = True
+    Indent = True
+    { Label1 Label
+      MoveScaled(0,0,14,4)
+      Expand = True
+      Text = ("Dir")
+    }
+    { cmbselectdir ComboBox
+      MoveScaled(13,0,43,4)
+      Font = Font["-1"]
+      Foreground = &H004F9F&
+      ReadOnly = True
+    }
+  }
+  { HBox1 HBox
+    MoveScaled(1,10,57.1429,4)
+    Spacing = True
+    Indent = True
+    { Label2 Label
+      MoveScaled(0,0,14,4)
+      Expand = True
+      Text = ("Image")
+    }
+    { txtselectwallpaper ButtonBox
+      MoveScaled(18,0,38,4)
+      Font = Font["-1"]
+      Foreground = &H004F9F&
+      ReadOnly = True
+      Button = False
+      ClearButton = True
+    }
+  }
+  { imgPreview PictureBox
+    MoveScaled(63,16.4286,37,23)
+    Stretch = True
+    Alignment = Align.Center
+  }
+}

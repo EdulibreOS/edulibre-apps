@@ -1,0 +1,61 @@
+' Gambas class file
+
+Private dataChanged As Boolean
+
+Public Sub Form_Close001()
+  
+  Dim result As Integer
+  
+  dataChanged = True
+  If dataChanged Then 
+    result = Message.Question("Are you sure?", "Quit without saving",
+      "Save then quit", "Cancel")
+    If result = 2 Then
+      ' If save is selected then save before quitting
+      Print "Do save here"
+    Else If result = 3 Then 
+      ' If cancel is pressed then cancel close form event
+      Stop Event 
+    End If
+  End If  
+  
+End
+
+Public Sub Form_Open()
+  
+End
+
+Public Sub Form_LostFocus()
+  
+  Me.Close
+  
+End
+
+Public Sub Form_Close002()
+  
+  Dim retval As Integer 
+  
+  If Not Me.Visible Then 
+    Me.Close 
+    Return 
+  Endif 
+  
+  retval = Message.Question("Are you sure you want to exit FormA?", "Yes", 
+    "No") 
+  
+  If retval = 1 
+    Me.Close 
+  Else 
+    Stop Event 
+  End If 
+  
+End
+
+Public Sub Form_Leave()
+  
+  If Not Me.HasFocus = True Then
+    Me.Close
+    Return
+  Endif
+  
+End

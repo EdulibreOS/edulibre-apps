@@ -1,0 +1,90 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,101,68)
+  Text = ("Obtener Fondos - Preferencias del Sistema")
+  Arrangement = Arrange.Vertical
+  Spacing = True
+  Margin = True
+  Padding = 2
+  { lbltitlefont3 Label
+    MoveScaled(0,0,45,4)
+    Font = Font["+3"]
+    Background = &HFFFFFF&
+    Foreground = &H3F3F3F&
+    Text = ("Descargar fondos de escritorio")
+    Alignment = Align.Center
+    Border = Border.Plain
+  }
+  { HBox1 Panel
+    MoveScaled(51,0,36,6)
+    Arrangement = Arrange.Vertical
+    Spacing = True
+    Indent = True
+    { txtSearch ButtonBox
+      MoveScaled(5,1,28,4)
+      Border = False
+      Button = False
+      ClearButton = True
+    }
+  }
+  { HBox43 HSplit
+    MoveScaled(1,5,99,54)
+    Expand = True
+    Spacing = True
+    { Grid GridView
+      MoveScaled(1,1,64,51)
+      Font = Font["+1"]
+      Background = &HFFFFFF&
+      Tracking = True
+      Expand = True
+      Mode = Select.Single
+      Grid = False
+    }
+    { Panel16 VSplit
+      MoveScaled(66,2,32,49)
+      Expand = True
+      Border = False
+      { PictureBox1 PictureBox
+        MoveScaled(1,10,30,25)
+        Expand = True
+        Stretch = True
+        Alignment = Align.Center
+        Border = Border.Plain
+      }
+    }
+  }
+  { HBox5 HBox
+    MoveScaled(0,59,86,4)
+    Spacing = True
+    Margin = True
+    Padding = 2
+    Indent = True
+    { Panel24 Panel
+      MoveScaled(1,0,29,4)
+      Expand = True
+      Arrangement = Arrange.Vertical
+    }
+    { BtnInstall Button
+      MoveScaled(33,0,16,4)
+      Mouse = Mouse.Pointing
+      Text = Shortcut(("Install"), "I")
+      Picture = Picture["icon:/small/apply"]
+    }
+    { BtnClose Button
+      MoveScaled(50,0,16,4)
+      Mouse = Mouse.Pointing
+      Text = Shortcut(("Close"), "C")
+      Picture = Picture["icon:/small/cancel"]
+    }
+  }
+  { HBox2 Panel
+    MoveScaled(1,64,66,6)
+    Arrangement = Arrange.Vertical
+    Spacing = True
+    Indent = True
+    { ProgressBar1 ProgressBar
+      MoveScaled(1,1,60,4)
+    }
+  }
+}

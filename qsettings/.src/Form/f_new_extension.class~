@@ -1,0 +1,44 @@
+' Gambas class file
+
+Private cx As New Connection
+Private rs As Result
+
+Public Sub Form_Open()
+  
+  'Me.Top = (Screen.Height - Me.Height) / 2
+  'Me.Left = (Screen.Width - Me.Width) / 2 
+  DisplayIcons
+  
+End
+
+Private Sub DisplayIcons() 
+  
+  Dim sIconKey, sIconName As String
+  
+  ListView1.Clear()    
+  For Each sIconKey In Stock.Icons ' Bis Version GB 3.2 für Stock.Icons → Stock.List setzen
+    sIconName = "icon:/22/" & sIconKey
+    ListView1.Add(sIconKey, sIconKey, Picture[sIconName])
+    
+    cmbstatus2.Add(sIconKey)
+  Next ' sIconKey
+  
+End ' DisplayIcons() 
+
+Public Sub btnNew_Click()
+  
+  cx = M_DB.Connect_Config()
+  
+  rs = cx.Exec("insert into tb_extensions (name, exec, icon, status) values ('" & txtname.Text & "', '" & txtexec.Text & "', '" & btoicon.Text & "','" & cmbstatus.Text & "')")
+  
+  M_DB.Close(cx)
+  Message("Extension gragada")
+  Me.Close
+  
+End
+
+Public Sub btnClose_Click()
+  
+  Me.Close
+  
+End

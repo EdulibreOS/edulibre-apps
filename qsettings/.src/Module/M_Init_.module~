@@ -1,0 +1,51 @@
+' Gambas module file
+
+Public Settings_Core_Innova As New Settings(Desktop.ConfigDir &/ "Innova/Innova_Config.conf")
+
+Public Sub Init_Value()
+  
+  Settings_Core_Innova.Write(f_settings)
+  
+  Settings_Core_Innova["Desktop/Show_Icon_All"] = 1
+  Settings_Core_Innova["Desktop/Show_Icon_PC"] = 1
+  Settings_Core_Innova["Desktop/Show_Icon_Trash"] = 1
+  Settings_Core_Innova["Desktop/Show_Icon_Home"] = 1
+  Settings_Core_Innova["Desktop/Show_Icon_Partitions"] = 0
+  Settings_Core_Innova["Desktop/Show_Icon_Network"] = 0
+  Settings_Core_Innova["Desktop/Show_Wallpaper_Color"] = 0
+  Settings_Core_Innova["Desktop/Wallpaper_Desktop_Random"] = 0 
+  Settings_Core_Innova["Desktop/Icon_Size_Desktop"] = M_Var_Global.IconSize_Desktop 
+  Settings_Core_Innova["Desktop/IconLine_Desktop"] = M_Var_Global.IconLine_Desktop 
+  Settings_Core_Innova["Desktop/Organize"] = M_Var_Global.sOrganize
+  Settings_Core_Innova["Desktop/Order"] = M_Var_Global.sOrder
+  Settings_Core_Innova["Desktop/Order_Ascending"] = 1
+  Settings_Core_Innova["Desktop/Help_Popup"] = 0
+  
+  Settings_Core_Innova["Innova/Transparent"] = 1      
+  Settings_Core_Innova["Innova/Sound_Start"] = "/usr/share/Innova/Sound/Start.ogg"
+  Settings_Core_Innova["Innova/Icon_Size"] = M_Var_Global.IconSize_Innova
+  Settings_Core_Innova["Innova/No_Desktop"] = M_Var_Global.iDesktop
+  Settings_Core_Innova["Innova/sLang"] = M_Var_Global.sLang
+  
+  'Settings_Core_Innova["Launcher/Style_Launcher"] = "Tablet" 
+  Settings_Core_Innova["Launcher/Icon_Size"] = M_Var_Global.IconSize_Launcher
+  Settings_Core_Innova["Launcher/Show_Cat"] = 1
+  Settings_Core_Innova["Launcher/Cat_MouseMove"] = 1
+  Settings_Core_Innova["Launcher/Opacity"] = M_Var_Global.iOpacity_Launcher
+  Settings_Core_Innova["Launcher/Show_Text"] = 1
+  
+  Settings_Core_Innova["Panel/Size"] = M_Var_Global.iSize_Panel
+  Settings_Core_Innova["Panel/Icon_Size"] = M_Var_Global.IconSize_Panel
+  Settings_Core_Innova["Panel/Large_Size"] = M_Var_Global.iSize_Large_Panel
+  Settings_Core_Innova["Panel/Position"] = M_Var_Global.sPosition_Panel
+  Settings_Core_Innova["Panel/OnlyIcon_Taskbar"] = 0
+  Settings_Core_Innova["Panel/Transparent"] = 0
+  Settings_Core_Innova["Panel/Dock"] = 0
+  Settings_Core_Innova["Panel/Auto_Hide"] = 0
+  Settings_Core_Innova["Panel/Popup_Help"] = 0
+  Settings_Core_Innova["Panel/Opacity"] = M_Var_Global.iOpacity_Panel
+  Settings_Core_Innova.Save
+  
+Catch
+  
+End
