@@ -1,0 +1,11 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,83,34)
+  Text = ("Add Stock Icons - Innova Settings")
+  Icon = Picture["Icon/form_icon.png"]
+  { IconView IconView
+    MoveScaled(1,1,37,16)
+    Expand = True
+  }
+}

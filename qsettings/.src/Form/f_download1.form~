@@ -1,0 +1,61 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,133,70)
+  { lbltitlefont3 Label
+    MoveScaled(0,0,45,4)
+    Font = Font["+3"]
+    Background = &HFFFFFF&
+    Foreground = &H3F3F3F&
+    Text = ("Descargar fondos de escritorio")
+    Alignment = Align.Center
+    Border = Border.Plain
+  }
+  { HBox43 HSplit
+    MoveScaled(2,8,85,52)
+    Expand = True
+    Spacing = True
+    { ListViewImage ListView
+      MoveScaled(0,0,28,37)
+      Mouse = Mouse.Pointing
+    }
+    { Panel16 VSplit
+      MoveScaled(32,1,51,49)
+      Expand = True
+      Border = False
+      { Panel17 Panel
+        MoveScaled(13,6,19,4)
+        Expand = True
+        Arrangement = Arrange.Vertical
+      }
+      { PictureBox1 PictureBox
+        MoveScaled(0,9,51,25)
+        Expand = True
+        Stretch = True
+        Alignment = Align.Center
+        Border = Border.Plain
+      }
+      { Panel20 Panel
+        MoveScaled(12,41,19,4)
+        Expand = True
+        Arrangement = Arrange.Vertical
+      }
+    }
+  }
+  { TextBox1 TextBox
+    MoveScaled(4,63,24,4)
+  }
+  { Button1 Button
+    MoveScaled(69,64,16,4)
+  }
+  { Timer1 #Timer
+    #MoveScaled(114,51)
+  }
+  { HttpClient1 #HttpClient
+    #MoveScaled(102,36)
+  }
+  { TextLabel1 TextLabel
+    MoveScaled(95,9,24,4)
+    Text = ("<div align=center>")
+  }
+}

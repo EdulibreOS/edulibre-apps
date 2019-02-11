@@ -1,0 +1,54 @@
+' Gambas class file
+
+Public iForm As Integer
+
+Public Sub Form_Open()
+  
+  Me.Center
+  Me.Resizable = True
+  Me.Arrangement = Arrange.Fill
+  ' IconView.Background = Color.RGB(122, 122, 123)
+  DisplayIcons() 
+  Print iForm
+  
+End
+
+Private Sub DisplayIcons() 
+  
+  Dim sIconKey, sIconName As String
+  
+  icwStock.Clear()  
+  Stock.Refresh ' Notwendig!
+  
+  For Each sIconKey In Stock.Icons
+    sIconName = "icon:/48/" & sIconKey
+    icwStock.Add(sIconKey, sIconKey, Picture[sIconName])
+  Next
+  
+End ' DisplayIcons() 
+
+Public Sub icwStock_DblClick()
+  
+  If iForm = 1 Then
+    f_extension_new.lswicon.Clear
+    f_extension_new.lswicon.Add(icwStock.Current.Key, icwStock.Current.Text, icwStock.Current.Picture.Image.Stretch(22, 22).Picture)
+    f_extension_new.lswicon[icwStock.Current.Key].Selected = True
+  Endif
+  
+  If iForm = 2 Then
+    f_widget_new.lswicon.Clear
+    f_widget_new.lswicon.Add(icwStock.Current.Key, icwStock.Current.Text, icwStock.Current.Picture.Image.Stretch(22, 22).Picture)
+    f_widget_new.lswicon[icwStock.Current.Key].Selected = True
+  Endif
+  
+  Me.Close
+  
+End
+
+Public Sub Form_KeyRelease()
+  
+  If Key.Code = Key.Esc Then
+    Me.Close
+  Endif
+  
+End

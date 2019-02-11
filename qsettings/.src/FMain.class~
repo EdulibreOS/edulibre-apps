@@ -1,0 +1,19 @@
+' Gambas class file
+
+Public Sub Form_Open()
+  
+  Me.Width = Desktop.Width - 800
+  Me.Height = Desktop.Height - 150
+  
+End
+
+Public Sub ipnWallpaper_Click()
+  
+  lblinnovaversion.Text = ipnWallpaper.Text
+  picIcon2.Picture = ipnWallpaper.Picture
+  
+End
+
+Public Sub Form_Resize()
+  
+End

@@ -1,0 +1,39 @@
+' Gambas module file
+
+Public Sub Init_00()
+  
+  Component.Load("gb.desktop.x11")
+  ' Component.Load("gb.qt5")
+  'Shell "export QT_QPA_PLATFORMTHEME=qt5ct"
+  'Shell "export QT_PLATFORMTHEME=qt5ct"
+  'Shell "export QT_PLATFORM_PLUGIN=qt5ct"
+  
+  If Not Exist(Desktop.ConfigDir &/ "Innova/Innova_Config.conf") Then
+    M_Init_.Init_Value
+  Endif
+  Init_01
+  
+End
+
+Public Sub Init_01()
+  
+  M_Theme.IconTheme
+  Init_02
+  Wait 0.2
+  
+End
+
+Public Sub Init_02()
+  
+  M_Theme.Show_Theme
+  Init_03
+  Wait 0.2
+  
+End
+
+Public Sub Init_03()
+  
+  Application.Env["APPMENU_DISPLAY_BOTH"] = "1"
+  f_settings.Show
+  
+End

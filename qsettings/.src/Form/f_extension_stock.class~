@@ -1,0 +1,43 @@
+' Gambas class file
+
+Public Sub Form_Open()
+  
+  Me.Center
+  Me.Resizable = True
+  Me.Arrangement = Arrange.Fill
+  ' IconView.Background = Color.RGB(122, 122, 123)
+  DisplayIcons() 
+  
+End
+
+Private Sub DisplayIcons() 
+  
+  Dim sIconKey, sIconName As String
+  
+  IconView.Clear()  
+  Stock.Refresh ' Notwendig!
+  
+  For Each sIconKey In Stock.Icons
+    sIconName = "icon:/48/" & sIconKey
+    IconView.Add(sIconKey, sIconKey, Picture[sIconName])
+  Next
+  
+End ' DisplayIcons() 
+
+Public Sub IconView_DblClick()
+  
+  f_extension_new.lswicon.Clear
+  f_extension_new.lswicon.Add(IconView.Current.Key, IconView.Current.Text, IconView.Current.Picture.Image.Stretch(22, 22).Picture)
+  f_extension_new.lswicon[IconView.Current.Key].Selected
+  'f_extension_new.lswicon.Selection
+  Me.Close
+  
+End
+
+Public Sub Form_KeyRelease()
+  
+  If Key.Code = Key.Esc Then
+    Me.Close
+  Endif
+  
+End
