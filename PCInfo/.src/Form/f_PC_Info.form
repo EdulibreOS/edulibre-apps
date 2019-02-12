@@ -536,8 +536,65 @@
           Transparent = True
         }
       }
-      { hzoPartition25 HBox
+      { hzoPartition26 HBox
         MoveScaled(1,24,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { TextLabelArch7 Label
+          MoveScaled(5,0,22,4)
+          Font = Font["Bold"]
+          AutoResize = True
+          Text = ("Computer Brand")
+          Alignment = Align.Left
+          Transparent = True
+        }
+        { Panel2 Panel
+          MoveScaled(29,0,3,4)
+          Mouse = Mouse.Pointing
+          Expand = True
+          Arrangement = Arrange.Vertical
+        }
+        { TextLabelTitleKernel4 Label
+          MoveScaled(36,0,22,4)
+          Font = Font["Bold"]
+          AutoResize = True
+          Text = ("Computer Model")
+          Alignment = Align.Left
+          Transparent = True
+        }
+      }
+      { hzoPartition27 HBox
+        MoveScaled(1,28,72,4)
+        Spacing = True
+        Padding = 3
+        Indent = True
+        { Panel4 Panel
+          MoveScaled(0,0,3.4286,4)
+          Mouse = Mouse.Pointing
+          Arrangement = Arrange.Horizontal
+        }
+        { TextLabelBrand Label
+          MoveScaled(4,0,22,4)
+          AutoResize = True
+          Alignment = Align.Left
+          Transparent = True
+        }
+        { Panel29 Panel
+          MoveScaled(29,0,3,4)
+          Mouse = Mouse.Pointing
+          Expand = True
+          Arrangement = Arrange.Vertical
+        }
+        { TextLabelModel Label
+          MoveScaled(36,0,22,4)
+          AutoResize = True
+          Alignment = Align.Left
+          Transparent = True
+        }
+      }
+      { hzoPartition25 HBox
+        MoveScaled(1,32,72,4)
         Spacing = True
         Padding = 3
         Indent = True
@@ -557,7 +614,7 @@
         }
       }
       { hzoPartition20 HBox
-        MoveScaled(1,28,72,4)
+        MoveScaled(1,36,72,4)
         Spacing = True
         Padding = 3
         Indent = True
@@ -592,7 +649,7 @@
         }
       }
       { hzoPartition21 HBox
-        MoveScaled(1,32,72,4)
+        MoveScaled(1,40,72,4)
         Spacing = True
         Padding = 3
         Indent = True
@@ -621,7 +678,7 @@
         }
       }
       { hzoPartition22 HBox
-        MoveScaled(1,36,72,4)
+        MoveScaled(1,44,72,4)
         Spacing = True
         Padding = 3
         Indent = True
@@ -652,7 +709,7 @@
         }
       }
       { hzoPartition23 HBox
-        MoveScaled(1,40,72,4)
+        MoveScaled(1,48,72,4)
         Spacing = True
         Padding = 3
         Indent = True
@@ -681,7 +738,7 @@
         }
       }
       { hzoPartition24 HBox
-        MoveScaled(1,44,72,8)
+        MoveScaled(1,52,72,8)
         Spacing = True
         Padding = 3
         Indent = True
@@ -711,39 +768,6 @@
         }
         { TextLabelHarddrive Label
           MoveScaled(52,1,22,4)
-          Visible = False
-          AutoResize = True
-          Alignment = Align.Left
-          Transparent = True
-        }
-      }
-      { hzoPartition26 HBox
-        MoveScaled(1,52,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { TextLabelTitleDistro3 Label
-          MoveScaled(5,0,22,4)
-          Visible = False
-          Font = Font["Bold"]
-          AutoResize = True
-          Text = ("Workgroup")
-          Alignment = Align.Left
-          Transparent = True
-        }
-      }
-      { hzoPartition27 HBox
-        MoveScaled(1,56,72,4)
-        Spacing = True
-        Padding = 3
-        Indent = True
-        { Panel29 Panel
-          MoveScaled(1,0,3.4286,4)
-          Mouse = Mouse.Pointing
-          Arrangement = Arrange.Horizontal
-        }
-        { TextLabelGroup Label
-          MoveScaled(10,0,22,4)
           Visible = False
           AutoResize = True
           Alignment = Align.Left
@@ -1162,23 +1186,6 @@
           MoveScaled(63,0,6.8571,6.8571)
           Picture = Picture["img/pc_info/SO.svg"]
           Stretch = True
-        }
-      }
-      { Panel2 Panel
-        MoveScaled(4,13,69,4)
-        Font = Font["+1"]
-        Arrangement = Arrange.Horizontal
-        Spacing = True
-        Margin = True
-        { URLLabel1 URLLabel
-          MoveScaled(19,0,24,4)
-          Text = ("www.edulibre.net")
-        }
-        { Panel4 Panel
-          MoveScaled(46,0,9,4)
-          Mouse = Mouse.Pointing
-          Expand = True
-          Arrangement = Arrange.Horizontal
         }
       }
       { Separator2 Separator

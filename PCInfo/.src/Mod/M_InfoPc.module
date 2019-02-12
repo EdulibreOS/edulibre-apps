@@ -25,7 +25,7 @@
 ' Part of this code belongs to Gambas3 and was adapted for Innova Project
 
 Public $List_DD As String[] = []
-Public sListDD As String
+'Public sListDD As String
 Public sListAllDiscs As String 
 Public sReal_Size As String
 Public iReal_Size As Integer
@@ -46,6 +46,8 @@ Public Sub Info_Pc()
   Dim i As Integer 'contador
   Dim c As String 'caracter
   Dim band As Integer 
+  Dim sMarca As String
+  Dim sModel As String
   
   Exec ["uname", "-r"] To sTemp
   Exec ["uname", "-o"] To sTempFam
@@ -54,6 +56,8 @@ Public Sub Info_Pc()
   Shell "cat /proc/cpuinfo | grep -i vendor_id | uniq | cut -f2 -d" & ":" To sTempVendor
   Shell "env | grep DESKTOP_SESSION= | cut -d '=' -f 2" To sTempSessio 
   Exec ["cat", "/proc/meminfo"] To sTempRam
+  Shell "cat /sys/devices/virtual/dmi/id/sys_vendor" To (sMarca)
+  Shell "cat /sys/devices/virtual/dmi/id/product_name" To (sModel)
   
   f_PC_Info.TextLabelLinux.Text = sTempFam
   f_PC_Info.mnuSO_L.Text = ("Operating System: ") & sTempFam
@@ -65,6 +69,8 @@ Public Sub Info_Pc()
   f_PC_Info.TextLabelProcesador.Text = Trim(sTempPro)
   f_PC_Info.TextLabelProcesador2.Text = Trim(sTempPro)
   f_PC_Info.mnuProcessor.Text = ("Processor: ") & Trim(sTempPro)
+  f_PC_Info.TextLabelBrand.Text = Trim(sMarca)
+  f_PC_Info.TextLabelModel.Text = Trim(sModel)
   
   If (InStr(sTempPro, "Intel")) Then
     f_PC_Info.picProcessor.Picture = Picture["img/processor/intel.png"]
@@ -88,7 +94,9 @@ Public Sub Info_Pc()
   Endif
   
   If sTempRam Then
-    Try sTempRam = Format(CInt(sTempRam) / 1024, "0") & " MB"
+    'Try sTempRam = Format(CInt(sTempRam) / 1024, "0") & " MB"
+    Try sTempRam = Format(CInt(sTempRam) / 1024 / 1024, "#,###.00 GB")
+    
     If Not Error Then f_PC_Info.TextLabelRam.Text = (sTempRam)
     
     f_PC_Info.TextLabelRam2.Text = "Total : " & (sTempRam)
@@ -282,6 +290,7 @@ Public Sub MemoryFree()
   
   sresult = Val(total) - Val(used)  'usedonthistime & " MB"
   f_PC_Info.TextLabelRam3.Text = ("Free : ") & sresult & " MB" 'usedonthistime & " MB"
+  
   f_PC_Info.mnuFree.Text = ("Free:") & sresult & " MB"
   
   If sresult <> 0 Then
@@ -325,6 +334,7 @@ Public Sub Dat_DD()
   Dim sType As String
   Dim sVendor As String
   Dim sModel As String
+  Dim sListDD As String
   
   For Each sListDD In $List_DD
     
