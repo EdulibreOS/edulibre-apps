@@ -25,6 +25,7 @@
 Public Sub Form_Open()
   
   lblVersion.Text = Application.Version
+  lblversion2.Text = ("Version ") & Application.Version
   
 End
 

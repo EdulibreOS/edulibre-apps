@@ -24,10 +24,9 @@
       Stretch = True
       Alignment = Align.Center
     }
-    { lblFramework Label
+    { lblVersion2 Label
       MoveScaled(13,7,41,4)
       Foreground = &H042C37&
-      Text = ("Framework Version 3.10")
     }
   }
   { picLogo3 PictureBox
@@ -66,7 +65,7 @@
     }
     { lblAuthor Label
       MoveScaled(1,38,66,4)
-      Text = ("Copyright (C) 2016-2018")
+      Text = ("Copyright © 2014-2019, Herberth Guzmán")
       Alignment = Align.Center
     }
     { lblVersion Label
