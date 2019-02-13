@@ -12,17 +12,16 @@ Count=0
 [DebugWindow/Picture]
 Geometry=[0,16,224,280]
 
-[Executable]
-Path="/home/edulibreos/qsettings.gambas"
-
 [OpenFile]
-Active=5
+Active=7
 File[1]=".src/Form/f_settings.form"
-Count=5
+Count=7
 File[2]=".src/Form/f_settings.class:26.1608"
 File[3]=".src/Module/M_Theme.module:39.139"
 File[4]=".src/Module/M_Core.module:6.1609"
 File[5]=".src/Form/f_gallery_wallpaper.class:2.66"
+File[6]=".src/Form/f_stock.form"
+File[7]=".src/Form/f_stock.class:2.27"
 
 [Watches]
 Count=0
