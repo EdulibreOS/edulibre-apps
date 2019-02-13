@@ -1,0 +1,32 @@
+# Gambas Project File 3.0
+Title=qsettings
+Startup=Cls_Start
+Icon=img/preferences.svg
+Version=0.1.46
+Component=gb.image
+Component=gb.qt5
+Component=gb.form
+Component=gb.db
+Component=gb.db.sqlite3
+Component=gb.dbus
+Component=gb.desktop
+Component=gb.desktop.x11
+Component=gb.settings
+Component=gb.net
+Component=gb.net.curl
+Environment="GB_GUI=gb.qt5"
+TabSize=2
+Translate=1
+Language=en_US
+ControlPublic=1
+Maintainer=Herberth Guzman
+Vendor=HerberthGuzman
+VendorPrefix=HG
+Address=herbethguzman@gmail.com
+License=General Public License
+PackageName=qsettings-0.1.45
+Packager=1
+Systems=ubuntu
+Menus=ubuntu:"Applications/System/Administration"
+Categories=ubuntu:"System"
+Groups=ubuntu:"admin"

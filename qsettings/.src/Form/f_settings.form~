@@ -12,7 +12,6 @@
     Action = "Main"
     { mnuAbout Menu
       Text = ("About")
-      Picture = Picture["icon:/16/info"]
     }
   }
   { pnlTitle Panel
@@ -400,17 +399,13 @@
           }
           { btoSelWall ButtonBox
             MoveScaled(21,0,35,4)
-            Enabled = False
             Mouse = Mouse.Pointing
             ToolTip = ("Change Wallpaper")
             Expand = True
-            ReadOnly = True
-            Button = False
+            ClearButton = True
           }
           { tbtWallGal ToolButton
             MoveScaled(57,0,4.5714,4)
-            Visible = False
-            Enabled = False
             Mouse = Mouse.Pointing
             ToolTip = ("Wallpapers Gallery")
             Picture = Picture["icon:/medium/image"]
@@ -556,9 +551,9 @@
           MoveScaled(9,5,53,25)
           Mouse = Mouse.Pointing
           Expand = True
-          Border = Border.Plain
           Stretch = True
           Alignment = Align.Center
+          Border = Border.Plain
         }
         { Panel5 Panel
           MoveScaled(62,11,9,4)
@@ -914,7 +909,7 @@
         Text = ("Look")
       }
       { pnlStylePanel Panel
-        MoveScaled(2,27,76,9)
+        MoveScaled(2,27,76,7)
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
@@ -1042,14 +1037,12 @@
         }
       }
       { Label30 Label
-        MoveScaled(3,37,63,3)
-        Visible = False
+        MoveScaled(3,58,63,3)
         Font = Font["Bold"]
         Text = ("Style")
       }
       { pnlStyle Panel
-        MoveScaled(2,42,77,19)
-        Visible = False
+        MoveScaled(2,63,77,19)
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
@@ -1083,9 +1076,9 @@
           { imgPreviewPanel PictureBox
             MoveScaled(0,0,45,3)
             Expand = True
-            Border = Border.Raised
             Stretch = True
             Alignment = Align.Center
+            Border = Border.Raised
           }
         }
         { hzoIOpacity1 HBox
@@ -1171,256 +1164,8 @@
     }
     Index = 0
   }
-  { ipnStyle IconPanel
-    MoveScaled(130,56,115,110)
-    Visible = False
-    Expand = True
-    Arrangement = Arrange.Fill
-    AutoResize = True
-    Margin = True
-    Padding = 3
-    Count = 4
-    Border = True
-    Index = 0
-    Text = ("Style Innova")
-    Picture = Picture["img/Style/style.svg"]
-    { Panel35 Panel
-      MoveScaled(2,4,60,43)
-      Visible = False
-      Expand = True
-      Arrangement = Arrange.Vertical
-      Spacing = True
-      Margin = True
-      Padding = 5
-      { lbltitletheme Label
-        MoveScaled(0,0,45,4)
-        Font = Font["+3"]
-        Background = &HFFFFFF&
-        Text = ("Theme")
-        Alignment = Align.Center
-        Border = Border.Plain
-      }
-      { sclStyle ScrollView
-        MoveScaled(6,5,41,24)
-        Expand = True
-        Arrangement = Arrange.Row
-        Spacing = True
-        Margin = True
-        Padding = 5
-        Border = False
-      }
-      { HBox15 HBox
-        MoveScaled(-6,40,66,4)
-        Visible = False
-        Spacing = True
-        Indent = True
-        { Panel36 Panel
-          MoveScaled(1,0,29,4)
-          Expand = True
-          Arrangement = Arrange.Vertical
-        }
-        { BtnClose ToolButton
-          MoveScaled(50,0,16,4)
-          Mouse = Mouse.Pointing
-          Text = Shortcut(("Close"), "C")
-          Picture = Picture["icon:/small/cancel"]
-          Border = True
-        }
-      }
-    }
-    { Label43 Label
-      MoveScaled(0,0,24,4)
-      Expand = True
-      Text = ("Option not available")
-    }
-    Index = 1
-    Text = ("Style Apps")
-    Picture = Picture["img/Style/style-gtk.svg"]
-    { Panel37 Panel
-      MoveScaled(7,2,60,43)
-      Expand = True
-      Arrangement = Arrange.Vertical
-      Spacing = True
-      Margin = True
-      Padding = 5
-      { lbltitlethemeapp Label
-        MoveScaled(0,0,45,4)
-        Font = Font["+3"]
-        Background = &HFFFFFF&
-        Text = ("Theme")
-        Alignment = Align.Center
-        Border = Border.Plain
-      }
-      { ListViewTheme ListView
-        MoveScaled(1,7,57,37)
-        Mouse = Mouse.Pointing
-        Expand = True
-      }
-      { HBox16 HBox
-        MoveScaled(-6,40,66,4)
-        Visible = False
-        Spacing = True
-        Indent = True
-        { Panel38 Panel
-          MoveScaled(1,0,29,4)
-          Expand = True
-          Arrangement = Arrange.Vertical
-        }
-        { BtnClose2 ToolButton
-          MoveScaled(50,0,16,4)
-          Mouse = Mouse.Pointing
-          Text = Shortcut(("Close"), "C")
-          Picture = Picture["icon:/small/cancel"]
-          Border = True
-        }
-      }
-    }
-    Index = 2
-    Text = ("Style Icons")
-    Picture = Picture["img/Style/style-icons.svg"]
-    { Panel39 Panel
-      MoveScaled(1,2,60,43)
-      Expand = True
-      Arrangement = Arrange.Vertical
-      Spacing = True
-      Margin = True
-      Padding = 5
-      { lbltitlethemeicon Label
-        MoveScaled(0,0,45,4)
-        Font = Font["+3"]
-        Background = &HFFFFFF&
-        Text = ("Theme")
-        Alignment = Align.Center
-        Border = Border.Plain
-      }
-      { ListViewIcons ListView
-        MoveScaled(2,6,57,23)
-        Mouse = Mouse.Pointing
-        Expand = True
-      }
-      { HBoxPreviewIcons HBox
-        MoveScaled(7,33,29,6)
-        Spacing = True
-        { PicFolder PictureBox
-          MoveScaled(1,0,6,6)
-          Picture = Picture["icon:/48/directory"]
-          Stretch = True
-          Alignment = Align.Center
-        }
-        { PicDesktop PictureBox
-          MoveScaled(8,0,6,6)
-          Picture = Picture["icon:/48/desktop"]
-          Stretch = True
-          Alignment = Align.Center
-        }
-        { PicTrash PictureBox
-          MoveScaled(15,0,6,6)
-          Picture = Picture["icon:/48/trash"]
-          Stretch = True
-          Alignment = Align.Center
-        }
-        { PicPc PictureBox
-          MoveScaled(22,0,6,6)
-          Picture = Picture["icon:/48/system"]
-          Stretch = True
-          Alignment = Align.Center
-        }
-      }
-      { HBox17 HBox
-        MoveScaled(-6,40,66,4)
-        Visible = False
-        Spacing = True
-        Indent = True
-        { Panel40 Panel
-          MoveScaled(1,0,29,4)
-          Expand = True
-          Arrangement = Arrange.Vertical
-        }
-        { BtnClose3 ToolButton
-          MoveScaled(50,0,16,4)
-          Mouse = Mouse.Pointing
-          Text = Shortcut(("Close"), "C")
-          Picture = Picture["icon:/small/cancel"]
-          Border = True
-        }
-      }
-    }
-    Index = 3
-    Text = ("")
-    { Panel46 Panel
-      MoveScaled(1,0,89,67)
-      Visible = False
-      Expand = True
-      Arrangement = Arrange.Vertical
-      { HBox21 HBox
-        MoveScaled(1,0,85,5)
-        Spacing = True
-        { ToolButton1 ToolButton
-          MoveScaled(0,0,5,4)
-          Picture = Picture["icon:/32/previous"]
-        }
-        { lbltitlecursor2 Label
-          MoveScaled(7,0,27,4)
-          Font = Font["+3"]
-          Background = &HFFFFFF&
-          Foreground = &H3F3F3F&
-          Expand = True
-          Alignment = Align.Center
-          Border = Border.Plain
-        }
-        { lbltitlecursor Label
-          MoveScaled(37,0,45,4)
-          Font = Font["+3"]
-          Background = &HFFFFFF&
-          Foreground = &H3F3F3F&
-          AutoResize = True
-          Text = ("Cursor")
-          Alignment = Align.Center
-          Border = Border.Plain
-        }
-      }
-      { Panel48 Panel
-        MoveScaled(2,11,89,49)
-        Expand = True
-        Arrangement = Arrange.Horizontal
-        Spacing = True
-        Margin = True
-        { LtvCursor ListView
-          MoveScaled(2,5,29,47)
-          Mouse = Mouse.Pointing
-        }
-        { FileView1 FileView
-          MoveScaled(34,4,36,49)
-          Expand = True
-          ShowDirectory = True
-        }
-        { DrawingArea1 ScrollArea
-          MoveScaled(73,2,14,53)
-          ScrollBar = Scroll.Vertical
-        }
-      }
-      { HBox19 HBox
-        MoveScaled(4,61,66,4)
-        Spacing = True
-        Indent = True
-        { Panel47 Panel
-          MoveScaled(1,0,29,4)
-          Expand = True
-          Arrangement = Arrange.Vertical
-        }
-        { tlbokcursor Button
-          MoveScaled(47,0,17,4)
-          Mouse = Mouse.Pointing
-          AutoResize = True
-          Text = Shortcut(("Ok"), "O")
-          Picture = Picture["icon:/small/apply"]
-        }
-      }
-    }
-    Index = 0
-  }
   { ipnInnova IconPanel
-    MoveScaled(170,109,115,87)
+    MoveScaled(133,65,115,87)
     Visible = False
     Expand = True
     Arrangement = Arrange.Fill
@@ -1886,7 +1631,6 @@
       }
       { hzoLauncherBack HBox
         MoveScaled(4,54,66,4)
-        Visible = False
         Spacing = True
         Indent = True
         { lbltitle10 Label
@@ -1942,9 +1686,9 @@
         { imgPreviewLaunch PictureBox
           MoveScaled(9,5,53,25)
           Expand = True
-          Border = Border.Plain
           Stretch = True
           Alignment = Align.Center
+          Border = Border.Plain
         }
         { Panel23 Panel
           MoveScaled(62,11,9,4)
@@ -1956,52 +1700,250 @@
     }
     Index = 0
   }
-  { ipnWidget IconPanel
-    MoveScaled(34,105,115,110)
+  { ipnStyle IconPanel
+    MoveScaled(40,83,115,110)
     Visible = False
     Expand = True
     Arrangement = Arrange.Fill
     AutoResize = True
     Margin = True
     Padding = 3
+    Count = 4
     Border = True
     Index = 0
-    Text = ("Widget")
-    Picture = Picture["img/Widgets/widgets.png"]
-    { HBox14 Panel
-      MoveScaled(3,9,85,38)
+    Text = ("Style Innova")
+    Picture = Picture["img/Style/style.svg"]
+    { Panel35 Panel
+      MoveScaled(2,4,60,43)
       Expand = True
       Arrangement = Arrange.Vertical
       Spacing = True
-      { GridWidget GridView
-        MoveScaled(8,6,64,25)
-        Expand = True
-        Mode = Select.Single
-        Header = GridView.Both
+      Margin = True
+      Padding = 5
+      { lbltitletheme Label
+        MoveScaled(0,0,45,4)
+        Font = Font["+3"]
+        Background = &HFFFFFF&
+        Text = ("Theme")
+        Alignment = Align.Center
+        Border = Border.Plain
       }
-      { VBox1 HBox
-        MoveScaled(1,34,82,4)
+      { sclStyle ScrollView
+        MoveScaled(6,5,41,24)
+        Expand = True
+        Arrangement = Arrange.Row
         Spacing = True
-        { tlbNewWidget Button
-          MoveScaled(0,0,17,4)
-          Mouse = Mouse.Pointing
-          AutoResize = True
-          Text = Shortcut(("New"), "N")
-          Picture = Picture["icon:/small/new"]
+        Margin = True
+        Padding = 5
+        Border = False
+      }
+      { HBox15 HBox
+        MoveScaled(-6,40,66,4)
+        Visible = False
+        Spacing = True
+        Indent = True
+        { Panel36 Panel
+          MoveScaled(1,0,29,4)
+          Expand = True
+          Arrangement = Arrange.Vertical
         }
-        { tlbDelWidget Button
-          MoveScaled(36,0,17,4)
+        { BtnClose ToolButton
+          MoveScaled(50,0,16,4)
+          Mouse = Mouse.Pointing
+          Text = Shortcut(("Close"), "C")
+          Picture = Picture["icon:/small/cancel"]
+          Border = True
+        }
+      }
+    }
+    Index = 1
+    Text = ("Style Apps")
+    Picture = Picture["img/Style/style-gtk.svg"]
+    { Panel37 Panel
+      MoveScaled(7,2,60,43)
+      Expand = True
+      Arrangement = Arrange.Vertical
+      Spacing = True
+      Margin = True
+      Padding = 5
+      { lbltitlethemeapp Label
+        MoveScaled(0,0,45,4)
+        Font = Font["+3"]
+        Background = &HFFFFFF&
+        Text = ("Theme")
+        Alignment = Align.Center
+        Border = Border.Plain
+      }
+      { ListViewTheme ListView
+        MoveScaled(1,7,57,37)
+        Mouse = Mouse.Pointing
+        Expand = True
+      }
+      { HBox16 HBox
+        MoveScaled(-6,40,66,4)
+        Visible = False
+        Spacing = True
+        Indent = True
+        { Panel38 Panel
+          MoveScaled(1,0,29,4)
+          Expand = True
+          Arrangement = Arrange.Vertical
+        }
+        { BtnClose2 ToolButton
+          MoveScaled(50,0,16,4)
+          Mouse = Mouse.Pointing
+          Text = Shortcut(("Close"), "C")
+          Picture = Picture["icon:/small/cancel"]
+          Border = True
+        }
+      }
+    }
+    Index = 2
+    Text = ("Style Icons")
+    Picture = Picture["img/Style/style-icons.svg"]
+    { Panel39 Panel
+      MoveScaled(1,2,60,43)
+      Expand = True
+      Arrangement = Arrange.Vertical
+      Spacing = True
+      Margin = True
+      Padding = 5
+      { lbltitlethemeicon Label
+        MoveScaled(0,0,45,4)
+        Font = Font["+3"]
+        Background = &HFFFFFF&
+        Text = ("Theme")
+        Alignment = Align.Center
+        Border = Border.Plain
+      }
+      { ListViewIcons ListView
+        MoveScaled(2,6,57,23)
+        Mouse = Mouse.Pointing
+        Expand = True
+      }
+      { HBoxPreviewIcons HBox
+        MoveScaled(7,33,29,6)
+        Spacing = True
+        { PicFolder PictureBox
+          MoveScaled(1,0,6,6)
+          Picture = Picture["icon:/48/directory"]
+          Stretch = True
+          Alignment = Align.Center
+        }
+        { PicDesktop PictureBox
+          MoveScaled(8,0,6,6)
+          Picture = Picture["icon:/48/desktop"]
+          Stretch = True
+          Alignment = Align.Center
+        }
+        { PicTrash PictureBox
+          MoveScaled(15,0,6,6)
+          Picture = Picture["icon:/48/trash"]
+          Stretch = True
+          Alignment = Align.Center
+        }
+        { PicPc PictureBox
+          MoveScaled(22,0,6,6)
+          Picture = Picture["icon:/48/system"]
+          Stretch = True
+          Alignment = Align.Center
+        }
+      }
+      { HBox17 HBox
+        MoveScaled(-6,40,66,4)
+        Visible = False
+        Spacing = True
+        Indent = True
+        { Panel40 Panel
+          MoveScaled(1,0,29,4)
+          Expand = True
+          Arrangement = Arrange.Vertical
+        }
+        { BtnClose3 ToolButton
+          MoveScaled(50,0,16,4)
+          Mouse = Mouse.Pointing
+          Text = Shortcut(("Close"), "C")
+          Picture = Picture["icon:/small/cancel"]
+          Border = True
+        }
+      }
+    }
+    Index = 3
+    Text = ("")
+    { Panel46 Panel
+      MoveScaled(1,0,89,67)
+      Visible = False
+      Expand = True
+      Arrangement = Arrange.Vertical
+      { HBox21 HBox
+        MoveScaled(1,0,85,5)
+        Spacing = True
+        { ToolButton1 ToolButton
+          MoveScaled(0,0,5,4)
+          Picture = Picture["icon:/32/previous"]
+        }
+        { lbltitlecursor2 Label
+          MoveScaled(7,0,27,4)
+          Font = Font["+3"]
+          Background = &HFFFFFF&
+          Foreground = &H3F3F3F&
+          Expand = True
+          Alignment = Align.Center
+          Border = Border.Plain
+        }
+        { lbltitlecursor Label
+          MoveScaled(37,0,45,4)
+          Font = Font["+3"]
+          Background = &HFFFFFF&
+          Foreground = &H3F3F3F&
+          AutoResize = True
+          Text = ("Cursor")
+          Alignment = Align.Center
+          Border = Border.Plain
+        }
+      }
+      { Panel48 Panel
+        MoveScaled(2,11,89,49)
+        Expand = True
+        Arrangement = Arrange.Horizontal
+        Spacing = True
+        Margin = True
+        { LtvCursor ListView
+          MoveScaled(2,5,29,47)
+          Mouse = Mouse.Pointing
+        }
+        { FileView1 FileView
+          MoveScaled(34,4,36,49)
+          Expand = True
+          ShowDirectory = True
+        }
+        { DrawingArea1 ScrollArea
+          MoveScaled(73,2,14,53)
+          ScrollBar = Scroll.Vertical
+        }
+      }
+      { HBox19 HBox
+        MoveScaled(4,61,66,4)
+        Spacing = True
+        Indent = True
+        { Panel47 Panel
+          MoveScaled(1,0,29,4)
+          Expand = True
+          Arrangement = Arrange.Vertical
+        }
+        { tlbokcursor Button
+          MoveScaled(47,0,17,4)
           Mouse = Mouse.Pointing
           AutoResize = True
-          Text = Shortcut(("Remove"), "R")
-          Picture = Picture["icon:/small/delete"]
+          Text = Shortcut(("Ok"), "O")
+          Picture = Picture["icon:/small/apply"]
         }
       }
     }
     Index = 0
   }
   { ipnApps IconPanel
-    MoveScaled(111,116,115,110)
+    MoveScaled(141,100,115,110)
     Visible = False
     Expand = True
     Arrangement = Arrange.Fill
@@ -2176,6 +2118,50 @@
     }
     Index = 0
   }
+  { ipnWidget IconPanel
+    MoveScaled(34,105,115,110)
+    Visible = False
+    Expand = True
+    Arrangement = Arrange.Fill
+    AutoResize = True
+    Margin = True
+    Padding = 3
+    Border = True
+    Index = 0
+    Text = ("Widget")
+    Picture = Picture["img/Widgets/widgets.png"]
+    { HBox14 Panel
+      MoveScaled(3,9,85,38)
+      Expand = True
+      Arrangement = Arrange.Vertical
+      Spacing = True
+      { GridWidget GridView
+        MoveScaled(8,6,64,25)
+        Expand = True
+        Mode = Select.Single
+        Header = GridView.Both
+      }
+      { VBox1 HBox
+        MoveScaled(1,34,82,4)
+        Spacing = True
+        { tlbNewWidget Button
+          MoveScaled(0,0,17,4)
+          Mouse = Mouse.Pointing
+          AutoResize = True
+          Text = Shortcut(("New"), "N")
+          Picture = Picture["icon:/small/new"]
+        }
+        { tlbDelWidget Button
+          MoveScaled(36,0,17,4)
+          Mouse = Mouse.Pointing
+          AutoResize = True
+          Text = Shortcut(("Remove"), "R")
+          Picture = Picture["icon:/small/delete"]
+        }
+      }
+    }
+    Index = 0
+  }
   { ipnSplash IconPanel
     MoveScaled(6,120,115,110)
     Visible = False
@@ -2225,9 +2211,9 @@
           { PicSplashPreview PictureBox
             MoveScaled(0,9,51,25)
             Expand = True
-            Border = Border.Plain
             Stretch = True
             Alignment = Align.Center
+            Border = Border.Plain
           }
           { Panel44 Panel
             MoveScaled(12,41,19,4)

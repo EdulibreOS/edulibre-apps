@@ -1,0 +1,194 @@
+' Gambas class file
+
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Private sDir As String
+Private sImage_Wall As String
+Private sImage As String
+Public hGetFileClient As New HttpClient As "hGetFileClient" Private sDownloadBuffer As String
+
+Public Sub Gallery_Default()
+  
+  Dim i As Integer
+  Dim $Files As String[]
+  Dim sDir As String
+  Dim sImage As String
+  
+  ListViewImage.Clear
+  cmbselectdir.Clear
+  
+  For Each sDir In ["/usr/share/Innova/Wallpaper", Desktop.ConfigDir &/ "Innova/Wallpaper"]
+    
+    cmbselectdir.Add(sDir)
+    
+  Next
+  
+  $Files = Dir(sDir, "*.png")
+  $Files.Insert(Dir(sDir, "*.jpg"))
+  $Files.Insert(Dir(sDir, "*.jpeg"))
+  $Files.Insert(Dir(sDir, "*.bmp"))
+  
+  For Each sImage In $Files
+    Inc i
+    ListViewImage.Add(i, sImage, Picture[sDir &/ sImage].Image.Stretch(128, 72).Picture)
+    ListViewImage.Sorted = True
+  Next
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub Gallery_Selection()
+  
+  Dim i As Integer
+  Dim $Files As String[]
+  Dim sImage As String
+  
+  ListViewImage.Clear
+  sDir = cmbselectdir.Text
+  
+  $Files = Dir(sDir, "*.png")
+  $Files.Insert(Dir(sDir, "*.jpg"))
+  $Files.Insert(Dir(sDir, "*.jpeg"))
+  $Files.Insert(Dir(sDir, "*.bmp"))
+  
+  For Each sImage In $Files
+    Inc i
+    ListViewImage.Add(i, sImage, Picture[sDir &/ sImage].Image.Stretch(128, 72).Picture)
+    ListViewImage.Sorted = True
+  Next
+  'Catch
+  '  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub ListViewImage_MouseMove()
+  
+  If Not ListViewImage.FindAt(Mouse.x, Mouse.y) Then
+    
+    ListViewImage.Tooltip = File.BaseName(ListViewImage.Item.Text)
+    
+    imgPreview.Picture = Picture[sDir &/ ListViewImage.Item.Text]
+  Endif
+  
+End
+
+Public Sub ListViewImage_Select()
+  
+  txtselectwallpaper.Text = File.BaseName(ListViewImage.Item.Text)
+  sImage_Wall = File.Name(ListViewImage.Item.Text)
+  
+End
+
+Public Sub Form_Open()
+  
+  Gallery_Default
+  M_Theme.Show_Theme
+  ListViewImage.Background = Color.Transparent
+  cmbselectdir.Background = Color.Transparent
+  txtselectwallpaper.Background = Color.Transparent
+  
+End
+
+Public Sub txtselectwallpaper_Change()
+  
+  If txtselectwallpaper.Text = Null Then
+    BtnOk.Enabled = False
+  Else
+    BtnOk.Enabled = True
+  Endif
+  
+End
+
+Public Sub BtnOk_Click()
+  
+  f_settings.Show
+  f_settings.btoSelWall.Text = sDir &/ sImage_Wall
+  Me.Close
+  
+End
+
+Public Sub BtnClose_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub ListViewImage_Click()
+  
+End
+
+Public Sub cmbselectdir_Click()
+  
+  Gallery_Selection
+  
+End
+
+Public Sub Form_KeyPress()
+  
+  If (key.Code = key.Esc) Then
+    Me.Close
+  Endif
+  
+End
+
+Public Sub BtnOk_Enter()
+  
+  BtnOk.Background = Color.Black
+  BtnOk.Foreground = Color.White
+  
+End
+
+Public Sub BtnClose_Enter()
+  
+  BtnClose.Background = Color.Black
+  BtnClose.Foreground = Color.White
+  
+End
+
+Public Sub Form_Show()
+  
+  BtnClose.Background = Color.Background
+  BtnClose.Foreground = Color.Black
+  
+  BtnOk.Background = Color.Background
+  BtnOk.Foreground = Color.Black
+  
+  cmbselectdir.Background = Color.Black
+  cmbselectdir.Foreground = Color.White
+  
+End
+
+Public Sub PicImgFondo_MouseDown()
+  
+End
+
+Public Sub ListViewImage_DblClick()
+  
+  f_settings.Show
+  f_settings.tbtWallOk.Enabled = True
+  f_settings.btoSelWall.Text = sDir &/ sImage_Wall
+  Me.Close
+  
+End

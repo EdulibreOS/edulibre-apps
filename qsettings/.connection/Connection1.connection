@@ -1,0 +1,10 @@
+[Connection]
+Type="sqlite"
+Path="/home/herberth/Proyecto Innova 2017/Project_Innova_New/QSettings"
+RememberPassword=False
+IgnoreCharset=False
+DisplayMetadata=False
+RememberTemplate=False
+Database="dbSettings"
+Requests=[""]
+
