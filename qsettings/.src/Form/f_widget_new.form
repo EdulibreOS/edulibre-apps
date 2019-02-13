@@ -1,0 +1,124 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,109,33)
+  Text = ("Add new extensions - Innova Settings")
+  Border = False
+  SkipTaskbar = True
+  Arrangement = Arrange.Vertical
+  Spacing = True
+  Margin = True
+  Padding = 3
+  { hzoPreview HBox
+    MoveScaled(10,0,83,4.5714)
+    Background = &HFFFFFF&
+    Spacing = True
+    Indent = True
+    { imgPC PictureBox
+      MoveScaled(0,0,4.5714,4.5714)
+      Picture = Picture["img/Widgets/widgets.svg"]
+      Stretch = True
+    }
+    { lblTitlePreview TextLabel
+      MoveScaled(18,0,25,3)
+      Font = Font["Bold"]
+      Foreground = Color.Black
+      Expand = True
+      AutoResize = True
+      Text = ("Add new widget")
+      Alignment = Align.Center
+    }
+  }
+  { pnlRandom Panel
+    MoveScaled(1,6,87,22)
+    Arrangement = Arrange.Vertical
+    Spacing = True
+    Margin = True
+    Border = Border.Plain
+    { HBox49 HBox
+      MoveScaled(1,1,65,4)
+      Spacing = True
+      Indent = True
+      { Label25 Label
+        MoveScaled(0,0,10,4)
+        Text = ("Name:")
+      }
+      { txtname TextBox
+        MoveScaled(33,0,24,4)
+        Expand = True
+        Border = False
+      }
+    }
+    { HBox1 HBox
+      MoveScaled(1,6,65,4)
+      Spacing = True
+      Indent = True
+      { Label1 Label
+        MoveScaled(0,0,10,4)
+        Text = ("Exec:")
+      }
+      { btoexec ButtonBox
+        MoveScaled(28,0,35,4)
+        Mouse = Mouse.Pointing
+        ToolTip = ("Change Wallpaper")
+        Expand = True
+        Border = False
+        ClearButton = True
+      }
+    }
+    { HBox2 HBox
+      MoveScaled(1,11,83,3.7143)
+      Spacing = True
+      Indent = True
+      { Label2 Label
+        MoveScaled(0,0,10,4)
+        Text = ("Icon:")
+      }
+      { lswicon ListView
+        MoveScaled(0,0,16,4)
+        Expand = True
+        Editable = True
+        Border = False
+        ScrollBar = Scroll.None
+      }
+      { btnIcons Button
+        MoveScaled(17,0,4,4)
+        Mouse = Mouse.Pointing
+        ToolTip = ("Search icon")
+        AutoResize = True
+        Picture = Picture["icon:/small/image"]
+      }
+      { Label3 Label
+        MoveScaled(36,0,10,4)
+        Text = ("Status:")
+      }
+      { cmbstatus ComboBox
+        MoveScaled(45,0,20,4)
+        Mouse = Mouse.Pointing
+        ToolTip = ("Change Wallpaper")
+        Expand = True
+        ReadOnly = True
+        List = [("False"), ("True")]
+        Border = False
+      }
+    }
+    { VBox3 HBox
+      MoveScaled(1,16,82,4)
+      Spacing = True
+      { btnNew Button
+        MoveScaled(0,0,17,4)
+        Mouse = Mouse.Pointing
+        AutoResize = True
+        Text = Shortcut(("New"), "N")
+        Picture = Picture["icon:/small/new"]
+      }
+      { btnClose Button
+        MoveScaled(36,0,17,4)
+        Mouse = Mouse.Pointing
+        AutoResize = True
+        Text = Shortcut(("Close"), "C")
+        Picture = Picture["icon:/small/close"]
+      }
+    }
+  }
+}

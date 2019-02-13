@@ -1,0 +1,1877 @@
+' Gambas class file
+
+' Gambas class file
+
+' Innova Project 
+' Copyright (C) Herberth Guzmán
+' herberthguzman@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Private $hTimerChange As Timer
+Private bChange As Boolean = True
+Private bChangeHTTP As Boolean '= True
+Public hGetFileClient As New HttpClient As "hGetFileClient" Public sDownloadBuffer As String
+Public Settings_Core_Innova As New Settings(Desktop.ConfigDir &/ "Innova/Innova_Config.conf")
+Private cx As New Connection
+Private rs As Result
+Public $picStatus As String[] = ["img/cancel.svg", "img/ok.svg"]
+Public id_update As String
+Public id_act As String
+Private $hWatcher As DesktopWatcher
+
+Private $hCursor As CCursor
+Private sPath As String
+
+Public Sub sListShow()
+  
+  ''DESKTOP
+  M_Core.Show_Desktop_IconAll
+  M_Core.Show_Desktop_PC
+  M_Core.Show_Desktop_Trash
+  M_Core.Show_Desktop_Home
+  M_Core.Show_Desktop_Partitions
+  M_Core.Show_Desktop_Network
+  M_Core.Show_Color_Solid
+  M_Core.Show_PopupInfo
+  
+  M_Core.Show_Preview_Wallpaper
+  M_Core.Show_Time_Wallpaper_Rnd
+  M_Core.Show_Rand_Wallpaper 
+  
+  M_Core.Show_Desktop_Color_Solid 
+  
+  M_Core.Show_IconSize_Desktop
+  M_Core.Show_IconLine_Desktop
+  M_Core.Show_Order_Desktop
+  M_Core.Show_Order_Ascending_Desktop
+  M_Core.Show_Help_Popup_Desktop
+  M_Core.Show_sFont_Desktop
+  M_Core.Show_Color_Font_Desktop
+  
+  ''INNOVA
+  M_Core.Show_Transparent_Innova
+  M_Core.Show_Audio_Start_Innova
+  M_Core.Show_Icon_Start_Launcher
+  M_Core.Show_No_Desktop
+  M_Core.Show_IconSize_Innova
+  M_Core.LIST_LANG_CHOICES
+  M_Core.LIST_LANG_EN
+  M_Core.Show_sLangeSys
+  M_Core.Show_Organize_Desktop
+  
+  ''LAUNCHER
+  
+  M_Core.Show_Style_Launcher
+  M_Core.Show_Cat_Hide_Launcher
+  M_Core.Show_IconSize_Launcher
+  M_Core.Show_Cat_Mouse_Move_Launcher
+  M_Core.Show_Opacity_Launcher  
+  M_Core.Show_Transparent_Launcher
+  M_Core.Show_Preview_Background_Launcher
+  M_Core.Show_Text_Launcher
+  
+  ''PANEL
+  M_Core.Show_Size_Panel
+  M_Core.Show_Icon_Size_Panel
+  M_Core.Show_Large_Size_Panel
+  M_Core.Show_Position_Panel
+  M_Core.Show_OnlyIcon_Taskbar_Panel
+  M_Core.Show_Transparent_Panel
+  M_Core.Show_Dock_Panel
+  M_Core.Show_AutoHide_Panel
+  M_Core.Show_PopupHelp_Panel
+  M_Core.Show_Opacity_Panel
+  M_Core.Show_Img_Panel
+  M_Core.Show_Color_Panel
+  M_Core.Show_Font_Color_Panel
+  M_Core.Show_Mouse_Move_Panel
+  M_Core.Show_Default_Panel
+  M_Core.Show_Title_Theme_Innova
+  M_Core.Show_Title_Theme_GTK
+  M_Core.Show_Title_Theme_Icons
+  M_Core.Show_Title_Theme_Cursor
+  
+  M_Core.Show_Splash_Dir
+  M_Core.Show_Splash_Innova
+  M_Core.Show_Splash_Full
+  
+  Windows_Manager
+  File_Manager
+  M_Core.Show_Apps
+  
+End
+
+Public Sub _new()
+  
+  If $hTimerChange Then Return
+  $hTimerChange = New Timer As "TimerChange"
+  $hTimerChange.Delay = 500
+  Desktop.Count = 4
+  
+  Head_GridVirtualDesk
+  Head_GridExt
+  Head_GridWidget
+  Extensions_rs_DB
+  Widget_rs_DB
+  M_Theme.Show_Theme
+  
+  $hWatcher = New DesktopWatcher(True) As "MyDTWatcher"
+  
+End
+
+Public Sub MyDTWatcher_ActiveWindow()
+  
+  $hTimerChange = New Timer As "TimerChange"
+  $hTimerChange.Delay = 100
+  $hTimerChange.Start
+  
+End
+
+Public Sub MyDTWatcher_Windows()
+  
+  M_Core.Show_Preview_Wallpaper_RND
+  
+End
+
+Public Sub Form_Open()
+  '
+  
+  Dim Value As Integer
+  Dim iResult_Rnd_True As Integer
+  
+  Me.Width = Desktop.Width / 1.2 
+  Me.Height = Desktop.Height / 1.2 ' - 50
+  
+  sListShow
+  sPath = "/usr/share/icons/"
+  
+  Me.Center
+  
+  Try iResult_Rnd_True = Settings_Core_Innova["Desktop/Wallpaper_Desktop_Random"]
+  If iResult_Rnd_True = 1 Then
+    $hTimerChange.Start
+  Endif
+  
+  Panel35.Background = Color.Transparent
+  
+  FileView1.dir = sPath
+  List_Theme_Icons
+  
+  lbltitlecursor.Text = FileView1.Dir
+  
+End
+
+Public Sub ipnWallpaper_Click()
+  
+  lblTitleMenu.Text = ipnWallpaper.Text
+  imgIconCat.Picture = ipnWallpaper.Picture
+  ipnWallpaper.Refresh()
+  
+End
+
+Public Sub TimerChange_Timer()
+  
+  If Not $hTimerChange Then Return
+  $hTimerChange = Null
+  MyDTWatcher_Windows
+  MyDTWatcher_ActiveWindow
+  
+End
+
+Public Sub swbPC_Click()
+  
+  If swbPC.Value = True Then
+    M_Core.Update_Desktop_PC
+    
+  Else
+    M_Core.Update_Desktop_PC
+    
+  Endif
+  
+End
+
+Public Sub swbTrash_Click()
+  
+  If swbTrash.Value = True Then
+    M_Core.Update_Desktop_Trash
+    
+  Else
+    M_Core.Update_Desktop_Trash
+    
+  Endif
+  
+End
+
+Public Sub swbHome_Click()
+  
+  If swbHome.Value = True Then
+    M_Core.Update_Desktop_Home
+    
+  Else
+    M_Core.Update_Desktop_Home
+    
+  Endif
+  
+End
+
+Public Sub swbPartitions_Click()
+  
+  If swbPartitions.Value = True Then
+    M_Core.Update_Desktop_Partitions
+    
+  Else
+    M_Core.Update_Desktop_Partitions
+    
+  Endif
+  
+End
+
+Public Sub swbNetwork_Click()
+  
+  If swbNetwork.Value = True Then
+    M_Core.Update_Desktop_Network
+    
+  Else
+    M_Core.Update_Desktop_Network
+    
+  Endif
+  
+End
+
+Public Sub tbtWallGal_Click()
+  
+  f_gallery_wallpaper.ShowModal
+  
+End
+
+Public Sub hGetFileClient_Error()
+  
+  hGetFileClient.Stop()
+  bChangeHTTP = True 
+  
+End
+
+Public Sub btnDownload_Click()
+  
+  If bChangeHTTP = True Then
+    Message.Title = ("Innova Desktop")
+    Message(("Error of Connection... ") & hGetFileClient.Status)
+  Else
+    Inc Application.Busy
+    f_download.ShowModal
+  Endif
+  
+End
+
+Public Sub btoSelWall_Change()
+  
+  Dim s As String = btoSelWall.Text
+  
+  If bChange = True Then 
+    bChange = False
+    
+  Endif
+  
+  If IsNull(lblSpathWallRnd.Text) Then
+    Try f_settings.imgPreview.Picture = Picture[btoSelWall.Text]   
+    
+  Else
+    M_Core.Show_Preview_Wallpaper
+    imgPreview.Refresh
+    
+  Endif
+  
+  tbtWallOk.Enabled = True
+  
+End
+
+Public Sub btoSelWall_Clear()
+  
+  imgPreview.Picture = Null
+  
+End
+
+Public Sub btoSelWall_Click()
+  
+  Dialog.Title = ("Image Archive")
+  ' Dialog.Filter = ["*.png", ("Image PNG"), "*.jpg", ("Image JPG"), "*.jpeg", ("Image JPEG"), "*.svg", ("Image SVG"), "*.bmp", ("Image BMP of Windows")] 
+  Dialog.Filter = ["*.png;*.jpg;*.jpeg;*.bmp", ("Picture files"), "*.svg;*.wmf", ("Drawing files")]
+  
+  If Not Dialog.OpenFile() Then
+    
+    Try btoSelWall.Text = Dialog.Path
+    Try imgPreview.Picture = Picture.Load(Dialog.Path)
+    
+    If Error Then 
+      Message.Title = ("Innova Desktop")
+      Message.Error("Unable to open the file : " & Dialog.Path)
+      Return
+    Endif
+    
+  Endif
+  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub tbtWallOk_Click()
+  
+  M_Core.Change_Wallpaper_Settings
+  
+  tbtWallOk.Enabled = False
+  
+  If IsNull(btoSelWall.Text) Then
+    M_Theme.Show_Theme
+    
+  Endif
+  Balloon(("The theme has been changed successfully."), tbtWallOk, Picture["icon:/small/desktop"])
+  
+End
+
+Public Sub swbColorS_Click()
+  
+  If swbColorS.Value = True Then
+    M_Core.Update_Color_Solid
+    M_Theme.Show_Theme
+    
+    imgPreview.Picture = Picture[Null]
+    imgPreview.Background = (txlColor.Background)
+  Else
+    M_Core.Update_Color_Solid
+    
+    btoSelWall_Change
+  Endif
+  
+End
+
+Public Sub cobWallpaper_Change()
+  
+  txlColor.Background = cobWallpaper.Color
+  txlColor.Text = cobWallpaper.Color 
+  M_Core.Update_Color_Solid_Wallpaper
+  
+  imgPreview.Refresh
+  imgPreview.Background = (txlColor.Background)
+  '
+  
+End
+
+Public Sub swbRndWall_Click()
+  
+  M_Core.Change_Random_Wallpaper
+  M_Core.Show_Rand_Wallpaper
+  
+  M_Core.Change_Time_Wallpaper_Rnd 
+  imgPreview.Refresh
+  
+  If swbRndWall.Value = True Then
+    '  txtselectdir_Click
+    tbtSelDir.Text = Desktop.ConfigDir &/ "Innova/Wallpaper"
+    M_Core.Change_Wallpaper_Random_Dir
+    M_Core.Randomize_Wallpaper
+  Else
+    f_settings.imgPreview.Picture = Picture[btoSelWall.Text]   
+  Endif
+  
+End
+
+Public Sub tbtSelDir_Click()
+  
+  Dim i As String
+  
+  Dialog.Title = ("Please select a directory to record to...")
+  Dialog.Path = Desktop.ConfigDir &/ "Innova/Wallpaper" 'User.Home
+  
+  If Dialog.SelectDirectory() Then Return
+  tbtSelDir.Text = Dialog.Path
+  M_Core.Change_Wallpaper_Random_Dir
+  M_Core.Randomize_Wallpaper
+  
+End
+
+Public Sub txtselectfondo_Clear()
+  
+  imgPreview.Picture = Null
+  
+End
+
+Public Sub PushButton9_Click()
+  
+  Dim w As DesktopWindow
+  Dim hVirtual As _DesktopVirtual
+  Dim i As Integer
+  
+  For Each w In _Desktop_Windows
+    'Print w.Name
+    Print w.Name
+  Next
+  hVirtual = New _DesktopVirtual(i)
+  hVirtual.Name = "sd"
+  
+End
+
+Public Sub sirTime_Change()
+  
+  M_Core.Change_Time_Wallpaper_Rnd
+  
+End
+
+Public Sub cmbSize_Click()
+  
+  M_Core.Update_IconSize_Desktop
+  
+End
+
+Public Sub cmbSize_Change()
+  
+  M_Core.Update_IconSize_Desktop
+  
+End
+
+Public Sub sirIconLine_Change()
+  
+  M_Core.Update_IconLine_Desktop
+  
+End
+
+Public Sub FontBoxDesktop_Change()
+  
+  M_Core.Update_sFont_Desktop
+  
+End
+
+Public Sub cobColorFont_Change()
+  
+  M_Core.Update_Color_Font_Desktop
+  
+End
+
+Public Sub Form_Show()
+  
+  M_Core.Show_Preview_Wallpaper_RND
+  lblangsel.Foreground = Color.Black
+  lblangselcountry.Foreground = Color.Black
+  sclStyle.Foreground = Color.Black
+   sclStyle.Background = Color.white
+  
+End
+
+Public Sub btpDesktop_Click()
+  
+  imgIconCat.Picture = btpDesktop.Picture
+  lblTitleMenu.Text = btpDesktop.Text
+  ipnWallpaper.Visible = True
+  ipnInnova.Visible = False
+  ipnPanel.Visible = False
+  ipnWidget.Visible = False
+  ipnStyle.Visible = False
+  ipnApps.Visible = False
+  ipnSplash.Visible = False
+  
+End
+
+Public Sub btpInnova_Click()
+  
+  imgIconCat.Picture = btpInnova.Picture
+  lblTitleMenu.Text = btpInnova.Text  
+  
+  ipnInnova.Visible = True
+  ipnWallpaper.Visible = False
+  ipnPanel.Visible = False
+  ipnWidget.Visible = False
+  ipnStyle.Visible = False
+  ipnApps.Visible = False
+  ipnSplash.Visible = False
+  
+End
+
+Public Sub ipnInnova_Click()
+  
+  lblTitleMenu.Text = ipnInnova.Text
+  imgIconCat.Picture = ipnInnova.Picture
+  ipnInnova.Refresh()
+  
+End
+
+Public Sub swbTrans_Click()
+  
+  If swbTrans.Value = True Then
+    M_Core.Update_Transparent_Innova
+    
+  Else
+    M_Core.Update_Transparent_Innova
+    
+  Endif
+  
+End
+
+Public Sub tbtSoundOk_Click()
+  
+  M_Core.Update_Audio_Start_Innova
+  
+End
+
+Public Sub btoSound_Click()
+  
+  Dialog.Title = ("Image Archive")
+  Dialog.Filter = ["*.ogg", ("Media format")] 
+  Dialog.Path = Desktop.ConfigDir &/ "Innova/Sound" 'Application.Path 
+  If Dialog.OpenFile() Then
+    Return 
+  Endif
+  
+  btoSound.Text = Dialog.Path
+  
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub tbtLogoStart_Click()
+  
+  Dialog.Title = ("Image Archive")
+  Dialog.Filter = ["*.png", ("Image PNG"), "*.jpg", ("Image JPG"), "*.jpeg", ("Image JPEG"), "*.svg", ("Image SVG"), "*.bmp", ("Image BMP of Windows")] 
+  Dialog.Path = User.Home 'Application.Path 
+  If Dialog.OpenFile() Then
+    Return 
+  Endif
+  
+  tbtLogoStart.Picture = Picture.Load(Dialog.Path).Image.Stretch(32, 32).Picture
+  chkIconAppDef.Value = False
+  M_Core.sPicture = Dialog.Path
+  M_Core.Update_Icon_Start_Launcher
+  
+End
+
+Public Sub chkIconAppDef_Click()
+  
+  M_Core.Update_Icon_Start_Launcher
+  
+End
+
+Public Sub sirDeskNo_Change()
+  
+  M_Core.Update_No_Desktop
+  
+End
+
+Public Sub cmbSizeDesktop_Click()
+  
+  M_Core.Update_IconSize_Innova
+  
+End
+
+Public Sub lblangsel_Select()
+  
+  lblangselcountry.Clear
+  If lblangsel.Current.Key = "es_ES" Then
+    M_Core.LIST_LANG_ES
+  Endif
+  
+  If lblangsel.Current.Key = "en_US" Then
+    M_Core.LIST_LANG_EN
+  Endif
+  
+  If lblangsel.Current.Key = "fr_FR" Then
+    M_Core.LIST_LANG_FR
+  Endif
+  
+End
+
+Public Sub lblangselcountry_Select()
+  
+  M_Var_Global.sLang_Select = lblangselcountry.Current.Text
+  
+End
+
+Public Sub optMini_Click()
+  
+  M_Core.Update_Style_Launcher
+  
+End
+
+Public Sub optTablet_Click()
+  
+  M_Core.Update_Style_Launcher
+  
+End
+
+Public Sub cmbSizeLauncher_Click()
+  
+  M_Core.Update_IconSize_Launcher
+  
+End
+
+Public Sub swbCatMouseMove_Click()
+  
+  M_Core.Update_Cat_Mouse_Move_Launcher
+  
+End
+
+Public Sub sldOpacity_Change()
+  
+  ' lblopacity.Text = sldOpacity.Value
+  M_Core.Update_Opacity_Launcher
+  
+End
+
+Public Sub btoLauncherBack_Click()
+  
+  Dialog.Title = ("Image Archive")
+  Dialog.Filter = ["*.png", ("Image PNG"), "*.jpg", ("Image JPG"), "*.jpeg", ("Image JPEG"), "*.svg", ("Image SVG"), "*.bmp", ("Image BMP of Windows")] 
+  
+  If Not Dialog.OpenFile() Then
+    
+    Try btoLauncherBack.Text = Dialog.Path
+    Try imgPreviewLaunch.Picture = Picture.Load(Dialog.Path)
+    
+    If Error Then 
+      'if can't open the file then show an error message and quit sub
+      Message.Title = ("Innova Desktop")
+      Message.Error("Unable to open the file : " & Dialog.Path)
+      Return
+    Endif
+    
+  Endif
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub btoLauncherBack_Change()
+  
+  M_Core.Change_Background_Launcher
+  
+End
+
+Public Sub btoLauncherBack_Clear()
+  
+  imgPreviewLaunch.Picture = Null
+  
+End
+
+Public Sub swbIconAll_Click()
+  
+  M_Core.Update_Desktop_IconAll
+  
+End
+
+Public Sub cmbOrganize_Click()
+  
+  M_Core.Update_Organize_Desktop
+  
+End
+
+Public Sub cmbOrder_Click()
+  
+  M_Core.Update_Order_Desktop
+  
+End
+
+Public Sub chkIconAsc_Click()
+  
+  M_Core.Update_Order_Ascending_Desktop
+  
+End
+
+Public Sub chkIconPopup_Click()
+  
+  M_Core.Update_Help_Popup_Desktop
+  
+End
+
+Public Sub GridVirtualDesk_Data(Row As Integer, Column As Integer)
+  
+  Dim sName As String
+  Dim i As Integer
+  Dim hVirtual As _DesktopVirtual
+  
+  For i = 0 To Desktop.Count - 1
+    
+    ' sName = X11.GetWindowProperty(X11.RootWindow, Atom["_NET_DESKTOP_NAMES"])[i]
+    sName = X11.GetWindowProperty(X11.RootWindow, Atom["_NET_DESKTOP_NAMES"])[i]
+    hVirtual = New _DesktopVirtual(i)
+    'Grid[i, 0].Text = hVirtual.Name
+    GridVirtualDesk[i, 0].Text = sName
+  Next
+Catch
+  
+End
+
+Public Sub GridVirtualDesk_Save(Row As Integer, Column As Integer, Value As String)
+  
+  Dim sName As String
+  Dim i As Integer
+  Dim hVirtual As _DesktopVirtual
+  Dim aName As String[]
+  ' If Column = 0 Then 
+  GridVirtualDesk[row, column].Text = Value
+  
+  For i = 0 To Desktop.Count - 1
+    
+    aName = X11.GetWindowProperty(X11.RootWindow, Atom["_NET_DESKTOP_NAMES"])
+    aName[i] = GridVirtualDesk[row, column].Text
+    sName = aName[i] 
+    X11.SetWindowProperty(X11.RootWindow, Atom["_NET_DESKTOP_NAMES"], Atom["UTF8_STRING"], sName)
+    
+  Next
+Catch
+  
+End
+
+Public Sub GridVirtualDesk_Click()
+  
+  GridVirtualDesk.Edit
+  
+End
+
+Public Sub BtnAplicar_LAng2_Click()
+  
+End
+
+Public Sub swbCatHide_Click()
+  
+  M_Core.Update_Cat_Hide_Launcher
+  
+End
+
+Public Sub chkDefault_Click()
+  
+  If chkDefault.Value = True Then
+    BtnDefault.Enabled = True
+  Else
+    BtnDefault.Enabled = False
+  Endif 
+  
+End
+
+Public Sub BtnOk_LAng_Click()
+  
+  M_Core.Udpate_Lang_All_System
+  
+End
+
+Public Sub BtnDefault_Click()
+  
+  Dim sSend As String = Desktop.ConfigDir 
+  Dim sOrigen As String = "/usr/share/Innova/"
+  Dim sCopy As String
+  Dim i As Integer
+  
+  Message.Title = ("Innova Desktop - Restore Default")
+  If Message.Question("<span style=\"color:#" & "CC0000" & ";margin-left:1em;\">" & ("Are you sure to restore Innova defaults...?  "), ("Yes"), ("No")) = 1 Then
+    
+    Shell "rm -r " & sSend &/ "Innova"
+    Wait 0.9
+    Inc Application.Busy
+    
+    sCopy = "cp -r " & sOrigen & " " & sSend 
+    Shell sCopy Wait
+    Wait 0.9
+    Dec Application.Busy
+    
+  Endif
+  
+End
+
+Public Sub swbShowText_Click()
+  
+  M_Core.Update_Text_Launcher
+  
+End
+
+Public Sub ipnPanel_Click()
+  
+  lblTitleMenu.Text = ipnPanel.Text
+  imgIconCat.Picture = ipnPanel.Picture
+  ipnPanel.Refresh()
+  
+End
+
+Public Sub btpPanel_Click()
+  
+  imgIconCat.Picture = btpPanel.Picture
+  lblTitleMenu.Text = btpPanel.Text
+  ipnPanel.Visible = True
+  ipnInnova.Visible = False
+  ipnWallpaper.Visible = False
+  ipnWidget.Visible = False
+  ipnStyle.Visible = False
+  ipnApps.Visible = False
+  ipnSplash.Visible = False
+  
+End
+
+Public Sub sirSizePanel_Change()
+  
+  M_Core.Update_Size_Panel
+  
+End
+
+Public Sub cmbSizePanel_Click()
+  
+  M_Core.Update_Icon_Size_Panel
+  
+End
+
+Public Sub sirSizeLarge_Change()
+  
+  M_Core.Update_Large_Size_Panel
+  
+End
+
+Public Sub optPosBot_Click()
+  
+  M_Core.Update_Position_Panel
+  
+End
+
+Public Sub optPosTop_Click()
+  
+  M_Core.Update_Position_Panel
+  
+End
+
+Public Sub swbShowIcon_Click()
+  
+  M_Core.Update_OnlyIcon_Taskbar_Panel
+  
+End
+
+Public Sub swbPanelTrans_Click()
+  
+  M_Core.Update_Transparent_Panel
+  
+End
+
+Public Sub swbPanelDock_Click()
+  
+  M_Core.Update_Dock_Panel
+  
+End
+
+Public Sub swbAutohiding_Click()
+  
+  M_Core.Update_AutoHide_Panel
+  
+End
+
+Public Sub swbShowPopupHelp_Click()
+  
+  M_Core.Update_PopupHelp_Panel
+  
+End
+
+Public Sub sldOpacityPanel_Change()
+  
+  lblopacitypanel.Text = sldOpacityPanel.Value
+  M_Core.Update_Opacity_Panel
+  
+End
+
+Public Sub chkImgPanel_Click()
+  
+  If chkImgPanel.Value = True Then
+    BtnBoxImagePanel.Enabled = True
+    cobBackground.Enabled = False
+    chkBackground.Value = False
+    ChkBoxDef.Value = False
+  Else
+    M_Core.Update_Img_Panel
+    BtnBoxImagePanel.Enabled = False
+    chkImgPanel.Value = False
+    imgPreviewPanel.Picture = Null
+    BtnBoxImagePanel.Clear
+  Endif
+  
+End
+
+Public Sub BtnBoxImagePanel_Click()
+  
+  Dialog.Title = ("Image Archive")
+  Dialog.Filter = ["*.png", ("Image PNG"), "*.jpg", ("Image JPG"), "*.jpeg", ("Image JPEG"), "*.svg", ("Image SVG"), "*.bmp", ("Image BMP of Windows")] 
+  
+  If Not Dialog.OpenFile() Then
+    
+    BtnBoxImagePanel.Text = Dialog.Path
+    imgPreviewPanel.Picture = Picture.Load(Dialog.Path)
+    
+    M_Core.Update_Img_Panel
+  Endif
+Catch
+  Debug "ERROR [ " & DConv(Error.Text) & " ]"
+  
+End
+
+Public Sub chkBackground_Click()
+  
+  If chkBackground.Value = True Then
+    cobBackground.Enabled = True
+    BtnBoxImagePanel.Enabled = False
+    chkImgPanel.Value = False
+    chkBoxDef.Value = False
+    imgPreviewPanel.Picture = Null
+  Endif
+  
+  If chkBackground.Value = False Then
+    M_Core.Update_Color_Panel
+    cobBackground.Enabled = False
+    'BtnBoxImagePanel.Enabled = False
+    chkBackground.Value = False
+    imgPreviewPanel.Background = Color.Transparent
+    
+  Endif
+  
+End
+
+Public Sub cobBackground_Change()
+  
+  M_Core.Update_Color_Panel
+  imgPreviewPanel.Background = cobBackground.Color
+  
+End
+
+Public Sub chkFontColor_Click()
+  
+  If chkFontColor.Value = True Then
+    cobForecolor.Enabled = True
+    chkBoxDef.Value = False
+  Else
+    M_Core.Update_Font_Color_Panel
+    cobForecolor.Enabled = False
+  Endif
+  
+End
+
+Public Sub cobForecolor_Change()
+  
+  M_Core.Update_Font_Color_Panel
+  
+End
+
+Public Sub swbPanelMouseMove_Click()
+  
+  M_Core.Update_Mouse_Move_Panel
+  
+End
+
+Public Sub chkBoxDef_Click()
+  
+  If chkBoxDef.Value = True Then
+    chkImgPanel.Value = False
+    chkFontColor.Value = False
+    chkBackground.Value = False
+    '   M_Core.Update_Default_Panel
+  Endif
+  
+End
+
+Public Sub Head_GridVirtualDesk()
+  
+  GridVirtualDesk.Columns.Count = 1
+  GridVirtualDesk.Rows.Height = 25
+  GridVirtualDesk.Columns.Ascending = True
+  GridVirtualDesk.columns[0].width = 100
+  GridVirtualDesk.Columns[0].Alignment = Align.BottomRight
+  GridVirtualDesk.Columns[0].Expand = True
+  '  Grid.columns[2].width = -1
+  GridVirtualDesk.Foreground = &00142B3F& 
+  GridVirtualDesk.Rows.Count = Desktop.Count   
+  
+End
+
+Public Sub Head_GridWidget()
+  
+  Dim i As Integer
+  Dim iAct As Integer
+  Dim sIcon As String
+  
+  cx = M_DB.Connect_Config()
+  rs = cx.Exec("select * from tb_widgets ORDER BY name ASC")
+  
+  GridWidget.Columns.Count = 4
+  GridWidget.Rows.Height = 24
+  GridWidget.Columns.Ascending = True
+  GridWidget.columns[0].width = 50
+  GridWidget.columns[0].Alignment = Align.Center
+  GridWidget.Columns[3].width = 50
+  GridWidget.columns[3].Alignment = Align.Center
+  GridWidget.Columns[1].Expand = True
+  GridWidget.Columns[2].Expand = True
+  GridWidget.Columns[0].Text = ("Status")
+  GridWidget.Columns[1].Text = ("Name")
+  GridWidget.Columns[2].Text = ("Exec")
+  GridWidget.Columns[3].Text = ("Icon")
+  GridWidget.Rows.Count = rs.Count 
+  GridWidget.Background = Color.Transparent
+  
+End
+
+Public Sub Widget_rs_DB()
+  
+  Dim i As Integer
+  Dim sIcon As String
+  
+  cx = M_DB.Connect_Config()
+  rs = cx.Exec("SELECT * FROM tb_widgets")
+  f_settings.GridWidget.Rows.Count = rs.Count
+  
+  For i = 0 To rs.Count - 1
+    id_act = rs!status
+    f_settings.GridWidget.columns.count = 4
+    f_settings.GridWidget[i, 1].Text = rs!name
+    f_settings.GridWidget[i, 2].Text = rs!exec
+    
+    'If Not (id_act = Null) Then
+    If IsNull(id_act) Then
+      f_settings.GridWidget[i, 0].Picture = Picture[$picStatus[0]].Image.Stretch(22, 22).Picture 
+    Else
+      f_settings.GridWidget[i, 0].Picture = Picture[$picStatus[1]].Image.Stretch(22, 22).Picture 
+    Endif
+    
+    sIcon = rs!icon
+    f_settings.GridWidget[i, 3].Picture = Picture["icon:/medium/" & sIcon]
+    rs.MoveNext
+    
+  Next
+  
+End
+
+Public Sub Widget_Active()
+  
+  Dim i As Integer
+  
+  cx = M_DB.Connect_Config()
+  rs = cx.Exec("SELECT * FROM tb_widgets")
+  
+  f_settings.GridWidget.Rows.Count = rs.Count 
+  
+  If f_settings.GridWidget.column = 0 Then
+    
+    For i = 0 To rs.Count - 1
+      
+      GridWidget[GridWidget.Row, 0].Picture = Picture[If(GridWidget[GridWidget.Row, 0].Picture = picture[$picStatus[0]], $picStatus[1], $picStatus[0])]
+      
+      rs.MoveNext
+      
+    Next
+    
+  Endif
+  
+  Widget_Update
+  Widget_rs_DB
+  
+End
+
+Public Sub Widget_Update()
+  
+  Dim sQry As String
+  Dim sQry1 As String
+  
+  cx = M_DB.Connect_Config()
+  
+  rs = cx.Find("tb_widgets", "name=&1", GridWidget[GridWidget.row, 1].text)
+  
+  id_update = rs!id
+  
+  If f_settings.GridWidget.column = 0 Then
+    If GridWidget[GridWidget.Row, 0].Picture = Picture[$picStatus[1]] Then
+      sQry = "UPDATE tb_widgets SET status = '0' WHERE id = " & id_update
+      rs = cx.Exec(sQry)
+      GridWidget[GridWidget.Row, 0].Picture = Picture[$picStatus[1]]
+    Else
+      
+      sQry1 = "UPDATE tb_widgets SET status = '1' WHERE id = " & id_update
+      rs = cx.Exec(sQry1)
+      GridWidget[GridWidget.Row, 0].Picture = Picture[$picStatus[0]]
+    Endif
+  End If  
+  
+End
+
+Public Sub GridWidget_Click()
+  
+  Widget_Active
+  
+End
+
+Public Sub GridWidget_Select()
+  
+  Widget_Update
+  
+End
+
+Public Sub Head_GridExt()
+  
+  Dim i As Integer
+  Dim iAct As Integer
+  Dim sIcon As String
+  
+  cx = M_DB.Connect_Config()
+  rs = cx.Exec("select * from tb_extensions ORDER BY name ASC")
+  
+  GridExt.Columns.Count = 4
+  GridExt.Rows.Height = 24
+  GridExt.Columns.Ascending = True
+  GridExt.columns[0].width = 50
+  GridExt.columns[0].Alignment = Align.Center
+  GridExt.Columns[3].width = 50
+  GridExt.columns[3].Alignment = Align.Center
+  GridExt.Columns[1].Expand = True
+  GridExt.Columns[2].Expand = True
+  GridExt.Columns[0].Text = ("Status")
+  GridExt.Columns[1].Text = ("Name")
+  GridExt.Columns[2].Text = ("Exec")
+  GridExt.Columns[3].Text = ("Icon")
+  GridExt.Rows.Count = rs.Count 
+  GridExt.Background = Color.Transparent
+  
+End
+
+Public Sub GridExt_Click()
+  
+  Extensions_Active
+  
+End
+
+Public Sub GridExt_Select()
+  
+  Extensions_Update
+  
+End
+
+''EXT
+Public Sub Extensions_rs_DB()
+  
+  Dim i As Integer
+  Dim sIcon As String
+  
+  cx = M_DB.Connect_Config()
+  rs = cx.Exec("SELECT * FROM tb_extensions")
+  f_settings.GridExt.Rows.Count = rs.Count
+  
+  For i = 0 To rs.Count - 1
+    id_act = rs!status
+    f_settings.GridExt.columns.count = 4
+    f_settings.GridExt[i, 1].Text = rs!name
+    f_settings.GridExt[i, 2].Text = rs!exec
+    
+    'If Not (id_act = Null) Then
+    If IsNull(id_act) Then
+      f_settings.GridExt[i, 0].Picture = Picture[$picStatus[0]].Image.Stretch(22, 22).Picture 
+    Else
+      f_settings.GridExt[i, 0].Picture = Picture[$picStatus[1]].Image.Stretch(22, 22).Picture 
+    Endif
+    
+    sIcon = rs!icon
+    f_settings.GridExt[i, 3].Picture = Picture["icon:/medium/" & sIcon]
+    rs.MoveNext
+    
+  Next
+  
+End
+
+Public Sub Extensions_Active()
+  
+  Dim i As Integer
+  
+  cx = M_DB.Connect_Config()
+  rs = cx.Exec("SELECT * FROM tb_extensions")
+  
+  f_settings.GridExt.Rows.Count = rs.Count 
+  
+  If f_settings.GridExt.column = 0 Then
+    
+    For i = 0 To rs.Count - 1
+      
+      GridExt[GridExt.Row, 0].Picture = Picture[If(GridExt[GridExt.Row, 0].Picture = picture[$picStatus[0]], $picStatus[1], $picStatus[0])]
+      rs.MoveNext
+      
+    Next
+    
+  Endif
+  
+  Extensions_Update
+  Extensions_rs_DB
+  
+End
+
+Public Sub Extensions_Update()
+  
+  Dim sQry As String
+  Dim sQry1 As String
+  
+  cx = M_DB.Connect_Config()
+  
+  rs = cx.Find("tb_extensions", "name=&1", GridExt[GridExt.row, 1].text)
+  
+  id_update = rs!id
+  
+  If f_settings.GridExt.column = 0 Then
+    If GridExt[GridExt.Row, 0].Picture = Picture[$picStatus[1]] Then
+      sQry = "UPDATE tb_extensions SET status = '0' WHERE id = " & id_update
+      rs = cx.Exec(sQry)
+      GridExt[GridExt.Row, 0].Picture = Picture[$picStatus[1]]
+    Else
+      
+      sQry1 = "UPDATE tb_extensions SET status = '1' WHERE id = " & id_update
+      rs = cx.Exec(sQry1)
+      GridExt[GridExt.Row, 0].Picture = Picture[$picStatus[0]]
+    Endif
+  End If  
+  ' cx.Close
+  
+End
+
+Public Sub tlbNewExt_Click()
+  
+  f_extension_new.ShowModal
+  
+End
+
+Public Sub Del_Ext()
+  
+  Dim sQry As String
+  Dim sId As String
+  
+  cx = M_DB.Connect_Config()
+  rs = cx.Exec("SELECT * FROM tb_extensions where name LIKE '" & GridExt[GridExt.Row, 1].Text & "'")      
+  
+  sId = rs!id
+  
+  If (rs!status = True) Then
+    Message.Title = ("Innova Desktop")
+    Message.Info(LC_MESSAGES.MSG_INF_EXT_ACTIVE)
+  Else
+    Message.Title = ("Innova Desktop")
+    Select Message.Question((LC_MESSAGES.MSG_QUESTION_DEL_EXT) & "<span style=\"color:#" & "CC0000" & ";margin-left:1em;\">" & "<b>" & (GridExt[GridExt.row, 1].Text) & "...?",, ("Yes"), ("No")) 
+        
+      Case 1
+        
+        sQry = "delete from tb_extensions where id like '" & sId & "'"
+        rs = cx.Exec(sQry)
+        M_DB.Close(cx)
+        
+        GridExt.Clear
+        Wait
+        Extensions_rs_DB
+    End Select 
+    
+  Endif
+  
+End
+
+Public Sub Del_Widget()
+  
+  Dim sQry As String
+  Dim sId As String
+  
+  cx = M_DB.Connect_Config()
+  rs = cx.Exec("SELECT * FROM tb_widgets where name LIKE '" & GridWidget[GridWidget.Row, 1].Text & "'")      
+  
+  sId = rs!id
+  
+  If (rs!status = True) Then
+    Message.Title = ("Innova Desktop")
+    Message.Info(LC_MESSAGES.MSG_INF_WIDGET_ACTIVE)
+  Else
+    Message.Title = ("Innova Desktop")
+    Select Message.Question((LC_MESSAGES.MSG_QUESTION_WIDGET_EXT) & "<span style=\"color:#" & "CC0000" & ";margin-left:1em;\">" & "<b>" & (GridWidget[GridWidget.row, 1].Text) & "...?",, ("Yes"), ("No")) 
+      Case 1
+        
+        sQry = "delete from tb_widgets where id like '" & sId & "'"
+        rs = cx.Exec(sQry)
+        M_DB.Close(cx)
+        
+        GridWidget.Clear
+        Wait
+        Widget_rs_DB
+    End Select 
+    
+  Endif
+  
+End
+
+Public Sub tlbDelExt_Click()
+  
+  Dim s As String
+  
+  Try s = GridExt[GridExt.Row, 1].Text      
+  
+  If IsNull(s) Then
+    Message.Title = ("Innova Desktop")
+    Message.Info(LC_MESSAGES.MSG_INF_CAD_NULL)
+  Else
+    Del_Ext
+  Endif
+  
+End
+
+Public Sub btpWidget_Click()
+  
+  imgIconCat.Picture = btpWidget.Picture
+  lblTitleMenu.Text = ipnWidget.Text
+  ipnWidget.Visible = True
+  ipnPanel.Visible = False
+  ipnInnova.Visible = False
+  ipnWallpaper.Visible = False
+  ipnStyle.Visible = False
+  ipnApps.Visible = False
+  ipnSplash.Visible = False
+  
+End
+
+Public Sub Appets_Show()
+  
+  Dim sExec As String
+  Dim sCad As String
+  
+  cx = M_DB.Connect_Config()
+  rs = cx.Exec("SELECT * FROM tb_widgets where status LIKE '1'")
+  
+  Do While rs.Available 
+    sExec = rs!exec
+    rs.MoveNext 
+    
+    If InStr(sExec, ".gambas") Then
+      Shell sExec & " > /dev/null 2>/dev/null" 
+    Endif
+    
+    If InStr(sExec, ".py") Then
+      Shell "python3 " & sExec & " 2>&1"
+    Endif
+    
+  Loop 
+  
+End
+
+Public Sub tlbDelWidget_Click()
+  
+  Dim s As String
+  
+  Try s = GridWidget[GridWidget.Row, 1].Text      
+  
+  If IsNull(s) Then
+    Message.Title = ("Innova Desktop")
+    Message.Info(LC_MESSAGES.MSG_INF_CAD_NULL)
+  Else
+    Del_Widget
+  Endif
+  
+End
+
+Public Sub tlbNewWidget_Click()
+  
+  f_widget_new.ShowModal
+  
+End
+
+Public Sub optCNB_Click()
+  
+  M_Core.Update_Style_Launcher
+  
+End
+
+Public Sub ipnStyle_Click()
+  
+  If ipnStyle.Index = 0 Then
+    application.busy = 1
+    M_Core.List_Theme_Innova
+    application.busy = 0
+  Endif
+  
+  If ipnStyle.Index = 1 Then
+    M_Core.List_Theme_GTK
+  Endif
+  If ipnStyle.Index = 2 Then
+    M_Core.List_Theme_Icons
+  Endif
+  
+End
+
+Public Sub btpStyle_Click()
+  
+  imgIconCat.Picture = btpStyle.Picture
+  lblTitleMenu.Text = btpStyle.Text
+  ipnStyle.Visible = True
+  ipnPanel.Visible = False
+  ipnInnova.Visible = False
+  ipnWallpaper.Visible = False
+  ipnWidget.Visible = False
+  ipnApps.Visible = False
+  ipnSplash.Visible = False
+  application.busy = 1
+  M_Core.List_Theme_Innova
+  application.busy = 0
+  
+End
+
+Public Sub BtnClose2_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub BtnClose_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub ListViewTheme_Select()
+  
+  M_Core.Update_Theme_GTK
+  
+End
+
+Public Sub ListViewIcons_Select()
+  
+  Dim sDir As String
+  Dim s As String
+  Dim sName As String
+  
+  sName = ListViewIcons.Item.Text
+  PicFolder.Picture = Picture[Null]
+  PicDesktop.Picture = Picture[Null]
+  PicTrash.Picture = Picture[Null]
+  PicPc.Picture = Picture[Null]
+  
+  For Each sDir In ["/usr/share/icons/", Desktop.DataDir &/ "icons/"]
+    For Each s In RDir(sDir &/ sName & "/", "*folder.*")
+      
+      PicFolder.Picture = Picture[sDir &/ sName &/ s]
+    Next
+    For Each s In RDir(sDir &/ sName & "/", "*user-desktop.*")
+      
+      PicDesktop.Picture = Picture[sDir &/ sName &/ s]
+    Next
+    For Each s In RDir(sDir &/ sName & "/", "*user-trash.*")
+      
+      PicTrash.Picture = Picture[sDir &/ sName &/ s]
+    Next
+    For Each s In RDir(sDir &/ sName & "/", "*computer.*")
+      ' PicPc.Picture.Clear
+      PicPc.Picture = Picture[sDir &/ sName &/ s]
+    Next
+  Next
+  'Catch
+  
+End
+
+Public Sub BtnClose3_Click()
+  
+  Me.Close
+  
+End
+
+Public Sub ListViewIcons_Click()
+  
+  M_Core.Update_Theme_Icons
+  
+End
+
+Public Sub btpApps_Click()
+  
+  imgIconCat.Picture = btpApps.Picture
+  lblTitleMenu.Text = btpApps.Text
+  ipnStyle.Visible = False
+  ipnApps.Visible = True
+  ipnPanel.Visible = False
+  ipnInnova.Visible = False
+  ipnWallpaper.Visible = False
+  ipnWidget.Visible = False
+  ipnSplash.Visible = False
+  
+End
+
+Public Sub File_Manager()
+  
+  If Exist("/usr/bin/dolphin") Then
+    txtgestor.Add("dolphin")
+  Endif
+  If Exist("/usr/bin/konqueror") Then
+    txtgestor.Add("konqueror")
+  Endif
+  If Exist("/usr/bin/nautilus") Then
+    txtgestor.Add("nautilus")
+  Endif
+  If Exist("/usr/bin/pcmanfm") Then
+    txtgestor.Add("pcmanfm")
+  Endif
+  If Exist("/usr/bin/pcmanfm-qt") Then
+    txtgestor.Add("pcmanfm-qt")
+  Endif
+  If Exist("/usr/bin/thunar") Then
+    txtgestor.Add("thunar")
+  Endif
+  If Exist("/usr/bin/nemo") Then
+    txtgestor.Add("nemo")
+  Endif
+  If Exist("/usr/bin/rox") Then
+    txtgestor.Add("rox")
+  Endif
+  If Exist("/usr/bin/marlin") Then
+    txtgestor.Add("marlin")
+  Endif 
+  
+End
+
+Public Sub Windows_Manager()
+  '' /usr/bin/x-window-manager 
+  ''update-alternatives --install /usr/bin/x-file-manager x-file-manager /usr/bin/spacefm 99
+  ''update-alternatives --config x-file-manager
+  
+  If Exist("/usr/bin/kwin") Then
+    txtwindows.Add("kwin")
+  Endif
+  
+  If Exist("/usr/bin/kwin_x11") Then
+    txtwindows.Add("kwin_x11")
+  Endif
+  
+  If Exist("/usr/bin/sddm") Then
+    txtwindows.Add("sddm")
+  Endif
+  
+  If Exist("/usr/bin/metacity") Then
+    txtwindows.Add("metacity")
+  Endif
+  If Exist("/usr/bin/mutter") Then
+    txtwindows.Add("mutter")
+  Endif
+  
+  If Exist("/usr/bin/openbox") Then
+    txtwindows.Add("openbox")
+  Endif
+  
+  If Exist("/usr/bin/xfwm") Then
+    txtwindows.Add("xfwm")
+  Endif
+  If Exist("/usr/bin/xfwm4") Then
+    txtwindows.Add("xfwm4")
+  Endif
+  
+  If Exist("/usr/bin/blackbox") Then
+    txtwindows.Add("blackbox")
+  Endif
+  
+  If Exist("/usr/bin/jwm") Then
+    txtwindows.Add("jwm")
+  Endif
+  If Exist("/usr/bin/fluxbox") Then
+    txtwindows.Add("fluxbox")
+  Endif
+  If Exist("/usr/bin/awesome") Then
+    txtwindows.Add("awesome")
+  Endif
+  
+  If Exist("/usr/bin/compiz") Then
+    txtwindows.Add("compiz")
+  Endif
+  
+  If Exist("/usr/bin/mwm") Then
+    txtwindows.Add("mwm")
+  Endif
+  
+  If Exist("/usr/bin/icewm") Then
+    txtwindows.Add("icewm")
+  Endif
+  
+  If Exist("/usr/bin/fvwm") Then
+    txtwindows.Add("fvwm")
+  Endif
+  
+  If Exist("/usr/bin/gala") Then
+    txtwindows.Add("gala")
+  Endif
+  
+  If Exist("/usr/bin/muffin") Then
+    txtwindows.Add("muffin")
+  Endif
+  If Exist("/usr/bin/tinywm") Then
+    txtwindows.Add("tinywm")
+  Endif
+  
+End
+
+Public Sub tlbokapp_Click()
+  
+  M_Core.Update_Apps
+  
+End
+
+Public Sub PushButton10_Click()
+  
+End
+
+Public Sub btpSplash_Click()
+  
+  imgIconCat.Picture = btpSplash.Picture
+  lblTitleMenu.Text = btpSplash.Text
+  ipnStyle.Visible = False
+  ipnApps.Visible = False
+  ipnPanel.Visible = False
+  ipnInnova.Visible = False
+  ipnWallpaper.Visible = False
+  ipnWidget.Visible = False
+  ipnSplash.Visible = True
+  
+End
+
+Public Sub ListBoxSplash_Select()
+  
+  Dim path_origen As String = Desktop.ConfigDir &/ "Innova/Splash"
+  
+  PicSplashPreview.Picture = Picture[path_origen &/ ListBoxSplash.Current.Text & ".png"] 
+  M_Var_Global.splash_update = path_origen &/ ListBoxSplash.Current.Text & ".png" 
+  lbltitlesplash.Text = path_origen &/ ListBoxSplash.Current.Text & ".png" 
+  
+  M_Core.Update_Splash_Innova
+Catch
+  Message.Title = ("Innova Desktop")
+  Message.Info(LC_MESSAGES.MSG_INF_SPLASH_EXIST)
+  
+End
+
+Public Sub btnFS_Click()
+  
+  M_Core.Update_Splash_Full
+  
+End
+
+Public Sub tlboksplash_Click()
+  
+  M_Core.Update_Splash_Innova
+  
+End
+
+Public Sub PicSplashPreview_MouseDown()
+  
+  'f_full_preview.Visible = If(f_full_preview.Visible = 0, 1, 0)  
+  f_full_preview.Show
+  f_full_preview.PicImgFondo.Picture = PicSplashPreview.Picture
+  
+End
+
+Public Sub imgPreview_MouseDown()
+  
+  'f_full_preview.Visible = If(imgPreview.Visible = 0, 1, 0)  
+  f_full_preview.Show
+  f_full_preview.PicImgFondo.Picture = imgPreview.Picture
+  
+End
+
+Public Sub List_Theme_Icons()
+  
+  Dim cThemes As New Collection
+  Dim sTheme As String
+  Dim sDir As String
+  Dim aThemes As New String[]
+  Dim pIcon As Picture
+  Dim sPath As String
+  Dim sFile As String
+  Dim i As Integer
+  
+  sPath = "/usr/share/icons/"
+  For Each sDir In RDir(sPath, "*cursors", True)
+    
+    cThemes[sDir] = True
+  Next
+  
+  sPath = Desktop.DataDir &/ "icons/"
+  For Each sDir In RDir(sPath, "*cursors", True)
+    Print File.Dir(sDir)
+    cThemes[sDir] = True
+  Next
+  
+  For Each cThemes
+    aThemes.Add(cThemes.Key)
+  Next
+  
+  aThemes.Sort(gb.Ascent)
+  For Each sTheme In aThemes 
+    Inc i
+    If (InStr(sTheme, "/")) Then
+      ''LtvCursor.add(i, sTheme)    
+      LtvCursor.add(i, File.Dir(sTheme))    
+    Endif
+    
+  Next
+  
+Catch
+  Mkdir (Desktop.DataDir &/ "icons/")
+  List_Theme_Icons
+  
+End
+
+Public Sub FileView1_Select()
+  
+  ' Dim sPath As String
+  
+  sPath = FileView1.dir &/ FileView1.Current
+  If Stat(sPath).Type = gb.File Then
+    
+    Try $hCursor = New CCursor(sPath)
+    
+    If Not Error Then
+      
+      DrawingArea1.Refresh
+    Endif
+    
+  Endif
+  
+End
+
+Public Sub DrawingArea1_Draw()
+  
+  Dim i As Integer
+  Dim yPos As Integer
+  
+  If Not $hCursor Then Return
+  
+  For i = 0 To $hCursor.Count - 1
+    Paint.DrawImage($hCursor[i].Image, (DrawingArea1.ClientW - $hCursor[i].Image.Width) / 2, yPos - DrawingArea1.Scrolly)
+    yPos += $hCursor[i].Height + 5
+  Next
+  
+  DrawingArea1.ResizeContents(DrawingArea1.Width, yPos)
+  
+End
+
+Public Sub FileView1_DblClick()
+  
+  Dim sPath As String = FileView1.Dir &/ FileView1.Current
+  Dim s As String
+  
+  If Not IsDir(sPath) Then Return
+  FileView1.dir = sPath
+  lbltitlecursor.Text = FileView1.Dir
+  
+End
+
+Public Sub ToolButton1_Click()
+  
+  FileView1.Dir = File.Dir(FileView1.Dir)
+  lbltitlecursor.Text = FileView1.Dir
+  'lbltitlecursor2.Text = File.Dir(LtvCursor.Item.Text)
+  
+End
+
+Public Sub LtvCursor_Click()
+  
+  ' Dim sPath As String
+  
+  sPath = "/usr/share/icons/"
+  
+  FileView1.Dir = sPath &/ LtvCursor.Item.Text &/ "cursors"
+  lbltitlecursor.Text = sPath &/ LtvCursor.Item.Text 
+  lbltitlecursor2.Text = (LtvCursor.Item.Text)
+  
+End
+
+Public Sub LtvCursor_Select()
+  
+  sPath = "/usr/share/icons/"
+  
+  FileView1.Dir = sPath &/ LtvCursor.Item.Text &/ "cursors"
+  lbltitlecursor.Text = sPath &/ LtvCursor.Item.Text 
+  lbltitlecursor2.Text = (LtvCursor.Item.Text)
+  
+End
+
+Public Sub tlbokcursor_Click()
+  
+  If (LtvCursor.Selection.Count - 1) Or (InStr(lbltitlecursor2.Text, ":")) Then
+    Message.Title = ("Innova Desktop")
+    Message(("You must select a theme..."))
+  Else
+    M_Core.Update_Theme_Cursor    
+  Endif
+  
+End
+
+Public Sub Form_Enter()
+  
+End
+
+Public Sub btoSound_Change()
+  
+  M_Core.Update_Audio_Start_Innova
+  
+End
+
+Public Sub txtgestor_Click()
+  
+  M_Core.Update_Apps
+  
+End
+
+Public Sub txtwindows_Click()
+  
+  M_Core.Update_Apps
+  
+End
+
+Public Sub txtterminal_Change()
+  
+  M_Core.Update_Apps
+  
+End
+
+Public Sub txtweb_Change()
+  
+  M_Core.Update_Apps
+  
+End
+
+Public Sub txtvideoplayer_Change()
+  
+  M_Core.Update_Apps
+  
+End
+
+Public Sub txttextedit_Change()
+  
+  M_Core.Update_Apps
+  
+End
+
+Public Sub swbLauncherTrans_Click()
+  
+  M_Core.Update_Transparent_Launcher
+  
+End
+
+Public Sub tbtNext_Click()
+  
+End
+
+Public Sub swbShowPopupInfo_Click()
+  
+  M_Core.Update_PopupInfo
+  
+End
+
+Public Sub mnuAbout_Click()
+  
+  Balloon.Info(Lower(Application.Name) & "</span>" & " - " & ("Innova Desktop Settings") & 
+    "<TD colspan=2 bgcolor=lightgreen>" & "Version " & Application.Version, Me)
+  
+End
