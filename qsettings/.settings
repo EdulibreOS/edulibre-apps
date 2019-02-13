@@ -12,6 +12,9 @@ Count=0
 [DebugWindow/Picture]
 Geometry=[0,16,224,280]
 
+[Executable]
+Path="qsettings.gambas"
+
 [OpenFile]
 Active=7
 File[1]=".src/Form/f_settings.form"

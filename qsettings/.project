@@ -2,7 +2,7 @@
 Title=qsettings
 Startup=Cls_Start
 Icon=img/preferences.svg
-Version=0.1.46
+Version=0.1.47
 Component=gb.image
 Component=gb.qt5
 Component=gb.form
