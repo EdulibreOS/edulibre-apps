@@ -28,69 +28,72 @@ Private $hWatcher As DesktopWatcher
 
 Public Sub Logo_Distro()
   
-  sDistro_ID = M_InfoPc.Distro_ID 
+  sDistro_ID = M_InfoPc.GetDistribution()
   
-  If sDistro_ID = "Ubuntu" Then
+  If (InStr(sDistro_ID, "Ubuntu")) Then 
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-ubuntu.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-ubuntu.svg"]
   Endif
-  If sDistro_ID = "Archlinux" Then
+  If (InStr(sDistro_ID, "Archlinux")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-archlinux.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-archlinux.svg"]
   Endif
-  If sDistro_ID = "Chakra" Then
+  If (InStr(sDistro_ID, "Chakra")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-chakra.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-chakra.svg"]
   Endif
-  If sDistro_ID = "Debian" Then
+  If (InStr(sDistro_ID, "Debian")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-debian.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-debian.svg"]
   Endif
-  If sDistro_ID = "Deepin" Then
+  If (InStr(sDistro_ID, "Deepin")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-deepin.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-deepin.svg"]
   Endif
-  If sDistro_ID = "Elementary" Then
+  If (InStr(sDistro_ID, "Elementary")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-eos.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-eos.svg"]
   Endif
-  If sDistro_ID = "Fedora" Then
+  If (InStr(sDistro_ID, "Fedora")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-fedora.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-fedora.svg"]
   Endif
-  If sDistro_ID = "Gentoo" Then
+  If (InStr(sDistro_ID, "Gentoo")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-gentoo.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-gentoo.svg"]
   Endif
-  If sDistro_ID = "Kubuntu" Then
+  If (InStr(sDistro_ID, "Kubuntu")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-kubuntu.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-kubuntu.svg"]
   Endif
-  If sDistro_ID = Null Then
+  If (InStr(sDistro_ID, Null)) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-generic.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-generic.svg"]
   Endif
-  If sDistro_ID = "Lubuntu" Then
+  If (InStr(sDistro_ID, "Lubuntu")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-lubuntu.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-lubuntu.svg"]
   Endif
-  If sDistro_ID = "Magiea" Then
+  If (InStr(sDistro_ID, "Magiea")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-magiea.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-magiea.svg"]
   Endif
-  If sDistro_ID = "Manjaro" Then
+  If (InStr(sDistro_ID, "Manjaro")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-manjaro.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-manjaro.svg"]
   Endif
-  If sDistro_ID = "Mint" Then
+  
+  If (InStr(sDistro_ID, "Mint")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-mint.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-mint.svg"]
   Endif
-  If sDistro_ID = "OpenSUSE" Then
+  If (InStr(sDistro_ID, "OpenSUSE")) Then
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-opensuse.svg"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-opensuse.svg"]
   Endif
-  If sDistro_ID = "EdulibreOS" Then
+  
+  If (InStr(sDistro_ID, "EdulibreOS")) Then
+    
     PictureBoxLogoDistro.Picture = Picture["img/distro/distributor-logo-edulibreos.png"]
     mnudistro.Picture = Picture["img/distro/distributor-logo-edulibreos.png"]
   Endif
@@ -275,5 +278,9 @@ End
 Public Sub mnuAboutW_Click()
   
   f_about.ShowModal
+  
+End
+
+Public Sub pnlIconsGeneral_MouseDown()
   
 End

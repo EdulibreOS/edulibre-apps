@@ -33,14 +33,28 @@ Public Sub Main()
   
 End
 
+'Parser para quitar comillas
+Public Procedure RemoveChar(Texto As String, Quitar As String) As String
+  Dim Cantidad As Integer
+  
+  For Cantidad = 1 To Len(Quitar)
+    Texto = Replace(Texto, Mid(Quitar, Cantidad, 1), "")
+  Next
+  
+  Return Texto
+End
+
+
+
 'Busqueda por medio de los combo box y contenido.
 Public Sub Buscar(Nivel As String, Grado As String, Materia As String, Contenido As String)
   
   Dim rs As Result
   Dim consulta, aux_palabras As String
-  Dim nivel_text, grado_text, materia_text, contenido_text As String
   Dim cant_palabras As Integer
   Dim Palabras As String[]
+  
+  Contenido = Trim(RemoveChar(Contenido, "'"))
 
   cant_palabras = Split(Contenido, " ").Count
   Palabras = Split(Contenido, " ")
@@ -53,7 +67,7 @@ Public Sub Buscar(Nivel As String, Grado As String, Materia As String, Contenido
     Next
             consulta = Left(consulta, -6)
             consulta = consulta & " ORDER BY a.nombre "
-            Print consulta
+            'Print consulta
             cone = MDB_Connection.Conectar()
             EdulibCap.lst_iconos.Clear ' Limpiar todos los elementos del Listbox de actividades
             rs = cone.Exec(consulta)
@@ -113,7 +127,7 @@ Public Function Cadena_Consulta(Nivel As String, Grado As String, Materia As Str
               contenido_text = " "
           Endif
   
-  consulta = "SELECT a.idtbl_actividad as ID, " & 
+  consulta = "SELECT distinct a.idtbl_actividad as ID, " & 
   		            "a.nombre as Actividad, " & 
   		            "p.url_icono as Icono " &
               "FROM tbl_actividad a, " &
@@ -126,8 +140,8 @@ Public Function Cadena_Consulta(Nivel As String, Grado As String, Materia As Str
                     "tbl_contenido c, " &
                     "tbl_programa p " &
               "WHERE a.id_programa = p.idtbl_programa " &
-              "AND a.id_nivel = n.idtbl_nivel " &
-              "AND a.id_grado_materia = gm.idtbl_grado_materia " &
+              "AND g.id_nivel = n.idtbl_nivel " &
+              "AND a.idtbl_actividad = gm.id_actividad " &
               "AND gm.id_grado = g.idtbl_grado " &
               "AND gm.id_materia = m.idtbl_materia " &
               "AND a.idtbl_actividad = cg.id_actividad " &

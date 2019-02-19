@@ -2,7 +2,9 @@
 
 { Form Form
   MoveScaled(0,0,64,58)
+  Background = Color.White
   Text = ("Acerca De")
+  Icon = Picture["Images/IconCAP.png"]
   Resizable = False
   { Archivo Menu
     Text = ("Archivo")
@@ -11,12 +13,12 @@
     }
   }
   { !pnlTitulo Panel
-    MoveScaled(0,5,64,44)
+    MoveScaled(0,-2,64,52)
     #Public = True
     Background = Color.White
   }
   { !tabPanel TabPanel
-    MoveScaled(15,5,49,44)
+    MoveScaled(15,0,49,50.1429)
     #Public = True
     Count = 2
     Highlight = True
@@ -44,30 +46,30 @@
     Index = 1
     Text = ("Licencia")
     { TextLabel1 TextLabel
-      MoveScaled(0,0,48,40)
+      MoveScaled(0,0,48,38.5714)
       Text = ("<p>Este programa es software libre: puede redistribuirlo y / o modificarlo bajo los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia, o (a su elección) cualquier versión posterior.</p>\n</br>\n   <p> Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de COMERCIABILIDAD o IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Ver la Licencia Pública General de GNU para más detalles.</p>\n</br>\n  <p>  Debería haber recibido una copia de la Licencia Pública General de GNU junto con este programa. De lo contrario, consulte http://www.gnu.org/licenses/.</p>\n</br>\n<p>Copyright © Asociación Civil Edulibre</p>\n<p>email: info@edulibre.net</p>")
       Alignment = Align.Justify
     }
     Index = 0
   }
   { picbox_logo PictureBox
-    MoveScaled(0.4286,11,14.2857,14.2857)
+    MoveScaled(0,17,14.2857,14.2857)
     Picture = Picture["Images/Edulibre.png"]
     Stretch = True
   }
   { btnSalir Button
-    MoveScaled(46,50,16,4)
+    MoveScaled(47,51,16,4)
     Text = ("Salir")
     Picture = Picture["icon:/small/close"]
   }
   { picbox_logo2 PictureBox
-    MoveScaled(0.4286,28,14.2857,14.2857)
+    MoveScaled(0,33,14.2857,14.2857)
     Picture = Picture["Images/FundacionTigo.jpeg"]
     Stretch = True
   }
-  { lblTitulo Label
-    MoveScaled(14,0,37,4)
-    Font = Font["Bold,+3"]
-    Text = ("Centro de Ayuda Edulibre")
+  { PictureBox1 PictureBox
+    MoveScaled(1,2,13,12)
+    Picture = Picture["Images/LogoCAP.png"]
+    Stretch = True
   }
 }

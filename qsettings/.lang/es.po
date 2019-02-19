@@ -1,0 +1,874 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QSettings 3.11.4\n"
+"POT-Creation-Date: 2019-02-13 16:50 UTC\n"
+"PO-Revision-Date: 2018-11-29 18:25 UTC\n"
+"Last-Translator: Herberth Guzman <herbethguzman@gmail.com>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .project:1
+msgid "qsettings"
+msgstr ""
+
+#: LC_MESSAGES.module:26
+msgid "Current extensions is active, can not be deleted."
+msgstr "La extensión actual está activa, no se puede eliminar."
+
+#: LC_MESSAGES.module:27
+msgid "Current widget is active, can not be deleted."
+msgstr "El widget actual está activo, no se puede eliminar."
+
+#: LC_MESSAGES.module:28
+msgid "The fields can not be empety"
+msgstr "Los campos no pueden estar vacíos"
+
+#: LC_MESSAGES.module:29
+msgid "Record saved successfully"
+msgstr "Registros Guardados con éxito"
+
+#: LC_MESSAGES.module:30
+msgid "¿Are you sure we want to remove the extensions - "
+msgstr "¿Está seguro de que desea eliminar la extension...? -"
+
+#: LC_MESSAGES.module:31
+msgid "¿Are you sure we want to remove the widget - "
+msgstr "¿Está seguro de que desea eliminar el widget...? -"
+
+#: LC_MESSAGES.module:33
+msgid "Theme Registration Error"
+msgstr "Error de registro del tema"
+
+#: LC_MESSAGES.module:34
+msgid "Failed to connect to the DB system"
+msgstr "Error al conectarse a la DB del sistema"
+
+#: LC_MESSAGES.module:35
+msgid "Error processing the system information"
+msgstr "Error al procesar informacion al sistema"
+
+#: LC_MESSAGES.module:36
+msgid "You must select valid windows manager"
+msgstr "Debe de seleccionar gestor de ventanas"
+
+#: LC_MESSAGES.module:37
+msgid "Format not valid"
+msgstr "Formato Inválido"
+
+#: LC_MESSAGES.module:38
+msgid "No item selected to remove"
+msgstr "No hay tema seleccionado para eliminar"
+
+#: LC_MESSAGES.module:42
+msgid "Innova Desktop in execution..."
+msgstr "Escritorio Innova ya está en ejecución."
+
+#: LC_MESSAGES.module:43
+msgid "Splash Screen exists"
+msgstr "Ya existe pantalla de bienvenida"
+
+#: LC_MESSAGES.module:44
+msgid "Appearance Launcher Innova is NOT equal to the Launcher Type selected in the Theme Current. You want to change the Appearance of Launcher...?"
+msgstr "Apariencia de Launcher Innova NO es igual al Tipo de Lanzador seleccionado en el actual Tema. ¿Quier cambiar el aspecto del Launcher...?"
+
+#: LC_MESSAGES.module:45
+msgid "Folder already exists"
+msgstr "Carpeta ya existe"
+
+#: LC_MESSAGES.module:46
+msgid "File already exists"
+msgstr "Archivo ya existe"
+
+#: LC_MESSAGES.module:47
+msgid "Can not delete the files"
+msgstr "No puede eliminar el archivo"
+
+#: LC_MESSAGES.module:48
+msgid "Theme selected already exists in the system."
+msgstr "El tema seleccionado ya existe en el sistema."
+
+#: LC_MESSAGES.module:49
+msgid "Current theme is active, can not be deleted."
+msgstr "El tema actual está activo, no se puede eliminar."
+
+#: LC_MESSAGES.module:50
+msgid "You have not selected Innova Theme."
+msgstr "No ha seleccionado ningun Theme Innova"
+
+#: LC_MESSAGES.module:51
+msgid "It has not established a reference Apps."
+msgstr "No se ha establecido una Apps como referencia."
+
+#: LC_MESSAGES.module:53
+msgid "¿Want to delete the select splash?"
+msgstr "¿Desea eliminar el splash seleccionado?diff -iEb"
+
+#: LC_MESSAGES.module:54
+msgid "Enter a Name..."
+msgstr "Ingrese un nombre..."
+
+#: LC_MESSAGES.module:55
+msgid "The files can not be restored after deleted. Do you want continue? "
+msgstr "Los archivos no se pueden restaurar después de eliminar. ¿Quieres continuar?"
+
+#: LC_MESSAGES.module:56
+msgid "Sure you want to move the file to the trash ..? "
+msgstr "Seguro que desea mover el archivo a la papelera..?"
+
+#: LC_MESSAGES.module:57
+msgid "¿Are you sure we want to remove the theme - "
+msgstr "¿Está seguro de que desea eliminar el tema...? -"
+
+#: LC_MESSAGES.module:58
+msgid "The version of the configuration file Innova_Config.conf has CHANGED. Wants to update.? "
+msgstr "La versión del archivo de configuración Innova_Config.conf ha cambiado. Quiere actualizar. ?"
+
+#: LC_MESSAGES.module:60
+msgid "Destination file exists. OverWrite"
+msgstr "El archivo destino ya existe. Desea sobrescribir"
+
+#: M_Core.module:936
+msgid "/etc/default/locale"
+msgstr ""
+
+#: M_Core.module:937
+msgid "/tmp/locale"
+msgstr ""
+
+#: M_Core.module:1645
+msgid "Theme Active: "
+msgstr "Tema Activo: "
+
+#: M_DB.module:38 f_download.class:214 f_extension_new.class:55
+#: f_settings.form:1749 f_widget_new.class:55
+msgid "Innova Desktop"
+msgstr "Escritorio Innova"
+
+#: f_conf_wallpaper.class:49 f_settings.class:312
+msgid "Image Archive"
+msgstr "Archivo de Imagen "
+
+#: f_conf_wallpaper.class:50 f_settings.class:550
+msgid "Image BMP of Windows"
+msgstr "Imagen BMP de Windows"
+
+#: f_conf_wallpaper.class:50 f_settings.class:550
+msgid "Image JPEG"
+msgstr "Imagen JPEG"
+
+#: f_conf_wallpaper.class:50 f_settings.class:550
+msgid "Image JPG"
+msgstr "Imagen JPG"
+
+#: f_conf_wallpaper.class:50 f_settings.class:550
+msgid "Image PNG"
+msgstr "Imagen PNG"
+
+#: f_conf_wallpaper.class:50 f_settings.class:550
+msgid "Image SVG"
+msgstr "Imagen SVG"
+
+#: f_conf_wallpaper.form:54
+msgid "Change wallpaper"
+msgstr "Cambiar el fondo de pantalla"
+
+#: f_conf_wallpaper.form:71 f_download.form:106 f_gallery_wallpaper.form:49
+#: f_settings.form:880
+msgid "Ok"
+msgstr "Aceptar"
+
+#: f_conf_wallpaper.form:77 f_download.form:114 f_extension_new.form:156
+#: f_gallery_wallpaper.form:56 f_settings.form:2419 f_widget_new.form:159
+msgid "Close"
+msgstr "Cerrar"
+
+#: f_download.class:92
+msgid "Install"
+msgstr "Instalar"
+
+#: f_download.class:163
+msgid "&Install"
+msgstr "&Instalar"
+
+#: f_download.class:215
+msgid "&No"
+msgstr "&No"
+
+#: f_download.class:215
+msgid "&Yes"
+msgstr "&Si"
+
+#: f_download.class:215
+msgid "Desea aplicar el fondo"
+msgstr ""
+
+#: f_download.form:19
+msgid "Download Wallpaper - Innova Settings"
+msgstr "Descargar Fondo de Pantalla - Configuración Innova"
+
+#: f_download.form:29 f_settings.form:1047
+msgid "Download Wallpaper"
+msgstr "Descargar Fondo de Pantalla"
+
+#: f_download.form:46
+msgid "Search: "
+msgstr "Buscar:"
+
+#: f_extension_new.form:26 f_widget_new.form:26
+msgid "Add new extensions - Innova Settings"
+msgstr "Agregar nueva extension - Configuración Innova"
+
+#: f_extension_new.form:52
+msgid "Add new extensions"
+msgstr "Agregar nueva extension"
+
+#: f_extension_new.form:71 f_widget_new.form:71
+msgid "Name:"
+msgstr "Nombre:"
+
+#: f_extension_new.form:88 f_widget_new.form:88
+msgid "Exec:"
+msgstr ""
+
+#: f_extension_new.form:105 f_widget_new.form:108
+msgid "Icon:"
+msgstr "Icono:"
+
+#: f_extension_new.form:119 f_widget_new.form:122
+msgid "Search icon"
+msgstr ""
+
+#: f_extension_new.form:126 f_widget_new.form:129
+msgid "Status:"
+msgstr "Estado: "
+
+#: f_extension_new.form:132 f_settings.form:843 f_widget_new.form:94
+msgid "Change Wallpaper"
+msgstr "Cambiar Fondo de Pantalla"
+
+#: f_extension_new.form:135 f_widget_new.form:138
+msgid "False"
+msgstr "Falso"
+
+#: f_extension_new.form:135 f_widget_new.form:138
+msgid "True"
+msgstr "Verdadero"
+
+#: f_extension_new.form:148 f_settings.form:1722 f_widget_new.form:151
+msgid "New"
+msgstr "Nuevo"
+
+#: f_gallery_wallpaper.form:21
+msgid "Select wallpaper - Innova Settings"
+msgstr "Seleccionar Fondo de Pantalla - Configuración Innova"
+
+#: f_gallery_wallpaper.form:69
+msgid "Select wallpaper"
+msgstr "Seleccionar Fondo de Pantalla"
+
+#: f_gallery_wallpaper.form:81
+msgid "Dir"
+msgstr "Directorio"
+
+#: f_gallery_wallpaper.form:100
+msgid "Image"
+msgstr "Imagen"
+
+#: f_settings.class:274
+msgid "Error of Connection... "
+msgstr "Error de Conexión"
+
+#: f_settings.class:314
+msgid "Drawing files"
+msgstr "Archivos de dibujo"
+
+#: f_settings.class:314
+msgid "Picture files"
+msgstr "Archivos de imagen"
+
+#: f_settings.class:344
+msgid "The theme has been changed successfully."
+msgstr "El tema a cambiado con exito."
+
+#: f_settings.class:399
+msgid "Please select a directory to record to..."
+msgstr "Por favor seleccione un directorio para grabar..."
+
+#: f_settings.class:534
+msgid "Media format"
+msgstr ""
+
+#: f_settings.class:778
+msgid "Innova Desktop - Restore Default"
+msgstr "Escritorio Innova - Restaurar por Defecto"
+
+#: f_settings.class:779
+msgid "Are you sure to restore Innova defaults...?  "
+msgstr "¿Está seguro de restaurar el valor predeterminado de Innova...?"
+
+#: f_settings.class:779
+msgid "No"
+msgstr "No"
+
+#: f_settings.class:779
+msgid "Yes"
+msgstr "Si"
+
+#: f_settings.class:1018
+msgid "Status"
+msgstr "Estado"
+
+#: f_settings.class:1020
+msgid "Exec"
+msgstr ""
+
+#: f_settings.class:1021
+msgid "Icon"
+msgstr "Icono"
+
+#: f_settings.class:1803
+msgid "You must select a theme..."
+msgstr "Debe de seleccionar un tema ..."
+
+#: f_settings.class:1875
+msgid "Innova Desktop Settings"
+msgstr "Configuración del Escritorio Innova"
+
+#: f_settings.form:382
+msgid "Desktop Settings - Innova"
+msgstr "Configuración del Escritorio - Innova"
+
+#: f_settings.form:392
+msgid "About"
+msgstr "Acerca de..."
+
+#: f_settings.form:409
+msgid "¡Welcome to Innova Desktop Settings!"
+msgstr "Bienvenido a la configuración del Escritorio Innova"
+
+#: f_settings.form:448
+msgid "Desktop"
+msgstr "Escritorio"
+
+#: f_settings.form:455
+msgid "Innova"
+msgstr ""
+
+#: f_settings.form:462
+msgid "Panel"
+msgstr "Panel"
+
+#: f_settings.form:469
+msgid "Widget"
+msgstr ""
+
+#: f_settings.form:476
+msgid "Style"
+msgstr "Apariencia"
+
+#: f_settings.form:483
+msgid "Apps"
+msgstr ""
+
+#: f_settings.form:491
+msgid "MIME"
+msgstr ""
+
+#: f_settings.form:498
+msgid "Splash"
+msgstr ""
+
+#: f_settings.form:506
+msgid "Energy"
+msgstr "Energia"
+
+#: f_settings.form:553
+msgid "Settings Desktop"
+msgstr "Configuracion de Escritorio"
+
+#: f_settings.form:579
+msgid "Show Icons"
+msgstr "Mostrar Iconos"
+
+#: f_settings.form:605
+msgid "Hide all icons"
+msgstr "Ocultar todos los iconos"
+
+#: f_settings.form:611
+msgid "Show Network Icon"
+msgstr "Mostrar Icono de Red"
+
+#: f_settings.form:636
+msgid "PC"
+msgstr "PC"
+
+#: f_settings.form:642
+msgid "Show My Computer Icon"
+msgstr "Mostrar Icono de Mi Equipo"
+
+#: f_settings.form:662
+msgid "Trash"
+msgstr "Papelera"
+
+#: f_settings.form:668
+msgid "Show Trash Icon"
+msgstr "Mostrar Icono de la Papelera"
+
+#: f_settings.form:689
+msgid "Home"
+msgstr ""
+
+#: f_settings.form:695
+msgid "Show Home Icon"
+msgstr "Mostrar Icono Home"
+
+#: f_settings.form:716
+msgid "Partitions"
+msgstr "Particiones"
+
+#: f_settings.form:722
+msgid "Show Partitions Icon"
+msgstr "Mostrar Icono de Particiones"
+
+#: f_settings.form:743
+msgid "Network"
+msgstr "Red"
+
+#: f_settings.form:762
+msgid "Show popup"
+msgstr ""
+
+#: f_settings.form:773
+msgid "Background"
+msgstr "Fondo"
+
+#: f_settings.form:799
+msgid "Solid Color"
+msgstr "Color Solido"
+
+#: f_settings.form:857
+msgid "Wallpapers Gallery"
+msgstr "Galeria de Imagenes"
+
+#: f_settings.form:878
+msgid "Apply Changes"
+msgstr "Aplicar Cambios"
+
+#: f_settings.form:903
+msgid "Wallpaper Random"
+msgstr "Fondo de Pantalla Aleatorio"
+
+#: f_settings.form:932
+msgid "Pictures location:"
+msgstr "Ubicación de la imagen"
+
+#: f_settings.form:947
+msgid "Hours"
+msgstr "Horas"
+
+#: f_settings.form:995
+msgid "Preview"
+msgstr "Vista Previa"
+
+#: f_settings.form:1053
+msgid "Icon Size"
+msgstr "Tamaño del Icono"
+
+#: f_settings.form:1084
+msgid "Change icon size"
+msgstr "Cambiar tamaño del icono"
+
+#: f_settings.form:1086
+msgid "128"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "22"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "32"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "48"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "64"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "76"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "86"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "96"
+msgstr ""
+
+#: f_settings.form:1098
+msgid "Icon Line"
+msgstr "Línea de icono"
+
+#: f_settings.form:1125
+msgid "Organize in"
+msgstr "Organizar en"
+
+#: f_settings.form:1140
+msgid "Columns"
+msgstr ""
+
+#: f_settings.form:1140
+msgid "Rows"
+msgstr ""
+
+#: f_settings.form:1153
+msgid "Order"
+msgstr "Orden"
+
+#: f_settings.form:1168
+msgid "Date"
+msgstr "Fecha"
+
+#: f_settings.form:1168
+msgid "Name"
+msgstr "Nombre"
+
+#: f_settings.form:1168
+msgid "Size"
+msgstr "Tamaño"
+
+#: f_settings.form:1168
+msgid "Type"
+msgstr "Tipo"
+
+#: f_settings.form:1175
+msgid "Ascending / Descending"
+msgstr "Ascendente / Decendente"
+
+#: f_settings.form:1188
+msgid "Help popup"
+msgstr "Ayuda emergente"
+
+#: f_settings.form:1206
+msgid "Font"
+msgstr "Fuente"
+
+#: f_settings.form:1225
+msgid "Type and Size of Font"
+msgstr "Tipo y tamaño de la letra"
+
+#: f_settings.form:1309
+msgid "Size:"
+msgstr "Tamaño:"
+
+#: f_settings.form:1332
+msgid "Icon Size:"
+msgstr "Tamaño del Icono:"
+
+#: f_settings.form:1355
+msgid "Large:"
+msgstr "Largo: "
+
+#: f_settings.form:1370
+msgid "%"
+msgstr ""
+
+#: f_settings.form:1378
+msgid "Position"
+msgstr "Posición"
+
+#: f_settings.form:1396
+msgid "Position:"
+msgstr "Posición: "
+
+#: f_settings.form:1410
+msgid "Position the top panel"
+msgstr "Posición del panel superior"
+
+#: f_settings.form:1412
+msgid "Top"
+msgstr ""
+
+#: f_settings.form:1425
+msgid "Position of the bottom panel"
+msgstr "Posición del panel inferior"
+
+#: f_settings.form:1427
+msgid "Bottom"
+msgstr ""
+
+#: f_settings.form:1436
+msgid "Look"
+msgstr "Estilo"
+
+#: f_settings.form:1456
+msgid "Show only image icons of the Taskbar"
+msgstr "Mostrar solo imagen en los iconos de la barra de tareas"
+
+#: f_settings.form:1495
+msgid "Background opacity"
+msgstr "Opacidad de fondo"
+
+#: f_settings.form:1522
+msgid "Auto-hide"
+msgstr "Auto-Ocultar"
+
+#: f_settings.form:1541
+msgid "Transparent Panel"
+msgstr "Panel transparente"
+
+#: f_settings.form:1560
+msgid "Dock Style"
+msgstr "Estilo Dock"
+
+#: f_settings.form:1579
+msgid "Categories mouse sensitive"
+msgstr "Ratón sensible a las Categorías "
+
+#: f_settings.form:1614
+msgid "Change panel image"
+msgstr "Cambiar imagen del panel"
+
+#: f_settings.form:1616
+msgid "Background Image"
+msgstr "Imagen de fondo"
+
+#: f_settings.form:1622
+msgid "Select panel image"
+msgstr "Selecionar Imagen del Panel"
+
+#: f_settings.form:1653
+msgid "Font Color"
+msgstr "Color de la fuente"
+
+#: f_settings.form:1674
+msgid "Background Color"
+msgstr "Color de Fondo"
+
+#: f_settings.form:1691
+msgid "Default Panel"
+msgstr "Panel predeterminado"
+
+#: f_settings.form:1692
+msgid "Default"
+msgstr "Predeterminado"
+
+#: f_settings.form:1698
+msgid "Extensions"
+msgstr "Extenciones"
+
+#: f_settings.form:1730
+msgid "Remove"
+msgstr "Eliminar"
+
+#: f_settings.form:1769
+msgid "Transparent"
+msgstr "Transparente"
+
+#: f_settings.form:1791
+msgid "That property has an effect only if you run a compositing window manager."
+msgstr "Esta propiedad tiene un efecto solo si usted ejecuta un administrador de ventanas soportado."
+
+#: f_settings.form:1809
+msgid "Startup Sound"
+msgstr "Audio de Inicio"
+
+#: f_settings.form:1844
+msgid "Icons Start:"
+msgstr "Icono de Inicio:"
+
+#: f_settings.form:1850
+msgid "Change boot image"
+msgstr "Cambiar imagen de inicio"
+
+#: f_settings.form:1893
+msgid "Workspace"
+msgstr "Area de trabajo"
+
+#: f_settings.form:1922
+msgid "Number of desktops"
+msgstr "Número de Escritorios"
+
+#: f_settings.form:1943
+msgid "Names of all virtual desktops"
+msgstr "Nombres  de los Escritorio Virtuales"
+
+#: f_settings.form:2010
+msgid "Restore default values"
+msgstr "Restarurar Valores por Defecto"
+
+#: f_settings.form:2022
+msgid "Language"
+msgstr "Lenguaje"
+
+#: f_settings.form:2049
+msgid "Language:"
+msgstr "Lenguaje: "
+
+#: f_settings.form:2081
+msgid "System Language:"
+msgstr "Lenguaje del Sistema"
+
+#: f_settings.form:2107
+msgid "Launcher"
+msgstr "Lanzador"
+
+#: f_settings.form:2125
+msgid "Style Launcher"
+msgstr "Apariencia del Launcher"
+
+#: f_settings.form:2131
+msgid "Show Launcher CNB"
+msgstr "Mostrar Lanzador CNB"
+
+#: f_settings.form:2132
+msgid "CNB"
+msgstr "CNB"
+
+#: f_settings.form:2139
+msgid "Show Launcher Mini"
+msgstr "Mostrar Lanzador Mini"
+
+#: f_settings.form:2140
+msgid "Mini"
+msgstr ""
+
+#: f_settings.form:2146
+msgid "Show Launcher Tablet"
+msgstr "Mostrar Lanzador Tablet"
+
+#: f_settings.form:2147
+msgid "Tablet"
+msgstr ""
+
+#: f_settings.form:2159
+msgid "Show Category"
+msgstr "Mostrar Categorias"
+
+#: f_settings.form:2177
+msgid "Show Text"
+msgstr "Mostrar Texto"
+
+#: f_settings.form:2196
+msgid "Launcher icon size"
+msgstr "Tamaño de los iconos del Launcher"
+
+#: f_settings.form:2234
+msgid "Launcher Transparent"
+msgstr "Launcher Transparente"
+
+#: f_settings.form:2253
+msgid "Launcher opacity"
+msgstr "Opacidad del Launcher"
+
+#: f_settings.form:2271
+msgid "Show ScrollBar "
+msgstr ""
+
+#: f_settings.form:2290
+msgid "Change background image"
+msgstr "Cambiar imagen de fondo"
+
+#: f_settings.form:2374
+msgid "Style Innova"
+msgstr "Apariencia de Innova"
+
+#: f_settings.form:2389
+msgid "Theme"
+msgstr "Tema"
+
+#: f_settings.form:2426
+msgid "Style Apps"
+msgstr "Apariencia de las Apps"
+
+#: f_settings.form:2474
+msgid "Style Icons"
+msgstr "Apariencia de Iconos"
+
+#: f_settings.form:2588
+msgid "Cursor"
+msgstr "Cursor"
+
+#: f_settings.form:2666
+msgid "Applications"
+msgstr "Aplicaciones"
+
+#: f_settings.form:2686
+msgid "File Manager:"
+msgstr "Administrador de Archivos: "
+
+#: f_settings.form:2711
+msgid "Terminal:"
+msgstr "Terminal: "
+
+#: f_settings.form:2716
+msgid "Terminal"
+msgstr "Terminal"
+
+#: f_settings.form:2736
+msgid "Web Browser:"
+msgstr "Navegador Web:"
+
+#: f_settings.form:2741
+msgid "Web Browser"
+msgstr "Navegador Web"
+
+#: f_settings.form:2761
+msgid "Window manager:"
+msgstr "Administrador de Ventanas:"
+
+#: f_settings.form:2766
+msgid "Windows Manager"
+msgstr "Administrador de Ventanas:"
+
+#: f_settings.form:2787
+msgid "Video Player:"
+msgstr "Reproductor de Video: "
+
+#: f_settings.form:2812
+msgid "Text Edit:"
+msgstr "Editor de Texto: "
+
+#: f_settings.form:2922
+msgid "Splash Screen"
+msgstr "Pantalla de Bienvenida"
+
+#: f_settings.form:2991
+msgid "Full Screen"
+msgstr "Pantalla Completa"
+
+#: f_settings.form:3018
+msgid "Import...\" & \""
+msgstr "Importar"
+
+#: f_stock.form:8
+msgid "Add Stock Icons - Innova Settings"
+msgstr ""
+
+#: f_widget_new.class:143
+msgid "Archive name"
+msgstr "Nombre del archivo"
+
+#: f_widget_new.class:144
+msgid "Binary BIN"
+msgstr "Binario BIN"
+
+#: f_widget_new.class:144
+msgid "Binary Gambas"
+msgstr "Binario Gambas"
+
+#: f_widget_new.class:144
+msgid "Binary Python"
+msgstr "Binario Python"
+
+#: f_widget_new.form:52
+msgid "Add new widget"
+msgstr "Agregar nuevo widget"

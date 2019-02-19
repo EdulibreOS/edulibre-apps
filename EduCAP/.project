@@ -1,7 +1,8 @@
 # Gambas Project File 3.0
 Title=Edulibre CAP
 Startup=EdulibCap
-Version=0.0.3
+Icon=Images/LogoCAP.png
+Version=0.0.12
 Component=gb.image
 Component=gb.gui.qt
 Component=gb.form
