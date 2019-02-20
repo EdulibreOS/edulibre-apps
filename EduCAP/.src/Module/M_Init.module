@@ -32,8 +32,10 @@ Private cone As New Connection
 'Checks the DB folder version, to keep it sincronized
 
 Public Sub CheckDBVersion()
+
+  Print "Checking database folders /usr/share/Innova/EduCAP/DB -> " & User.Home &/ ".config/Innova/EduCAP/DB"
   
-  CheckFolderVersion("/usr/share/Innova/EduCAP/DB", User.Home & ".config/Innova/EduCAP/DB")
+  CheckFolderVersion("/usr/share/Innova/EduCAP/DB", User.Home &/ ".config/Innova/EduCAP/DB")
   
 End
 
@@ -42,7 +44,6 @@ End
 ' otherwise it will be sincronized.
 ' This method is an utility to control any folder version, for folders managed by app, not by package
 Public Sub CheckFolderVersion(shareVersionDir As String, homeVersionDir As String)
-  
   
   Dim share As String
   Dim home As String
@@ -62,8 +63,9 @@ Public Sub CheckFolderVersion(shareVersionDir As String, homeVersionDir As Strin
   Endif
   
   If IsNull(share) Or share <> home Then
-    
     Dim result As String
+    Shell "mkdir -p \"" & homeVersionDir & "\"" To result
+    Print result
     Shell "rm -R \"" & homeVersionDir & "\"" To result
     Print result
     Shell "cp -R \"" & shareVersionDir & "\"  \"" & homeVersionDir & "\"" To result

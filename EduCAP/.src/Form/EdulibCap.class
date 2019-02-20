@@ -41,6 +41,8 @@ End
 
 
 Public Sub Form_Open()
+'Check database version
+M_Init.CheckDBVersion()
 'Obtener informacion de directorio
 Dim sResult As String
 Try sResult = Settings_App_Educap["Educap/Name_App"]
@@ -50,8 +52,6 @@ M_Theme.Get_Theme(EdulibCap)
 M_Init.ObtenerCmbNivel
 'Genera nuevo usuario para el log
 M_Log.Set_NewUser("CAEdulibre")
-'Check database version
-M_Init.CheckDBVersion()
 'Obtiene la información de la actividad
 If Not IsNull(sResult) Then
   'Obtiene el listado de actividades
