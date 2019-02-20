@@ -31,7 +31,7 @@ Public Procedure Conectar() As Connection
     Try $con.Close()             ' Cierra la conexion el try permite falle sin error
     $con.Type = "sqlite3"        ' Define el tipo de Conexion
     '$con.Host = (Application.path &/ "DB/") ' Host sera la ruta en donde esta el archivo de la db sqlite
-    $con.Host = (Desktop.ConfigDir &/ "/Innova/Educap/DB/") ' Host sera la ruta en donde esta el archivo de la db sqlite
+    $con.Host = (Desktop.ConfigDir &/ "/Innova/EduCAP/DB/") ' Host sera la ruta en donde esta el archivo de la db sqlite
     $con.Name = "edulibcap.db"    ' nombre de la base de datos es el nombre del archivo base de datos
     $con.Open()                  ' Activamos y Abrimos la conexion, el try es para que permita un error
   
