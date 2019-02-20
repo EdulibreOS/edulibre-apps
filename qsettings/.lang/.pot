@@ -1,0 +1,991 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  #project.pot (qsettings 3.12.2)  #-#-#-#-#\n"
+"Project-Id-Version: qsettings 3.12.2\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  Atom.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  CCursor.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  Cls_Start.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  LC_MESSAGES.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  M_Core.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  M_DB.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  M_Init.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  M_Init_.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  M_Theme.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  M_Var_Global.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  PushButton.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  f_conf_wallpaper.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  f_download.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  f_extension_new.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  f_full_preview.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  f_gallery_wallpaper.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  f_settings.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  f_stock.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  f_widget_new.pot ($(PACKAGE) $(VERSION))  #-#-#-#-#\n"
+"Project-Id-Version: $(PACKAGE) $(VERSION)\n"
+"POT-Creation-Date: 2019-02-13 17:26 UTC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .project:1
+msgid "qsettings"
+msgstr ""
+
+#: LC_MESSAGES.module:26
+msgid "Current extensions is active, can not be deleted."
+msgstr ""
+
+#: LC_MESSAGES.module:27
+msgid "Current widget is active, can not be deleted."
+msgstr ""
+
+#: LC_MESSAGES.module:28
+msgid "The fields can not be empety"
+msgstr ""
+
+#: LC_MESSAGES.module:29
+msgid "Record saved successfully"
+msgstr ""
+
+#: LC_MESSAGES.module:30
+msgid "¿Are you sure we want to remove the extensions - "
+msgstr ""
+
+#: LC_MESSAGES.module:31
+msgid "¿Are you sure we want to remove the widget - "
+msgstr ""
+
+#: LC_MESSAGES.module:33
+msgid "Theme Registration Error"
+msgstr ""
+
+#: LC_MESSAGES.module:34
+msgid "Failed to connect to the DB system"
+msgstr ""
+
+#: LC_MESSAGES.module:35
+msgid "Error processing the system information"
+msgstr ""
+
+#: LC_MESSAGES.module:36
+msgid "You must select valid windows manager"
+msgstr ""
+
+#: LC_MESSAGES.module:37
+msgid "Format not valid"
+msgstr ""
+
+#: LC_MESSAGES.module:38
+msgid "No item selected to remove"
+msgstr ""
+
+#: LC_MESSAGES.module:42
+msgid "Innova Desktop in execution..."
+msgstr ""
+
+#: LC_MESSAGES.module:43
+msgid "Splash Screen exists"
+msgstr ""
+
+#: LC_MESSAGES.module:44
+msgid ""
+"Appearance Launcher Innova is NOT equal to the Launcher Type selected in the "
+"Theme Current. You want to change the Appearance of Launcher...?"
+msgstr ""
+
+#: LC_MESSAGES.module:45
+msgid "Folder already exists"
+msgstr ""
+
+#: LC_MESSAGES.module:46
+msgid "File already exists"
+msgstr ""
+
+#: LC_MESSAGES.module:47
+msgid "Can not delete the files"
+msgstr ""
+
+#: LC_MESSAGES.module:48
+msgid "Theme selected already exists in the system."
+msgstr ""
+
+#: LC_MESSAGES.module:49
+msgid "Current theme is active, can not be deleted."
+msgstr ""
+
+#: LC_MESSAGES.module:50
+msgid "You have not selected Innova Theme."
+msgstr ""
+
+#: LC_MESSAGES.module:51
+msgid "It has not established a reference Apps."
+msgstr ""
+
+#: LC_MESSAGES.module:53
+msgid "¿Want to delete the select splash?"
+msgstr ""
+
+#: LC_MESSAGES.module:54
+msgid "Enter a Name..."
+msgstr ""
+
+#: LC_MESSAGES.module:55
+msgid "The files can not be restored after deleted. Do you want continue? "
+msgstr ""
+
+#: LC_MESSAGES.module:56
+msgid "Sure you want to move the file to the trash ..? "
+msgstr ""
+
+#: LC_MESSAGES.module:57
+msgid "¿Are you sure we want to remove the theme - "
+msgstr ""
+
+#: LC_MESSAGES.module:58
+msgid ""
+"The version of the configuration file Innova_Config.conf has CHANGED. Wants "
+"to update.? "
+msgstr ""
+
+#: LC_MESSAGES.module:60
+msgid "Destination file exists. OverWrite"
+msgstr ""
+
+#: M_Core.module:936
+msgid "/etc/default/locale"
+msgstr ""
+
+#: M_Core.module:937
+msgid "/tmp/locale"
+msgstr ""
+
+#: M_Core.module:1645
+msgid "Theme Active: "
+msgstr ""
+
+#: M_DB.module:38 f_download.class:214 f_extension_new.class:55
+#: f_settings.form:1749 f_widget_new.class:55
+msgid "Innova Desktop"
+msgstr ""
+
+#: f_conf_wallpaper.form:54
+msgid "Change wallpaper"
+msgstr ""
+
+#: f_conf_wallpaper.form:71 f_download.form:106 f_gallery_wallpaper.form:49
+#: f_settings.form:880
+msgid "Ok"
+msgstr ""
+
+#: f_conf_wallpaper.form:77 f_download.form:114 f_extension_new.form:156
+#: f_gallery_wallpaper.form:56 f_settings.form:2419 f_widget_new.form:159
+msgid "Close"
+msgstr ""
+
+#: f_conf_wallpaper.class:49 f_settings.class:312
+msgid "Image Archive"
+msgstr ""
+
+#: f_conf_wallpaper.class:50 f_settings.class:550
+msgid "Image PNG"
+msgstr ""
+
+#: f_conf_wallpaper.class:50 f_settings.class:550
+msgid "Image JPG"
+msgstr ""
+
+#: f_conf_wallpaper.class:50 f_settings.class:550
+msgid "Image JPEG"
+msgstr ""
+
+#: f_conf_wallpaper.class:50 f_settings.class:550
+msgid "Image SVG"
+msgstr ""
+
+#: f_conf_wallpaper.class:50 f_settings.class:550
+msgid "Image BMP of Windows"
+msgstr ""
+
+#: f_download.form:19
+msgid "Download Wallpaper - Innova Settings"
+msgstr ""
+
+#: f_download.form:29 f_settings.form:1047
+msgid "Download Wallpaper"
+msgstr ""
+
+#: f_download.form:46
+msgid "Search: "
+msgstr ""
+
+#: f_download.class:92
+msgid "Install"
+msgstr ""
+
+#: f_download.class:163
+msgid "&Install"
+msgstr ""
+
+#: f_download.class:215
+msgid "Desea aplicar el fondo"
+msgstr ""
+
+#: f_download.class:215
+msgid "&Yes"
+msgstr ""
+
+#: f_download.class:215
+msgid "&No"
+msgstr ""
+
+#: f_extension_new.form:26 f_widget_new.form:26
+msgid "Add new extensions - Innova Settings"
+msgstr ""
+
+#: f_extension_new.form:52
+msgid "Add new extensions"
+msgstr ""
+
+#: f_extension_new.form:71 f_widget_new.form:71
+msgid "Name:"
+msgstr ""
+
+#: f_extension_new.form:88 f_widget_new.form:88
+msgid "Exec:"
+msgstr ""
+
+#: f_extension_new.form:105 f_widget_new.form:108
+msgid "Icon:"
+msgstr ""
+
+#: f_extension_new.form:119 f_widget_new.form:122
+msgid "Search icon"
+msgstr ""
+
+#: f_extension_new.form:126 f_widget_new.form:129
+msgid "Status:"
+msgstr ""
+
+#: f_extension_new.form:132 f_settings.form:843 f_widget_new.form:94
+msgid "Change Wallpaper"
+msgstr ""
+
+#: f_extension_new.form:135 f_widget_new.form:138
+msgid "False"
+msgstr ""
+
+#: f_extension_new.form:135 f_widget_new.form:138
+msgid "True"
+msgstr ""
+
+#: f_extension_new.form:148 f_settings.form:1722 f_widget_new.form:151
+msgid "New"
+msgstr ""
+
+#: f_gallery_wallpaper.form:21
+msgid "Select wallpaper - Innova Settings"
+msgstr ""
+
+#: f_gallery_wallpaper.form:69
+msgid "Select wallpaper"
+msgstr ""
+
+#: f_gallery_wallpaper.form:81
+msgid "Dir"
+msgstr ""
+
+#: f_gallery_wallpaper.form:100
+msgid "Image"
+msgstr ""
+
+#: f_settings.form:382
+msgid "Desktop Settings - Innova"
+msgstr ""
+
+#: f_settings.form:392
+msgid "About"
+msgstr ""
+
+#: f_settings.form:409
+msgid "¡Welcome to Innova Desktop Settings!"
+msgstr ""
+
+#: f_settings.form:448
+msgid "Desktop"
+msgstr ""
+
+#: f_settings.form:455
+msgid "Innova"
+msgstr ""
+
+#: f_settings.form:462
+msgid "Panel"
+msgstr ""
+
+#: f_settings.form:469
+msgid "Widget"
+msgstr ""
+
+#: f_settings.form:476
+msgid "Style"
+msgstr ""
+
+#: f_settings.form:483
+msgid "Apps"
+msgstr ""
+
+#: f_settings.form:491
+msgid "MIME"
+msgstr ""
+
+#: f_settings.form:498
+msgid "Splash"
+msgstr ""
+
+#: f_settings.form:506
+msgid "Energy"
+msgstr ""
+
+#: f_settings.form:553
+msgid "Settings Desktop"
+msgstr ""
+
+#: f_settings.form:579
+msgid "Show Icons"
+msgstr ""
+
+#: f_settings.form:605
+msgid "Hide all icons"
+msgstr ""
+
+#: f_settings.form:611
+msgid "Show Network Icon"
+msgstr ""
+
+#: f_settings.form:636
+msgid "PC"
+msgstr ""
+
+#: f_settings.form:642
+msgid "Show My Computer Icon"
+msgstr ""
+
+#: f_settings.form:662
+msgid "Trash"
+msgstr ""
+
+#: f_settings.form:668
+msgid "Show Trash Icon"
+msgstr ""
+
+#: f_settings.form:689
+msgid "Home"
+msgstr ""
+
+#: f_settings.form:695
+msgid "Show Home Icon"
+msgstr ""
+
+#: f_settings.form:716
+msgid "Partitions"
+msgstr ""
+
+#: f_settings.form:722
+msgid "Show Partitions Icon"
+msgstr ""
+
+#: f_settings.form:743
+msgid "Network"
+msgstr ""
+
+#: f_settings.form:762
+msgid "Show popup"
+msgstr ""
+
+#: f_settings.form:773
+msgid "Background"
+msgstr ""
+
+#: f_settings.form:799
+msgid "Solid Color"
+msgstr ""
+
+#: f_settings.form:857
+msgid "Wallpapers Gallery"
+msgstr ""
+
+#: f_settings.form:878
+msgid "Apply Changes"
+msgstr ""
+
+#: f_settings.form:903
+msgid "Wallpaper Random"
+msgstr ""
+
+#: f_settings.form:932
+msgid "Pictures location:"
+msgstr ""
+
+#: f_settings.form:947
+msgid "Hours"
+msgstr ""
+
+#: f_settings.form:995
+msgid "Preview"
+msgstr ""
+
+#: f_settings.form:1053
+msgid "Icon Size"
+msgstr ""
+
+#: f_settings.form:1084
+msgid "Change icon size"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "22"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "32"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "48"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "64"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "76"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "86"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "96"
+msgstr ""
+
+#: f_settings.form:1086
+msgid "128"
+msgstr ""
+
+#: f_settings.form:1098
+msgid "Icon Line"
+msgstr ""
+
+#: f_settings.form:1125
+msgid "Organize in"
+msgstr ""
+
+#: f_settings.form:1140
+msgid "Rows"
+msgstr ""
+
+#: f_settings.form:1140
+msgid "Columns"
+msgstr ""
+
+#: f_settings.form:1153
+msgid "Order"
+msgstr ""
+
+#: f_settings.form:1168
+msgid "Name"
+msgstr ""
+
+#: f_settings.form:1168
+msgid "Size"
+msgstr ""
+
+#: f_settings.form:1168
+msgid "Type"
+msgstr ""
+
+#: f_settings.form:1168
+msgid "Date"
+msgstr ""
+
+#: f_settings.form:1175
+msgid "Ascending / Descending"
+msgstr ""
+
+#: f_settings.form:1188
+msgid "Help popup"
+msgstr ""
+
+#: f_settings.form:1206
+msgid "Font"
+msgstr ""
+
+#: f_settings.form:1225
+msgid "Type and Size of Font"
+msgstr ""
+
+#: f_settings.form:1309
+msgid "Size:"
+msgstr ""
+
+#: f_settings.form:1332
+msgid "Icon Size:"
+msgstr ""
+
+#: f_settings.form:1355
+msgid "Large:"
+msgstr ""
+
+#: f_settings.form:1370
+msgid "%"
+msgstr ""
+
+#: f_settings.form:1378
+msgid "Position"
+msgstr ""
+
+#: f_settings.form:1396
+msgid "Position:"
+msgstr ""
+
+#: f_settings.form:1410
+msgid "Position the top panel"
+msgstr ""
+
+#: f_settings.form:1412
+msgid "Top"
+msgstr ""
+
+#: f_settings.form:1425
+msgid "Position of the bottom panel"
+msgstr ""
+
+#: f_settings.form:1427
+msgid "Bottom"
+msgstr ""
+
+#: f_settings.form:1436
+msgid "Look"
+msgstr ""
+
+#: f_settings.form:1456
+msgid "Show only image icons of the Taskbar"
+msgstr ""
+
+#: f_settings.form:1495
+msgid "Background opacity"
+msgstr ""
+
+#: f_settings.form:1522
+msgid "Auto-hide"
+msgstr ""
+
+#: f_settings.form:1541
+msgid "Transparent Panel"
+msgstr ""
+
+#: f_settings.form:1560
+msgid "Dock Style"
+msgstr ""
+
+#: f_settings.form:1579
+msgid "Categories mouse sensitive"
+msgstr ""
+
+#: f_settings.form:1614
+msgid "Change panel image"
+msgstr ""
+
+#: f_settings.form:1616
+msgid "Background Image"
+msgstr ""
+
+#: f_settings.form:1622
+msgid "Select panel image"
+msgstr ""
+
+#: f_settings.form:1653
+msgid "Font Color"
+msgstr ""
+
+#: f_settings.form:1674
+msgid "Background Color"
+msgstr ""
+
+#: f_settings.form:1691
+msgid "Default Panel"
+msgstr ""
+
+#: f_settings.form:1692
+msgid "Default"
+msgstr ""
+
+#: f_settings.form:1698
+msgid "Extensions"
+msgstr ""
+
+#: f_settings.form:1730
+msgid "Remove"
+msgstr ""
+
+#: f_settings.form:1769
+msgid "Transparent"
+msgstr ""
+
+#: f_settings.form:1791
+msgid ""
+"That property has an effect only if you run a compositing window manager."
+msgstr ""
+
+#: f_settings.form:1809
+msgid "Startup Sound"
+msgstr ""
+
+#: f_settings.form:1844
+msgid "Icons Start:"
+msgstr ""
+
+#: f_settings.form:1850
+msgid "Change boot image"
+msgstr ""
+
+#: f_settings.form:1893
+msgid "Workspace"
+msgstr ""
+
+#: f_settings.form:1922
+msgid "Number of desktops"
+msgstr ""
+
+#: f_settings.form:1943
+msgid "Names of all virtual desktops"
+msgstr ""
+
+#: f_settings.form:2010
+msgid "Restore default values"
+msgstr ""
+
+#: f_settings.form:2022
+msgid "Language"
+msgstr ""
+
+#: f_settings.form:2049
+msgid "Language:"
+msgstr ""
+
+#: f_settings.form:2081
+msgid "System Language:"
+msgstr ""
+
+#: f_settings.form:2107
+msgid "Launcher"
+msgstr ""
+
+#: f_settings.form:2125
+msgid "Style Launcher"
+msgstr ""
+
+#: f_settings.form:2131
+msgid "Show Launcher CNB"
+msgstr ""
+
+#: f_settings.form:2132
+msgid "CNB"
+msgstr ""
+
+#: f_settings.form:2139
+msgid "Show Launcher Mini"
+msgstr ""
+
+#: f_settings.form:2140
+msgid "Mini"
+msgstr ""
+
+#: f_settings.form:2146
+msgid "Show Launcher Tablet"
+msgstr ""
+
+#: f_settings.form:2147
+msgid "Tablet"
+msgstr ""
+
+#: f_settings.form:2159
+msgid "Show Category"
+msgstr ""
+
+#: f_settings.form:2177
+msgid "Show Text"
+msgstr ""
+
+#: f_settings.form:2196
+msgid "Launcher icon size"
+msgstr ""
+
+#: f_settings.form:2234
+msgid "Launcher Transparent"
+msgstr ""
+
+#: f_settings.form:2253
+msgid "Launcher opacity"
+msgstr ""
+
+#: f_settings.form:2271
+msgid "Show ScrollBar "
+msgstr ""
+
+#: f_settings.form:2290
+msgid "Change background image"
+msgstr ""
+
+#: f_settings.form:2374
+msgid "Style Innova"
+msgstr ""
+
+#: f_settings.form:2389
+msgid "Theme"
+msgstr ""
+
+#: f_settings.form:2426
+msgid "Style Apps"
+msgstr ""
+
+#: f_settings.form:2474
+msgid "Style Icons"
+msgstr ""
+
+#: f_settings.form:2588
+msgid "Cursor"
+msgstr ""
+
+#: f_settings.form:2666
+msgid "Applications"
+msgstr ""
+
+#: f_settings.form:2686
+msgid "File Manager:"
+msgstr ""
+
+#: f_settings.form:2711
+msgid "Terminal:"
+msgstr ""
+
+#: f_settings.form:2716
+msgid "Terminal"
+msgstr ""
+
+#: f_settings.form:2736
+msgid "Web Browser:"
+msgstr ""
+
+#: f_settings.form:2741
+msgid "Web Browser"
+msgstr ""
+
+#: f_settings.form:2761
+msgid "Window manager:"
+msgstr ""
+
+#: f_settings.form:2766
+msgid "Windows Manager"
+msgstr ""
+
+#: f_settings.form:2787
+msgid "Video Player:"
+msgstr ""
+
+#: f_settings.form:2812
+msgid "Text Edit:"
+msgstr ""
+
+#: f_settings.form:2922
+msgid "Splash Screen"
+msgstr ""
+
+#: f_settings.form:2991
+msgid "Full Screen"
+msgstr ""
+
+#: f_settings.form:3018
+msgid "Import...\" & \""
+msgstr ""
+
+#: f_settings.class:274
+msgid "Error of Connection... "
+msgstr ""
+
+#: f_settings.class:314
+msgid "Picture files"
+msgstr ""
+
+#: f_settings.class:314
+msgid "Drawing files"
+msgstr ""
+
+#: f_settings.class:344
+msgid "The theme has been changed successfully."
+msgstr ""
+
+#: f_settings.class:399
+msgid "Please select a directory to record to..."
+msgstr ""
+
+#: f_settings.class:534
+msgid "Media format"
+msgstr ""
+
+#: f_settings.class:778
+msgid "Innova Desktop - Restore Default"
+msgstr ""
+
+#: f_settings.class:779
+msgid "Are you sure to restore Innova defaults...?  "
+msgstr ""
+
+#: f_settings.class:779
+msgid "Yes"
+msgstr ""
+
+#: f_settings.class:779
+msgid "No"
+msgstr ""
+
+#: f_settings.class:1018
+msgid "Status"
+msgstr ""
+
+#: f_settings.class:1020
+msgid "Exec"
+msgstr ""
+
+#: f_settings.class:1021
+msgid "Icon"
+msgstr ""
+
+#: f_settings.class:1803
+msgid "You must select a theme..."
+msgstr ""
+
+#: f_settings.class:1875
+msgid "Innova Desktop Settings"
+msgstr ""
+
+#: f_stock.form:8
+msgid "Add Stock Icons - Innova Settings"
+msgstr ""
+
+#: f_widget_new.form:52
+msgid "Add new widget"
+msgstr ""
+
+#: f_widget_new.class:143
+msgid "Archive name"
+msgstr ""
+
+#: f_widget_new.class:144
+msgid "Binary Gambas"
+msgstr ""
+
+#: f_widget_new.class:144
+msgid "Binary BIN"
+msgstr ""
+
+#: f_widget_new.class:144
+msgid "Binary Python"
+msgstr ""
