@@ -1,0 +1,79 @@
+' Gambas class file
+
+Public Sub Form_Open()
+  
+  pnl_portada.Visible = True
+  
+End
+
+
+
+
+Public Sub mnu_preprimaria_Click()
+
+  pnl_portada.Visible = False
+
+  btn_preprimaria.Visible = True
+  
+  btn_primero.Visible = False
+  btn_segundo.Visible = False
+  btn_tercero.Visible = False
+  
+  btn_cuarto.Visible = False
+  btn_quinto.Visible = False
+  btn_sexto.Visible = False
+  
+  lbl_titulo.Text = "PrePrimaria"
+  lbl_edad.Text = "6 años"
+  
+  pbox_icono.Visible = True
+  lbl_titulo.Visible = True
+  lbl_grados.Visible = True
+
+End
+
+Public Sub mnu_primaria_Click()
+
+  pnl_portada.Visible = False
+  
+  btn_preprimaria.Visible = False
+  
+  btn_primero.Visible = True
+  btn_segundo.Visible = True
+  btn_tercero.Visible = True
+  
+  btn_cuarto.Visible = False
+  btn_quinto.Visible = False
+  btn_sexto.Visible = False
+  
+  lbl_titulo.Text = "Primaria Primer Ciclo"
+  lbl_edad.Text = "7 - 9 años"
+  
+  pbox_icono.Visible = True
+  lbl_titulo.Visible = True
+  lbl_grados.Visible = True
+
+End
+
+Public Sub mnu_primaria2_Click()
+
+  pnl_portada.Visible = False
+
+  btn_preprimaria.Visible = False
+  
+  btn_primero.Visible = False
+  btn_segundo.Visible = False
+  btn_tercero.Visible = False
+  
+  btn_cuarto.Visible = True
+  btn_quinto.Visible = True
+  btn_sexto.Visible = True
+  
+  lbl_titulo.Text = "Primaria Segundo Ciclo"
+  lbl_edad.Text = "10 - 12 años"
+  
+  pbox_icono.Visible = True
+  lbl_titulo.Visible = True
+  lbl_grados.Visible = True
+
+End
