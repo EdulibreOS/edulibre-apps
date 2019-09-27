@@ -1,0 +1,68 @@
+' Gambas module file
+
+' Innova Project 
+' Copyright © Asociación Civil Edulibre
+' Info@edulibre.com
+'
+' Jorge Recinos - Developer
+' jrecinosd@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Private cone As New Connection
+Private ImgBtnAppsBook As PushButton
+
+
+Public Sub LLenar_Materias(Optional grado As String)
+
+  Dim consulta As String
+  Dim rs As Result
+  Dim iSizeApps As Integer
+  
+  consulta = "SELECT DISTINCT c.idtbl_materia ID, c.descripcion " &
+              "FROM tbl_grado_materia a, " &
+			        "tbl_grado b, " &
+			        "tbl_materia c " &
+              "WHERE a.id_grado = b.idtbl_grado " &
+              "AND a.id_materia = c.idtbl_materia " &
+              "AND b.descripcion = '" & grado & "'"
+  Print consulta
+    cone = MDB_Connection.Conectar()
+            rs = cone.Exec(consulta)
+               While (rs.Available)
+                 ImgBtnAppsBook = New PushButton(Educap.IconViewMaterias) As "IButtonApps"
+                 ImgBtnAppsBook.w = 75
+                 ImgBtnAppsBook.h = 40
+                 ImgBtnAppsBook.Text = rs["descripcion"]
+                 'ImgBtnAppsBook.Val = rs["ID"]
+                 ImgBtnAppsBook.Mouse = 13
+                   'ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture
+                 'Print ImgBtnAppsBook.Picture
+                 'ImgBtnAppsBook.Background = Color.Transparent
+                 'Try ImgBtnAppsBook.Font.Size = (M_Core.iFontSize)
+                 'ImgBtnAppsBook.Font.Name = (M_Core.sFontName)
+                 ImgBtnAppsBook.Tag = rs["descripcion"]
+    
+                 'sDel = DesktopEntry.Path
+                   rs.MoveNext
+               Wend
+
+  MDB_Connection.Desconectar(cone)
+  
+  
+End

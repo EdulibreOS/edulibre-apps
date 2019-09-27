@@ -4,60 +4,6 @@
   MoveScaled(0,0,146.2857,85.7143)
   Background = Color.White
   Transparent = True
-  Invert = True
-  { pnl_grado Panel
-    MoveScaled(24,9,122,63)
-    Background = Color.DarkBlue
-    { btn_regresar Button
-      MoveScaled(12,3,16,4)
-      Text = ("Regresar a grados")
-    }
-    { pbox_grado PictureBox
-      MoveScaled(4,11,16,16)
-    }
-    { pbox_regresar PictureBox
-      MoveScaled(3,2,6,6)
-      Picture = Picture["Images/menorque.png"]
-      Stretch = True
-    }
-    { lbl_grado Label
-      MoveScaled(22,12,24,4)
-      Font = Font["+4"]
-    }
-    { txt_busqueda TextBox
-      MoveScaled(85,7,24,4)
-      Text = ("Busca por palabra clave")
-    }
-    { Button4 Button
-      MoveScaled(109,7,6,4)
-    }
-  }
-  { pnl_portada Panel
-    MoveScaled(24,9,122,63)
-    { lbl_portada Label
-      MoveScaled(10,14,17,5)
-      Font = Font["+6"]
-      Text = ("Hola!")
-    }
-    { pbox_portada PictureBox
-      MoveScaled(70,26,28.5714,28.5714)
-    }
-    { lbl_portada2 Label
-      MoveScaled(10,20,39,4)
-      Font = Font["+4"]
-      Text = ("Que vamos a enseñar hoy?")
-    }
-    { lbl_portada3 Label
-      MoveScaled(10,27,53,11)
-      Font = Font["+3"]
-      Text = ("Selecciona del menu izquierdo el nivel que\ndeseas para descubrir  las diferentes\nactividades por grado\n")
-    }
-    { lbl_portada4 Label
-      MoveScaled(10,41,43,8)
-      Font = Font["+2"]
-      Text = ("PrePrimaria - 6 años\nPrimaria Primer Ciclo - 7 a 9 años\nPrimaria Segundo Ciclo - 10 a 12 años")
-    }
-  }
   { Button1 Button
     MoveScaled(98,0,16,8)
     Background = Color.SelectedForeground
@@ -161,5 +107,77 @@
     MoveScaled(41,41,28.5714,28.5714)
     Visible = False
     Text = ("PrePrimaria")
+  }
+  { pnl_portada Panel
+    MoveScaled(24,9,122,63)
+    { lbl_portada Label
+      MoveScaled(10,14,17,5)
+      Font = Font["+6"]
+      Text = ("Hola!")
+    }
+    { pbox_portada PictureBox
+      MoveScaled(70,26,28.5714,28.5714)
+    }
+    { lbl_portada2 Label
+      MoveScaled(10,20,39,4)
+      Font = Font["+4"]
+      Text = ("Que vamos a enseñar hoy?")
+    }
+    { lbl_portada3 Label
+      MoveScaled(10,27,53,11)
+      Font = Font["+3"]
+      Text = ("Selecciona del menu izquierdo el nivel que\ndeseas para descubrir  las diferentes\nactividades por grado\n")
+    }
+    { lbl_portada4 Label
+      MoveScaled(10,41,43,8)
+      Font = Font["+2"]
+      Text = ("PrePrimaria - 6 años\nPrimaria Primer Ciclo - 7 a 9 años\nPrimaria Segundo Ciclo - 10 a 12 años")
+    }
+  }
+  { pnl_grado Panel
+    MoveScaled(24,9,122,77)
+    Background = Color.DarkBlue
+    { btn_regresar Button
+      MoveScaled(12,3,16,4)
+      Text = ("Regresar a grados")
+    }
+    { pbox_grado PictureBox
+      MoveScaled(4,11,16,16)
+    }
+    { pbox_regresar PictureBox
+      MoveScaled(3,2,6,6)
+      Picture = Picture["Images/menorque.png"]
+      Stretch = True
+    }
+    { lbl_grado Label
+      MoveScaled(22,12,24,4)
+      Font = Font["+4"]
+    }
+    { txt_busqueda TextBox
+      MoveScaled(85,7,24,4)
+      Text = ("Busca por palabra clave")
+    }
+    { Button4 Button
+      MoveScaled(109,7,6,4)
+    }
+    { pnl_materias Panel
+      MoveScaled(3,19,117,9)
+      Expand = True
+      Arrangement = Arrange.Row
+      Spacing = True
+      Margin = True
+      Padding = 5
+      { !IconViewMaterias ScrollView
+        MoveScaled(2,2,24,13)
+        #Public = True
+        Expand = True
+        Arrangement = Arrange.Row
+        Spacing = True
+        Margin = True
+        Padding = 8
+        Border = False
+        ScrollBar = Scroll.None
+      }
+    }
   }
 }

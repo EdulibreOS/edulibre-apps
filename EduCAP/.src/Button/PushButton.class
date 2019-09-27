@@ -1,0 +1,227 @@
+' Gambas class file
+
+Export
+Inherits UserControl
+'Inherits DrawingArea
+Public Const _IsControl As Boolean = True
+
+Public Const _Properties As String = "*,Picture,Text,Alignment{Align.*}=Bottom"
+Public Const _DefaultArrangement As Integer = 2
+Public Const _Group As String = "Form"
+Public Const _DefaultEvent As String = "Click"
+Public Const DefaultSize As String = "32,32"
+Public IsControl As Integer = True
+
+Private $hView As DrawingArea
+Property Picture As Picture
+Property Position As Integer
+Property Alignment As Integer
+Private $iPosition As Integer
+Private $bHover As Boolean
+Private $bFocus As Boolean
+Private $bMouseDown As Boolean
+Property Text As String
+Private $sText As String
+Private $hPicture As Picture
+Private $htmpPic As Picture
+Private $iAlignment As Integer = Align.Bottom
+
+Event Click
+
+Public Sub _new()
+  
+  $hView = New DrawingArea(Me) As "View"
+  $hView.Focus = True
+  '$hView.W = Desktop.Scale * 3
+  Me.Proxy = $hView
+  
+End
+
+Public Sub View_Enter()
+  
+  $bHover = True
+  $hView.Refresh
+  
+End
+
+Public Sub View_Leave()
+  
+  $bHover = False
+  $hView.Refresh
+  
+End
+
+Public Sub View_GotFocus()
+  
+  $bFocus = True
+  $hView.Refresh
+  
+End
+
+Public Sub View_LostFocus()
+  
+  $bFocus = False
+  $hView.Refresh
+  
+End
+
+Public Sub View_MouseDown()
+  
+  $bMouseDown = True
+  $hView.Refresh
+  
+End
+
+Public Sub View_MouseUp()
+  
+  $bMouseDown = False
+  $hView.Refresh
+  Raise Click
+  
+End
+
+Private Function Position_Read() As Integer
+  
+  Return $iPosition
+  $hView.Refresh
+  
+End
+
+Private Sub Position_Write(Value As Integer)
+  
+  $iPosition = Value
+  $hView.Refresh
+  
+End
+''gardenias 10
+
+Public Sub View_Draw()
+  
+  Dim iFlag As Integer
+  Dim iPicX, iPicY, iPicY2 As Integer
+  Dim iX, iY As Integer
+  Dim iCol As Integer
+  Dim iDiv As Integer
+  
+  If $bMouseDown Then
+    Inc iX
+    Inc iY
+  Endif
+  
+  If $bFocus Then iflag = iFlag + Draw.Focus
+  If $bHover Then iflag = iFlag + Draw.Hover
+  
+  Draw.Style.Panel(0, 0, Paint.W, Paint.H, If($bHover, Border.Plain, Border.Etched), iflag)
+  
+  'Draw.Style.Panel(0, 0, Paint.W, Paint.H, If($bHover, Border.Plain, Border.Raised), iflag)
+  'Draw.Style.Panel(0, 0, Paint.W, Paint.H, Border.Etched, iflag)
+  
+  ' Style.PaintButton(0, 0, Paint.W, Paint.H, $bHover, Style.StateOf($hView))
+  
+  'Paint.Background = Color.SetAlpha(Color.Black, 240)
+  ' Paint.LineWidth = Desktop.Scale / 4
+  'Paint.MoveTo(0 + Paint.W / 2, 0 + Paint.H / 4)
+  'Paint.RelLineTo(0, Paint.H / 2)
+  'Paint.Stroke
+  
+  ' Draw.Style.Button(0, 0, Paint.W, Paint.H, If($bHover, Border.Plain, Border.Etched), iflag)
+  
+  If $hPicture Then
+    $htmpPic = $htmpPic.Image.Stretch(Me.W / 2, Me.H / 2).Picture
+    '$htmpPic = $htmpPic.Image.Stretch(Desktop.Scale * 8, Desktop.Scale * 8).Picture
+    iPicX = (Me.Width - $htmpPic.W) / 2
+    iPicY = (Me.Height - $htmpPic.H) / 2
+    iDiv = Me.H + Me.H / 2  
+    iPicY2 = (Me.H / 2) - ($htmpPic.H - (Desktop.Scale))
+    
+    If $bMouseDown Then
+      Inc iPicX
+      Inc iPicY
+    Endif
+    
+    If $sText Then      
+      Draw.Picture($htmpPic, iPicX, iPicY2)
+    Else         
+      'Draw.Picture($htmpPic, iPicX, iPicY)
+      Draw.Picture($htmpPic, iPicX, iPicY2)
+    Endif  
+    
+  Endif
+  
+  If Paint.Font.TextWidth($sText) > Me.W Then
+    
+    If Not $hPicture And $sText Then
+      
+      Paint.Background = Color.Black
+      Paint.DrawRichTextShadow(Html($sText), iX, iY, Me.W, Me.H, Align.Center, 8)
+      Paint.Background = Color.White
+      ' Paint.DrawRichText(Html($sText), iX, iY, Me.W, Me.H, Align.Center)
+      Draw.RichText(Html($sText), iX, iY, Me.W, Me.H, Align.Center)
+      
+    Else
+      
+      Paint.Background = Color.Black
+      Paint.DrawRichTextShadow(Html($sText), iX, iY, Me.W, iDiv, Align.Center, 8)
+      Paint.Background = Color.white
+      '  Paint.DrawRichText(Html($sText), iX, iY, Me.W, iDiv, Align.Center)
+      Draw.RichText(Html($sText), iX, iY, Me.W, iDiv, Align.Center)
+      
+    Endif
+  Else
+    
+    If Not $hPicture Then
+      
+      Paint.Background = Color.Black
+      Paint.DrawRichTextShadow(Html($sText), iX, iY, Me.W, Me.H, Align.Center, 8)
+      Paint.Background = Color.White
+      '  Paint.DrawRichText(Html($sText), iX, iY, Me.W, Me.H, Align.Center)
+      Draw.RichText(Html($sText), iX, iY, Me.W, Me.H, Align.Center)
+    Else
+      
+      Paint.Background = Color.Black
+      Paint.DrawRichTextShadow(Html($sText), iX, iY, Me.W, iDiv, Align.Center, 8)
+      Paint.Background = Color.White
+      ' Paint.DrawRichText(Html($sText), iX, iY, Me.W, iDiv, Align.Center)
+      Draw.RichText(Html($sText), iX, iY, Me.W, iDiv, Align.Center)
+    Endif
+    
+  Endif
+  
+End
+
+Private Function Picture_Read() As Picture
+  
+  Return $hPicture
+  
+End
+
+Private Sub Picture_Write(Value As Picture)
+  
+  $hPicture = Value
+  $htmpPic = $hPicture.Image.fuzzy(0.5).Opacity(0.9).Picture
+  
+End
+
+Private Function Text_Read() As String
+  
+  Return $sText
+  
+End
+
+Private Sub Text_Write(Value As String)
+  
+  $sText = Value
+  
+End
+
+Private Function Alignment_Read() As Integer
+  
+  Return $iAlignment
+  
+End
+
+Private Sub Alignment_Write(Value As Integer)
+  
+  $iAlignment = Value
+  
+End

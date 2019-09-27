@@ -122,7 +122,8 @@ Public Sub btn_primero_Click()
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
- lbl_grado.Text = "Primero Primaria"
+ lbl_grado.Text = "Primero"
+ M_Core.LLenar_Materias("Primero")
   
 End
 
