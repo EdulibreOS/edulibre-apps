@@ -2,7 +2,9 @@
 
 Public Sub Form_Open()
   
-  pnl_portada.Visible = True
+  active_pnl_grados(False)
+  active_pnl_portada(True)
+  active_pnl_grado(False)
   
 End
 
@@ -11,17 +13,11 @@ End
 
 Public Sub mnu_preprimaria_Click()
 
-  pnl_portada.Visible = False
+  active_pnl_grados(False)
+  active_pnl_portada(False)
+  active_pnl_grado(False)
 
   btn_preprimaria.Visible = True
-  
-  btn_primero.Visible = False
-  btn_segundo.Visible = False
-  btn_tercero.Visible = False
-  
-  btn_cuarto.Visible = False
-  btn_quinto.Visible = False
-  btn_sexto.Visible = False
   
   lbl_titulo.Text = "PrePrimaria"
   lbl_edad.Text = "6 años"
@@ -29,22 +25,19 @@ Public Sub mnu_preprimaria_Click()
   pbox_icono.Visible = True
   lbl_titulo.Visible = True
   lbl_grados.Visible = True
+  lbl_edad.Visible = True
 
 End
 
 Public Sub mnu_primaria_Click()
 
-  pnl_portada.Visible = False
-  
-  btn_preprimaria.Visible = False
+  active_pnl_grados(False)
+  active_pnl_portada(False)
+  active_pnl_grado(False)
   
   btn_primero.Visible = True
   btn_segundo.Visible = True
   btn_tercero.Visible = True
-  
-  btn_cuarto.Visible = False
-  btn_quinto.Visible = False
-  btn_sexto.Visible = False
   
   lbl_titulo.Text = "Primaria Primer Ciclo"
   lbl_edad.Text = "7 - 9 años"
@@ -52,18 +45,15 @@ Public Sub mnu_primaria_Click()
   pbox_icono.Visible = True
   lbl_titulo.Visible = True
   lbl_grados.Visible = True
+  lbl_edad.Visible = True
 
 End
 
 Public Sub mnu_primaria2_Click()
 
-  pnl_portada.Visible = False
-
-  btn_preprimaria.Visible = False
-  
-  btn_primero.Visible = False
-  btn_segundo.Visible = False
-  btn_tercero.Visible = False
+  active_pnl_grados(False)
+  active_pnl_portada(False)
+  active_pnl_grado(False)
   
   btn_cuarto.Visible = True
   btn_quinto.Visible = True
@@ -75,5 +65,108 @@ Public Sub mnu_primaria2_Click()
   pbox_icono.Visible = True
   lbl_titulo.Visible = True
   lbl_grados.Visible = True
+  lbl_edad.Visible = True
+
+End
+
+Public Sub active_pnl_grados(Estado As String)
+  
+  btn_preprimaria.Visible = Estado
+  btn_primero.Visible = Estado
+  btn_segundo.Visible = Estado
+  btn_tercero.Visible = Estado
+  btn_cuarto.Visible = Estado
+  btn_quinto.Visible = Estado
+  btn_sexto.Visible = Estado
+  
+  lbl_titulo.Visible = Estado
+  
+  pbox_icono.Visible = Estado
+  lbl_titulo.Visible = Estado
+  lbl_grados.Visible = Estado
+  pbox_icono.Visible = Estado
+  lbl_grados.Visible = Estado
+  lbl_edad.Visible = Estado
+ 
+   
+End
+
+Public Sub active_pnl_grado(Estado As String)
+
+  pnl_grado.Visible = Estado
+  pbox_regresar.Visible = Estado
+  btn_regresar.Visible = Estado
+  lbl_grado.Visible = Estado
+
+
+End
+
+Public Sub active_pnl_portada(Estado As String)
+
+  pnl_portada.Visible = Estado
+  lbl_titulo.Visible = Estado
+  
+End
+
+Public Sub btn_preprimaria_Click()
+
+   active_pnl_portada(False)
+   active_pnl_grados(False)
+   active_pnl_grado(True)
+   lbl_grado.Text = "PrePrimaria"
+
+End
+
+Public Sub btn_primero_Click()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ lbl_grado.Text = "Primero Primaria"
+  
+End
+
+Public Sub btn_segundo_Click()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ lbl_grado.Text = "Segundo Primaria"
+
+End
+
+Public Sub btn_tercero_Click()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ lbl_grado.Text = "Tercero Primaria"  
+
+End
+
+Public Sub btn_cuarto_Click()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ lbl_grado.Text = "Cuarto Primaria"  
+
+End
+
+Public Sub btn_quinto_Click()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ lbl_grado.Text = "Quinto Primaria"
+
+End
+
+Public Sub btn_sexto_Click()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ lbl_grado.Text = "Sexto Primaria"  
 
 End
