@@ -40,13 +40,14 @@ Public Sub LLenar_Materias(Optional grado As String)
 			        "tbl_materia c " &
               "WHERE a.id_grado = b.idtbl_grado " &
               "AND a.id_materia = c.idtbl_materia " &
-              "AND b.descripcion = '" & grado & "'"
+              "AND b.descripcion = '" & grado & "' " &
+              "ORDER BY c.descripcion"
   Print consulta
     cone = MDB_Connection.Conectar()
             rs = cone.Exec(consulta)
                While (rs.Available)
                  ImgBtnAppsBook = New PushButton(Educap.IconViewMaterias) As "IButtonApps"
-                 ImgBtnAppsBook.w = 75
+                 ImgBtnAppsBook.w = 90
                  ImgBtnAppsBook.h = 40
                  ImgBtnAppsBook.Text = rs["descripcion"]
                  'ImgBtnAppsBook.Val = rs["ID"]

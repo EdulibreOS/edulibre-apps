@@ -114,6 +114,7 @@ Public Sub btn_preprimaria_Click()
    active_pnl_grados(False)
    active_pnl_grado(True)
    lbl_grado.Text = "PrePrimaria"
+   M_Core.LLenar_Materias("Pre-escolar")
 
 End
 
@@ -133,6 +134,7 @@ Public Sub btn_segundo_Click()
  active_pnl_grados(False)
  active_pnl_grado(True)
  lbl_grado.Text = "Segundo Primaria"
+ M_Core.LLenar_Materias("Segundo")
 
 End
 
@@ -141,7 +143,8 @@ Public Sub btn_tercero_Click()
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
- lbl_grado.Text = "Tercero Primaria"  
+ lbl_grado.Text = "Tercero Primaria"
+ M_Core.LLenar_Materias("Tercero")
 
 End
 
@@ -151,7 +154,8 @@ Public Sub btn_cuarto_Click()
  active_pnl_grados(False)
  active_pnl_grado(True)
  lbl_grado.Text = "Cuarto Primaria"  
-
+ M_Core.LLenar_Materias("Cuarto")
+  
 End
 
 Public Sub btn_quinto_Click()
@@ -160,6 +164,7 @@ Public Sub btn_quinto_Click()
  active_pnl_grados(False)
  active_pnl_grado(True)
  lbl_grado.Text = "Quinto Primaria"
+ M_Core.LLenar_Materias("Quinto")
 
 End
 
@@ -168,6 +173,7 @@ Public Sub btn_sexto_Click()
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
- lbl_grado.Text = "Sexto Primaria"  
+ lbl_grado.Text = "Sexto Primaria"
+ M_Core.LLenar_Materias("Sexto")
 
 End
