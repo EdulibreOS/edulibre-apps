@@ -115,6 +115,7 @@ Public Sub btn_preprimaria_Click()
    active_pnl_grado(True)
    lbl_grado.Text = "PrePrimaria"
    M_Core.LLenar_Materias("Pre-escolar")
+   M_Core.Llenar_Actividades("Pre escolar", "Pre-escolar", "", "")
 
 End
 

@@ -180,5 +180,23 @@
         ScrollBar = Scroll.None
       }
     }
+    { !pnlactividades Panel
+      MoveScaled(3,30,117,44)
+      #Public = True
+      Expand = True
+      Arrangement = Arrange.Row
+      Spacing = True
+      Margin = True
+      Padding = 5
+      { !IconViewActividades ScrollView
+        MoveScaled(2,1,114,42)
+        #Public = True
+        Expand = True
+        Arrangement = Arrange.Row
+        Margin = True
+        Border = False
+        ScrollBar = Scroll.Vertical
+      }
+    }
   }
 }
