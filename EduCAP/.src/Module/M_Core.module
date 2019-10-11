@@ -75,6 +75,7 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
   Dim consulta, aux_palabras As String
   Dim cant_palabras As Integer
   Dim Palabras As String[]
+  Educap.IconViewActividades.Children.Clear
   
   Contenido = Trim(M_Busqueda.RemoveChar(Contenido, "'"))
 

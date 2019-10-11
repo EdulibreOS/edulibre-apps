@@ -163,11 +163,11 @@
       Font = Font["+4"]
     }
     { txt_busqueda TextBox
-      MoveScaled(83,7,24,4)
+      MoveScaled(84,2,24,4)
       Text = ("Busca por palabra clave")
     }
     { btnBuscar Button
-      MoveScaled(107,7,14,4)
+      MoveScaled(108,2,14,4)
       Picture = Picture["Images/TemaAzul/buscar.png"]
     }
     { pnl_materias Panel
@@ -180,6 +180,7 @@
       { !IconViewMaterias ScrollView
         MoveScaled(2,2,24,13)
         #Public = True
+        Foreground = Color.White
         Expand = True
         Arrangement = Arrange.Row
         Spacing = True
