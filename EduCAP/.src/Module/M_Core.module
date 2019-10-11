@@ -94,21 +94,22 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
             rs = cone.Exec(consulta)
             While (rs.Available)
                  ImgBtnAppsBook = New PushButton(Educap.IconViewActividades) As "IButtonApps"
-                 ImgBtnAppsBook.w = 90
-                 ImgBtnAppsBook.h = 40
+                 ImgBtnAppsBook.w = 120
+                 ImgBtnAppsBook.h = 120
                  ImgBtnAppsBook.Text = rs["Actividad"]
+                 
                  'ImgBtnAppsBook.Val = rs["ID"]
                  ImgBtnAppsBook.Mouse = 13
                  If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
-                    ImgBtnAppsBook.Picture = Picture.Load(rs["Icono"]).Image.Stretch(30, 30).Picture
+                    ImgBtnAppsBook.Picture = Picture.Load(rs["Icono"]).Image.Stretch(50, 50).Picture
                  Else
-                    ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture
+                    ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(50, 50).Picture
                  Endif
                  'Print ImgBtnAppsBook.Picture
                  'ImgBtnAppsBook.Background = Color.Transparent
                  'Try ImgBtnAppsBook.Font.Size = (M_Core.iFontSize)
                  'ImgBtnAppsBook.Font.Name = (M_Core.sFontName)
-                 ImgBtnAppsBook.Tag = rs["Actividad"]
+                 ImgBtnAppsBook.Tag = rs["Ejecutable"]
     
                  'sDel = DesktopEntry.Path
                    rs.MoveNext
@@ -122,21 +123,21 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
         rs = cone.Exec(consulta)
            While (rs.Available)
                  ImgBtnAppsBook = New PushButton(Educap.IconViewActividades) As "IButtonApps"
-                 ImgBtnAppsBook.w = 90
-                 ImgBtnAppsBook.h = 40
+                 ImgBtnAppsBook.w = 120
+                 ImgBtnAppsBook.h = 120
                  ImgBtnAppsBook.Text = rs["Actividad"]
                  'ImgBtnAppsBook.Val = rs["ID"]
                  ImgBtnAppsBook.Mouse = 13
                  If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
-                    ImgBtnAppsBook.Picture = Picture.Load(rs["Icono"]).Image.Stretch(30, 30).Picture
+                    ImgBtnAppsBook.Picture = Picture.Load(rs["Icono"]).Image.Stretch(50, 50).Picture
                  Else
-                    ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture
+                    ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(50, 50).Picture
                  Endif
                  'Print ImgBtnAppsBook.Picture
                  'ImgBtnAppsBook.Background = Color.Transparent
                  'Try ImgBtnAppsBook.Font.Size = (M_Core.iFontSize)
                  'ImgBtnAppsBook.Font.Name = (M_Core.sFontName)
-                 ImgBtnAppsBook.Tag = rs["Actividad"]
+                 ImgBtnAppsBook.Tag = rs["Ejecutable"]
     
                  'sDel = DesktopEntry.Path
                    rs.MoveNext

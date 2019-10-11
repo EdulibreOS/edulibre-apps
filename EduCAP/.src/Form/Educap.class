@@ -21,6 +21,8 @@ Public Sub mnu_preprimaria_Click()
   
   lbl_titulo.Text = "PrePrimaria"
   lbl_edad.Text = "6 años"
+  Print Application.Path
+  pbox_icono.Picture = Picture.Load(Application.Path & "/Images/PreEscolar.png")
   
   pbox_icono.Visible = True
   lbl_titulo.Visible = True
@@ -41,6 +43,8 @@ Public Sub mnu_primaria_Click()
   
   lbl_titulo.Text = "Primaria Primer Ciclo"
   lbl_edad.Text = "7 - 9 años"
+  pbox_icono.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+  
   
   pbox_icono.Visible = True
   lbl_titulo.Visible = True
@@ -61,6 +65,7 @@ Public Sub mnu_primaria2_Click()
   
   lbl_titulo.Text = "Primaria Segundo Ciclo"
   lbl_edad.Text = "10 - 12 años"
+  pbox_icono.Picture = Picture.Load(Application.Path & "/Images/Primariasegundociclo.png")
   
   pbox_icono.Visible = True
   lbl_titulo.Visible = True
@@ -116,6 +121,7 @@ Public Sub btn_preprimaria_Click()
    lbl_grado.Text = "PrePrimaria"
    M_Core.LLenar_Materias("Pre-escolar")
    M_Core.Llenar_Actividades("Pre escolar", "Pre-escolar", "", "")
+   pbox_grado.Picture = Picture.Load(Application.Path & "/Images/PreEscolar.png")
 
 End
 
@@ -126,6 +132,7 @@ Public Sub btn_primero_Click()
  active_pnl_grado(True)
  lbl_grado.Text = "Primero"
  M_Core.LLenar_Materias("Primero")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
   
 End
 
@@ -136,6 +143,7 @@ Public Sub btn_segundo_Click()
  active_pnl_grado(True)
  lbl_grado.Text = "Segundo Primaria"
  M_Core.LLenar_Materias("Segundo")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
 
 End
 
@@ -146,6 +154,7 @@ Public Sub btn_tercero_Click()
  active_pnl_grado(True)
  lbl_grado.Text = "Tercero Primaria"
  M_Core.LLenar_Materias("Tercero")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
 
 End
 
@@ -156,6 +165,7 @@ Public Sub btn_cuarto_Click()
  active_pnl_grado(True)
  lbl_grado.Text = "Cuarto Primaria"  
  M_Core.LLenar_Materias("Cuarto")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
   
 End
 
@@ -166,6 +176,7 @@ Public Sub btn_quinto_Click()
  active_pnl_grado(True)
  lbl_grado.Text = "Quinto Primaria"
  M_Core.LLenar_Materias("Quinto")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
 
 End
 
@@ -176,5 +187,12 @@ Public Sub btn_sexto_Click()
  active_pnl_grado(True)
  lbl_grado.Text = "Sexto Primaria"
  M_Core.LLenar_Materias("Sexto")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+
+End
+
+Public Sub IconViewMaterias_DblClick()
+
+  'IconViewMaterias.Chi
 
 End

@@ -70,7 +70,8 @@
   { btn_primero Button
     MoveScaled(41,41,28.5714,28.5714)
     Visible = False
-    Text = ("Primero")
+    Picture = Picture["Images/1ro.png"]
+    Border = False
   }
   { lbl_grados Label
     MoveScaled(27,32,24,9)
@@ -81,27 +82,32 @@
   { btn_segundo Button
     MoveScaled(77,41,28.5714,28.5714)
     Visible = False
-    Text = ("Segundo")
+    Picture = Picture["Images/2do.png"]
+    Border = False
   }
   { btn_tercero Button
     MoveScaled(113,41,28.5714,28.5714)
     Visible = False
-    Text = ("Tercero")
+    Picture = Picture["Images/3ro.png"]
+    Border = False
   }
   { btn_cuarto Button
     MoveScaled(41,41,28.5714,28.5714)
     Visible = False
-    Text = ("Cuarto")
+    Picture = Picture["Images/4to.png"]
+    Border = False
   }
   { btn_quinto Button
     MoveScaled(77,41,28.5714,28.5714)
     Visible = False
-    Text = ("Quinto")
+    Picture = Picture["Images/5to.png"]
+    Border = False
   }
   { btn_sexto Button
     MoveScaled(113,41,28.5714,28.5714)
     Visible = False
-    Text = ("Sexto")
+    Picture = Picture["Images/6to.png"]
+    Border = False
   }
   { btn_preprimaria Button
     MoveScaled(41,41,28.5714,28.5714)
@@ -136,30 +142,33 @@
   }
   { pnl_grado Panel
     MoveScaled(24,9,122,77)
-    Background = Color.DarkBlue
+    Background = Color.White
     { btn_regresar Button
-      MoveScaled(12,3,16,4)
+      MoveScaled(10,2,22,4)
+      Font = Font["+2"]
       Text = ("Regresar a grados")
+      Border = False
     }
     { pbox_grado PictureBox
-      MoveScaled(4,11,16,16)
+      MoveScaled(4,8,10.7143,10.7143)
+      Stretch = True
     }
     { pbox_regresar PictureBox
-      MoveScaled(3,2,6,6)
+      MoveScaled(3,1,6,6)
       Picture = Picture["Images/menorque.png"]
       Stretch = True
     }
     { lbl_grado Label
-      MoveScaled(22,12,24,4)
+      MoveScaled(17,12,24,4)
       Font = Font["+4"]
     }
     { txt_busqueda TextBox
-      MoveScaled(85,7,24,4)
+      MoveScaled(83,7,24,4)
       Text = ("Busca por palabra clave")
     }
     { btnBuscar Button
-      MoveScaled(109,7,6,4)
-      Text = ("Buscar")
+      MoveScaled(107,7,14,4)
+      Picture = Picture["Images/TemaAzul/buscar.png"]
     }
     { pnl_materias Panel
       MoveScaled(3,19,117,9)
