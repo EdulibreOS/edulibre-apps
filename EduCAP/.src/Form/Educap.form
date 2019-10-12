@@ -24,6 +24,10 @@
   { pnlmenu Panel
     MoveScaled(0,9,24,77)
     Background = Color.Cyan
+    { PictureBox2 PictureBox
+      MoveScaled(0,0,24,77)
+      Picture = Picture["Images/TemaAzul/Fondo barra lateral.png"]
+    }
     { mnu_preprimaria Button
       MoveScaled(0,12,24,11)
       Font = Font["Bold,+3"]
@@ -45,7 +49,7 @@
     Border = False
   }
   { mnu_primaria2 Button
-    MoveScaled(-2,43,24,11)
+    MoveScaled(0,43,24,11)
     Font = Font["Bold,+3"]
     Foreground = Color.White
     Text = ("Primaria\nSegundo Ciclo")
@@ -155,7 +159,7 @@
     }
     { pbox_regresar PictureBox
       MoveScaled(3,1,6,6)
-      Picture = Picture["Images/menorque.png"]
+      Picture = Picture["Images/TemaAzul/back.png"]
       Stretch = True
     }
     { lbl_grado Label
@@ -208,5 +212,10 @@
         ScrollBar = Scroll.Vertical
       }
     }
+  }
+  { !lblmnuprincipal Label
+    MoveScaled(60,2,24,4)
+    #Public = True
+    Visible = False
   }
 }

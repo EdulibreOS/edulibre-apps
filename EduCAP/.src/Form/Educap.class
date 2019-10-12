@@ -13,6 +13,12 @@ End
 
 Public Sub mnu_preprimaria_Click()
 
+  PrePrimaria()    
+
+End
+
+Public Sub PrePrimaria()
+  
   active_pnl_grados(False)
   active_pnl_portada(False)
   active_pnl_grado(False)
@@ -28,11 +34,12 @@ Public Sub mnu_preprimaria_Click()
   lbl_titulo.Visible = True
   lbl_grados.Visible = True
   lbl_edad.Visible = True
-
+  lblmnuprincipal.Text = "PrePrimaria"
+  
 End
 
-Public Sub mnu_primaria_Click()
-
+Public Sub Primaria()
+  
   active_pnl_grados(False)
   active_pnl_portada(False)
   active_pnl_grado(False)
@@ -50,11 +57,20 @@ Public Sub mnu_primaria_Click()
   lbl_titulo.Visible = True
   lbl_grados.Visible = True
   lbl_edad.Visible = True
+  lblmnuprincipal.Text = "Primaria Primer Ciclo"  
+  
+End
+
+
+
+Public Sub mnu_primaria_Click()
+
+  Primaria()
 
 End
 
-Public Sub mnu_primaria2_Click()
-
+Public Sub Primaria2()
+  
   active_pnl_grados(False)
   active_pnl_portada(False)
   active_pnl_grado(False)
@@ -71,8 +87,18 @@ Public Sub mnu_primaria2_Click()
   lbl_titulo.Visible = True
   lbl_grados.Visible = True
   lbl_edad.Visible = True
+  lblmnuprincipal.Text = "Primaria Segundo Ciclo"  
+  
+End
+
+
+Public Sub mnu_primaria2_Click()
+
+  Primaria2()
 
 End
+
+
 
 Public Sub active_pnl_grados(Estado As String)
   
@@ -200,5 +226,29 @@ End
 Public Sub IconViewMaterias_DblClick()
 
   'IconViewMaterias.Chi
+
+End
+
+Public Sub btn_regresar_Click()
+
+  If lblmnuprincipal.Text == "PrePrimaria"
+    PrePrimaria()
+  Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
+    Primaria()
+  Else 'Primaria2
+    Primaria2()
+  Endif
+  
+End
+
+Public Sub pbox_regresar_DblClick()
+
+  If lblmnuprincipal.Text == "PrePrimaria"
+    PrePrimaria()
+  Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
+    Primaria()
+  Else 'Primaria2
+    Primaria2()
+  Endif  
 
 End
