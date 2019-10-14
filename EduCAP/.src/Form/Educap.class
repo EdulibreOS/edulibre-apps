@@ -1,0 +1,254 @@
+' Gambas class file
+
+Public Sub Form_Open()
+  
+  active_pnl_grados(False)
+  active_pnl_portada(True)
+  active_pnl_grado(False)
+  
+End
+
+
+
+
+Public Sub mnu_preprimaria_Click()
+
+  PrePrimaria()    
+
+End
+
+Public Sub PrePrimaria()
+  
+  active_pnl_grados(False)
+  active_pnl_portada(False)
+  active_pnl_grado(False)
+
+  btn_preprimaria.Visible = True
+  
+  lbl_titulo.Text = "PrePrimaria"
+  lbl_edad.Text = "6 años"
+  Print Application.Path
+  pbox_icono.Picture = Picture.Load(Application.Path & "/Images/PreEscolar.png")
+  
+  pbox_icono.Visible = True
+  lbl_titulo.Visible = True
+  lbl_grados.Visible = True
+  lbl_edad.Visible = True
+  lblmnuprincipal.Text = "PrePrimaria"
+  
+End
+
+Public Sub Primaria()
+  
+  active_pnl_grados(False)
+  active_pnl_portada(False)
+  active_pnl_grado(False)
+  
+  btn_primero.Visible = True
+  btn_segundo.Visible = True
+  btn_tercero.Visible = True
+  
+  lbl_titulo.Text = "Primaria Primer Ciclo"
+  lbl_edad.Text = "7 - 9 años"
+  pbox_icono.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+  
+  
+  pbox_icono.Visible = True
+  lbl_titulo.Visible = True
+  lbl_grados.Visible = True
+  lbl_edad.Visible = True
+  lblmnuprincipal.Text = "Primaria Primer Ciclo"  
+  
+End
+
+
+
+Public Sub mnu_primaria_Click()
+
+  Primaria()
+
+End
+
+Public Sub Primaria2()
+  
+  active_pnl_grados(False)
+  active_pnl_portada(False)
+  active_pnl_grado(False)
+  
+  btn_cuarto.Visible = True
+  btn_quinto.Visible = True
+  btn_sexto.Visible = True
+  
+  lbl_titulo.Text = "Primaria Segundo Ciclo"
+  lbl_edad.Text = "10 - 12 años"
+  pbox_icono.Picture = Picture.Load(Application.Path & "/Images/Primariasegundociclo.png")
+  
+  pbox_icono.Visible = True
+  lbl_titulo.Visible = True
+  lbl_grados.Visible = True
+  lbl_edad.Visible = True
+  lblmnuprincipal.Text = "Primaria Segundo Ciclo"  
+  
+End
+
+
+Public Sub mnu_primaria2_Click()
+
+  Primaria2()
+
+End
+
+
+
+Public Sub active_pnl_grados(Estado As String)
+  
+  btn_preprimaria.Visible = Estado
+  btn_primero.Visible = Estado
+  btn_segundo.Visible = Estado
+  btn_tercero.Visible = Estado
+  btn_cuarto.Visible = Estado
+  btn_quinto.Visible = Estado
+  btn_sexto.Visible = Estado
+  
+  lbl_titulo.Visible = Estado
+  
+  pbox_icono.Visible = Estado
+  lbl_titulo.Visible = Estado
+  lbl_grados.Visible = Estado
+  pbox_icono.Visible = Estado
+  lbl_grados.Visible = Estado
+  lbl_edad.Visible = Estado
+ 
+   
+End
+
+Public Sub active_pnl_grado(Estado As String)
+
+  pnl_grado.Visible = Estado
+  pbox_regresar.Visible = Estado
+  btn_regresar.Visible = Estado
+  lbl_grado.Visible = Estado
+
+
+End
+
+Public Sub active_pnl_portada(Estado As String)
+
+  pnl_portada.Visible = Estado
+  lbl_titulo.Visible = Estado
+  
+End
+
+Public Sub btn_preprimaria_Click()
+
+   active_pnl_portada(False)
+   active_pnl_grados(False)
+   active_pnl_grado(True)
+   lbl_grado.Text = "PrePrimaria"
+   M_Core.LLenar_Materias("Pre-escolar")
+   M_Core.Llenar_Actividades("Pre escolar", "Pre-escolar", "", "")
+   pbox_grado.Picture = Picture.Load(Application.Path & "/Images/PreEscolar.png")
+
+End
+
+Public Sub btn_primero_Click()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ lbl_grado.Text = "Primero"
+ M_Core.LLenar_Materias("Primero")
+ M_Core.Llenar_Actividades("Primaria Basica", "Primero", "", "")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+  
+End
+
+Public Sub btn_segundo_Click()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ lbl_grado.Text = "Segundo Primaria"
+ M_Core.LLenar_Materias("Segundo")
+ M_Core.Llenar_Actividades("Primaria Basica", "Segundo", "", "")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+
+End
+
+Public Sub btn_tercero_Click()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ lbl_grado.Text = "Tercero Primaria"
+ M_Core.LLenar_Materias("Tercero")
+ M_Core.Llenar_Actividades("Primaria Basica", "Tercero", "", "")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+
+End
+
+Public Sub btn_cuarto_Click()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ lbl_grado.Text = "Cuarto Primaria"  
+ M_Core.LLenar_Materias("Cuarto")
+ M_Core.Llenar_Actividades("Primaria Avanzada", "Cuarto", "", "")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+  
+End
+
+Public Sub btn_quinto_Click()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ lbl_grado.Text = "Quinto Primaria"
+ M_Core.LLenar_Materias("Quinto")
+ M_Core.Llenar_Actividades("Primaria Avanzada", "Quinto", "", "")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+
+End
+
+Public Sub btn_sexto_Click()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ lbl_grado.Text = "Sexto Primaria"
+ M_Core.LLenar_Materias("Sexto")
+ M_Core.Llenar_Actividades("Primaria Avanzada", "Sexto", "", "")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+
+End
+
+Public Sub IconViewMaterias_DblClick()
+
+  'IconViewMaterias.Chi
+
+End
+
+Public Sub btn_regresar_Click()
+
+  If lblmnuprincipal.Text == "PrePrimaria"
+    PrePrimaria()
+  Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
+    Primaria()
+  Else 'Primaria2
+    Primaria2()
+  Endif
+  
+End
+
+Public Sub pbox_regresar_DblClick()
+
+  If lblmnuprincipal.Text == "PrePrimaria"
+    PrePrimaria()
+  Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
+    Primaria()
+  Else 'Primaria2
+    Primaria2()
+  Endif  
+
+End

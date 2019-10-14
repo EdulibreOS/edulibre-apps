@@ -1,0 +1,151 @@
+' Gambas module file
+
+' Innova Project 
+' Copyright © Asociación Civil Edulibre
+' Info@edulibre.com
+'
+' Jorge Recinos - Developer
+' jrecinosd@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+Private cone As New Connection
+Private ImgBtnAppsBook As PushButton
+
+
+Public Sub LLenar_Materias(Optional grado As String)
+
+  Dim consulta As String
+  Dim rs As Result
+  Dim iSizeApps As Integer
+  
+  consulta = "SELECT DISTINCT c.idtbl_materia ID, c.descripcion " &
+              "FROM tbl_grado_materia a, " &
+			        "tbl_grado b, " &
+			        "tbl_materia c " &
+              "WHERE a.id_grado = b.idtbl_grado " &
+              "AND a.id_materia = c.idtbl_materia " &
+              "AND b.descripcion = '" & grado & "' " &
+              "ORDER BY c.descripcion"
+  Print consulta
+    cone = MDB_Connection.Conectar()
+            rs = cone.Exec(consulta)
+               While (rs.Available)
+                 ImgBtnAppsBook = New PushButton(Educap.IconViewMaterias) As "IButtonApps"
+                 ImgBtnAppsBook.w = 90
+                 ImgBtnAppsBook.h = 40
+                 ImgBtnAppsBook.Text = rs["descripcion"]
+                 'ImgBtnAppsBook.Val = rs["ID"]
+                 ImgBtnAppsBook.Mouse = 13
+                   'ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(30, 30).Picture
+                 'Print ImgBtnAppsBook.Picture
+                 'ImgBtnAppsBook.Background = Color.Transparent
+                 'Try ImgBtnAppsBook.Font.Size = (M_Core.iFontSize)
+                 'ImgBtnAppsBook.Font.Name = (M_Core.sFontName)
+                 ImgBtnAppsBook.Tag = rs["descripcion"]
+    
+                 'sDel = DesktopEntry.Path
+                   rs.MoveNext
+               Wend
+
+  MDB_Connection.Desconectar(cone)
+  
+  
+End
+
+
+Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As String, Contenido As String)
+  
+  Dim rs As Result
+  Dim consulta, aux_palabras As String
+  Dim cant_palabras As Integer
+  Dim Palabras As String[]
+  Educap.IconViewActividades.Children.Clear
+  
+  Contenido = Trim(M_Busqueda.RemoveChar(Contenido, "'"))
+
+  cant_palabras = Split(Contenido, " ").Count
+  Palabras = Split(Contenido, " ")
+  
+  If cant_palabras > 1 Then
+    
+    For Each aux_palabras In Palabras
+            consulta = consulta & M_Busqueda.Cadena_Consulta(Nivel, Grado, Materia, aux_palabras)
+            consulta = consulta & " UNION "
+    Next
+            consulta = Left(consulta, -6)
+            consulta = consulta & " ORDER BY a.nombre "
+            'Print consulta
+            cone = MDB_Connection.Conectar()
+            rs = cone.Exec(consulta)
+            While (rs.Available)
+                 ImgBtnAppsBook = New PushButton(Educap.IconViewActividades) As "IButtonApps"
+                 ImgBtnAppsBook.w = 120
+                 ImgBtnAppsBook.h = 120
+                 ImgBtnAppsBook.Text = rs["Actividad"]
+                 
+                 'ImgBtnAppsBook.Val = rs["ID"]
+                 ImgBtnAppsBook.Mouse = 13
+                 If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
+                    ImgBtnAppsBook.Picture = Picture.Load(rs["Icono"]).Image.Stretch(50, 50).Picture
+                 Else
+                    ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(50, 50).Picture
+                 Endif
+                 'Print ImgBtnAppsBook.Picture
+                 'ImgBtnAppsBook.Background = Color.Transparent
+                 'Try ImgBtnAppsBook.Font.Size = (M_Core.iFontSize)
+                 'ImgBtnAppsBook.Font.Name = (M_Core.sFontName)
+                 ImgBtnAppsBook.Tag = rs["Ejecutable"]
+    
+                 'sDel = DesktopEntry.Path
+                   rs.MoveNext
+               Wend
+          MDB_Connection.Desconectar(cone)
+  Else 'Si es una sola palabra en el contenido se realiza una sola busqueda
+    
+        consulta = M_Busqueda.Cadena_Consulta(Nivel, Grado, Materia, Contenido)
+        consulta = consulta & " ORDER BY a.nombre "
+        cone = MDB_Connection.Conectar()
+        rs = cone.Exec(consulta)
+           While (rs.Available)
+                 ImgBtnAppsBook = New PushButton(Educap.IconViewActividades) As "IButtonApps"
+                 ImgBtnAppsBook.w = 120
+                 ImgBtnAppsBook.h = 120
+                 ImgBtnAppsBook.Text = rs["Actividad"]
+                 'ImgBtnAppsBook.Val = rs["ID"]
+                 ImgBtnAppsBook.Mouse = 13
+                 If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
+                    ImgBtnAppsBook.Picture = Picture.Load(rs["Icono"]).Image.Stretch(50, 50).Picture
+                 Else
+                    ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(50, 50).Picture
+                 Endif
+                 'Print ImgBtnAppsBook.Picture
+                 'ImgBtnAppsBook.Background = Color.Transparent
+                 'Try ImgBtnAppsBook.Font.Size = (M_Core.iFontSize)
+                 'ImgBtnAppsBook.Font.Name = (M_Core.sFontName)
+                 ImgBtnAppsBook.Tag = rs["Ejecutable"]
+    
+                 'sDel = DesktopEntry.Path
+                   rs.MoveNext
+               Wend
+        MDB_Connection.Desconectar(cone)
+    
+  Endif
+  
+End
+

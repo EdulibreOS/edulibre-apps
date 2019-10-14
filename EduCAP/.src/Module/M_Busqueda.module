@@ -129,7 +129,8 @@ Public Function Cadena_Consulta(Nivel As String, Grado As String, Materia As Str
   
   consulta = "SELECT distinct a.idtbl_actividad as ID, " & 
   		            "a.nombre as Actividad, " & 
-  		            "p.url_icono as Icono " &
+  		            "p.url_icono as Icono, " &
+                  "p.url_exe as Ejecutable " &
               "FROM tbl_actividad a, " &
                     "tbl_grado_materia gm, " &
                     "tbl_nivel n, " &
@@ -148,7 +149,7 @@ Public Function Cadena_Consulta(Nivel As String, Grado As String, Materia As Str
               "AND cg.idtbl_competencia_grado = ig.id_competencia_grado " &
               "AND ig.idtbl_indicador_grado = c.id_indicador_grado " &
               nivel_text & grado_text & materia_text & contenido_text
-  
+  Print Consulta
 Return consulta
 End
 
