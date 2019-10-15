@@ -37,7 +37,7 @@
     }
   }
   { PictureBox1 PictureBox
-    MoveScaled(2,0,19,9)
+    MoveScaled(5,0,14,9)
     Picture = Picture["Images/LogoCAP.png"]
     Stretch = True
   }
@@ -157,11 +157,6 @@
       MoveScaled(4,8,10.7143,10.7143)
       Stretch = True
     }
-    { pbox_regresar PictureBox
-      MoveScaled(3,1,6,6)
-      Picture = Picture["Images/TemaAzul/back.png"]
-      Stretch = True
-    }
     { lbl_grado Label
       MoveScaled(17,12,24,4)
       Font = Font["+4"]
@@ -211,6 +206,12 @@
         Border = False
         ScrollBar = Scroll.Vertical
       }
+    }
+    { btnregresar Button
+      MoveScaled(4,1,6,6)
+      Expand = True
+      Picture = Picture["Images/TemaAzul/back.png"]
+      Border = False
     }
   }
   { !lblmnuprincipal Label

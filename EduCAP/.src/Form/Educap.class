@@ -125,7 +125,7 @@ End
 Public Sub active_pnl_grado(Estado As String)
 
   pnl_grado.Visible = Estado
-  pbox_regresar.Visible = Estado
+  btnregresar.Visible = Estado
   btn_regresar.Visible = Estado
   lbl_grado.Visible = Estado
 
@@ -241,14 +241,15 @@ Public Sub btn_regresar_Click()
   
 End
 
-Public Sub pbox_regresar_DblClick()
+
+Public Sub btnregresar_Click()
 
   If lblmnuprincipal.Text == "PrePrimaria"
     PrePrimaria()
   Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
     Primaria()
   Else 'Primaria2
-    Primaria2()
-  Endif  
+    Primaria2
+  Endif
 
 End
