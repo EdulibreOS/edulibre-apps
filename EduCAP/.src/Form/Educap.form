@@ -148,30 +148,31 @@
     MoveScaled(24,9,122,77)
     Background = Color.White
     { btn_regresar Button
-      MoveScaled(10,2,22,4)
+      MoveScaled(10,1,22,4)
       Font = Font["+2"]
       Text = ("Regresar a grados")
       Border = False
     }
     { pbox_grado PictureBox
-      MoveScaled(4,8,10.7143,10.7143)
+      MoveScaled(4,7,10.7143,10.7143)
       Stretch = True
     }
     { !lbl_grado Label
-      MoveScaled(17,12,24,4)
+      MoveScaled(17,11,24,4)
       #Public = True
       Font = Font["+4"]
     }
-    { txt_busqueda TextBox
+    { !txt_busqueda TextBox
       MoveScaled(84,2,24,4)
-      Text = ("Busca por palabra clave")
+      #Public = True
+      ToolTip = ("Busca por palabra clave")
     }
     { btnBuscar Button
       MoveScaled(108,2,14,4)
       Picture = Picture["Images/TemaAzul/buscar.png"]
     }
     { pnl_materias Panel
-      MoveScaled(3,19,117,9)
+      MoveScaled(3,18,117,9)
       Expand = True
       Arrangement = Arrange.Row
       Spacing = True
@@ -209,7 +210,7 @@
       }
     }
     { btnregresar Button
-      MoveScaled(4,1,6,6)
+      MoveScaled(4,0,6,6)
       Expand = True
       Picture = Picture["Images/TemaAzul/back.png"]
       Border = False
@@ -219,10 +220,61 @@
       #Public = True
       Visible = False
     }
+    { !lbl_sMateria Label
+      MoveScaled(6,27,87,4)
+      #Public = True
+      Font = Font["Bold,+2"]
+    }
   }
   { !lblmnuprincipal Label
     MoveScaled(60,2,24,4)
     #Public = True
     Visible = False
+  }
+  { !pnl_actividades Panel
+    MoveScaled(24,9,122,77)
+    #Public = True
+    Background = Color.White
+    { !btn_regresargrado Button
+      MoveScaled(11,1,27,4)
+      #Public = True
+      Border = False
+    }
+    { !btnregresargrado Button
+      MoveScaled(3,0,6,6)
+      #Public = True
+      Picture = Picture["Images/TemaAzul/back.png"]
+      Border = False
+    }
+    { !pbox_actividades PictureBox
+      MoveScaled(3,7,16,16)
+      #Public = True
+    }
+    { !lbl_nombreact Label
+      MoveScaled(22,7,36,7)
+      #Public = True
+      Font = Font["Bold,+4"]
+    }
+    { !lbl_programaact Label
+      MoveScaled(22,15,24,4)
+      #Public = True
+    }
+    { lbl_descripcionact Label
+      MoveScaled(3,24,83,10)
+      Font = Font["+2"]
+    }
+    { btn_comenzaract Button
+      MoveScaled(86,4,32,6)
+      Picture = Picture["Images/TemaAzul/comenzar actividad.png"]
+    }
+    { btn_descargaract Button
+      MoveScaled(86,10,32,6)
+      Font = Font["Underline,+3"]
+      Text = ("Descargar Manual")
+      Border = False
+    }
+    { separador Separator
+      MoveScaled(0,35,122,3)
+    }
   }
 }

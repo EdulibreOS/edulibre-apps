@@ -5,7 +5,7 @@ Public Sub Form_Open()
   active_pnl_grados(False)
   active_pnl_portada(True)
   active_pnl_grado(False)
-  
+  active_pnl_actividades(False)
 End
 
 
@@ -150,11 +150,28 @@ Public Sub active_pnl_portada(Estado As String)
   
 End
 
+Public Sub active_pnl_actividades(Estado As String)
+  
+  pnl_actividades.Visible = Estado
+  btn_regresargrado.Visible = Estado
+  btnregresargrado.Visible = Estado
+  pbox_actividades.Visible = Estado
+  lbl_nombreact.Visible = Estado
+  lbl_programaact.Visible = Estado
+  lbl_descripcionact.Visible = Estado
+  btn_comenzaract.Visible = Estado
+  btn_descargaract.Visible = Estado
+  separador.Visible = Estado
+  
+End
+
+
 Public Sub btn_preprimaria_Click()
 
    active_pnl_portada(False)
    active_pnl_grados(False)
    active_pnl_grado(True)
+   active_pnl_actividades(False)
    lbl_grado.Text = "PrePrimaria"
    M_Core.LLenar_Materias("Pre-escolar")
    M_Core.Llenar_Actividades("Pre escolar", "Pre-escolar", "", "")
@@ -167,6 +184,7 @@ Public Sub btn_primero_Click()
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
+ active_pnl_actividades(False)
  lbl_grado.Text = "Primero"
  M_Core.LLenar_Materias("Primero")
  M_Core.Llenar_Actividades("Primaria Basica", "Primero", "", "")
@@ -179,6 +197,7 @@ Public Sub btn_segundo_Click()
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
+ active_pnl_actividades(False)
  lbl_grado.Text = "Segundo Primaria"
  M_Core.LLenar_Materias("Segundo")
  M_Core.Llenar_Actividades("Primaria Basica", "Segundo", "", "")
@@ -191,6 +210,7 @@ Public Sub btn_tercero_Click()
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
+ active_pnl_actividades(False)
  lbl_grado.Text = "Tercero Primaria"
  M_Core.LLenar_Materias("Tercero")
  M_Core.Llenar_Actividades("Primaria Basica", "Tercero", "", "")
@@ -203,6 +223,7 @@ Public Sub btn_cuarto_Click()
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
+ active_pnl_actividades(False)
  lbl_grado.Text = "Cuarto Primaria"  
  M_Core.LLenar_Materias("Cuarto")
  M_Core.Llenar_Actividades("Primaria Avanzada", "Cuarto", "", "")
@@ -215,6 +236,7 @@ Public Sub btn_quinto_Click()
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
+ active_pnl_actividades(False)
  lbl_grado.Text = "Quinto Primaria"
  M_Core.LLenar_Materias("Quinto")
  M_Core.Llenar_Actividades("Primaria Avanzada", "Quinto", "", "")
@@ -227,6 +249,7 @@ Public Sub btn_sexto_Click()
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
+ active_pnl_actividades(False)
  lbl_grado.Text = "Sexto Primaria"
  M_Core.LLenar_Materias("Sexto")
  M_Core.Llenar_Actividades("Primaria Avanzada", "Sexto", "", "")
@@ -258,4 +281,10 @@ Public Sub btnregresar_Click()
     Primaria2
   Endif
 
+End
+
+Public Sub btnBuscar_Click()
+
+    M_Core.Llenar_Actividades(Educap.lblmnuprincipal.Text, Educap.lbl_grado.Text, "", txt_busqueda.Text)
+    Educap.lbl_sMateria.Text = ""
 End

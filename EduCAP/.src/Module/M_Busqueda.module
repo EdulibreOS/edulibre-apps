@@ -149,7 +149,7 @@ Public Function Cadena_Consulta(Nivel As String, Grado As String, Materia As Str
               "AND cg.idtbl_competencia_grado = ig.id_competencia_grado " &
               "AND ig.idtbl_indicador_grado = c.id_indicador_grado " &
               nivel_text & grado_text & materia_text & contenido_text
-  Print Consulta
+  'Print Consulta
 Return consulta
 End
 

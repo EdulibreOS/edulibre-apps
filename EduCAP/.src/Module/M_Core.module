@@ -27,6 +27,7 @@
 Private cone As New Connection
 Private ImgBtnAppsBook As PushButton
 Public sMateria As String
+Public sActividad As String
 
 
 Public Sub LLenar_Materias(Optional grado As String)
@@ -95,7 +96,7 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
             cone = MDB_Connection.Conectar()
             rs = cone.Exec(consulta)
             While (rs.Available)
-                 ImgBtnAppsBook = New PushButton(Educap.IconViewActividades) As "IButtonApps"
+                 ImgBtnAppsBook = New PushButton(Educap.IconViewActividades) As "ButtonActividades"
                  ImgBtnAppsBook.w = 120
                  ImgBtnAppsBook.h = 120
                  ImgBtnAppsBook.Text = rs["Actividad"]
@@ -111,7 +112,7 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
                  'ImgBtnAppsBook.Background = Color.Transparent
                  'Try ImgBtnAppsBook.Font.Size = (M_Core.iFontSize)
                  'ImgBtnAppsBook.Font.Name = (M_Core.sFontName)
-                 ImgBtnAppsBook.Tag = rs["Ejecutable"]
+                 ImgBtnAppsBook.Tag = rs["ID"]
     
                  'sDel = DesktopEntry.Path
                    rs.MoveNext
@@ -124,7 +125,7 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
         cone = MDB_Connection.Conectar()
         rs = cone.Exec(consulta)
            While (rs.Available)
-                 ImgBtnAppsBook = New PushButton(Educap.IconViewActividades) As "IButtonApps"
+                 ImgBtnAppsBook = New PushButton(Educap.IconViewActividades) As "ButtonActividades"
                  ImgBtnAppsBook.w = 120
                  ImgBtnAppsBook.h = 120
                  ImgBtnAppsBook.Text = rs["Actividad"]
@@ -139,7 +140,7 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
                  'ImgBtnAppsBook.Background = Color.Transparent
                  'Try ImgBtnAppsBook.Font.Size = (M_Core.iFontSize)
                  'ImgBtnAppsBook.Font.Name = (M_Core.sFontName)
-                 ImgBtnAppsBook.Tag = rs["Ejecutable"]
+                 ImgBtnAppsBook.Tag = rs["ID"]
     
                  'sDel = DesktopEntry.Path
                    rs.MoveNext
@@ -155,7 +156,14 @@ Public Sub ButtonMaterias_Click()
   sMateria = Last.Tag
   Educap.lbl_selectmateria.Text = sMateria
   Llenar_Actividades(Educap.lblmnuprincipal.Text, Educap.lbl_grado.Text, Educap.lbl_selectmateria.Text, "")
-  
+  Educap.txt_busqueda.Text = ""
+  Educap.lbl_sMateria.Text = sMateria
 End
 
+Public Sub ButtonActividades_Click()
+  
+  sActividad = Last.Tag
+  Print sActividad
+  
+End
 
