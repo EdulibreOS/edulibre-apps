@@ -26,6 +26,7 @@
 
 Private cone As New Connection
 Private ImgBtnAppsBook As PushButton
+Public sMateria As String
 
 
 Public Sub LLenar_Materias(Optional grado As String)
@@ -46,7 +47,7 @@ Public Sub LLenar_Materias(Optional grado As String)
     cone = MDB_Connection.Conectar()
             rs = cone.Exec(consulta)
                While (rs.Available)
-                 ImgBtnAppsBook = New PushButton(Educap.IconViewMaterias) As "IButtonApps"
+                 ImgBtnAppsBook = New PushButton(Educap.IconViewMaterias) As "ButtonMaterias"
                  ImgBtnAppsBook.w = 90
                  ImgBtnAppsBook.h = 40
                  ImgBtnAppsBook.Text = rs["descripcion"]
@@ -148,4 +149,13 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
   Endif
   
 End
+
+Public Sub ButtonMaterias_Click()
+  
+  sMateria = Last.Tag
+  Educap.lbl_selectmateria.Text = sMateria
+  Llenar_Actividades(Educap.lblmnuprincipal.Text, Educap.lbl_grado.Text, Educap.lbl_selectmateria.Text, "")
+  
+End
+
 

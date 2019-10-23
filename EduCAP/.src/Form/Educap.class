@@ -13,7 +13,18 @@ End
 
 Public Sub mnu_preprimaria_Click()
 
-  PrePrimaria()    
+  'PrePrimaria()
+  
+   active_pnl_portada(False)
+   active_pnl_grados(False)
+   active_pnl_grado(True)
+   lbl_grado.Text = "Pre-escolar"
+   lblmnuprincipal.Text = "Pre escolar"
+   M_Core.LLenar_Materias("Pre-escolar")
+   M_Core.Llenar_Actividades("Pre escolar", "Pre-escolar", "", "")
+   pbox_grado.Picture = Picture.Load(Application.Path & "/Images/PreEscolar.png") 
+   btnregresar.Visible = False
+   btn_regresar.Visible = False
 
 End
 
@@ -57,7 +68,7 @@ Public Sub Primaria()
   lbl_titulo.Visible = True
   lbl_grados.Visible = True
   lbl_edad.Visible = True
-  lblmnuprincipal.Text = "Primaria Primer Ciclo"  
+  lblmnuprincipal.Text = "Primaria Basica"  
   
 End
 
@@ -87,7 +98,7 @@ Public Sub Primaria2()
   lbl_titulo.Visible = True
   lbl_grados.Visible = True
   lbl_edad.Visible = True
-  lblmnuprincipal.Text = "Primaria Segundo Ciclo"  
+  lblmnuprincipal.Text = "Primaria Avanzada"  
   
 End
 
@@ -223,11 +234,6 @@ Public Sub btn_sexto_Click()
 
 End
 
-Public Sub IconViewMaterias_DblClick()
-
-  'IconViewMaterias.Chi
-
-End
 
 Public Sub btn_regresar_Click()
 

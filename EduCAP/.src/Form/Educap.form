@@ -157,8 +157,9 @@
       MoveScaled(4,8,10.7143,10.7143)
       Stretch = True
     }
-    { lbl_grado Label
+    { !lbl_grado Label
       MoveScaled(17,12,24,4)
+      #Public = True
       Font = Font["+4"]
     }
     { txt_busqueda TextBox
@@ -212,6 +213,11 @@
       Expand = True
       Picture = Picture["Images/TemaAzul/back.png"]
       Border = False
+    }
+    { !lbl_selectmateria Label
+      MoveScaled(43,12,24,4)
+      #Public = True
+      Visible = False
     }
   }
   { !lblmnuprincipal Label
