@@ -18,6 +18,7 @@ Public Sub mnu_preprimaria_Click()
    active_pnl_portada(False)
    active_pnl_grados(False)
    active_pnl_grado(True)
+   active_pnl_actividades(False)
    lbl_grado.Text = "Pre-escolar"
    lblmnuprincipal.Text = "Pre escolar"
    M_Core.LLenar_Materias("Pre-escolar")
@@ -35,7 +36,7 @@ Public Sub PrePrimaria()
   active_pnl_grado(False)
 
   btn_preprimaria.Visible = True
-  
+  lbl_grado.Text = "Pre-escolar"
   lbl_titulo.Text = "PrePrimaria"
   lbl_edad.Text = "6 años"
   Print Application.Path
@@ -45,7 +46,7 @@ Public Sub PrePrimaria()
   lbl_titulo.Visible = True
   lbl_grados.Visible = True
   lbl_edad.Visible = True
-  lblmnuprincipal.Text = "PrePrimaria"
+  lblmnuprincipal.Text = "Pre escolar"
   
 End
 
@@ -54,6 +55,7 @@ Public Sub Primaria()
   active_pnl_grados(False)
   active_pnl_portada(False)
   active_pnl_grado(False)
+  active_pnl_actividades(False)
   
   btn_primero.Visible = True
   btn_segundo.Visible = True
@@ -85,6 +87,7 @@ Public Sub Primaria2()
   active_pnl_grados(False)
   active_pnl_portada(False)
   active_pnl_grado(False)
+  active_pnl_actividades(False)
   
   btn_cuarto.Visible = True
   btn_quinto.Visible = True
@@ -153,15 +156,13 @@ End
 Public Sub active_pnl_actividades(Estado As String)
   
   pnl_actividades.Visible = Estado
-  btn_regresargrado.Visible = Estado
-  btnregresargrado.Visible = Estado
+  btnregresar.Visible = Estado
+  btnregresar.Visible = Estado
   pbox_actividades.Visible = Estado
-  lbl_nombreact.Visible = Estado
-  lbl_programaact.Visible = Estado
-  lbl_descripcionact.Visible = Estado
   btn_comenzaract.Visible = Estado
-  btn_descargaract.Visible = Estado
+  btn_comenzaract.Visible = Estado
   separador.Visible = Estado
+  scrollviewActividad.Visible = Estado
   
 End
 
@@ -172,7 +173,7 @@ Public Sub btn_preprimaria_Click()
    active_pnl_grados(False)
    active_pnl_grado(True)
    active_pnl_actividades(False)
-   lbl_grado.Text = "PrePrimaria"
+   lbl_grado.Text = "Pre-escolar"
    M_Core.LLenar_Materias("Pre-escolar")
    M_Core.Llenar_Actividades("Pre escolar", "Pre-escolar", "", "")
    pbox_grado.Picture = Picture.Load(Application.Path & "/Images/PreEscolar.png")
@@ -198,7 +199,7 @@ Public Sub btn_segundo_Click()
  active_pnl_grados(False)
  active_pnl_grado(True)
  active_pnl_actividades(False)
- lbl_grado.Text = "Segundo Primaria"
+ lbl_grado.Text = "Segundo"
  M_Core.LLenar_Materias("Segundo")
  M_Core.Llenar_Actividades("Primaria Basica", "Segundo", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
@@ -211,7 +212,7 @@ Public Sub btn_tercero_Click()
  active_pnl_grados(False)
  active_pnl_grado(True)
  active_pnl_actividades(False)
- lbl_grado.Text = "Tercero Primaria"
+ lbl_grado.Text = "Tercero"
  M_Core.LLenar_Materias("Tercero")
  M_Core.Llenar_Actividades("Primaria Basica", "Tercero", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
@@ -224,7 +225,7 @@ Public Sub btn_cuarto_Click()
  active_pnl_grados(False)
  active_pnl_grado(True)
  active_pnl_actividades(False)
- lbl_grado.Text = "Cuarto Primaria"  
+ lbl_grado.Text = "Cuarto"  
  M_Core.LLenar_Materias("Cuarto")
  M_Core.Llenar_Actividades("Primaria Avanzada", "Cuarto", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
@@ -237,7 +238,7 @@ Public Sub btn_quinto_Click()
  active_pnl_grados(False)
  active_pnl_grado(True)
  active_pnl_actividades(False)
- lbl_grado.Text = "Quinto Primaria"
+ lbl_grado.Text = "Quinto"
  M_Core.LLenar_Materias("Quinto")
  M_Core.Llenar_Actividades("Primaria Avanzada", "Quinto", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
@@ -250,7 +251,7 @@ Public Sub btn_sexto_Click()
  active_pnl_grados(False)
  active_pnl_grado(True)
  active_pnl_actividades(False)
- lbl_grado.Text = "Sexto Primaria"
+ lbl_grado.Text = "Sexto"
  M_Core.LLenar_Materias("Sexto")
  M_Core.Llenar_Actividades("Primaria Avanzada", "Sexto", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
@@ -260,7 +261,7 @@ End
 
 Public Sub btn_regresar_Click()
 
-  If lblmnuprincipal.Text == "PrePrimaria"
+  If lblmnuprincipal.Text == "Pre escolar"
     PrePrimaria()
   Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
     Primaria()
@@ -273,7 +274,7 @@ End
 
 Public Sub btnregresar_Click()
 
-  If lblmnuprincipal.Text == "PrePrimaria"
+  If lblmnuprincipal.Text == "Pre escolar"
     PrePrimaria()
   Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
     Primaria()
@@ -288,3 +289,5 @@ Public Sub btnBuscar_Click()
     M_Core.Llenar_Actividades(Educap.lblmnuprincipal.Text, Educap.lbl_grado.Text, "", txt_busqueda.Text)
     Educap.lbl_sMateria.Text = ""
 End
+
+

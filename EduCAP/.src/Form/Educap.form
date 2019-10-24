@@ -4,6 +4,7 @@
   MoveScaled(0,0,146.2857,85.7143)
   Background = Color.White
   Transparent = True
+  AutoResize = True
   { btnActividades Button
     MoveScaled(98,0,16,8)
     Background = Color.SelectedForeground
@@ -195,7 +196,7 @@
       MoveScaled(3,30,117,44)
       #Public = True
       Expand = True
-      Arrangement = Arrange.Row
+      Arrangement = Arrange.Vertical
       Spacing = True
       Margin = True
       Padding = 5
@@ -235,10 +236,105 @@
     MoveScaled(24,9,122,77)
     #Public = True
     Background = Color.White
-    { !btn_regresargrado Button
-      MoveScaled(11,1,27,4)
+    Expand = True
+    AutoResize = True
+    { !scrollviewActividad ScrollView
+      MoveScaled(0,0,122,77)
       #Public = True
-      Border = False
+      Expand = True
+      ScrollBar = Scroll.Vertical
+      { lbltCat Label
+        MoveScaled(1,25,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Categoría")
+      }
+      { !lblACategoria Label
+        MoveScaled(1,28,24,4)
+        #Public = True
+      }
+      { lblTNiv Label
+        MoveScaled(24,25,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Nivel")
+      }
+      { lblTGrado Label
+        MoveScaled(1,33,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Grado")
+      }
+      { !lblAGrado Label
+        MoveScaled(1,36,24,4)
+        #Public = True
+      }
+      { lblTMateria Label
+        MoveScaled(24,33,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Materia")
+      }
+      { !lblAMateria Label
+        MoveScaled(24,36,28,4)
+        #Public = True
+      }
+      { lblTEtiqueta Label
+        MoveScaled(1,41,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Etiqueta")
+      }
+      { !lblAEtiqueta Label
+        MoveScaled(1,44,24,4)
+        #Public = True
+      }
+      { lblTProgra Label
+        MoveScaled(24,41,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Programa")
+      }
+      { !lblAProgra Label
+        MoveScaled(24,44,28,4)
+        #Public = True
+      }
+      { !pboxAct1 PictureBox
+        MoveScaled(53,25,31.4286,24.2857)
+        #Public = True
+        Stretch = True
+      }
+      { !pboxAct2 PictureBox
+        MoveScaled(89,25,31.4286,24.2857)
+        #Public = True
+        Stretch = True
+      }
+      { lblTCompetencias Label
+        MoveScaled(1,49,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Competencias")
+      }
+      { !lblprogexe Label
+        MoveScaled(87,18,24,4)
+        #Public = True
+        Visible = False
+      }
+      { VBox1 VBox
+        MoveScaled(1,53,120,23)
+        Expand = True
+        { !tvCompetencias TableView
+          MoveScaled(52,1,16,214.2857)
+          #Public = True
+          Expand = True
+          Mode = Select.Single
+          Padding = 0
+          Header = GridView.Horizontal
+          ScrollBar = Scroll.Vertical
+        }
+      }
+      { !lblANivel Label
+        MoveScaled(24,28,28,4)
+        #Public = True
+      }
+      { !lbl_ADesc TextLabel
+        MoveScaled(2,18,75,5)
+        #Public = True
+        Font = Font["+1"]
+      }
     }
     { !btnregresargrado Button
       MoveScaled(3,0,6,6)
@@ -247,21 +343,19 @@
       Border = False
     }
     { !pbox_actividades PictureBox
-      MoveScaled(3,7,16,16)
+      MoveScaled(3,6,11.4286,11.4286)
       #Public = True
+      Stretch = True
     }
     { !lbl_nombreact Label
-      MoveScaled(22,7,36,7)
+      MoveScaled(22,5,59,7)
       #Public = True
-      Font = Font["Bold,+4"]
+      Font = Font["Bold,+5"]
     }
     { !lbl_programaact Label
-      MoveScaled(22,15,24,4)
+      MoveScaled(22,12,24,4)
       #Public = True
-    }
-    { lbl_descripcionact Label
-      MoveScaled(3,24,83,10)
-      Font = Font["+2"]
+      Font = Font["Bold,+3"]
     }
     { btn_comenzaract Button
       MoveScaled(86,4,32,6)
@@ -274,7 +368,12 @@
       Border = False
     }
     { separador Separator
-      MoveScaled(0,35,122,3)
+      MoveScaled(0,22,122,3)
+    }
+    { !btn_regresargrado Button
+      MoveScaled(9,1,27,4)
+      #Public = True
+      Border = False
     }
   }
 }

@@ -44,7 +44,7 @@ Public Sub LLenar_Materias(Optional grado As String)
               "AND a.id_materia = c.idtbl_materia " &
               "AND b.descripcion = '" & grado & "' " &
               "ORDER BY c.descripcion"
-  Print consulta
+  'Print consulta
     cone = MDB_Connection.Conectar()
             rs = cone.Exec(consulta)
                While (rs.Available)
@@ -162,8 +162,165 @@ End
 
 Public Sub ButtonActividades_Click()
   
-  sActividad = Last.Tag
-  Print sActividad
+   sActividad = Last.Tag
+   EduCap.active_pnl_grados(False)
+   EduCap.active_pnl_portada(False)
+   EduCap.active_pnl_grado(False)
+   EduCap.active_pnl_actividades(True)
+   LlenarGvInfo(sActividad)
+   Print sActividad
+End
+
+
+Public Sub ObtenerImagen(id_actividad As String)
+  
+  'EdulibCap.picbox1.Picture = Picture.Load(Application.path &/ "Images/2/1.png")
+  'EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/2/2.png")
+  
+  'Estos de abajo son lo que deben de quedar.
+  Try EduCap.pboxAct1.Picture = Picture.Load(Desktop.ConfigDir &/ "/Innova/Educap/Images/" &/ id_actividad &/ "1.png")
+  Try Educap.pboxAct2.Picture = Picture.Load(Desktop.ConfigDir &/ "/Innova/Educap/Images/" &/ id_actividad &/ "2.png")
+  
+End
+
+Public Sub LlenarGvInfo(id_actividad As String)
+  
+    Dim rs As Result
+    Dim consulta As String
+    Dim crow As Integer
+    Dim Grado As String
+    Dim Nivel As String
+    Dim Materia As String
+    
+    If EduCap.lblmnuprincipal.Text == "" Then
+      Nivel = ""
+    Else
+      Nivel = "AND n.descripcion = '" & EduCap.lblmnuprincipal.Text & "' "
+     Endif
+      
+    If EduCap.lbl_grado.Text == "" Then
+        Grado = ""
+    Else 
+      Grado = "AND g.descripcion = '" & EduCap.lbl_grado.Text & "' "
+    Endif
+
+    If EduCap.lbl_selectmateria.Text == "" Then
+    Materia = ""
+    Else 
+      Materia = "AND m.descripcion = '" & EduCap.lbl_selectmateria.Text & "' "
+    Endif
+    
+    consulta = "SELECT distinct c.descripcion as Categoria, " &
+               					"p.nombre As Programa, " &
+               					"a.nombre As Actividad, " &
+               					"a.descripcion As DescActividad, " &
+               					"n.descripcion As Nivel, " &
+               					"g.descripcion As Grado, " &
+               					"m.descripcion As Materia, " &
+               					"cg.no_competencia As NoCompetencia, " &
+               					"cg.descripcion As Competencia, " &
+               					"ig.no_indicador_grado As NoIndicador, " &
+               					"ig.descripcion As Indicador, " &
+               					"cont.no_contenido As NoContenido, " &
+               					"cont.descripcion As Contenido, " &
+               					"p.url_icono As Icono, " &
+               					"p.url_exe As Url_exe " &
+              "FROM tbl_actividad a, " &
+              		"tbl_grado_materia gm, " &
+              		"tbl_grado g, " &
+              		"tbl_materia m, " &
+              		"tbl_nivel n, " &
+              		"tbl_programa p, " &
+              		"tbl_categoria c, " &
+              		"tbl_competencia_grado cg, " &
+              		"tbl_indicador_grado ig, " &
+              		"tbl_contenido cont " &
+              "WHERE a.idtbl_actividad = " & id_actividad & " " &
+              "AND a.idtbl_actividad = gm.id_actividad " &
+              "AND gm.id_grado = g.idtbl_grado " &
+              "AND gm.id_materia = m.idtbl_materia " &
+              "AND g.id_nivel = n.idtbl_nivel " &
+              Nivel & Grado & Materia &
+              "AND a.id_programa = p.idtbl_programa " &
+              "AND p.id_categoria = c.idtbl_categoria " &
+              "AND cg.id_actividad = a.idtbl_actividad " &
+              "AND ig.id_competencia_grado = cg.idtbl_competencia_grado " &
+              "AND cont.id_indicador_grado = ig.idtbl_indicador_grado " &
+              "AND cg.id_nivel = n.idtbl_nivel " &
+              "AND cg.id_grado = g.idtbl_grado " &
+              "AND cg.id_materia = m.idtbl_materia "
+              
+              
+    Print consulta
+
+    cone = MDB_Connection.Conectar()
+    
+            'EdulibCap.lst_iconos[id_actividad].Selected = True
+            EduCap.tvCompetencias.Columns.count = 6
+            EduCap.tvCompetencias.Rows.Resizable = True
+            EduCap.tvCompetencias.Columns.Resizable = True
+            EduCap.tvCompetencias.Columns[0].Text = "No."
+            EduCap.tvCompetencias.Columns[0].Width = 40
+            EduCap.tvCompetencias.Columns[0].Alignment = Align.Center
+            EduCap.tvCompetencias.Columns[1].Text = "Competencia de Grado"
+            EduCap.tvCompetencias.Columns[1].Alignment = Align.Center
+            EduCap.tvCompetencias.Columns[1].Width = 200
+            EduCap.tvCompetencias.Columns[2].Text = "No."
+            EduCap.tvCompetencias.Columns[2].Width = 40
+            EduCap.tvCompetencias.Columns[2].Alignment = Align.Center
+            EduCap.tvCompetencias.Columns[3].Text = "Indicador de Logro"
+            EduCap.tvCompetencias.Columns[3].Alignment = Align.Center
+            EduCap.tvCompetencias.Columns[3].Width = 200
+            EduCap.tvCompetencias.Columns[4].Text = "No."
+            EduCap.tvCompetencias.Columns[4].Width = 40
+            EduCap.tvCompetencias.Columns[4].Alignment = Align.Center
+            EduCap.tvCompetencias.Columns[5].Text = "Contenido"
+            EduCap.tvCompetencias.Columns[5].Alignment = Align.Center
+            crow = 0
+    
+    rs = cone.Exec(consulta)
+    
+       While (rs.Available)
+             EduCap.tvCompetencias.Rows.count = crow + 1
+             EduCap.tvCompetencias.rows[crow].Height = 170
+             EduCap.lblACategoria.Text = rs["Categoria"]
+             EduCap.lblAProgra.Text = rs["Programa"]
+             EduCap.lbl_programaact.Text = rs["Programa"]
+             EduCap.lbl_nombreact.Text = rs["Actividad"]
+             EduCap.lbl_ADesc.Text = rs["DescActividad"]
+             EduCap.lblANivel.Text = rs["Nivel"]
+             EduCap.lblAGrado.Text = rs["Grado"]
+             EduCap.lblAMateria.Text = rs["Materia"]
+             EduCap.btn_regresargrado.Text = "Regresar a " & rs["Grado"]
+             EduCap.tvCompetencias[crow, 0].Text = rs["NoCompetencia"]
+             EduCap.tvCompetencias[crow, 0].WordWrap = True
+             EduCap.tvCompetencias[crow, 0].Alignment = Align.left
+             EduCap.tvCompetencias[crow, 1].Text = rs["Competencia"]
+             EduCap.tvCompetencias[crow, 1].WordWrap = True
+             EduCap.tvCompetencias[crow, 1].Alignment = Align.left
+             EduCap.tvCompetencias[crow, 2].Text = rs["NoIndicador"]
+             EduCap.tvCompetencias[crow, 2].WordWrap = True
+             EduCap.tvCompetencias[crow, 2].Alignment = Align.left
+             EduCap.tvCompetencias[crow, 3].Text = rs["Indicador"]
+             EduCap.tvCompetencias[crow, 3].WordWrap = True
+             EduCap.tvCompetencias[crow, 3].Alignment = Align.left
+             EduCap.tvCompetencias[crow, 4].Text = rs["NoContenido"]
+             EduCap.tvCompetencias[crow, 4].WordWrap = True
+             EduCap.tvCompetencias[crow, 4].Alignment = Align.left
+             EduCap.tvCompetencias[crow, 5].Text = rs["Contenido"]
+             EduCap.tvCompetencias[crow, 5].WordWrap = True
+             EduCap.tvCompetencias[crow, 5].Alignment = Align.left
+             If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
+                  EduCap.pbox_actividades.Picture = Picture.Load(rs["Icono"]).Image.Stretch(40, 40).Picture
+              Else
+                  EduCap.pbox_actividades.Picture = Picture.Load(Desktop.ConfigDir & "/Innova/Educap/Images/edulogo.jpeg").Image.Stretch(40, 40).Picture
+              Endif
+             EduCap.lblprogexe.Text = rs["Url_exe"]
+             crow = crow + 1
+             rs.MoveNext
+       Wend    
+  MDB_Connection.Desconectar(cone)
+  ObtenerImagen(id_actividad)
   
 End
 
