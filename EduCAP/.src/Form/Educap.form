@@ -309,7 +309,7 @@
         Text = ("Competencias")
       }
       { !lblprogexe Label
-        MoveScaled(87,18,24,4)
+        MoveScaled(64,7,24,4)
         #Public = True
         Visible = False
       }
@@ -335,6 +335,11 @@
         #Public = True
         Font = Font["+1"]
       }
+      { !lblmanualexe Label
+        MoveScaled(53,18,24,4)
+        #Public = True
+        Visible = False
+      }
     }
     { !btnregresargrado Button
       MoveScaled(3,0,6,6)
@@ -348,9 +353,9 @@
       Stretch = True
     }
     { !lbl_nombreact Label
-      MoveScaled(22,5,59,7)
+      MoveScaled(22,5,96,7)
       #Public = True
-      Font = Font["Bold,+5"]
+      Font = Font["Bold,+4"]
     }
     { !lbl_programaact Label
       MoveScaled(22,12,24,4)
@@ -358,11 +363,11 @@
       Font = Font["Bold,+3"]
     }
     { btn_comenzaract Button
-      MoveScaled(86,4,32,6)
+      MoveScaled(86,11,32,6)
       Picture = Picture["Images/TemaAzul/comenzar actividad.png"]
     }
     { btn_descargaract Button
-      MoveScaled(86,10,32,6)
+      MoveScaled(86,17,32,6)
       Font = Font["Underline,+3"]
       Text = ("Descargar Manual")
       Border = False

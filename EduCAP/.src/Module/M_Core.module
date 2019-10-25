@@ -251,7 +251,7 @@ Public Sub LlenarGvInfo(id_actividad As String)
               "AND cg.id_materia = m.idtbl_materia "
               
               
-    Print consulta
+   Print consulta
 
     cone = MDB_Connection.Conectar()
     

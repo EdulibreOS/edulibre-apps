@@ -13,7 +13,11 @@ End
 
 Public Sub mnu_preprimaria_Click()
 
-  'PrePrimaria()
+  PrePrimaria()
+
+End
+
+Public Sub PrePrimaria()
   
    active_pnl_portada(False)
    active_pnl_grados(False)
@@ -26,27 +30,6 @@ Public Sub mnu_preprimaria_Click()
    pbox_grado.Picture = Picture.Load(Application.Path & "/Images/PreEscolar.png") 
    btnregresar.Visible = False
    btn_regresar.Visible = False
-
-End
-
-Public Sub PrePrimaria()
-  
-  active_pnl_grados(False)
-  active_pnl_portada(False)
-  active_pnl_grado(False)
-
-  btn_preprimaria.Visible = True
-  lbl_grado.Text = "Pre-escolar"
-  lbl_titulo.Text = "PrePrimaria"
-  lbl_edad.Text = "6 años"
-  Print Application.Path
-  pbox_icono.Picture = Picture.Load(Application.Path & "/Images/PreEscolar.png")
-  
-  pbox_icono.Visible = True
-  lbl_titulo.Visible = True
-  lbl_grados.Visible = True
-  lbl_edad.Visible = True
-  lblmnuprincipal.Text = "Pre escolar"
   
 End
 
@@ -156,14 +139,12 @@ End
 Public Sub active_pnl_actividades(Estado As String)
   
   pnl_actividades.Visible = Estado
-  btnregresar.Visible = Estado
-  btnregresar.Visible = Estado
   pbox_actividades.Visible = Estado
   btn_comenzaract.Visible = Estado
   btn_comenzaract.Visible = Estado
   separador.Visible = Estado
   scrollviewActividad.Visible = Estado
-  
+  btn_regresargrado.Visible = Estado
 End
 
 
@@ -182,6 +163,12 @@ End
 
 Public Sub btn_primero_Click()
 
+Primero()
+  
+End
+
+Public Sub Primero()
+  
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
@@ -191,9 +178,17 @@ Public Sub btn_primero_Click()
  M_Core.Llenar_Actividades("Primaria Basica", "Primero", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
   
+  
 End
 
+
 Public Sub btn_segundo_Click()
+
+  Segundo()
+
+End
+
+Public Sub Segundo()
 
  active_pnl_portada(False)
  active_pnl_grados(False)
@@ -203,10 +198,18 @@ Public Sub btn_segundo_Click()
  M_Core.LLenar_Materias("Segundo")
  M_Core.Llenar_Actividades("Primaria Basica", "Segundo", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+  
+  
+End
+
+
+Public Sub btn_tercero_Click()
+
+Tercero()
 
 End
 
-Public Sub btn_tercero_Click()
+Public Sub Tercero()
 
  active_pnl_portada(False)
  active_pnl_grados(False)
@@ -216,10 +219,17 @@ Public Sub btn_tercero_Click()
  M_Core.LLenar_Materias("Tercero")
  M_Core.Llenar_Actividades("Primaria Basica", "Tercero", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
-
+  
 End
 
+
 Public Sub btn_cuarto_Click()
+
+  Cuarto()
+  
+End
+
+Public Sub Cuarto()
 
  active_pnl_portada(False)
  active_pnl_grados(False)
@@ -232,7 +242,14 @@ Public Sub btn_cuarto_Click()
   
 End
 
+
 Public Sub btn_quinto_Click()
+
+  Quinto()
+
+End
+
+Public Sub Quinto()
 
  active_pnl_portada(False)
  active_pnl_grados(False)
@@ -242,10 +259,17 @@ Public Sub btn_quinto_Click()
  M_Core.LLenar_Materias("Quinto")
  M_Core.Llenar_Actividades("Primaria Avanzada", "Quinto", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+  
+End
+
+
+Public Sub btn_sexto_Click()
+
+  Sexto()
 
 End
 
-Public Sub btn_sexto_Click()
+Public Sub Sexto()
 
  active_pnl_portada(False)
  active_pnl_grados(False)
@@ -255,8 +279,9 @@ Public Sub btn_sexto_Click()
  M_Core.LLenar_Materias("Sexto")
  M_Core.Llenar_Actividades("Primaria Avanzada", "Sexto", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
-
+  
 End
+
 
 
 Public Sub btn_regresar_Click()
@@ -291,3 +316,43 @@ Public Sub btnBuscar_Click()
 End
 
 
+
+Public Sub btn_comenzaract_Click()
+
+    Dim url As String
+  
+  url = EduCap.lblprogexe.Text
+  If url <> Null And Exist(url) Then
+    Message.Info("El programa " & Educap.lbl_programaact.Text & " inciará en breve, por favor espere.", "OK")
+    Exec [url]
+   Else 
+    Message.Info("El programa " & EduCap.lbl_programaact.Text & " no se encuentra instalado.", "OK")
+  Endif
+   'M_Log.Set_Log(Null, Null, Null, Null, "Abrir Programa", EdulibCap.lbl_user.Text, lst_iconos.Current.Key)
+
+End
+
+Public Sub btn_regresargrado_Click()
+
+  Dim opcion As String
+  opcion = lbl_grado.Text
+  
+  If opcion == "Pre-escolar" Then
+    
+  Else If opcion == "Primero" Then
+    
+  Else If opcion == "Segundo" Then
+    
+  Else If opcion == "Tercero" Then
+    
+  Else If opcion == "Cuarto" Then
+    
+  Else If opcion == "Quinto" Then
+    
+  Else If opcion == "Sexto" Then
+    
+    
+  Endif
+  
+
+End
