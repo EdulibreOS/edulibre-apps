@@ -381,4 +381,52 @@
       Border = False
     }
   }
+  { !pnl_manuales Panel
+    MoveScaled(24,9,122,77)
+    #Public = True
+    Background = Color.White
+    Expand = True
+    AutoResize = True
+    { pbox_manuales PictureBox
+      MoveScaled(2,2,16,16)
+      Stretch = True
+    }
+    { lbl_TManual Label
+      MoveScaled(20,3,39,4)
+      Font = Font["+5"]
+      Text = ("Manuales de Programas")
+    }
+    { !Lbl_MGrado Label
+      MoveScaled(20,9,41,4)
+      #Public = True
+      Font = Font["+2"]
+    }
+    { !CmbMGrado ComboBox
+      MoveScaled(6,22,25.7143,5.7143)
+      #Public = True
+      ToolTip = ("Grado")
+      Text = ("Grado")
+    }
+    { !CmbMMateria ComboBox
+      MoveScaled(35,22,25.7143,5.7143)
+      #Public = True
+      ToolTip = ("Materia")
+      Text = ("Materia")
+    }
+    { !CmbMPrograma ComboBox
+      MoveScaled(64,22,25.7143,5.7143)
+      #Public = True
+      ToolTip = ("Programa")
+      Text = ("Programa")
+    }
+    { !btnMBuscar Button
+      MoveScaled(95,22,14.2857,5.7143)
+      #Public = True
+      Picture = Picture["Images/TemaAzul/buscar.png"]
+    }
+    { !scrollvManuales ScrollView
+      MoveScaled(0,30,121,47)
+      #Public = True
+    }
+  }
 }

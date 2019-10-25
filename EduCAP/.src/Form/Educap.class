@@ -6,6 +6,7 @@ Public Sub Form_Open()
   active_pnl_portada(True)
   active_pnl_grado(False)
   active_pnl_actividades(False)
+  active_pnl_manuales(False)
 End
 
 
@@ -23,6 +24,7 @@ Public Sub PrePrimaria()
    active_pnl_grados(False)
    active_pnl_grado(True)
    active_pnl_actividades(False)
+   active_pnl_manuales(False)
    lbl_grado.Text = "Pre-escolar"
    lblmnuprincipal.Text = "Pre escolar"
    M_Core.LLenar_Materias("Pre-escolar")
@@ -39,6 +41,7 @@ Public Sub Primaria()
   active_pnl_portada(False)
   active_pnl_grado(False)
   active_pnl_actividades(False)
+  active_pnl_manuales(False)
   
   btn_primero.Visible = True
   btn_segundo.Visible = True
@@ -71,6 +74,7 @@ Public Sub Primaria2()
   active_pnl_portada(False)
   active_pnl_grado(False)
   active_pnl_actividades(False)
+  active_pnl_manuales(False)
   
   btn_cuarto.Visible = True
   btn_quinto.Visible = True
@@ -146,6 +150,20 @@ Public Sub active_pnl_actividades(Estado As String)
   scrollviewActividad.Visible = Estado
   btn_regresargrado.Visible = Estado
 End
+
+Public Sub active_pnl_manuales(Estado As String)
+  
+  pnl_manuales.Visible = Estado
+  pbox_manuales.Visible = Estado
+  lbl_TManual.Visible = Estado
+  CmbMGrado.Visible = Estado
+  CmbMMateria.Visible = Estado
+  CmbMPrograma.Visible = Estado
+  btnMBuscar.Visible = Estado
+  scrollvManuales.Visible = Estado
+  
+End
+
 
 
 Public Sub btn_preprimaria_Click()
@@ -334,25 +352,70 @@ End
 
 Public Sub btn_regresargrado_Click()
 
-  Dim opcion As String
+  Salir_Act()
+
+End
+
+Public Sub btnregresargrado_Click()
+
+  Salir_Act()
+
+End
+
+Public Sub Salir_Act()
+  
+    Dim opcion As String
   opcion = lbl_grado.Text
   
   If opcion == "Pre-escolar" Then
     
+    PrePrimaria()
+    
   Else If opcion == "Primero" Then
+    
+    Primero()
     
   Else If opcion == "Segundo" Then
     
+    Segundo()
+    
   Else If opcion == "Tercero" Then
+    
+    Tercero()
     
   Else If opcion == "Cuarto" Then
     
+    Cuarto()
+    
   Else If opcion == "Quinto" Then
+    
+    Quinto()
     
   Else If opcion == "Sexto" Then
     
+    Sexto()
     
   Endif
   
+End
+
+
+Public Sub btnActividades_Click()
+
+  active_pnl_actividades(False)
+  active_pnl_grado(False)
+  active_pnl_grados(False)
+  active_pnl_manuales(False)
+  active_pnl_portada(True)
+
+End
+
+Public Sub btnManuales_Click()
+
+  active_pnl_actividades(False)
+  active_pnl_grado(False)
+  active_pnl_grados(False)
+  active_pnl_manuales(True)
+  active_pnl_portada(False)
 
 End
