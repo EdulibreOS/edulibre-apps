@@ -11,12 +11,6 @@
     Text = ("Actividades")
     Border = False
   }
-  { btnManuales Button
-    MoveScaled(114,0,16,8)
-    Background = Color.SelectedForeground
-    Text = ("Manuales")
-    Border = False
-  }
   { btnNosotros Button
     MoveScaled(130,0,16,8)
     Text = ("Nosotros")
@@ -242,56 +236,34 @@
       MoveScaled(0,0,122,77)
       #Public = True
       Expand = True
+      Arrangement = Arrange.Row
+      Margin = True
+      Border = False
       ScrollBar = Scroll.Vertical
+      { !lblprogexe Label
+        MoveScaled(64,7,24,4)
+        #Public = True
+        Visible = False
+      }
+      { !lbl_ADesc TextLabel
+        MoveScaled(2,18,75,5)
+        #Public = True
+        Font = Font["+1"]
+      }
+      { !lblmanualexe Label
+        MoveScaled(53,18,24,4)
+        #Public = True
+        Visible = False
+      }
       { lbltCat Label
         MoveScaled(1,25,24,4)
         Font = Font["Bold,+3"]
         Text = ("Categoría")
       }
-      { !lblACategoria Label
-        MoveScaled(1,28,24,4)
-        #Public = True
-      }
       { lblTNiv Label
         MoveScaled(24,25,24,4)
         Font = Font["Bold,+3"]
         Text = ("Nivel")
-      }
-      { lblTGrado Label
-        MoveScaled(1,33,24,4)
-        Font = Font["Bold,+3"]
-        Text = ("Grado")
-      }
-      { !lblAGrado Label
-        MoveScaled(1,36,24,4)
-        #Public = True
-      }
-      { lblTMateria Label
-        MoveScaled(24,33,24,4)
-        Font = Font["Bold,+3"]
-        Text = ("Materia")
-      }
-      { !lblAMateria Label
-        MoveScaled(24,36,28,4)
-        #Public = True
-      }
-      { lblTEtiqueta Label
-        MoveScaled(1,41,24,4)
-        Font = Font["Bold,+3"]
-        Text = ("Etiqueta")
-      }
-      { !lblAEtiqueta Label
-        MoveScaled(1,44,24,4)
-        #Public = True
-      }
-      { lblTProgra Label
-        MoveScaled(24,41,24,4)
-        Font = Font["Bold,+3"]
-        Text = ("Programa")
-      }
-      { !lblAProgra Label
-        MoveScaled(24,44,28,4)
-        #Public = True
       }
       { !pboxAct1 PictureBox
         MoveScaled(53,25,31.4286,24.2857)
@@ -303,15 +275,54 @@
         #Public = True
         Stretch = True
       }
+      { !lblACategoria Label
+        MoveScaled(1,28,24,4)
+        #Public = True
+      }
+      { !lblANivel Label
+        MoveScaled(24,28,28,4)
+        #Public = True
+      }
+      { lblTGrado Label
+        MoveScaled(1,33,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Grado")
+      }
+      { lblTMateria Label
+        MoveScaled(24,33,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Materia")
+      }
+      { !lblAGrado Label
+        MoveScaled(1,36,24,4)
+        #Public = True
+      }
+      { !lblAMateria Label
+        MoveScaled(24,36,28,4)
+        #Public = True
+      }
+      { lblTEtiqueta Label
+        MoveScaled(1,41,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Etiqueta")
+      }
+      { lblTProgra Label
+        MoveScaled(24,41,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Programa")
+      }
+      { !lblAEtiqueta Label
+        MoveScaled(1,44,24,4)
+        #Public = True
+      }
+      { !lblAProgra Label
+        MoveScaled(24,44,28,4)
+        #Public = True
+      }
       { lblTCompetencias Label
         MoveScaled(1,49,24,4)
         Font = Font["Bold,+3"]
         Text = ("Competencias")
-      }
-      { !lblprogexe Label
-        MoveScaled(64,7,24,4)
-        #Public = True
-        Visible = False
       }
       { VBox1 VBox
         MoveScaled(1,53,120,23)
@@ -325,20 +336,6 @@
           Header = GridView.Horizontal
           ScrollBar = Scroll.Vertical
         }
-      }
-      { !lblANivel Label
-        MoveScaled(24,28,28,4)
-        #Public = True
-      }
-      { !lbl_ADesc TextLabel
-        MoveScaled(2,18,75,5)
-        #Public = True
-        Font = Font["+1"]
-      }
-      { !lblmanualexe Label
-        MoveScaled(53,18,24,4)
-        #Public = True
-        Visible = False
       }
     }
     { !btnregresargrado Button
@@ -427,6 +424,19 @@
     { !scrollvManuales ScrollView
       MoveScaled(0,30,121,47)
       #Public = True
+      Expand = True
+      Arrangement = Arrange.Row
+      Margin = True
+      ScrollBar = Scroll.Vertical
+    }
+  }
+  { Panel1 Panel
+    MoveScaled(114,0,16.8571,8.8571)
+    { btnManuales Button
+      MoveScaled(0,0,16,8)
+      Background = Color.SelectedForeground
+      Text = ("Manuales")
+      Border = False
     }
   }
 }

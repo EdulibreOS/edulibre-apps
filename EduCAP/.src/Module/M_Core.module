@@ -151,6 +151,73 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
   
 End
 
+Public Sub Llenar_Manuales(Grado As String, Materia As String, Programa As String)
+  
+  Dim rs As Result
+  Dim consulta, aux_palabras, consultag, consultam, consultap As String
+  Dim cant_palabras As Integer
+  Dim Palabras As String[]
+  Educap.scrollvManuales.Children.Clear
+  
+    If Grado <> "" Then
+    
+      consultag = "AND prog.nombre = '" & Grado & "' "
+    
+    Endif
+  
+    If Materia <> "" Then
+    
+      consultam = "AND mat.descripcion = '" & Materia & "' "
+    
+    Endif
+  
+    If Programa <> "" Then
+    
+      consultap = "AND gra.descripcion = ''" & Programa & "' "
+    
+    Endif
+    
+        consulta = "SELECT tut.*, prog.descripcion as programa, gra.descripcion as grado, prog.url_icono as icono " &
+               "FROM tbl_tutorial tut, " &
+               "tbl_programa prog, " &
+               "tbl_actividad act, " &
+               "tbl_grado_materia gm, " &
+               "tbl_grado gra, " &
+               "tbl_materia mat " &
+               "WHERE tut.id_programa = prog.idtbl_programa " &
+               "AND prog.idtbl_programa = act.id_programa " &
+               "AND act.idtbl_actividad = gm.id_actividad " &
+               "AND gm.id_grado = gra.idtbl_grado " &
+               "AND gm.id_materia = mat.idtbl_materia " & consultag & consultam & consultap &
+               " ORDER BY tut.descripcion "
+            'Print consulta
+            cone = MDB_Connection.Conectar()
+            rs = cone.Exec(consulta)
+            While (rs.Available)
+                 ImgBtnAppsBook = New PushButton(Educap.scrollvManuales) As "ButtonManuales"
+                 ImgBtnAppsBook.w = 120
+                 ImgBtnAppsBook.h = 120
+                 ImgBtnAppsBook.Text = rs["nombre"]
+                 
+                 'ImgBtnAppsBook.Val = rs["ID"]
+                 ImgBtnAppsBook.Mouse = 13
+                 If rs["icono"] <> Null And Exist(rs["icono"]) Then
+                    ImgBtnAppsBook.Picture = Picture.Load(rs["icono"]).Image.Stretch(50, 50).Picture
+                 Else
+                    ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(50, 50).Picture
+                 Endif
+                 'Print ImgBtnAppsBook.Picture
+                 'ImgBtnAppsBook.Background = Color.Transparent
+                 'Try ImgBtnAppsBook.Font.Size = (M_Core.iFontSize)
+                 'ImgBtnAppsBook.Font.Name = (M_Core.sFontName)
+                 ImgBtnAppsBook.Tag = rs["idtbl_tutorial"]
+    
+                 'sDel = DesktopEntry.Path
+                   rs.MoveNext
+               Wend
+          MDB_Connection.Desconectar(cone)  
+End
+
 Public Sub ButtonMaterias_Click()
   
   sMateria = Last.Tag
@@ -322,5 +389,29 @@ Public Sub LlenarGvInfo(id_actividad As String)
   MDB_Connection.Desconectar(cone)
   ObtenerImagen(id_actividad)
   
+End
+
+Public Sub ObtenerComboGrado(id_nivel As String)
+  
+  Dim rs As Result
+  Dim consulta As String
+  
+  Educap.CmbMGrado.Clear
+  Educap.CmbMGrado.Add("Todos", "0")
+    
+    consulta = "SELECT * " &
+              "FROM tbl_grado " &
+              "WHERE id_nivel = " & id_nivel & " " &
+              "ORDER BY idtbl_grado asc"
+    'Print consulta
+    
+    cone = MDB_Connection.Conectar()
+    
+    rs = cone.Exec(consulta)
+       While (rs.Available)
+             Educap.CmbMGrado.Add(rs["descripcion"], rs["idtbl_grado"])
+             rs.MoveNext
+       Wend
+  MDB_Connection.Desconectar(cone)
 End
 

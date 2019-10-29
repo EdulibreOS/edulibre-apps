@@ -417,5 +417,8 @@ Public Sub btnManuales_Click()
   active_pnl_grados(False)
   active_pnl_manuales(True)
   active_pnl_portada(False)
+  
+  M_Core.ObtenerComboGrado("1")
+  M_Core.Llenar_Manuales("", "", "")
 
 End
