@@ -533,3 +533,33 @@ Public Sub CmbMGrado_Change()
 End
 
 
+
+Public Sub btnMBuscar_Click()
+
+  Dim grado, materia, programa As String
+  
+  grado = ""
+  materia = ""
+  programa = ""
+  
+  If Educap.CmbMGrado.Index > 0 Then
+    grado = Educap.CmbMGrado.Current.Text
+  Endif
+  
+  If Educap.CmbMMateria.Index > 0 Then
+    materia = Educap.CmbMMateria.Current.Text
+  Endif
+ 
+  If Educap.CmbMPrograma.Index > 0 Then
+    programa = Educap.CmbMPrograma.Current.Text
+  Endif
+  
+  M_Core.Llenar_Manuales(grado, materia, programa)
+
+End
+
+Public Sub btnNosotros_Click()
+
+  sTabActiva = "3"
+
+End

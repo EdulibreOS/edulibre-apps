@@ -389,8 +389,8 @@
       Stretch = True
     }
     { lbl_TManual Label
-      MoveScaled(20,3,39,4)
-      Font = Font["+5"]
+      MoveScaled(20,3,43,4)
+      Font = Font["+6"]
       Text = ("Manuales de Programas")
     }
     { !Lbl_MGrado Label
@@ -428,6 +428,21 @@
       Arrangement = Arrange.Row
       Margin = True
       ScrollBar = Scroll.Vertical
+    }
+    { Label1 Label
+      MoveScaled(6,18,24,4)
+      Font = Font["Bold,+1"]
+      Text = ("Grado:")
+    }
+    { Label2 Label
+      MoveScaled(35,18,24,4)
+      Font = Font["Bold,+1"]
+      Text = ("Materia:")
+    }
+    { Label3 Label
+      MoveScaled(64,18,24,4)
+      Font = Font["Bold,+1"]
+      Text = ("Programa:")
     }
   }
   { Panel1 Panel
