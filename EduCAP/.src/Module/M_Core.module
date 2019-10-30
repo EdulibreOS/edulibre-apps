@@ -415,3 +415,62 @@ Public Sub ObtenerComboGrado(id_nivel As String)
   MDB_Connection.Desconectar(cone)
 End
 
+Public Sub ObtenerComboMateria(grado As String)
+  
+  Dim rs As Result
+  Dim consulta As String
+  
+  Educap.CmbMMateria.Clear
+  Educap.CmbMMateria.Add("Todos", "0")
+    
+    If grado <> "" Then
+      
+      consulta = "SELECT distinct m.* " &
+                  "FROM tbl_grado g, " &
+                  "tbl_grado_materia gm, " &
+                  "tbl_materia m " &
+                  "where g.idtbl_grado = gm.id_grado " &
+                  "AND gm.id_materia = m.idtbl_materia " &
+                  "AND g.descripcion = '" & grado & "' " &
+                  "ORDER BY m.descripcion asc"
+    'Print consulta
+    Else
+      
+      consulta = "SELECT distinct m.* " &
+                "FROM tbl_materia m " &
+                "ORDER BY m.descripcion asc"
+      
+    Endif
+    
+    cone = MDB_Connection.Conectar()
+    
+    rs = cone.Exec(consulta)
+       While (rs.Available)
+             Educap.CmbMMateria.Add(rs["descripcion"], rs["idtbl_materia"])
+             rs.MoveNext
+       Wend
+  MDB_Connection.Desconectar(cone)
+End
+
+Public Sub ObtenerComboPrograma()
+  
+  Dim rs As Result
+  Dim consulta As String
+  
+  Educap.CmbMPrograma.Clear
+  Educap.CmbMPrograma.Add("Todos", "0")
+    
+    consulta = "SELECT * " &
+              "FROM tbl_programa " &
+              "ORDER BY descripcion asc"
+    'Print consulta
+    
+    cone = MDB_Connection.Conectar()
+    
+    rs = cone.Exec(consulta)
+       While (rs.Available)
+             Educap.CmbMPrograma.Add(rs["descripcion"], rs["idtbl_programa"])
+             rs.MoveNext
+       Wend
+  MDB_Connection.Desconectar(cone)
+End

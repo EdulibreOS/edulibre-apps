@@ -1,5 +1,35 @@
 ' Gambas class file
 
+' Gambas module file
+
+' Innova Project 
+' Copyright © Asociación Civil Edulibre
+' Info@edulibre.com
+'
+' Jorge Recinos - Developer
+' jrecinosd@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+
+Public sTabActiva As String
+Public sNivelActivo As String
+
 Public Sub Form_Open()
   
   active_pnl_grados(False)
@@ -7,6 +37,8 @@ Public Sub Form_Open()
   active_pnl_grado(False)
   active_pnl_actividades(False)
   active_pnl_manuales(False)
+  
+  sTabActiva = "1" 'Por Default esta seleccionado Actividades
 End
 
 
@@ -19,6 +51,10 @@ Public Sub mnu_preprimaria_Click()
 End
 
 Public Sub PrePrimaria()
+
+sNivelActivo = "1"
+
+  If sTabActiva == "1" Then 'Actividades
   
    active_pnl_portada(False)
    active_pnl_grados(False)
@@ -32,10 +68,30 @@ Public Sub PrePrimaria()
    pbox_grado.Picture = Picture.Load(Application.Path & "/Images/PreEscolar.png") 
    btnregresar.Visible = False
    btn_regresar.Visible = False
+   
+   Else If sTabActiva == "2" Then 'Manuales
   
+   active_pnl_portada(False)
+   active_pnl_grados(False)
+   active_pnl_grado(False)
+   active_pnl_actividades(False)
+   active_pnl_manuales(True)
+   lbl_grado.Text = "Pre-escolar"
+   lblmnuprincipal.Text = "Pre escolar"
+   M_Core.ObtenerComboGrado(sNivelActivo)
+  
+  Else 'Nosotros
+    
+  End If
+  
+    
 End
 
 Public Sub Primaria()
+
+sNivelActivo = "2"
+
+If sTabActiva == "1" Then 'Actividades
   
   active_pnl_grados(False)
   active_pnl_portada(False)
@@ -56,7 +112,21 @@ Public Sub Primaria()
   lbl_titulo.Visible = True
   lbl_grados.Visible = True
   lbl_edad.Visible = True
-  lblmnuprincipal.Text = "Primaria Basica"  
+  lblmnuprincipal.Text = "Primaria Basica"
+  
+  Else If sTabActiva == "2" Then 'Manuales
+    
+    lblmnuprincipal.Text = "Primaria Basica"
+    active_pnl_grados(False)
+    active_pnl_portada(False)
+    active_pnl_grado(False)
+    active_pnl_actividades(False)
+    active_pnl_manuales(True)
+    M_Core.ObtenerComboGrado(sNivelActivo)
+    
+  Else 'Nosotros
+    
+  End If
   
 End
 
@@ -69,6 +139,10 @@ Public Sub mnu_primaria_Click()
 End
 
 Public Sub Primaria2()
+
+sNivelActivo = "3"
+
+If sTabActiva == "1" Then 'Actividades
   
   active_pnl_grados(False)
   active_pnl_portada(False)
@@ -89,6 +163,20 @@ Public Sub Primaria2()
   lbl_grados.Visible = True
   lbl_edad.Visible = True
   lblmnuprincipal.Text = "Primaria Avanzada"  
+  
+  Else If sTabActiva == "2" Then 'Manuales
+    
+    lblmnuprincipal.Text = "Primaria Avanzada"
+    active_pnl_grados(False)
+    active_pnl_portada(False)
+    active_pnl_grado(False)
+    active_pnl_actividades(False)
+    active_pnl_manuales(True)
+    M_Core.ObtenerComboGrado(sNivelActivo)
+      
+  Else 'Nosotros
+    
+  End If
   
 End
 
@@ -407,6 +495,8 @@ Public Sub btnActividades_Click()
   active_pnl_grados(False)
   active_pnl_manuales(False)
   active_pnl_portada(True)
+  
+  sTabActiva = "1"
 
 End
 
@@ -418,7 +508,28 @@ Public Sub btnManuales_Click()
   active_pnl_manuales(True)
   active_pnl_portada(False)
   
-  M_Core.ObtenerComboGrado("1")
+  sTabActiva = "2"
+  M_Core.ObtenerComboMateria("")
+  M_Core.ObtenerComboPrograma()
+  
+  If sNivelActivo <> "" Then
+    M_Core.ObtenerComboGrado(sNivelActivo)
+  Else
+    M_Core.ObtenerComboGrado("1")
+  End If
+  
   M_Core.Llenar_Manuales("", "", "")
 
 End
+
+Public Sub CmbMGrado_Change()
+
+  If Educap.CmbMGrado.Index > 0 Then
+    M_Core.ObtenerComboMateria(Educap.CmbMGrado.Current.Text)
+  Else
+    M_Core.ObtenerComboMateria("")
+  Endif
+
+End
+
+
