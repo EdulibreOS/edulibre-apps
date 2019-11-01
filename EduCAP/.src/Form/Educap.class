@@ -200,8 +200,6 @@ Public Sub active_pnl_grados(Estado As String)
   btn_quinto.Visible = Estado
   btn_sexto.Visible = Estado
   
-  lbl_titulo.Visible = Estado
-  
   pbox_icono.Visible = Estado
   lbl_titulo.Visible = Estado
   lbl_grados.Visible = Estado
@@ -219,15 +217,22 @@ Public Sub active_pnl_grado(Estado As String)
   btn_regresar.Visible = Estado
   lbl_grado.Visible = Estado
 
-
 End
 
 Public Sub active_pnl_portada(Estado As String)
 
   pnl_portada.Visible = Estado
-  lbl_titulo.Visible = Estado
   
 End
+
+Public Sub active_pnl_menus(Estado As String)
+  
+  pnlmenu.Visible = Estado
+  mnu_primaria.Visible = Estado
+  mnu_primaria2.Visible = Estado
+  
+End
+
 
 Public Sub active_pnl_actividades(Estado As String)
   
@@ -503,6 +508,7 @@ Public Sub btnActividades_Click()
   active_pnl_grados(False)
   active_pnl_manuales(False)
   active_pnl_portada(True)
+  active_pnl_menus(True)
   active_pnl_nosotros(False)
   
   sTabActiva = "1"
@@ -515,6 +521,7 @@ Public Sub btnManuales_Click()
   active_pnl_grado(False)
   active_pnl_grados(False)
   active_pnl_manuales(True)
+  active_pnl_menus(True)
   active_pnl_portada(False)
   active_pnl_nosotros(False)
   
@@ -572,5 +579,6 @@ Public Sub btnNosotros_Click()
 
   sTabActiva = "3"
   active_pnl_nosotros(True)
+  active_pnl_menus(False)
 
 End
