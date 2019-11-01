@@ -37,6 +37,7 @@ Public Sub Form_Open()
   active_pnl_grado(False)
   active_pnl_actividades(False)
   active_pnl_manuales(False)
+  active_pnl_nosotros(False)
   
   sTabActiva = "1" 'Por Default esta seleccionado Actividades
 End
@@ -250,6 +251,13 @@ Public Sub active_pnl_manuales(Estado As String)
   btnMBuscar.Visible = Estado
   scrollvManuales.Visible = Estado
   
+End
+
+
+Public Sub active_pnl_nosotros(Estado As String)
+  
+  pnl_nosotros.Visible = Estado
+
 End
 
 
@@ -495,6 +503,7 @@ Public Sub btnActividades_Click()
   active_pnl_grados(False)
   active_pnl_manuales(False)
   active_pnl_portada(True)
+  active_pnl_nosotros(False)
   
   sTabActiva = "1"
 
@@ -507,6 +516,7 @@ Public Sub btnManuales_Click()
   active_pnl_grados(False)
   active_pnl_manuales(True)
   active_pnl_portada(False)
+  active_pnl_nosotros(False)
   
   sTabActiva = "2"
   M_Core.ObtenerComboMateria("")
@@ -561,5 +571,6 @@ End
 Public Sub btnNosotros_Click()
 
   sTabActiva = "3"
+  active_pnl_nosotros(True)
 
 End

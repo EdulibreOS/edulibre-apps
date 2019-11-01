@@ -454,4 +454,47 @@
       Border = False
     }
   }
+  { pnl_nosotros Panel
+    MoveScaled(24,10,122,78)
+    Background = Color.White
+    { pbox_nosotros PictureBox
+      MoveScaled(4,3,16,16)
+      Picture = Picture["Images/TemaAzul/foto equipo.png"]
+      Stretch = True
+    }
+    { Label4 Label
+      MoveScaled(24,5,24,4)
+      Font = Font["+10"]
+      Text = ("EDUCAP")
+    }
+    { Label5 Label
+      MoveScaled(24,10,24,4)
+      Font = Font["+4"]
+      Text = ("Sobre nosotros")
+    }
+    { txt_Nosotros TextLabel
+      MoveScaled(4,24,70,29)
+      Text = ("El Centro de Ayuda Edulibre es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\n<p>El Centro de Ayuda Edulibre no hubiera sido posible sin la ayuda de:</p></br>\n\n\n<h5><p><u><br>Asociación Civil Edulibre - Proyecto</h5></p></u>\n<h5><p><u>Fundación TIGO - Patrocinador Oficial</h5></p> </u>\n<h5><p><u>Jorge Recinos - Desarrollador</h5></p></u></br>\n")
+    }
+    { PictureBox3 PictureBox
+      MoveScaled(82,18,16,36)
+      Stretch = True
+    }
+    { PictureBox4 PictureBox
+      MoveScaled(6,56,16,16)
+      Stretch = True
+    }
+    { PictureBox5 PictureBox
+      MoveScaled(30,56,16,16)
+      Stretch = True
+    }
+    { PictureBox6 PictureBox
+      MoveScaled(55,56,16,16)
+      Stretch = True
+    }
+    { PictureBox7 PictureBox
+      MoveScaled(77,56,16,16)
+      Stretch = True
+    }
+  }
 }
