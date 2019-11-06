@@ -1,11 +1,45 @@
 ' Gambas class file
 
+' Gambas module file
+
+' Innova Project 
+' Copyright © Asociación Civil Edulibre
+' Info@edulibre.com
+'
+' Jorge Recinos - Developer
+' jrecinosd@gmail.com
+'
+' This program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2 of the License, or
+' (at your option) any later version.
+'
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with this program; if not, write to the Free Software
+' Foundation, Inc., 51 Franklin St, Fifth Floor,
+' Boston, MA  02110-1301  USA
+
+' Homepage: http://http://sourceforge.net/projects/innovadesktop
+
+
+Public sTabActiva As String
+Public sNivelActivo As String
+
 Public Sub Form_Open()
   
   active_pnl_grados(False)
   active_pnl_portada(True)
   active_pnl_grado(False)
+  active_pnl_actividades(False)
+  active_pnl_manuales(False)
+  active_pnl_nosotros(False)
   
+  sTabActiva = "1" 'Por Default esta seleccionado Actividades
 End
 
 
@@ -13,36 +47,58 @@ End
 
 Public Sub mnu_preprimaria_Click()
 
-  PrePrimaria()    
+  PrePrimaria()
 
 End
 
 Public Sub PrePrimaria()
-  
-  active_pnl_grados(False)
-  active_pnl_portada(False)
-  active_pnl_grado(False)
 
-  btn_preprimaria.Visible = True
+sNivelActivo = "1"
+
+  If sTabActiva == "1" Then 'Actividades
   
-  lbl_titulo.Text = "PrePrimaria"
-  lbl_edad.Text = "6 años"
-  Print Application.Path
-  pbox_icono.Picture = Picture.Load(Application.Path & "/Images/PreEscolar.png")
+   active_pnl_portada(False)
+   active_pnl_grados(False)
+   active_pnl_grado(True)
+   active_pnl_actividades(False)
+   active_pnl_manuales(False)
+   lbl_grado.Text = "Pre-escolar"
+   lblmnuprincipal.Text = "Pre escolar"
+   M_Core.LLenar_Materias("Pre-escolar")
+   M_Core.Llenar_Actividades("Pre escolar", "Pre-escolar", "", "")
+   pbox_grado.Picture = Picture.Load(Application.Path & "/Images/PreEscolar.png") 
+   btnregresar.Visible = False
+   btn_regresar.Visible = False
+   
+   Else If sTabActiva == "2" Then 'Manuales
   
-  pbox_icono.Visible = True
-  lbl_titulo.Visible = True
-  lbl_grados.Visible = True
-  lbl_edad.Visible = True
-  lblmnuprincipal.Text = "PrePrimaria"
+   active_pnl_portada(False)
+   active_pnl_grados(False)
+   active_pnl_grado(False)
+   active_pnl_actividades(False)
+   active_pnl_manuales(True)
+   lbl_grado.Text = "Pre-escolar"
+   lblmnuprincipal.Text = "Pre escolar"
+   M_Core.ObtenerComboGrado(sNivelActivo)
   
+  Else 'Nosotros
+    
+  End If
+  
+    
 End
 
 Public Sub Primaria()
+
+sNivelActivo = "2"
+
+If sTabActiva == "1" Then 'Actividades
   
   active_pnl_grados(False)
   active_pnl_portada(False)
   active_pnl_grado(False)
+  active_pnl_actividades(False)
+  active_pnl_manuales(False)
   
   btn_primero.Visible = True
   btn_segundo.Visible = True
@@ -57,7 +113,21 @@ Public Sub Primaria()
   lbl_titulo.Visible = True
   lbl_grados.Visible = True
   lbl_edad.Visible = True
-  lblmnuprincipal.Text = "Primaria Primer Ciclo"  
+  lblmnuprincipal.Text = "Primaria Basica"
+  
+  Else If sTabActiva == "2" Then 'Manuales
+    
+    lblmnuprincipal.Text = "Primaria Basica"
+    active_pnl_grados(False)
+    active_pnl_portada(False)
+    active_pnl_grado(False)
+    active_pnl_actividades(False)
+    active_pnl_manuales(True)
+    M_Core.ObtenerComboGrado(sNivelActivo)
+    
+  Else 'Nosotros
+    
+  End If
   
 End
 
@@ -70,10 +140,16 @@ Public Sub mnu_primaria_Click()
 End
 
 Public Sub Primaria2()
+
+sNivelActivo = "3"
+
+If sTabActiva == "1" Then 'Actividades
   
   active_pnl_grados(False)
   active_pnl_portada(False)
   active_pnl_grado(False)
+  active_pnl_actividades(False)
+  active_pnl_manuales(False)
   
   btn_cuarto.Visible = True
   btn_quinto.Visible = True
@@ -87,7 +163,21 @@ Public Sub Primaria2()
   lbl_titulo.Visible = True
   lbl_grados.Visible = True
   lbl_edad.Visible = True
-  lblmnuprincipal.Text = "Primaria Segundo Ciclo"  
+  lblmnuprincipal.Text = "Primaria Avanzada"  
+  
+  Else If sTabActiva == "2" Then 'Manuales
+    
+    lblmnuprincipal.Text = "Primaria Avanzada"
+    active_pnl_grados(False)
+    active_pnl_portada(False)
+    active_pnl_grado(False)
+    active_pnl_actividades(False)
+    active_pnl_manuales(True)
+    M_Core.ObtenerComboGrado(sNivelActivo)
+      
+  Else 'Nosotros
+    
+  End If
   
 End
 
@@ -125,7 +215,7 @@ End
 Public Sub active_pnl_grado(Estado As String)
 
   pnl_grado.Visible = Estado
-  pbox_regresar.Visible = Estado
+  btnregresar.Visible = Estado
   btn_regresar.Visible = Estado
   lbl_grado.Visible = Estado
 
@@ -139,12 +229,46 @@ Public Sub active_pnl_portada(Estado As String)
   
 End
 
+Public Sub active_pnl_actividades(Estado As String)
+  
+  pnl_actividades.Visible = Estado
+  pbox_actividades.Visible = Estado
+  btn_comenzaract.Visible = Estado
+  btn_comenzaract.Visible = Estado
+  separador.Visible = Estado
+  scrollviewActividad.Visible = Estado
+  btn_regresargrado.Visible = Estado
+End
+
+Public Sub active_pnl_manuales(Estado As String)
+  
+  pnl_manuales.Visible = Estado
+  pbox_manuales.Visible = Estado
+  lbl_TManual.Visible = Estado
+  CmbMGrado.Visible = Estado
+  CmbMMateria.Visible = Estado
+  CmbMPrograma.Visible = Estado
+  btnMBuscar.Visible = Estado
+  scrollvManuales.Visible = Estado
+  
+End
+
+
+Public Sub active_pnl_nosotros(Estado As String)
+  
+  pnl_nosotros.Visible = Estado
+
+End
+
+
+
 Public Sub btn_preprimaria_Click()
 
    active_pnl_portada(False)
    active_pnl_grados(False)
    active_pnl_grado(True)
-   lbl_grado.Text = "PrePrimaria"
+   active_pnl_actividades(False)
+   lbl_grado.Text = "Pre-escolar"
    M_Core.LLenar_Materias("Pre-escolar")
    M_Core.Llenar_Actividades("Pre escolar", "Pre-escolar", "", "")
    pbox_grado.Picture = Picture.Load(Application.Path & "/Images/PreEscolar.png")
@@ -153,85 +277,130 @@ End
 
 Public Sub btn_primero_Click()
 
+Primero()
+  
+End
+
+Public Sub Primero()
+  
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
+ active_pnl_actividades(False)
  lbl_grado.Text = "Primero"
  M_Core.LLenar_Materias("Primero")
  M_Core.Llenar_Actividades("Primaria Basica", "Primero", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
   
+  
 End
+
 
 Public Sub btn_segundo_Click()
 
+  Segundo()
+
+End
+
+Public Sub Segundo()
+
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
- lbl_grado.Text = "Segundo Primaria"
+ active_pnl_actividades(False)
+ lbl_grado.Text = "Segundo"
  M_Core.LLenar_Materias("Segundo")
  M_Core.Llenar_Actividades("Primaria Basica", "Segundo", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
-
+  
+  
 End
+
 
 Public Sub btn_tercero_Click()
 
- active_pnl_portada(False)
- active_pnl_grados(False)
- active_pnl_grado(True)
- lbl_grado.Text = "Tercero Primaria"
- M_Core.LLenar_Materias("Tercero")
- M_Core.Llenar_Actividades("Primaria Basica", "Tercero", "", "")
- pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+Tercero()
 
 End
 
-Public Sub btn_cuarto_Click()
+Public Sub Tercero()
 
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
- lbl_grado.Text = "Cuarto Primaria"  
+ active_pnl_actividades(False)
+ lbl_grado.Text = "Tercero"
+ M_Core.LLenar_Materias("Tercero")
+ M_Core.Llenar_Actividades("Primaria Basica", "Tercero", "", "")
+ pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+  
+End
+
+
+Public Sub btn_cuarto_Click()
+
+  Cuarto()
+  
+End
+
+Public Sub Cuarto()
+
+ active_pnl_portada(False)
+ active_pnl_grados(False)
+ active_pnl_grado(True)
+ active_pnl_actividades(False)
+ lbl_grado.Text = "Cuarto"  
  M_Core.LLenar_Materias("Cuarto")
  M_Core.Llenar_Actividades("Primaria Avanzada", "Cuarto", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
   
 End
 
+
 Public Sub btn_quinto_Click()
+
+  Quinto()
+
+End
+
+Public Sub Quinto()
 
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
- lbl_grado.Text = "Quinto Primaria"
+ active_pnl_actividades(False)
+ lbl_grado.Text = "Quinto"
  M_Core.LLenar_Materias("Quinto")
  M_Core.Llenar_Actividades("Primaria Avanzada", "Quinto", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
+  
+End
+
+
+Public Sub btn_sexto_Click()
+
+  Sexto()
 
 End
 
-Public Sub btn_sexto_Click()
+Public Sub Sexto()
 
  active_pnl_portada(False)
  active_pnl_grados(False)
  active_pnl_grado(True)
- lbl_grado.Text = "Sexto Primaria"
+ active_pnl_actividades(False)
+ lbl_grado.Text = "Sexto"
  M_Core.LLenar_Materias("Sexto")
  M_Core.Llenar_Actividades("Primaria Avanzada", "Sexto", "", "")
  pbox_grado.Picture = Picture.Load(Application.Path & "/Images/Primariaprimerciclo.png")
-
+  
 End
 
-Public Sub IconViewMaterias_DblClick()
 
-  'IconViewMaterias.Chi
-
-End
 
 Public Sub btn_regresar_Click()
 
-  If lblmnuprincipal.Text == "PrePrimaria"
+  If lblmnuprincipal.Text == "Pre escolar"
     PrePrimaria()
   Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
     Primaria()
@@ -241,14 +410,167 @@ Public Sub btn_regresar_Click()
   
 End
 
-Public Sub pbox_regresar_DblClick()
 
-  If lblmnuprincipal.Text == "PrePrimaria"
+Public Sub btnregresar_Click()
+
+  If lblmnuprincipal.Text == "Pre escolar"
     PrePrimaria()
   Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
     Primaria()
   Else 'Primaria2
-    Primaria2()
-  Endif  
+    Primaria2
+  Endif
+
+End
+
+Public Sub btnBuscar_Click()
+
+    M_Core.Llenar_Actividades(Educap.lblmnuprincipal.Text, Educap.lbl_grado.Text, "", txt_busqueda.Text)
+    Educap.lbl_sMateria.Text = ""
+End
+
+
+
+Public Sub btn_comenzaract_Click()
+
+    Dim url As String
+  
+  url = EduCap.lblprogexe.Text
+  If url <> Null And Exist(url) Then
+    Message.Info("El programa " & Educap.lbl_programaact.Text & " inciará en breve, por favor espere.", "OK")
+    Exec [url]
+   Else 
+    Message.Info("El programa " & EduCap.lbl_programaact.Text & " no se encuentra instalado.", "OK")
+  Endif
+   'M_Log.Set_Log(Null, Null, Null, Null, "Abrir Programa", EdulibCap.lbl_user.Text, lst_iconos.Current.Key)
+
+End
+
+Public Sub btn_regresargrado_Click()
+
+  Salir_Act()
+
+End
+
+Public Sub btnregresargrado_Click()
+
+  Salir_Act()
+
+End
+
+Public Sub Salir_Act()
+  
+    Dim opcion As String
+  opcion = lbl_grado.Text
+  
+  If opcion == "Pre-escolar" Then
+    
+    PrePrimaria()
+    
+  Else If opcion == "Primero" Then
+    
+    Primero()
+    
+  Else If opcion == "Segundo" Then
+    
+    Segundo()
+    
+  Else If opcion == "Tercero" Then
+    
+    Tercero()
+    
+  Else If opcion == "Cuarto" Then
+    
+    Cuarto()
+    
+  Else If opcion == "Quinto" Then
+    
+    Quinto()
+    
+  Else If opcion == "Sexto" Then
+    
+    Sexto()
+    
+  Endif
+  
+End
+
+
+Public Sub btnActividades_Click()
+
+  active_pnl_actividades(False)
+  active_pnl_grado(False)
+  active_pnl_grados(False)
+  active_pnl_manuales(False)
+  active_pnl_portada(True)
+  active_pnl_nosotros(False)
+  
+  sTabActiva = "1"
+
+End
+
+Public Sub btnManuales_Click()
+
+  active_pnl_actividades(False)
+  active_pnl_grado(False)
+  active_pnl_grados(False)
+  active_pnl_manuales(True)
+  active_pnl_portada(False)
+  active_pnl_nosotros(False)
+  
+  sTabActiva = "2"
+  M_Core.ObtenerComboMateria("")
+  M_Core.ObtenerComboPrograma()
+  
+  If sNivelActivo <> "" Then
+    M_Core.ObtenerComboGrado(sNivelActivo)
+  Else
+    M_Core.ObtenerComboGrado("1")
+  End If
+  
+  M_Core.Llenar_Manuales("", "", "")
+
+End
+
+Public Sub CmbMGrado_Change()
+
+  If Educap.CmbMGrado.Index > 0 Then
+    M_Core.ObtenerComboMateria(Educap.CmbMGrado.Current.Text)
+  Else
+    M_Core.ObtenerComboMateria("")
+  Endif
+
+End
+
+
+
+Public Sub btnMBuscar_Click()
+
+  Dim grado, materia, programa As String
+  
+  grado = ""
+  materia = ""
+  programa = ""
+  
+  If Educap.CmbMGrado.Index > 0 Then
+    grado = Educap.CmbMGrado.Current.Text
+  Endif
+  
+  If Educap.CmbMMateria.Index > 0 Then
+    materia = Educap.CmbMMateria.Current.Text
+  Endif
+ 
+  If Educap.CmbMPrograma.Index > 0 Then
+    programa = Educap.CmbMPrograma.Current.Text
+  Endif
+  
+  M_Core.Llenar_Manuales(grado, materia, programa)
+
+End
+
+Public Sub btnNosotros_Click()
+
+  sTabActiva = "3"
+  active_pnl_nosotros(True)
 
 End

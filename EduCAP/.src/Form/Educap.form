@@ -4,16 +4,11 @@
   MoveScaled(0,0,146.2857,85.7143)
   Background = Color.White
   Transparent = True
+  AutoResize = True
   { btnActividades Button
     MoveScaled(98,0,16,8)
     Background = Color.SelectedForeground
     Text = ("Actividades")
-    Border = False
-  }
-  { btnManuales Button
-    MoveScaled(114,0,16,8)
-    Background = Color.SelectedForeground
-    Text = ("Manuales")
     Border = False
   }
   { btnNosotros Button
@@ -37,7 +32,7 @@
     }
   }
   { PictureBox1 PictureBox
-    MoveScaled(2,0,19,9)
+    MoveScaled(5,0,14,9)
     Picture = Picture["Images/LogoCAP.png"]
     Stretch = True
   }
@@ -148,34 +143,31 @@
     MoveScaled(24,9,122,77)
     Background = Color.White
     { btn_regresar Button
-      MoveScaled(10,2,22,4)
+      MoveScaled(10,1,22,4)
       Font = Font["+2"]
       Text = ("Regresar a grados")
       Border = False
     }
     { pbox_grado PictureBox
-      MoveScaled(4,8,10.7143,10.7143)
+      MoveScaled(4,7,10.7143,10.7143)
       Stretch = True
     }
-    { pbox_regresar PictureBox
-      MoveScaled(3,1,6,6)
-      Picture = Picture["Images/TemaAzul/back.png"]
-      Stretch = True
-    }
-    { lbl_grado Label
-      MoveScaled(17,12,24,4)
+    { !lbl_grado Label
+      MoveScaled(17,11,24,4)
+      #Public = True
       Font = Font["+4"]
     }
-    { txt_busqueda TextBox
+    { !txt_busqueda TextBox
       MoveScaled(84,2,24,4)
-      Text = ("Busca por palabra clave")
+      #Public = True
+      ToolTip = ("Busca por palabra clave")
     }
     { btnBuscar Button
       MoveScaled(108,2,14,4)
       Picture = Picture["Images/TemaAzul/buscar.png"]
     }
     { pnl_materias Panel
-      MoveScaled(3,19,117,9)
+      MoveScaled(3,18,117,9)
       Expand = True
       Arrangement = Arrange.Row
       Spacing = True
@@ -198,7 +190,7 @@
       MoveScaled(3,30,117,44)
       #Public = True
       Expand = True
-      Arrangement = Arrange.Row
+      Arrangement = Arrange.Vertical
       Spacing = True
       Margin = True
       Padding = 5
@@ -212,10 +204,297 @@
         ScrollBar = Scroll.Vertical
       }
     }
+    { btnregresar Button
+      MoveScaled(4,0,6,6)
+      Expand = True
+      Picture = Picture["Images/TemaAzul/back.png"]
+      Border = False
+    }
+    { !lbl_selectmateria Label
+      MoveScaled(43,12,24,4)
+      #Public = True
+      Visible = False
+    }
+    { !lbl_sMateria Label
+      MoveScaled(6,27,87,4)
+      #Public = True
+      Font = Font["Bold,+2"]
+    }
   }
   { !lblmnuprincipal Label
     MoveScaled(60,2,24,4)
     #Public = True
     Visible = False
+  }
+  { !pnl_actividades Panel
+    MoveScaled(24,9,122,77)
+    #Public = True
+    Background = Color.White
+    Expand = True
+    AutoResize = True
+    { !scrollviewActividad ScrollView
+      MoveScaled(0,0,122,77)
+      #Public = True
+      Expand = True
+      Arrangement = Arrange.Row
+      Margin = True
+      Border = False
+      ScrollBar = Scroll.Vertical
+      { !lblprogexe Label
+        MoveScaled(64,7,24,4)
+        #Public = True
+        Visible = False
+      }
+      { !lbl_ADesc TextLabel
+        MoveScaled(2,18,75,5)
+        #Public = True
+        Font = Font["+1"]
+      }
+      { !lblmanualexe Label
+        MoveScaled(53,18,24,4)
+        #Public = True
+        Visible = False
+      }
+      { lbltCat Label
+        MoveScaled(1,25,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Categoría")
+      }
+      { lblTNiv Label
+        MoveScaled(24,25,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Nivel")
+      }
+      { !pboxAct1 PictureBox
+        MoveScaled(53,25,31.4286,24.2857)
+        #Public = True
+        Stretch = True
+      }
+      { !pboxAct2 PictureBox
+        MoveScaled(89,25,31.4286,24.2857)
+        #Public = True
+        Stretch = True
+      }
+      { !lblACategoria Label
+        MoveScaled(1,28,24,4)
+        #Public = True
+      }
+      { !lblANivel Label
+        MoveScaled(24,28,28,4)
+        #Public = True
+      }
+      { lblTGrado Label
+        MoveScaled(1,33,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Grado")
+      }
+      { lblTMateria Label
+        MoveScaled(24,33,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Materia")
+      }
+      { !lblAGrado Label
+        MoveScaled(1,36,24,4)
+        #Public = True
+      }
+      { !lblAMateria Label
+        MoveScaled(24,36,28,4)
+        #Public = True
+      }
+      { lblTEtiqueta Label
+        MoveScaled(1,41,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Etiqueta")
+      }
+      { lblTProgra Label
+        MoveScaled(24,41,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Programa")
+      }
+      { !lblAEtiqueta Label
+        MoveScaled(1,44,24,4)
+        #Public = True
+      }
+      { !lblAProgra Label
+        MoveScaled(24,44,28,4)
+        #Public = True
+      }
+      { lblTCompetencias Label
+        MoveScaled(1,49,24,4)
+        Font = Font["Bold,+3"]
+        Text = ("Competencias")
+      }
+      { VBox1 VBox
+        MoveScaled(1,53,120,23)
+        Expand = True
+        { !tvCompetencias TableView
+          MoveScaled(52,1,16,214.2857)
+          #Public = True
+          Expand = True
+          Mode = Select.Single
+          Padding = 0
+          Header = GridView.Horizontal
+          ScrollBar = Scroll.Vertical
+        }
+      }
+    }
+    { !btnregresargrado Button
+      MoveScaled(3,0,6,6)
+      #Public = True
+      Picture = Picture["Images/TemaAzul/back.png"]
+      Border = False
+    }
+    { !pbox_actividades PictureBox
+      MoveScaled(3,6,11.4286,11.4286)
+      #Public = True
+      Stretch = True
+    }
+    { !lbl_nombreact Label
+      MoveScaled(22,5,96,7)
+      #Public = True
+      Font = Font["Bold,+4"]
+    }
+    { !lbl_programaact Label
+      MoveScaled(22,12,24,4)
+      #Public = True
+      Font = Font["Bold,+3"]
+    }
+    { btn_comenzaract Button
+      MoveScaled(86,11,32,6)
+      Picture = Picture["Images/TemaAzul/comenzar actividad.png"]
+    }
+    { btn_descargaract Button
+      MoveScaled(86,17,32,6)
+      Font = Font["Underline,+3"]
+      Text = ("Descargar Manual")
+      Border = False
+    }
+    { separador Separator
+      MoveScaled(0,22,122,3)
+    }
+    { !btn_regresargrado Button
+      MoveScaled(9,1,27,4)
+      #Public = True
+      Border = False
+    }
+  }
+  { !pnl_manuales Panel
+    MoveScaled(24,9,122,77)
+    #Public = True
+    Background = Color.White
+    Expand = True
+    AutoResize = True
+    { pbox_manuales PictureBox
+      MoveScaled(2,2,16,16)
+      Stretch = True
+    }
+    { lbl_TManual Label
+      MoveScaled(20,3,43,4)
+      Font = Font["+6"]
+      Text = ("Manuales de Programas")
+    }
+    { !Lbl_MGrado Label
+      MoveScaled(20,9,41,4)
+      #Public = True
+      Font = Font["+2"]
+    }
+    { !CmbMGrado ComboBox
+      MoveScaled(6,22,25.7143,5.7143)
+      #Public = True
+      ToolTip = ("Grado")
+      Text = ("Grado")
+    }
+    { !CmbMMateria ComboBox
+      MoveScaled(35,22,25.7143,5.7143)
+      #Public = True
+      ToolTip = ("Materia")
+      Text = ("Materia")
+    }
+    { !CmbMPrograma ComboBox
+      MoveScaled(64,22,25.7143,5.7143)
+      #Public = True
+      ToolTip = ("Programa")
+      Text = ("Programa")
+    }
+    { !btnMBuscar Button
+      MoveScaled(95,22,14.2857,5.7143)
+      #Public = True
+      Picture = Picture["Images/TemaAzul/buscar.png"]
+    }
+    { !scrollvManuales ScrollView
+      MoveScaled(0,30,121,47)
+      #Public = True
+      Expand = True
+      Arrangement = Arrange.Row
+      Margin = True
+      ScrollBar = Scroll.Vertical
+    }
+    { Label1 Label
+      MoveScaled(6,18,24,4)
+      Font = Font["Bold,+1"]
+      Text = ("Grado:")
+    }
+    { Label2 Label
+      MoveScaled(35,18,24,4)
+      Font = Font["Bold,+1"]
+      Text = ("Materia:")
+    }
+    { Label3 Label
+      MoveScaled(64,18,24,4)
+      Font = Font["Bold,+1"]
+      Text = ("Programa:")
+    }
+  }
+  { Panel1 Panel
+    MoveScaled(114,0,16.8571,8.8571)
+    { btnManuales Button
+      MoveScaled(0,0,16,8)
+      Background = Color.SelectedForeground
+      Text = ("Manuales")
+      Border = False
+    }
+  }
+  { pnl_nosotros Panel
+    MoveScaled(24,10,122,78)
+    Background = Color.White
+    { pbox_nosotros PictureBox
+      MoveScaled(4,3,16,16)
+      Picture = Picture["Images/TemaAzul/foto equipo.png"]
+      Stretch = True
+    }
+    { Label4 Label
+      MoveScaled(24,5,24,4)
+      Font = Font["+10"]
+      Text = ("EDUCAP")
+    }
+    { Label5 Label
+      MoveScaled(24,10,24,4)
+      Font = Font["+4"]
+      Text = ("Sobre nosotros")
+    }
+    { txt_Nosotros TextLabel
+      MoveScaled(4,24,70,29)
+      Text = ("El Centro de Ayuda Edulibre es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\n<p>El Centro de Ayuda Edulibre no hubiera sido posible sin la ayuda de:</p></br>\n\n\n<h5><p><u><br>Asociación Civil Edulibre - Proyecto</h5></p></u>\n<h5><p><u>Fundación TIGO - Patrocinador Oficial</h5></p> </u>\n<h5><p><u>Jorge Recinos - Desarrollador</h5></p></u></br>\n")
+    }
+    { PictureBox3 PictureBox
+      MoveScaled(82,18,16,36)
+      Stretch = True
+    }
+    { PictureBox4 PictureBox
+      MoveScaled(6,56,16,16)
+      Stretch = True
+    }
+    { PictureBox5 PictureBox
+      MoveScaled(30,56,16,16)
+      Stretch = True
+    }
+    { PictureBox6 PictureBox
+      MoveScaled(55,56,16,16)
+      Stretch = True
+    }
+    { PictureBox7 PictureBox
+      MoveScaled(77,56,16,16)
+      Stretch = True
+    }
   }
 }
