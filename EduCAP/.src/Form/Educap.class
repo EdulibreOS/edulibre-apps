@@ -580,6 +580,7 @@ Public Sub btnNosotros_Click()
   sTabActiva = "3"
   active_pnl_nosotros(True)
   active_pnl_menus(False)
+  active_pnl_manuales(False)
 
 End
 
