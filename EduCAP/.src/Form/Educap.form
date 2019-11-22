@@ -139,6 +139,63 @@
       Text = ("PrePrimaria - 6 años\nPrimaria Primer Ciclo - 7 a 9 años\nPrimaria Segundo Ciclo - 10 a 12 años")
     }
   }
+  { !lblmnuprincipal Label
+    MoveScaled(60,2,24,4)
+    #Public = True
+    Visible = False
+  }
+  { Panel1 Panel
+    MoveScaled(114,0,16.8571,8.8571)
+    { btnManuales Button
+      MoveScaled(0,0,16,8)
+      Background = Color.SelectedForeground
+      Text = ("Manuales")
+      Border = False
+    }
+  }
+  { pnl_nosotros Panel
+    MoveScaled(24,10,122,78)
+    Background = Color.White
+    { pbox_nosotros PictureBox
+      MoveScaled(4,3,16,16)
+      Picture = Picture["Images/TemaAzul/foto equipo.png"]
+      Stretch = True
+    }
+    { Label4 Label
+      MoveScaled(24,5,24,4)
+      Font = Font["+10"]
+      Text = ("EDUCAP")
+    }
+    { Label5 Label
+      MoveScaled(24,10,24,4)
+      Font = Font["+4"]
+      Text = ("Sobre nosotros")
+    }
+    { txt_Nosotros TextLabel
+      MoveScaled(4,24,70,29)
+      Text = ("El Centro de Ayuda Edulibre es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\n<p>El Centro de Ayuda Edulibre no hubiera sido posible sin la ayuda de:</p></br>\n\n\n<h5><p><u><br>Asociación Civil Edulibre - Proyecto</h5></p></u>\n<h5><p><u>Fundación TIGO - Patrocinador Oficial</h5></p> </u>\n<h5><p><u>Jorge Recinos - Desarrollador</h5></p></u></br>\n")
+    }
+    { PictureBox3 PictureBox
+      MoveScaled(82,18,16,36)
+      Stretch = True
+    }
+    { PictureBox4 PictureBox
+      MoveScaled(6,56,16,16)
+      Stretch = True
+    }
+    { PictureBox5 PictureBox
+      MoveScaled(30,56,16,16)
+      Stretch = True
+    }
+    { PictureBox6 PictureBox
+      MoveScaled(55,56,16,16)
+      Stretch = True
+    }
+    { PictureBox7 PictureBox
+      MoveScaled(77,56,16,16)
+      Stretch = True
+    }
+  }
   { pnl_grado Panel
     MoveScaled(24,9,122,77)
     Background = Color.White
@@ -186,6 +243,22 @@
         ScrollBar = Scroll.None
       }
     }
+    { btnregresar Button
+      MoveScaled(4,0,6,6)
+      Expand = True
+      Picture = Picture["Images/TemaAzul/back.png"]
+      Border = False
+    }
+    { !lbl_selectmateria Label
+      MoveScaled(43,12,24,4)
+      #Public = True
+      Visible = False
+    }
+    { !lbl_sMateria Label
+      MoveScaled(6,27,87,4)
+      #Public = True
+      Font = Font["Bold,+2"]
+    }
     { !pnlactividades Panel
       MoveScaled(3,30,117,44)
       #Public = True
@@ -204,27 +277,6 @@
         ScrollBar = Scroll.Vertical
       }
     }
-    { btnregresar Button
-      MoveScaled(4,0,6,6)
-      Expand = True
-      Picture = Picture["Images/TemaAzul/back.png"]
-      Border = False
-    }
-    { !lbl_selectmateria Label
-      MoveScaled(43,12,24,4)
-      #Public = True
-      Visible = False
-    }
-    { !lbl_sMateria Label
-      MoveScaled(6,27,87,4)
-      #Public = True
-      Font = Font["Bold,+2"]
-    }
-  }
-  { !lblmnuprincipal Label
-    MoveScaled(60,2,24,4)
-    #Public = True
-    Visible = False
   }
   { !pnl_manuales Panel
     MoveScaled(24,9,122,77)
@@ -294,58 +346,6 @@
       Text = ("Programa:")
     }
   }
-  { Panel1 Panel
-    MoveScaled(114,0,16.8571,8.8571)
-    { btnManuales Button
-      MoveScaled(0,0,16,8)
-      Background = Color.SelectedForeground
-      Text = ("Manuales")
-      Border = False
-    }
-  }
-  { pnl_nosotros Panel
-    MoveScaled(24,10,122,78)
-    Background = Color.White
-    { pbox_nosotros PictureBox
-      MoveScaled(4,3,16,16)
-      Picture = Picture["Images/TemaAzul/foto equipo.png"]
-      Stretch = True
-    }
-    { Label4 Label
-      MoveScaled(24,5,24,4)
-      Font = Font["+10"]
-      Text = ("EDUCAP")
-    }
-    { Label5 Label
-      MoveScaled(24,10,24,4)
-      Font = Font["+4"]
-      Text = ("Sobre nosotros")
-    }
-    { txt_Nosotros TextLabel
-      MoveScaled(4,24,70,29)
-      Text = ("El Centro de Ayuda Edulibre es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\n<p>El Centro de Ayuda Edulibre no hubiera sido posible sin la ayuda de:</p></br>\n\n\n<h5><p><u><br>Asociación Civil Edulibre - Proyecto</h5></p></u>\n<h5><p><u>Fundación TIGO - Patrocinador Oficial</h5></p> </u>\n<h5><p><u>Jorge Recinos - Desarrollador</h5></p></u></br>\n")
-    }
-    { PictureBox3 PictureBox
-      MoveScaled(82,18,16,36)
-      Stretch = True
-    }
-    { PictureBox4 PictureBox
-      MoveScaled(6,56,16,16)
-      Stretch = True
-    }
-    { PictureBox5 PictureBox
-      MoveScaled(30,56,16,16)
-      Stretch = True
-    }
-    { PictureBox6 PictureBox
-      MoveScaled(55,56,16,16)
-      Stretch = True
-    }
-    { PictureBox7 PictureBox
-      MoveScaled(77,56,16,16)
-      Stretch = True
-    }
-  }
   { !pnl_actividades Panel
     MoveScaled(24,9,122,77)
     #Public = True
@@ -365,9 +365,8 @@
         Visible = False
       }
       { !lbl_ADesc TextLabel
-        MoveScaled(2,18,75,5)
+        MoveScaled(2,17,81,6)
         #Public = True
-        Font = Font["+1"]
       }
       { !lblmanualexe Label
         MoveScaled(53,18,24,4)
@@ -456,6 +455,11 @@
           ScrollBar = Scroll.Vertical
         }
       }
+      { !lblidmanual Label
+        MoveScaled(52,14,24,4)
+        #Public = True
+        Visible = False
+      }
     }
     { !btnregresargrado Button
       MoveScaled(3,0,6,6)
@@ -464,17 +468,17 @@
       Border = False
     }
     { !pbox_actividades PictureBox
-      MoveScaled(3,6,11.4286,11.4286)
+      MoveScaled(3,6,10,10)
       #Public = True
       Stretch = True
     }
     { !lbl_nombreact Label
-      MoveScaled(22,5,96,7)
+      MoveScaled(18,5,96,7)
       #Public = True
       Font = Font["Bold,+4"]
     }
     { !lbl_programaact Label
-      MoveScaled(22,12,24,4)
+      MoveScaled(18,12,24,4)
       #Public = True
       Font = Font["Bold,+3"]
     }
@@ -494,6 +498,7 @@
     { !btn_regresargrado Button
       MoveScaled(9,1,27,4)
       #Public = True
+      AutoResize = True
       Border = False
     }
   }

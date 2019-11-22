@@ -28,6 +28,7 @@ Private cone As New Connection
 Private ImgBtnAppsBook As PushButton
 Public sMateria As String
 Public sActividad As String
+Public sManual As String
 
 
 Public Sub LLenar_Materias(Optional grado As String)
@@ -177,7 +178,7 @@ Public Sub Llenar_Manuales(Grado As String, Materia As String, Programa As Strin
     
     Endif
     
-        consulta = "SELECT tut.*, prog.descripcion as programa, gra.descripcion as grado, prog.url_icono as icono " &
+        consulta = "SELECT DISTINCT tut.*, prog.descripcion as programa, prog.url_icono as icono " &
                "FROM tbl_tutorial tut, " &
                "tbl_programa prog, " &
                "tbl_actividad act, " &
@@ -190,7 +191,7 @@ Public Sub Llenar_Manuales(Grado As String, Materia As String, Programa As Strin
                "AND gm.id_grado = gra.idtbl_grado " &
                "AND gm.id_materia = mat.idtbl_materia " & consultag & consultam & consultap &
                " ORDER BY tut.descripcion "
-            Print consulta
+            'Print consulta
             cone = MDB_Connection.Conectar()
             rs = cone.Exec(consulta)
             While (rs.Available)
@@ -237,6 +238,28 @@ Public Sub ButtonActividades_Click()
    LlenarGvInfo(sActividad)
    Print sActividad
 End
+
+Public Sub ButtonManuales_Click()
+  
+  Dim rs As Result
+  Dim consulta, url, manual As String
+  
+  sManual = Last.Tag
+  'Print sManual
+  
+  consulta = "SELECT url, nombre FROM tbl_tutorial WHERE idtbl_tutorial = " & sManual
+  cone = MDB_Connection.Conectar()
+  rs = cone.Exec(consulta)
+
+  url = Application.path & "/Tutorial/" & sManual & "/" & rs["url"]
+  manual = rs["nombre"]
+  Message.Info("El Tutorial de " & manual & " se abrirá en breve, por favor espere.", "OK")
+  Shell "evince " & url
+  'Print url
+   'M_Log.Set_Log(Null, Null, Null, Null, "Abrir Programa", EdulibCap.lbl_user.Text, lst_iconos.Current.Key)
+  
+End
+
 
 
 Public Sub ObtenerImagen(id_actividad As String)
@@ -291,7 +314,9 @@ Public Sub LlenarGvInfo(id_actividad As String)
                					"cont.no_contenido As NoContenido, " &
                					"cont.descripcion As Contenido, " &
                					"p.url_icono As Icono, " &
-               					"p.url_exe As Url_exe " &
+               					"p.url_exe As Url_exe, " &
+               					"tut.url As urlmanual, " &
+               					"tut.idtbl_tutorial As idmanual " &
               "FROM tbl_actividad a, " &
               		"tbl_grado_materia gm, " &
               		"tbl_grado g, " &
@@ -301,7 +326,8 @@ Public Sub LlenarGvInfo(id_actividad As String)
               		"tbl_categoria c, " &
               		"tbl_competencia_grado cg, " &
               		"tbl_indicador_grado ig, " &
-              		"tbl_contenido cont " &
+              		"tbl_contenido cont, " &
+              		"tbl_tutorial tut " &
               "WHERE a.idtbl_actividad = " & id_actividad & " " &
               "AND a.idtbl_actividad = gm.id_actividad " &
               "AND gm.id_grado = g.idtbl_grado " &
@@ -309,6 +335,7 @@ Public Sub LlenarGvInfo(id_actividad As String)
               "AND g.id_nivel = n.idtbl_nivel " &
               Nivel & Grado & Materia &
               "AND a.id_programa = p.idtbl_programa " &
+              "AND tut.id_programa = p.idtbl_programa "
               "AND p.id_categoria = c.idtbl_categoria " &
               "AND cg.id_actividad = a.idtbl_actividad " &
               "AND ig.id_competencia_grado = cg.idtbl_competencia_grado " &
@@ -353,6 +380,8 @@ Public Sub LlenarGvInfo(id_actividad As String)
              EduCap.lblACategoria.Text = rs["Categoria"]
              EduCap.lblAProgra.Text = rs["Programa"]
              EduCap.lbl_programaact.Text = rs["Programa"]
+             EduCap.lblidmanual.Text = rs["idmanual"]
+             Educap.lblmanualexe.Text = rs["urlmanual"]
              EduCap.lbl_nombreact.Text = rs["Actividad"]
              EduCap.lbl_ADesc.Text = rs["DescActividad"]
              EduCap.lblANivel.Text = rs["Nivel"]

@@ -407,7 +407,7 @@ Public Sub btn_regresar_Click()
 
   If lblmnuprincipal.Text == "Pre escolar"
     PrePrimaria()
-  Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
+  Else If lblmnuprincipal.Text == "Primaria Basica"  
     Primaria()
   Else 'Primaria2
     Primaria2()
@@ -420,7 +420,7 @@ Public Sub btnregresar_Click()
 
   If lblmnuprincipal.Text == "Pre escolar"
     PrePrimaria()
-  Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
+  Else If lblmnuprincipal.Text == "Primaria Basica"  
     Primaria()
   Else 'Primaria2
     Primaria2
@@ -442,7 +442,7 @@ Public Sub btn_comenzaract_Click()
   
   url = EduCap.lblprogexe.Text
   If url <> Null And Exist(url) Then
-    Message.Info("El programa " & Educap.lbl_programaact.Text & " inciará en breve, por favor espere.", "OK")
+    Message.Info("El programa " & Educap.lbl_programaact.Text & " iniciará en breve, por favor espere.", "OK")
     Exec [url]
    Else 
     Message.Info("El programa " & EduCap.lbl_programaact.Text & " no se encuentra instalado.", "OK")
@@ -580,5 +580,23 @@ Public Sub btnNosotros_Click()
   sTabActiva = "3"
   active_pnl_nosotros(True)
   active_pnl_menus(False)
+
+End
+
+Public Sub btn_descargaract_Click()
+
+  Dim url, manual, sManual As String
+  
+  If lblmanualexe.Text <> Null Then
+  sManual = lblidmanual.Text
+  url = Application.path & "/Tutorial/" & sManual & "/" & Educap.lblmanualexe.Text
+  manual = Educap.lbl_programaact.Text
+  Message.Info("El Tutorial de " & manual & " se abrirá en breve, por favor espere.", "OK")
+  Shell "evince " & url
+  
+  Else
+    
+    Message.Info("No existe manual para el programa " & Educap.lbl_programaact.Text, "OK")
+  Endif
 
 End
