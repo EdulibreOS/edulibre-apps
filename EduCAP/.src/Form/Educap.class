@@ -30,16 +30,49 @@
 Public sTabActiva As String
 Public sNivelActivo As String
 
+Public Settings_App_Educap As New Settings(Desktop.ConfigDir &/ "Innova/Educap.conf")
+
+Public Sub Show_Name_App()
+  Dim sResult As String
+  lbl_app.Text = ""
+  Try sResult = Settings_App_Educap["Educap/Name_App"]
+  'Print Settings_App_Educap
+  'Print "Entro"
+  If Not IsNull(sResult) Then
+    Print sResult
+    lbl_app.Text = sResult
+  Endif
+  
+End
+
 Public Sub Form_Open()
+  'Obtener informacion de directorio
+  'Dim sResult As String
+  'Try sResult = Settings_App_Educap["Educap/Name_App"]
+  'Carga el Tema del SO
+  M_Theme.Get_Theme(EdulibCap)
   
-  active_pnl_grados(False)
-  active_pnl_portada(True)
-  active_pnl_grado(False)
-  active_pnl_actividades(False)
-  active_pnl_manuales(False)
-  active_pnl_nosotros(False)
+  'If Not IsNull(sResult) Then
+  '    EduCap.active_pnl_grados(False)
+  '    EduCap.active_pnl_portada(False)
+  '    EduCap.active_pnl_grado(False)
+  '    EduCap.active_pnl_actividades(True)
+  '    M_Core.LlenarGvInfoName(sResult)
   
-  sTabActiva = "1" 'Por Default esta seleccionado Actividades
+      'lbl_programaTitulo.Text = sResult
+  '    Try Settings_App_Educap["Educap/Name_App"] = ""
+  'Else
+      active_pnl_grados(False)
+      active_pnl_portada(True)
+      active_pnl_grado(False)
+      active_pnl_actividades(False)
+      active_pnl_manuales(False)
+      active_pnl_nosotros(False)
+  
+      sTabActiva = "1" 'Por Default esta seleccionado Actividades
+
+  'End If
+  
 End
 
 

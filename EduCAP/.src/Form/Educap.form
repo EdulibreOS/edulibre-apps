@@ -19,9 +19,10 @@
   { pnlmenu Panel
     MoveScaled(0,9,24,77)
     Background = Color.Cyan
-    { PictureBox2 PictureBox
+    { !PictureBox2 PictureBox
       MoveScaled(0,0,24,77)
-      Picture = Picture["Images/TemaAzul/Fondo barra lateral.png"]
+      #Public = True
+      Picture = Picture["Images/TemaAzul/Fondo_barra_lateral.png"]
     }
     { mnu_preprimaria Button
       MoveScaled(0,12,24,11)
@@ -278,6 +279,75 @@
       }
     }
   }
+  { !pnl_manuales Panel
+    MoveScaled(24,9,122,77)
+    #Public = True
+    Background = Color.White
+    Expand = True
+    AutoResize = True
+    { pbox_manuales PictureBox
+      MoveScaled(2,1,16,16)
+      Picture = Picture["Images/manuales.png"]
+      Stretch = True
+    }
+    { lbl_TManual Label
+      MoveScaled(20,5,43,4)
+      Font = Font["+6"]
+      Text = ("Manuales de Programas")
+    }
+    { !Lbl_MGrado Label
+      MoveScaled(20,11,41,4)
+      #Public = True
+      Font = Font["+2"]
+    }
+    { !CmbMGrado ComboBox
+      MoveScaled(6,22,25.7143,5.7143)
+      #Public = True
+      ToolTip = ("Grado")
+      Text = ("Grado")
+    }
+    { !CmbMMateria ComboBox
+      MoveScaled(35,22,25.7143,5.7143)
+      #Public = True
+      ToolTip = ("Materia")
+      Text = ("Materia")
+    }
+    { !CmbMPrograma ComboBox
+      MoveScaled(64,22,25.7143,5.7143)
+      #Public = True
+      ToolTip = ("Programa")
+      Text = ("Programa")
+    }
+    { !btnMBuscar Button
+      MoveScaled(95,22,14.2857,5.7143)
+      #Public = True
+      Picture = Picture["Images/TemaAzul/buscar.png"]
+    }
+    { !scrollvManuales ScrollView
+      MoveScaled(0,30,121,47)
+      #Public = True
+      Expand = True
+      Arrangement = Arrange.Row
+      Margin = True
+      Border = False
+      ScrollBar = Scroll.Vertical
+    }
+    { Label1 Label
+      MoveScaled(6,18,24,4)
+      Font = Font["Bold,+1"]
+      Text = ("Grado:")
+    }
+    { Label2 Label
+      MoveScaled(35,18,24,4)
+      Font = Font["Bold,+1"]
+      Text = ("Materia:")
+    }
+    { Label3 Label
+      MoveScaled(64,18,24,4)
+      Font = Font["Bold,+1"]
+      Text = ("Programa:")
+    }
+  }
   { !pnl_actividades Panel
     MoveScaled(24,9,122,77)
     #Public = True
@@ -392,6 +462,11 @@
         #Public = True
         Visible = False
       }
+      { !lbl_app Label
+        MoveScaled(55,2,24,4)
+        #Public = True
+        Visible = False
+      }
     }
     { !btnregresargrado Button
       MoveScaled(3,0,6,6)
@@ -432,75 +507,6 @@
       #Public = True
       AutoResize = True
       Border = False
-    }
-  }
-  { !pnl_manuales Panel
-    MoveScaled(24,9,122,77)
-    #Public = True
-    Background = Color.White
-    Expand = True
-    AutoResize = True
-    { pbox_manuales PictureBox
-      MoveScaled(2,1,16,16)
-      Picture = Picture["Images/manuales.png"]
-      Stretch = True
-    }
-    { lbl_TManual Label
-      MoveScaled(20,5,43,4)
-      Font = Font["+6"]
-      Text = ("Manuales de Programas")
-    }
-    { !Lbl_MGrado Label
-      MoveScaled(20,11,41,4)
-      #Public = True
-      Font = Font["+2"]
-    }
-    { !CmbMGrado ComboBox
-      MoveScaled(6,22,25.7143,5.7143)
-      #Public = True
-      ToolTip = ("Grado")
-      Text = ("Grado")
-    }
-    { !CmbMMateria ComboBox
-      MoveScaled(35,22,25.7143,5.7143)
-      #Public = True
-      ToolTip = ("Materia")
-      Text = ("Materia")
-    }
-    { !CmbMPrograma ComboBox
-      MoveScaled(64,22,25.7143,5.7143)
-      #Public = True
-      ToolTip = ("Programa")
-      Text = ("Programa")
-    }
-    { !btnMBuscar Button
-      MoveScaled(95,22,14.2857,5.7143)
-      #Public = True
-      Picture = Picture["Images/TemaAzul/buscar.png"]
-    }
-    { !scrollvManuales ScrollView
-      MoveScaled(0,30,121,47)
-      #Public = True
-      Expand = True
-      Arrangement = Arrange.Row
-      Margin = True
-      Border = False
-      ScrollBar = Scroll.Vertical
-    }
-    { Label1 Label
-      MoveScaled(6,18,24,4)
-      Font = Font["Bold,+1"]
-      Text = ("Grado:")
-    }
-    { Label2 Label
-      MoveScaled(35,18,24,4)
-      Font = Font["Bold,+1"]
-      Text = ("Materia:")
-    }
-    { Label3 Label
-      MoveScaled(64,18,24,4)
-      Font = Font["Bold,+1"]
-      Text = ("Programa:")
     }
   }
 }
