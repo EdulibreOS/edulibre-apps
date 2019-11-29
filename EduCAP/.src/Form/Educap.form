@@ -197,88 +197,6 @@
       Stretch = True
     }
   }
-  { pnl_grado Panel
-    MoveScaled(24,9,122,77)
-    Background = Color.White
-    { btn_regresar Button
-      MoveScaled(10,1,22,4)
-      Font = Font["+2"]
-      Text = ("Regresar a grados")
-      Border = False
-    }
-    { pbox_grado PictureBox
-      MoveScaled(4,7,10.7143,10.7143)
-      Stretch = True
-    }
-    { !lbl_grado Label
-      MoveScaled(17,11,24,4)
-      #Public = True
-      Font = Font["+4"]
-    }
-    { !txt_busqueda TextBox
-      MoveScaled(84,2,24,4)
-      #Public = True
-      ToolTip = ("Busca por palabra clave")
-    }
-    { btnBuscar Button
-      MoveScaled(108,2,14,4)
-      Picture = Picture["Images/TemaAzul/buscar.png"]
-    }
-    { pnl_materias Panel
-      MoveScaled(3,18,117,9)
-      Expand = True
-      Arrangement = Arrange.Row
-      Spacing = True
-      Margin = True
-      Padding = 5
-      { !IconViewMaterias ScrollView
-        MoveScaled(2,2,24,13)
-        #Public = True
-        Foreground = Color.White
-        Expand = True
-        Arrangement = Arrange.Row
-        Spacing = True
-        Margin = True
-        Padding = 8
-        Border = False
-        ScrollBar = Scroll.None
-      }
-    }
-    { btnregresar Button
-      MoveScaled(4,0,6,6)
-      Expand = True
-      Picture = Picture["Images/TemaAzul/back.png"]
-      Border = False
-    }
-    { !lbl_selectmateria Label
-      MoveScaled(43,12,24,4)
-      #Public = True
-      Visible = False
-    }
-    { !lbl_sMateria Label
-      MoveScaled(6,27,87,4)
-      #Public = True
-      Font = Font["Bold,+2"]
-    }
-    { !pnlactividades Panel
-      MoveScaled(3,30,117,44)
-      #Public = True
-      Expand = True
-      Arrangement = Arrange.Vertical
-      Spacing = True
-      Margin = True
-      Padding = 5
-      { !IconViewActividades ScrollView
-        MoveScaled(2,1,114,42)
-        #Public = True
-        Expand = True
-        Arrangement = Arrange.Row
-        Margin = True
-        Border = False
-        ScrollBar = Scroll.Vertical
-      }
-    }
-  }
   { !pnl_manuales Panel
     MoveScaled(24,9,122,77)
     #Public = True
@@ -346,6 +264,89 @@
       MoveScaled(64,18,24,4)
       Font = Font["Bold,+1"]
       Text = ("Programa:")
+    }
+  }
+  { pnl_grado Panel
+    MoveScaled(24,9,122,77)
+    Background = Color.White
+    { btn_regresar Button
+      MoveScaled(10,1,22,4)
+      Font = Font["+2"]
+      Text = ("Regresar a grados")
+      Border = False
+    }
+    { pbox_grado PictureBox
+      MoveScaled(4,7,10.7143,10.7143)
+      Stretch = True
+    }
+    { !lbl_grado Label
+      MoveScaled(17,11,24,4)
+      #Public = True
+      Font = Font["+4"]
+    }
+    { !txt_busqueda TextBox
+      MoveScaled(84,2,24,4)
+      #Public = True
+      ToolTip = ("Busca por palabra clave")
+    }
+    { !btnBuscar Button
+      MoveScaled(108,2,14,4)
+      #Public = True
+      Picture = Picture["Images/TemaAzul/buscar.png"]
+    }
+    { pnl_materias Panel
+      MoveScaled(3,18,117,9)
+      Expand = True
+      Arrangement = Arrange.Row
+      Spacing = True
+      Margin = True
+      Padding = 5
+      { !IconViewMaterias ScrollView
+        MoveScaled(2,2,24,13)
+        #Public = True
+        Foreground = Color.White
+        Expand = True
+        Arrangement = Arrange.Row
+        Spacing = True
+        Margin = True
+        Padding = 8
+        Border = False
+        ScrollBar = Scroll.None
+      }
+    }
+    { btnregresar Button
+      MoveScaled(4,0,6,6)
+      Expand = True
+      Picture = Picture["Images/TemaAzul/back.png"]
+      Border = False
+    }
+    { !lbl_selectmateria Label
+      MoveScaled(43,12,24,4)
+      #Public = True
+      Visible = False
+    }
+    { !lbl_sMateria Label
+      MoveScaled(6,27,87,4)
+      #Public = True
+      Font = Font["Bold,+2"]
+    }
+    { !pnlactividades Panel
+      MoveScaled(3,30,117,44)
+      #Public = True
+      Expand = True
+      Arrangement = Arrange.Vertical
+      Spacing = True
+      Margin = True
+      Padding = 5
+      { !IconViewActividades ScrollView
+        MoveScaled(2,1,114,42)
+        #Public = True
+        Expand = True
+        Arrangement = Arrange.Row
+        Margin = True
+        Border = False
+        ScrollBar = Scroll.Vertical
+      }
     }
   }
   { !pnl_actividades Panel
@@ -489,12 +490,14 @@
       #Public = True
       Font = Font["Bold,+3"]
     }
-    { btn_comenzaract Button
+    { !btn_comenzaract Button
       MoveScaled(86,11,32,6)
+      #Public = True
       Picture = Picture["Images/TemaAzul/comenzar actividad.png"]
     }
-    { btn_descargaract Button
+    { !btn_descargaract Button
       MoveScaled(86,17,32,6)
+      #Public = True
       Font = Font["Underline,+3"]
       Text = ("Descargar Manual")
       Border = False

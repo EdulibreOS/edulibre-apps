@@ -41,7 +41,7 @@ Public Function Get_Theme(Forma As Form)
   Dim S_Font_Name As String 
   Dim S_Font_Size As Integer
   Dim S_Font_Color As String 
-  Dim sResult_Img_Fondo As String
+  Dim sResult_Img_Fondo, sResult_Img_Back, sResult_Img_Buscar, sResult_Img_Comenzar, sResult_Img_Descargar As String
   
   Dim Config_Dir As String
   Dim Theme As String
@@ -72,7 +72,11 @@ Public Function Get_Theme(Forma As Form)
   Try M_Font_Name = Meta_Theme_Config["Meta_Theme/Inn_Font_Name"]
   Try M_Font_Size = Meta_Theme_Config["Meta_Theme/Inn_Font_Size"]
   
-  Try sResult_Img_Fondo = Theme_Config["Meta_Theme/Inn_Fondo_Lateral"] 
+  Try sResult_Img_Fondo = Meta_Theme_Config["Meta_Theme/Inn_Fondo_Lateral"] 
+  Try sResult_Img_Back = Meta_Theme_Config["Meta_Theme/Inn_Back"]
+  Try sResult_Img_Buscar = Meta_Theme_Config["Meta_Theme/Inn_Buscar"]
+  Try sResult_Img_Comenzar = Meta_Theme_Config["Meta_Theme/Inn_comenzar"]
+  Try sResult_Img_Descargar = Meta_Theme_Config["Meta_Theme/Inn_descargar"]
   
   If Theme Then
     
@@ -135,10 +139,27 @@ Public Function Get_Theme(Forma As Form)
       Next
     Endif 
     
+    'Print Theme_Path &/ sResult_Img_Fondo
+    If Not IsNull(sResult_Img_Fondo) Then
+      Educap.PictureBox2.Picture = Picture[Theme_Path &/ sResult_Img_Fondo].Image.Picture
+    Endif
     
+    If Not IsNull(sResult_Img_Back) Then
+      Educap.btn_regresargrado.Picture = Picture[Theme_Path &/ sResult_Img_Back].Image.Picture
+    Endif
     
-    'Educap.PictureBox2.Picture = Picture[Theme_Path &/ sResult_Img_Fondo].Image.Stretch(Desktop.W, Desktop.h).Picture
+    If Not IsNull(sResult_Img_Buscar) Then
+      Educap.btnBuscar.Picture = Picture[Theme_Path &/ sResult_Img_Buscar].Image.Picture
+    Endif
     
+    If Not IsNull(sResult_Img_Comenzar) Then
+      Educap.btn_comenzaract.Picture = Picture[Theme_Path &/ sResult_Img_Comenzar].Image.Picture
+    Endif
+    
+    If Not IsNull(sResult_Img_Descargar) Then
+      Educap.btn_descargaract.Picture = Picture[Theme_Path &/ sResult_Img_Descargar].Image.Picture
+    Endif
+        
   Endif
   
 End
