@@ -147,6 +147,7 @@ If sTabActiva == "1" Then 'Actividades
   lbl_grados.Visible = True
   lbl_edad.Visible = True
   lblmnuprincipal.Text = "Primaria Basica"
+  fondogrado.Visible = True
   
   Else If sTabActiva == "2" Then 'Manuales
     
@@ -197,6 +198,7 @@ If sTabActiva == "1" Then 'Actividades
   lbl_grados.Visible = True
   lbl_edad.Visible = True
   lblmnuprincipal.Text = "Primaria Avanzada"  
+  fondogrado.Visible = True
   
   Else If sTabActiva == "2" Then 'Manuales
     
@@ -239,7 +241,7 @@ Public Sub active_pnl_grados(Estado As String)
   pbox_icono.Visible = Estado
   lbl_grados.Visible = Estado
   lbl_edad.Visible = Estado
- 
+  fondogrado.Visible = Estado
    
 End
 
@@ -249,6 +251,7 @@ Public Sub active_pnl_grado(Estado As String)
   btnregresar.Visible = Estado
   btn_regresar.Visible = Estado
   lbl_grado.Visible = Estado
+  fondogrado.Visible = Estado
 
 End
 

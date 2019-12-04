@@ -5,6 +5,108 @@
   Background = Color.White
   Transparent = True
   AutoResize = True
+  { pnl_grado Panel
+    MoveScaled(24,9,122,77)
+    Background = Color.White
+    { !pnlactividades Panel
+      MoveScaled(3,30,117,44)
+      #Public = True
+      Expand = True
+      Arrangement = Arrange.Vertical
+      Spacing = True
+      Margin = True
+      Padding = 5
+      { !IconViewActividades ScrollView
+        MoveScaled(2,1,114,42)
+        #Public = True
+        Expand = True
+        Arrangement = Arrange.Row
+        Margin = True
+        Border = False
+        ScrollBar = Scroll.Vertical
+      }
+    }
+    { btn_regresar Button
+      MoveScaled(10,1,22,4)
+      Font = Font["+2"]
+      Text = ("Regresar a grados")
+      Border = False
+    }
+    { pbox_grado PictureBox
+      MoveScaled(4,7,10.7143,10.7143)
+      Stretch = True
+    }
+    { !lbl_grado Label
+      MoveScaled(17,11,24,4)
+      #Public = True
+      Font = Font["+4"]
+    }
+    { !txt_busqueda TextBox
+      MoveScaled(84,2,24,4)
+      #Public = True
+      ToolTip = ("Busca por palabra clave")
+    }
+    { !btnBuscar Button
+      MoveScaled(108,2,14,4)
+      #Public = True
+      Picture = Picture["Images/TemaAzul/buscar.png"]
+    }
+    { pnl_materias Panel
+      MoveScaled(3,18,117,9)
+      Expand = True
+      Arrangement = Arrange.Row
+      Spacing = True
+      Margin = True
+      Padding = 5
+      { !IconViewMaterias ScrollView
+        MoveScaled(2,2,24,13)
+        #Public = True
+        Foreground = Color.White
+        Expand = True
+        Arrangement = Arrange.Row
+        Spacing = True
+        Margin = True
+        Padding = 8
+        Border = False
+        ScrollBar = Scroll.None
+      }
+    }
+    { btnregresar Button
+      MoveScaled(4,0,6,6)
+      Expand = True
+      Picture = Picture["Images/TemaAzul/back.png"]
+      Border = False
+    }
+    { !lbl_selectmateria Label
+      MoveScaled(43,12,24,4)
+      #Public = True
+      Visible = False
+    }
+    { !lbl_sMateria Label
+      MoveScaled(6,27,87,4)
+      #Public = True
+      Font = Font["Bold,+2"]
+    }
+  }
+  { !fondogrado PictureBox
+    MoveScaled(24,9,122,78)
+    #Public = True
+    Picture = Picture["Images/TemaAzul/fondo.png"]
+    Stretch = True
+  }
+  { pbox_icono PictureBox
+    MoveScaled(28,13,12,12)
+    Visible = False
+    Picture = Picture["Images/icono_cubo.png"]
+    Stretch = True
+  }
+  { btn_primero Button
+    MoveScaled(41,41,28.5714,28.5714)
+    Visible = False
+    AutoResize = True
+    Picture = Picture["Images/Grados/1ro.png"]
+    Border = False
+  }
   { btnActividades Button
     MoveScaled(98,0,16,9)
     Font = Font["Ubuntu,Bold,12"]
@@ -51,34 +153,15 @@
     Text = ("Primaria\nPrimer Ciclo")
     Border = False
   }
-  { mnu_primaria2 Button
-    MoveScaled(0,57,24,11)
-    Font = Font["Ubuntu,Bold,12"]
-    Foreground = Color.White
-    Text = ("Primaria\nSegundo Ciclo")
-    Border = False
-  }
-  { pbox_icono PictureBox
-    MoveScaled(28,9,16,16)
-    Visible = False
-    Picture = Picture["Images/icono_cubo.png"]
-    Stretch = True
-  }
   { lbl_titulo Label
-    MoveScaled(48,10,53,7)
-    Font = Font["+8"]
-    Foreground = Color.Cyan
+    MoveScaled(42.8571,12.8571,53,7)
+    Font = Font["Ubuntu,Bold,21"]
+    Foreground = &H00ADB4&
   }
   { lbl_edad Label
-    MoveScaled(48,18,24,4)
-    Font = Font["+3"]
+    MoveScaled(42.8571,18.5714,24,4)
+    Font = Font["Ubuntu,Bold,15"]
     Foreground = Color.Black
-  }
-  { btn_primero Button
-    MoveScaled(41,41,28.5714,28.5714)
-    Visible = False
-    Picture = Picture["Images/1ro.png"]
-    Border = False
   }
   { lbl_grados Label
     MoveScaled(27,32,24,9)
@@ -89,31 +172,31 @@
   { btn_segundo Button
     MoveScaled(77,41,28.5714,28.5714)
     Visible = False
-    Picture = Picture["Images/2do.png"]
+    Picture = Picture["Images/Grados/2do.png"]
     Border = False
   }
   { btn_tercero Button
     MoveScaled(113,41,28.5714,28.5714)
     Visible = False
-    Picture = Picture["Images/3ro.png"]
+    Picture = Picture["Images/Grados/3ro.png"]
     Border = False
   }
   { btn_cuarto Button
     MoveScaled(41,41,28.5714,28.5714)
     Visible = False
-    Picture = Picture["Images/4to.png"]
+    Picture = Picture["Images/Grados/4to.png"]
     Border = False
   }
   { btn_quinto Button
     MoveScaled(77,41,28.5714,28.5714)
     Visible = False
-    Picture = Picture["Images/5to.png"]
+    Picture = Picture["Images/Grados/5to.png"]
     Border = False
   }
   { btn_sexto Button
     MoveScaled(113,41,28.5714,28.5714)
     Visible = False
-    Picture = Picture["Images/6to.png"]
+    Picture = Picture["Images/Grados/6to.png"]
     Border = False
   }
   { btn_preprimaria Button
@@ -301,89 +384,6 @@
       Text = ("Materia:")
     }
   }
-  { pnl_grado Panel
-    MoveScaled(24,9,122,77)
-    Background = Color.White
-    { !pnlactividades Panel
-      MoveScaled(3,30,117,44)
-      #Public = True
-      Expand = True
-      Arrangement = Arrange.Vertical
-      Spacing = True
-      Margin = True
-      Padding = 5
-      { !IconViewActividades ScrollView
-        MoveScaled(2,1,114,42)
-        #Public = True
-        Expand = True
-        Arrangement = Arrange.Row
-        Margin = True
-        Border = False
-        ScrollBar = Scroll.Vertical
-      }
-    }
-    { btn_regresar Button
-      MoveScaled(10,1,22,4)
-      Font = Font["+2"]
-      Text = ("Regresar a grados")
-      Border = False
-    }
-    { pbox_grado PictureBox
-      MoveScaled(4,7,10.7143,10.7143)
-      Stretch = True
-    }
-    { !lbl_grado Label
-      MoveScaled(17,11,24,4)
-      #Public = True
-      Font = Font["+4"]
-    }
-    { !txt_busqueda TextBox
-      MoveScaled(84,2,24,4)
-      #Public = True
-      ToolTip = ("Busca por palabra clave")
-    }
-    { !btnBuscar Button
-      MoveScaled(108,2,14,4)
-      #Public = True
-      Picture = Picture["Images/TemaAzul/buscar.png"]
-    }
-    { pnl_materias Panel
-      MoveScaled(3,18,117,9)
-      Expand = True
-      Arrangement = Arrange.Row
-      Spacing = True
-      Margin = True
-      Padding = 5
-      { !IconViewMaterias ScrollView
-        MoveScaled(2,2,24,13)
-        #Public = True
-        Foreground = Color.White
-        Expand = True
-        Arrangement = Arrange.Row
-        Spacing = True
-        Margin = True
-        Padding = 8
-        Border = False
-        ScrollBar = Scroll.None
-      }
-    }
-    { btnregresar Button
-      MoveScaled(4,0,6,6)
-      Expand = True
-      Picture = Picture["Images/TemaAzul/back.png"]
-      Border = False
-    }
-    { !lbl_selectmateria Label
-      MoveScaled(43,12,24,4)
-      #Public = True
-      Visible = False
-    }
-    { !lbl_sMateria Label
-      MoveScaled(6,27,87,4)
-      #Public = True
-      Font = Font["Bold,+2"]
-    }
-  }
   { !pnl_actividades Panel
     MoveScaled(24,9,122,77)
     #Public = True
@@ -546,5 +546,13 @@
       AutoResize = True
       Border = False
     }
+  }
+  { !mnu_primaria2 Button
+    MoveScaled(0,57,24,11)
+    #Public = True
+    Font = Font["Ubuntu,Bold,12"]
+    Foreground = Color.White
+    Text = ("Primaria\nSegundo Ciclo")
+    Border = False
   }
 }
