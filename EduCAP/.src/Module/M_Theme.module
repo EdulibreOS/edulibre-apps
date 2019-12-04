@@ -145,7 +145,7 @@ Public Function Get_Theme(Forma As Form)
     Endif
     
     If Not IsNull(sResult_Img_Back) Then
-      Educap.btn_regresargrado.Picture = Picture[Theme_Path &/ sResult_Img_Back].Image.Picture
+      Educap.btnregresargrado.Picture = Picture[Theme_Path &/ sResult_Img_Back].Image.Picture
     Endif
     
     If Not IsNull(sResult_Img_Buscar) Then

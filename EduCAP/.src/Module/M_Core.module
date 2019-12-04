@@ -98,16 +98,16 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
             rs = cone.Exec(consulta)
             While (rs.Available)
                  ImgBtnAppsBook = New PushButton(Educap.IconViewActividades) As "ButtonActividades"
-                 ImgBtnAppsBook.w = 120
-                 ImgBtnAppsBook.h = 120
+                 ImgBtnAppsBook.w = 190
+                 ImgBtnAppsBook.h = 190
                  ImgBtnAppsBook.Text = rs["Actividad"]
                  
                  'ImgBtnAppsBook.Val = rs["ID"]
                  ImgBtnAppsBook.Mouse = 13
                  If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
-                    ImgBtnAppsBook.Picture = Picture.Load(rs["Icono"]).Image.Stretch(50, 50).Picture
+                    ImgBtnAppsBook.Picture = Picture.Load(rs["Icono"]).Image.Stretch(150, 150).Picture
                  Else
-                    ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(50, 50).Picture
+                    ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(150, 150).Picture
                  Endif
                  'Print ImgBtnAppsBook.Picture
                  'ImgBtnAppsBook.Background = Color.Transparent
@@ -127,15 +127,15 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
         rs = cone.Exec(consulta)
            While (rs.Available)
                  ImgBtnAppsBook = New PushButton(Educap.IconViewActividades) As "ButtonActividades"
-                 ImgBtnAppsBook.w = 120
-                 ImgBtnAppsBook.h = 120
+                 ImgBtnAppsBook.w = 190
+                 ImgBtnAppsBook.h = 190
                  ImgBtnAppsBook.Text = rs["Actividad"]
                  'ImgBtnAppsBook.Val = rs["ID"]
                  ImgBtnAppsBook.Mouse = 13
                  If rs["Icono"] <> Null And Exist(rs["Icono"]) Then
-                    ImgBtnAppsBook.Picture = Picture.Load(rs["Icono"]).Image.Stretch(50, 50).Picture
+                    ImgBtnAppsBook.Picture = Picture.Load(rs["Icono"]).Image.Stretch(150, 150).Picture
                  Else
-                    ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(50, 50).Picture
+                    ImgBtnAppsBook.Picture = Picture.Load(Application.Path & "/Images/edulogo.jpeg").Image.Stretch(150, 150).Picture
                  Endif
                  'Print ImgBtnAppsBook.Picture
                  'ImgBtnAppsBook.Background = Color.Transparent

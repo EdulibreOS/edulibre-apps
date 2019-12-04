@@ -5,6 +5,12 @@
   Background = Color.White
   Transparent = True
   AutoResize = True
+  { !fondogrado PictureBox
+    MoveScaled(24,9,122,78)
+    #Public = True
+    Picture = Picture["Images/TemaAzul/fondo.png"]
+    Stretch = True
+  }
   { pnl_grado Panel
     MoveScaled(24,9,122,77)
     Background = Color.White
@@ -28,7 +34,8 @@
     }
     { btn_regresar Button
       MoveScaled(10,1,22,4)
-      Font = Font["+2"]
+      Font = Font["Ubuntu,12"]
+      Foreground = &H00ADB4&
       Text = ("Regresar a grados")
       Border = False
     }
@@ -39,17 +46,18 @@
     { !lbl_grado Label
       MoveScaled(17,11,24,4)
       #Public = True
-      Font = Font["+4"]
+      Font = Font["14"]
+      Foreground = &H00ADB4&
     }
     { !txt_busqueda TextBox
-      MoveScaled(84,2,24,4)
+      MoveScaled(82.5714,10,24,4)
       #Public = True
       ToolTip = ("Busca por palabra clave")
     }
     { !btnBuscar Button
-      MoveScaled(108,2,14,4)
+      MoveScaled(106.5714,10,14,4)
       #Public = True
-      Picture = Picture["Images/TemaAzul/buscar.png"]
+      Picture = Picture["Images/TemaAzul/icono buscar.png"]
     }
     { pnl_materias Panel
       MoveScaled(3,18,117,9)
@@ -87,12 +95,6 @@
       #Public = True
       Font = Font["Bold,+2"]
     }
-  }
-  { !fondogrado PictureBox
-    MoveScaled(24,9,122,78)
-    #Public = True
-    Picture = Picture["Images/TemaAzul/fondo.png"]
-    Stretch = True
   }
   { pbox_icono PictureBox
     MoveScaled(28,13,12,12)
@@ -387,7 +389,6 @@
   { !pnl_actividades Panel
     MoveScaled(24,9,122,77)
     #Public = True
-    Background = Color.White
     Expand = True
     AutoResize = True
     { !scrollviewActividad ScrollView
@@ -422,7 +423,7 @@
         Text = ("Nivel")
       }
       { !pboxAct1 PictureBox
-        MoveScaled(53,25,31.4286,24.2857)
+        MoveScaled(56,25,31.4286,24.2857)
         #Public = True
         Stretch = True
       }
@@ -543,8 +544,16 @@
     { !btn_regresargrado Button
       MoveScaled(9,1,27,4)
       #Public = True
+      Font = Font["Ubuntu,12"]
+      Foreground = &H00ADB4&
       AutoResize = True
       Border = False
+    }
+    { !fondoactividad PictureBox
+      MoveScaled(0,0,122,77)
+      #Public = True
+      Picture = Picture["Images/TemaAzul/fondo.png"]
+      Stretch = True
     }
   }
   { !mnu_primaria2 Button

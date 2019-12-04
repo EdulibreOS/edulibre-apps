@@ -279,6 +279,7 @@ Public Sub active_pnl_actividades(Estado As String)
   separador.Visible = Estado
   scrollviewActividad.Visible = Estado
   btn_regresargrado.Visible = Estado
+  fondoactividad.Visible = Estado
 End
 
 Public Sub active_pnl_manuales(Estado As String)
