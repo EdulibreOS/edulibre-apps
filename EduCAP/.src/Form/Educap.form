@@ -391,6 +391,12 @@
     #Public = True
     Expand = True
     AutoResize = True
+    { !fondoactividad PictureBox
+      MoveScaled(0,0,122,77)
+      #Public = True
+      Picture = Picture["Images/TemaAzul/fondo.png"]
+      Stretch = True
+    }
     { !scrollviewActividad ScrollView
       MoveScaled(0,0,122,77)
       #Public = True
@@ -404,8 +410,9 @@
         Visible = False
       }
       { !lbl_ADesc TextLabel
-        MoveScaled(2,17,81,6)
+        MoveScaled(2,17,86,6)
         #Public = True
+        Font = Font["Ubuntu,Bold,10"]
       }
       { !lblmanualexe Label
         MoveScaled(53,18,24,4)
@@ -414,12 +421,14 @@
       }
       { lbltCat Label
         MoveScaled(1,25,24,4)
-        Font = Font["Bold,+3"]
+        Font = Font["Ubuntu,Bold,15"]
+        Foreground = &H0079C2&
         Text = ("Categoría")
       }
       { lblTNiv Label
         MoveScaled(24,25,24,4)
-        Font = Font["Bold,+3"]
+        Font = Font["Ubuntu,Bold,15"]
+        Foreground = &H0079C2&
         Text = ("Nivel")
       }
       { !pboxAct1 PictureBox
@@ -442,12 +451,14 @@
       }
       { lblTGrado Label
         MoveScaled(1,33,24,4)
-        Font = Font["Bold,+3"]
+        Font = Font["Ubuntu,Bold,15"]
+        Foreground = &H0079C2&
         Text = ("Grado")
       }
       { lblTMateria Label
         MoveScaled(24,33,24,4)
-        Font = Font["Bold,+3"]
+        Font = Font["Ubuntu,Bold,15"]
+        Foreground = &H0079C2&
         Text = ("Materia")
       }
       { !lblAGrado Label
@@ -460,12 +471,14 @@
       }
       { lblTEtiqueta Label
         MoveScaled(1,41,24,4)
-        Font = Font["Bold,+3"]
+        Font = Font["Ubuntu,Bold,15"]
+        Foreground = &H0079C2&
         Text = ("Etiqueta")
       }
       { lblTProgra Label
         MoveScaled(24,41,24,4)
-        Font = Font["Bold,+3"]
+        Font = Font["Ubuntu,Bold,15"]
+        Foreground = &H0079C2&
         Text = ("Programa")
       }
       { !lblAEtiqueta Label
@@ -478,7 +491,7 @@
       }
       { lblTCompetencias Label
         MoveScaled(1,49,24,4)
-        Font = Font["Bold,+3"]
+        Font = Font["Ubuntu,Bold,15"]
         Text = ("Competencias")
       }
       { VBox1 VBox
@@ -519,20 +532,22 @@
     { !lbl_nombreact Label
       MoveScaled(18,5,96,7)
       #Public = True
-      Font = Font["Bold,+4"]
+      Font = Font["Ubuntu,Bold,15"]
+      Foreground = &H00ADB4&
     }
     { !lbl_programaact Label
       MoveScaled(18,12,24,4)
       #Public = True
-      Font = Font["Bold,+3"]
+      Font = Font["Ubuntu,Bold,12"]
+      Foreground = &H00ADB4&
     }
     { !btn_comenzaract Button
-      MoveScaled(86,11,32,6)
+      MoveScaled(90,7,29,4)
       #Public = True
       Picture = Picture["Images/TemaAzul/comenzar actividad.png"]
     }
     { !btn_descargaract Button
-      MoveScaled(86,17,32,6)
+      MoveScaled(92,11,26,4)
       #Public = True
       Font = Font["Underline,+3"]
       Text = ("Descargar Manual")
@@ -544,16 +559,10 @@
     { !btn_regresargrado Button
       MoveScaled(9,1,27,4)
       #Public = True
-      Font = Font["Ubuntu,12"]
-      Foreground = &H00ADB4&
+      Font = Font["Ubuntu,Bold,12"]
+      Foreground = &H0079C2&
       AutoResize = True
       Border = False
-    }
-    { !fondoactividad PictureBox
-      MoveScaled(0,0,122,77)
-      #Public = True
-      Picture = Picture["Images/TemaAzul/fondo.png"]
-      Stretch = True
     }
   }
   { !mnu_primaria2 Button
