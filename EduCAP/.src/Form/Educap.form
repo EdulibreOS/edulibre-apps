@@ -434,7 +434,8 @@
     { !lbl_sMateria Label
       MoveScaled(6,27,87,4)
       #Public = True
-      Font = Font["Bold,+2"]
+      Font = Font["Ubuntu,Bold,11"]
+      Foreground = &H4A4A4A&
     }
     { pnl_materias Panel
       MoveScaled(3,18,117,9)
@@ -529,7 +530,7 @@
   { lbl_edad Label
     MoveScaled(42.8571,18.5714,24,4)
     Font = Font["Ubuntu,Bold,15"]
-    Foreground = Color.Black
+    Foreground = &H4A4A4A&
   }
   { lbl_grados Label
     MoveScaled(27,32,24,9)
