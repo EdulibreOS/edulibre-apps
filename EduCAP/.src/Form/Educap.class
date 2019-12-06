@@ -30,16 +30,49 @@
 Public sTabActiva As String
 Public sNivelActivo As String
 
+Public Settings_App_Educap As New Settings(Desktop.ConfigDir &/ "Innova/Educap.conf")
+
+Public Sub Show_Name_App()
+  Dim sResult As String
+  lbl_app.Text = ""
+  Try sResult = Settings_App_Educap["Educap/Name_App"]
+  'Print Settings_App_Educap
+  'Print "Entro"
+  If Not IsNull(sResult) Then
+    Print sResult
+    lbl_app.Text = sResult
+  Endif
+  
+End
+
 Public Sub Form_Open()
+  'Obtener informacion de directorio
+  'Dim sResult As String
+  'Try sResult = Settings_App_Educap["Educap/Name_App"]
+  'Carga el Tema del SO
+  M_Theme.Get_Theme(EdulibCap)
   
-  active_pnl_grados(False)
-  active_pnl_portada(True)
-  active_pnl_grado(False)
-  active_pnl_actividades(False)
-  active_pnl_manuales(False)
-  active_pnl_nosotros(False)
+  'If Not IsNull(sResult) Then
+  '    EduCap.active_pnl_grados(False)
+  '    EduCap.active_pnl_portada(False)
+  '    EduCap.active_pnl_grado(False)
+  '    EduCap.active_pnl_actividades(True)
+  '    M_Core.LlenarGvInfoName(sResult)
   
-  sTabActiva = "1" 'Por Default esta seleccionado Actividades
+      'lbl_programaTitulo.Text = sResult
+  '    Try Settings_App_Educap["Educap/Name_App"] = ""
+  'Else
+      active_pnl_grados(False)
+      active_pnl_portada(True)
+      active_pnl_grado(False)
+      active_pnl_actividades(False)
+      active_pnl_manuales(False)
+      active_pnl_nosotros(False)
+  
+      sTabActiva = "1" 'Por Default esta seleccionado Actividades
+
+  'End If
+  
 End
 
 
@@ -114,6 +147,7 @@ If sTabActiva == "1" Then 'Actividades
   lbl_grados.Visible = True
   lbl_edad.Visible = True
   lblmnuprincipal.Text = "Primaria Basica"
+  fondogrado.Visible = True
   
   Else If sTabActiva == "2" Then 'Manuales
     
@@ -164,6 +198,7 @@ If sTabActiva == "1" Then 'Actividades
   lbl_grados.Visible = True
   lbl_edad.Visible = True
   lblmnuprincipal.Text = "Primaria Avanzada"  
+  fondogrado.Visible = True
   
   Else If sTabActiva == "2" Then 'Manuales
     
@@ -200,15 +235,13 @@ Public Sub active_pnl_grados(Estado As String)
   btn_quinto.Visible = Estado
   btn_sexto.Visible = Estado
   
-  lbl_titulo.Visible = Estado
-  
   pbox_icono.Visible = Estado
   lbl_titulo.Visible = Estado
   lbl_grados.Visible = Estado
   pbox_icono.Visible = Estado
   lbl_grados.Visible = Estado
   lbl_edad.Visible = Estado
- 
+  fondogrado.Visible = Estado
    
 End
 
@@ -218,16 +251,24 @@ Public Sub active_pnl_grado(Estado As String)
   btnregresar.Visible = Estado
   btn_regresar.Visible = Estado
   lbl_grado.Visible = Estado
-
+  fondogrado.Visible = Estado
 
 End
 
 Public Sub active_pnl_portada(Estado As String)
 
   pnl_portada.Visible = Estado
-  lbl_titulo.Visible = Estado
   
 End
+
+Public Sub active_pnl_menus(Estado As String)
+  
+  pnlmenu.Visible = Estado
+  mnu_primaria.Visible = Estado
+  mnu_primaria2.Visible = Estado
+  
+End
+
 
 Public Sub active_pnl_actividades(Estado As String)
   
@@ -236,8 +277,9 @@ Public Sub active_pnl_actividades(Estado As String)
   btn_comenzaract.Visible = Estado
   btn_comenzaract.Visible = Estado
   separador.Visible = Estado
-  scrollviewActividad.Visible = Estado
+  'scrollviewActividad.Visible = Estado
   btn_regresargrado.Visible = Estado
+  fondoactividad.Visible = Estado
 End
 
 Public Sub active_pnl_manuales(Estado As String)
@@ -402,7 +444,7 @@ Public Sub btn_regresar_Click()
 
   If lblmnuprincipal.Text == "Pre escolar"
     PrePrimaria()
-  Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
+  Else If lblmnuprincipal.Text == "Primaria Basica"  
     Primaria()
   Else 'Primaria2
     Primaria2()
@@ -415,7 +457,7 @@ Public Sub btnregresar_Click()
 
   If lblmnuprincipal.Text == "Pre escolar"
     PrePrimaria()
-  Else If lblmnuprincipal.Text == "Primaria Primer Ciclo"  
+  Else If lblmnuprincipal.Text == "Primaria Basica"  
     Primaria()
   Else 'Primaria2
     Primaria2
@@ -437,7 +479,7 @@ Public Sub btn_comenzaract_Click()
   
   url = EduCap.lblprogexe.Text
   If url <> Null And Exist(url) Then
-    Message.Info("El programa " & Educap.lbl_programaact.Text & " inciará en breve, por favor espere.", "OK")
+    Message.Info("El programa " & Educap.lbl_programaact.Text & " iniciará en breve, por favor espere.", "OK")
     Exec [url]
    Else 
     Message.Info("El programa " & EduCap.lbl_programaact.Text & " no se encuentra instalado.", "OK")
@@ -503,6 +545,7 @@ Public Sub btnActividades_Click()
   active_pnl_grados(False)
   active_pnl_manuales(False)
   active_pnl_portada(True)
+  active_pnl_menus(True)
   active_pnl_nosotros(False)
   
   sTabActiva = "1"
@@ -515,6 +558,7 @@ Public Sub btnManuales_Click()
   active_pnl_grado(False)
   active_pnl_grados(False)
   active_pnl_manuales(True)
+  active_pnl_menus(True)
   active_pnl_portada(False)
   active_pnl_nosotros(False)
   
@@ -572,5 +616,26 @@ Public Sub btnNosotros_Click()
 
   sTabActiva = "3"
   active_pnl_nosotros(True)
+  active_pnl_menus(False)
+  active_pnl_manuales(False)
 
 End
+
+Public Sub btn_descargaract_Click()
+
+  Dim url, manual, sManual As String
+  
+  If lblmanualexe.Text <> Null Then
+  sManual = lblidmanual.Text
+  url = Application.path & "/Tutorial/" & sManual & "/" & Educap.lblmanualexe.Text
+  manual = Educap.lbl_programaact.Text
+  Message.Info("El Tutorial de " & manual & " se abrirá en breve, por favor espere.", "OK")
+  Shell "evince " & url
+  
+  Else
+    
+    Message.Info("No existe manual para el programa " & Educap.lbl_programaact.Text, "OK")
+  Endif
+
+End
+
