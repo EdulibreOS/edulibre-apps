@@ -322,12 +322,11 @@ Public Sub LlenarGvInfo(id_actividad As String)
               		"tbl_grado g, " &
               		"tbl_materia m, " &
               		"tbl_nivel n, " &
-              		"tbl_programa p, " &
+              		"tbl_programa p left join tbl_tutorial tut on p.idtbl_programa = tut.id_programa, " &
               		"tbl_categoria c, " &
               		"tbl_competencia_grado cg, " &
               		"tbl_indicador_grado ig, " &
-              		"tbl_contenido cont, " &
-              		"tbl_tutorial tut " &
+              		"tbl_contenido cont " &
               "WHERE a.idtbl_actividad = " & id_actividad & " " &
               "AND a.idtbl_actividad = gm.id_actividad " &
               "AND gm.id_grado = g.idtbl_grado " &
@@ -335,7 +334,6 @@ Public Sub LlenarGvInfo(id_actividad As String)
               "AND g.id_nivel = n.idtbl_nivel " &
               Nivel & Grado & Materia &
               "AND a.id_programa = p.idtbl_programa " &
-              "AND tut.id_programa = p.idtbl_programa "
               "AND p.id_categoria = c.idtbl_categoria " &
               "AND cg.id_actividad = a.idtbl_actividad " &
               "AND ig.id_competencia_grado = cg.idtbl_competencia_grado " &
@@ -345,7 +343,7 @@ Public Sub LlenarGvInfo(id_actividad As String)
               "AND cg.id_materia = m.idtbl_materia "
               
               
-   Print consulta
+   'Print consulta
 
     cone = MDB_Connection.Conectar()
     
@@ -493,7 +491,7 @@ Public Sub LlenarGvInfoName(actividad As String)
               "AND cg.id_materia = m.idtbl_materia "
               
               
-   Print consulta
+   'Print consulta
 
     cone = MDB_Connection.Conectar()
     
