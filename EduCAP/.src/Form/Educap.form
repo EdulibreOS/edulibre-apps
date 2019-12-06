@@ -1,219 +1,134 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,146.2857,85.7143)
+  MoveScaled(0,0,145,86)
   Background = Color.White
   Transparent = True
   AutoResize = True
-  { !fondogrado PictureBox
-    MoveScaled(24,9,122,78)
-    #Public = True
-    Picture = Picture["Images/TemaAzul/fondo.png"]
-    Stretch = True
-  }
-  { pnl_grado Panel
-    MoveScaled(24,9,122,77)
+  { pnl_nosotros Panel
+    MoveScaled(24,9,122,79)
     Background = Color.White
-    { !pnlactividades Panel
-      MoveScaled(3,30,117,44)
-      #Public = True
-      Expand = True
-      Arrangement = Arrange.Vertical
-      Spacing = True
-      Margin = True
-      Padding = 5
-      { !IconViewActividades ScrollView
-        MoveScaled(2,1,114,42)
-        #Public = True
-        Expand = True
-        Arrangement = Arrange.Row
-        Margin = True
-        Border = False
-        ScrollBar = Scroll.Vertical
-      }
-    }
-    { btn_regresar Button
-      MoveScaled(10,1,22,4)
-      Font = Font["Ubuntu,12"]
+    Border = Border.Plain
+    { Label4 Label
+      MoveScaled(24,5,24,4)
+      Font = Font["Ubuntu,Bold,27"]
       Foreground = &H00ADB4&
-      Text = ("Regresar a grados")
-      Border = False
+      Text = ("EDUCAP")
     }
-    { pbox_grado PictureBox
-      MoveScaled(4,7,10.7143,10.7143)
+    { Label5 Label
+      MoveScaled(24,10,24,4)
+      Font = Font["Ubuntu,14"]
+      Foreground = &H0079C2&
+      Text = ("Sobre nosotros")
+    }
+    { txt_Nosotros TextLabel
+      MoveScaled(4,24,70,29)
+      Font = Font["Ubuntu,10"]
+      Foreground = &H4A4A4A&
+      Text = ("El Centro de Ayuda Edulibre es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\n<p>El Centro de Ayuda Edulibre no hubiera sido posible sin la ayuda de:</p></br>\n\n\n<h5><p><u><br>Asociación Civil Edulibre - Proyecto</h5></p></u>\n<h5><p><u>Fundación TIGO - Patrocinador Oficial</h5></p> </u>\n<h5><p><u>Jorge Recinos - Desarrollador</h5></p></u></br>\n")
+    }
+    { PictureBox3 PictureBox
+      MoveScaled(78,18,41,36)
+      Picture = Picture["Images/TemaAzul/foto equipo.png"]
       Stretch = True
     }
-    { !lbl_grado Label
-      MoveScaled(17,11,24,4)
-      #Public = True
-      Font = Font["14"]
+    { PictureBox4 PictureBox
+      MoveScaled(5,59,28,9)
+      Picture = Picture["Images/TemaAzul/Edulibre logo.png"]
+      Stretch = True
+    }
+    { PictureBox6 PictureBox
+      MoveScaled(44,55,16,16)
+      Picture = Picture["Images/TemaAzul/fundacion tigo logo.png"]
+      Stretch = True
+    }
+  }
+  { !pnl_manuales Panel
+    MoveScaled(24,9,122,77)
+    #Public = True
+    Background = Color.White
+    Expand = True
+    AutoResize = True
+    Border = Border.Plain
+    { Label3 Label
+      MoveScaled(64,18,24,4)
+      Font = Font["Ubuntu,Bold,11"]
+      Foreground = &H0079C2&
+      Text = ("Programa:")
+    }
+    { pbox_manuales PictureBox
+      MoveScaled(4,2,14,14)
+      Picture = Picture["Images/manuales.png"]
+      Stretch = True
+    }
+    { lbl_TManual Label
+      MoveScaled(20,5,46,4)
+      Font = Font["Ubuntu,Bold,21"]
       Foreground = &H00ADB4&
+      Text = ("Manuales de Programas")
     }
-    { !txt_busqueda TextBox
-      MoveScaled(82.5714,10,24,4)
+    { !Lbl_MGrado Label
+      MoveScaled(20,11,41,4)
       #Public = True
-      ToolTip = ("Busca por palabra clave")
+      Font = Font["Ubuntu,Bold,11"]
+      Foreground = &H4A4A4A&
     }
-    { !btnBuscar Button
-      MoveScaled(106.5714,10,14,4)
+    { !CmbMGrado ComboBox
+      MoveScaled(6,22,25.7143,5.7143)
       #Public = True
-      Picture = Picture["Images/TemaAzul/icono buscar.png"]
+      Font = Font["Ubuntu,9"]
+      Foreground = &H4A4A4A&
+      ToolTip = ("Grado")
+      Text = ("Grado")
     }
-    { pnl_materias Panel
-      MoveScaled(3,18,117,9)
+    { !CmbMMateria ComboBox
+      MoveScaled(35,22,25.7143,5.7143)
+      #Public = True
+      Font = Font["Ubuntu,9"]
+      Foreground = &H4A4A4A&
+      ToolTip = ("Materia")
+      Text = ("Materia")
+    }
+    { !CmbMPrograma ComboBox
+      MoveScaled(64,22,25.7143,5.7143)
+      #Public = True
+      Font = Font["Ubuntu,9"]
+      Foreground = &H4A4A4A&
+      ToolTip = ("Programa")
+      Text = ("Programa")
+    }
+    { !btnMBuscar Button
+      MoveScaled(95,22,14.2857,5.7143)
+      #Public = True
+      Font = Font["Ubuntu"]
+      Picture = Picture["Images/TemaAzul/buscar.png"]
+    }
+    { !scrollvManuales ScrollView
+      MoveScaled(0,30,121,47)
+      #Public = True
       Expand = True
       Arrangement = Arrange.Row
-      Spacing = True
       Margin = True
-      Padding = 5
-      { !IconViewMaterias ScrollView
-        MoveScaled(2,2,24,13)
-        #Public = True
-        Foreground = Color.White
-        Expand = True
-        Arrangement = Arrange.Row
-        Spacing = True
-        Margin = True
-        Padding = 8
-        Border = False
-        ScrollBar = Scroll.None
-      }
-    }
-    { btnregresar Button
-      MoveScaled(4,0,6,6)
-      Expand = True
-      Picture = Picture["Images/TemaAzul/back.png"]
       Border = False
+      ScrollBar = Scroll.Vertical
     }
-    { !lbl_selectmateria Label
-      MoveScaled(43,12,24,4)
-      #Public = True
-      Visible = False
+    { Label1 Label
+      MoveScaled(7,18,24,4)
+      Font = Font["Ubuntu,Bold,11"]
+      Foreground = &H0079C2&
+      Text = ("Grado:")
     }
-    { !lbl_sMateria Label
-      MoveScaled(6,27,87,4)
-      #Public = True
-      Font = Font["Bold,+2"]
+    { Label2 Label
+      MoveScaled(35,18,24,4)
+      Font = Font["Ubuntu,Bold,11"]
+      Foreground = &H0079C2&
+      Text = ("Materia:")
     }
-  }
-  { pbox_icono PictureBox
-    MoveScaled(28,13,12,12)
-    Visible = False
-    Picture = Picture["Images/icono_cubo.png"]
-    Stretch = True
-  }
-  { btn_primero Button
-    MoveScaled(41,41,28.5714,28.5714)
-    Visible = False
-    AutoResize = True
-    Picture = Picture["Images/Grados/1ro.png"]
-    Border = False
-  }
-  { btnActividades Button
-    MoveScaled(98,0,16,9)
-    Font = Font["Ubuntu,Bold,12"]
-    Background = Color.SelectedForeground
-    Text = ("Actividades")
-    Border = False
-  }
-  { btnNosotros Button
-    MoveScaled(130,0,16,9)
-    Font = Font["Ubuntu,Bold,12"]
-    Text = ("Nosotros")
-    Border = False
-  }
-  { pnlmenu Panel
-    MoveScaled(0,9,24,77)
-    Background = Color.Cyan
-    { !PictureBox2 PictureBox
-      MoveScaled(0,0,24,77)
-      #Public = True
-      Picture = Picture["Images/TemaAzul/Fondo_barra_lateral.png"]
-    }
-    { mnu_preprimaria Button
-      MoveScaled(0,26,24,11)
-      Font = Font["Ubuntu,Bold,12"]
-      Foreground = Color.White
-      Text = ("Preprimaria")
-      Border = False
-    }
-    { PictureBox8 PictureBox
-      MoveScaled(4,5,16,16)
-      Picture = Picture["Images/Personaje - Azul.png"]
-      Stretch = True
-    }
-  }
-  { PictureBox1 PictureBox
-    MoveScaled(5,0,31,8)
-    Picture = Picture["Images/LogoEducap.png"]
-    Stretch = True
-  }
-  { mnu_primaria Button
-    MoveScaled(0,46,24,11)
-    Font = Font["Ubuntu,Bold,12"]
-    Foreground = Color.White
-    Text = ("Primaria\nPrimer Ciclo")
-    Border = False
-  }
-  { lbl_titulo Label
-    MoveScaled(42.8571,12.8571,53,7)
-    Font = Font["Ubuntu,Bold,21"]
-    Foreground = &H00ADB4&
-  }
-  { lbl_edad Label
-    MoveScaled(42.8571,18.5714,24,4)
-    Font = Font["Ubuntu,Bold,15"]
-    Foreground = Color.Black
-  }
-  { lbl_grados Label
-    MoveScaled(27,32,24,9)
-    Visible = False
-    Font = Font["Bold,+3"]
-    Text = ("Grados")
-  }
-  { btn_segundo Button
-    MoveScaled(77,41,28.5714,28.5714)
-    Visible = False
-    Picture = Picture["Images/Grados/2do.png"]
-    Border = False
-  }
-  { btn_tercero Button
-    MoveScaled(113,41,28.5714,28.5714)
-    Visible = False
-    Picture = Picture["Images/Grados/3ro.png"]
-    Border = False
-  }
-  { btn_cuarto Button
-    MoveScaled(41,41,28.5714,28.5714)
-    Visible = False
-    Picture = Picture["Images/Grados/4to.png"]
-    Border = False
-  }
-  { btn_quinto Button
-    MoveScaled(77,41,28.5714,28.5714)
-    Visible = False
-    Picture = Picture["Images/Grados/5to.png"]
-    Border = False
-  }
-  { btn_sexto Button
-    MoveScaled(113,41,28.5714,28.5714)
-    Visible = False
-    Picture = Picture["Images/Grados/6to.png"]
-    Border = False
-  }
-  { btn_preprimaria Button
-    MoveScaled(41,41,28.5714,28.5714)
-    Visible = False
-    Text = ("PrePrimaria")
-  }
-  { !lblmnuprincipal Label
-    MoveScaled(60,2,24,4)
-    #Public = True
-    Visible = False
   }
   { pnl_portada Panel
     MoveScaled(24,9,122,78)
     Background = Color.White
+    Border = Border.Plain
     { lbl_portada2 Label
       MoveScaled(10,12,50,4)
       Font = Font["Ubuntu,Bold,21"]
@@ -222,7 +137,8 @@
     }
     { lbl_portada3 Label
       MoveScaled(10,20,71,14)
-      Font = Font["Ubuntu,Bold,15"]
+      Font = Font["Ubuntu,15"]
+      Foreground = &H4A4A4A&
       Text = ("Selecciona del menu izquierdo el nivel que\ndeseas para descubrir  las diferentes\nactividades por grado\n")
     }
     { pbox_portada PictureBox
@@ -251,36 +167,30 @@
     { Label9 Label
       MoveScaled(25,41,24,4)
       Font = Font["Ubuntu,Bold,12"]
+      Foreground = &H4A4A4A&
       Text = ("6 años")
     }
     { Label10 Label
       MoveScaled(35,47,24,4)
       Font = Font["Ubuntu,Bold,12"]
+      Foreground = &H4A4A4A&
       Text = ("7 - 9 años")
     }
     { Label11 Label
       MoveScaled(37,53,24,4)
       Font = Font["Ubuntu,Bold,12"]
+      Foreground = &H4A4A4A&
       Text = ("10 - 12 años")
     }
   }
-  { Panel1 Panel
-    MoveScaled(114,0,16.8571,8.8571)
-    { btnManuales Button
-      MoveScaled(0,0,16,9)
-      Font = Font["Ubuntu,Bold,12"]
-      Background = Color.SelectedForeground
-      Text = ("Manuales")
-      Border = False
-    }
-  }
   { !pnl_actividades Panel
-    MoveScaled(24,9,122,77)
+    MoveScaled(24,9,122,78)
     #Public = True
     Expand = True
     AutoResize = True
+    Border = Border.Plain
     { !fondoactividad PictureBox
-      MoveScaled(0,0,122,77)
+      MoveScaled(0,0,122,78)
       #Public = True
       Picture = Picture["Images/TemaAzul/fondo.png"]
       Stretch = True
@@ -306,7 +216,7 @@
       MoveScaled(18,10,24,4)
       #Public = True
       Font = Font["Ubuntu,Bold,12"]
-      Foreground = &H00ADB4&
+      Foreground = &H4A4A4A&
     }
     { !btn_comenzaract Button
       MoveScaled(90,7,29,4)
@@ -317,6 +227,7 @@
       MoveScaled(92,11,26,4)
       #Public = True
       Font = Font["Underline,+3"]
+      Foreground = &H4A4A4A&
       Text = ("Descargar Manual")
       Border = False
     }
@@ -340,6 +251,7 @@
       MoveScaled(2,15,86,7)
       #Public = True
       Font = Font["Ubuntu,10"]
+      Foreground = &H4A4A4A&
     }
     { !lblmanualexe Label
       MoveScaled(53,18,24,4)
@@ -359,22 +271,24 @@
       Text = ("Nivel")
     }
     { !pboxAct1 PictureBox
-      MoveScaled(56,25,31.4286,24.2857)
+      MoveScaled(54,25,31.4286,24.2857)
       #Public = True
       Stretch = True
     }
     { !pboxAct2 PictureBox
-      MoveScaled(89,25,31.4286,24.2857)
+      MoveScaled(88,25,31.4286,24.2857)
       #Public = True
       Stretch = True
     }
     { !lblACategoria Label
       MoveScaled(1,28,24,4)
       #Public = True
+      Foreground = &H4A4A4A&
     }
     { !lblANivel Label
       MoveScaled(24,28,28,4)
       #Public = True
+      Foreground = &H4A4A4A&
     }
     { lblTGrado Label
       MoveScaled(1,33,24,4)
@@ -391,10 +305,12 @@
     { !lblAGrado Label
       MoveScaled(1,36,24,4)
       #Public = True
+      Foreground = &H4A4A4A&
     }
     { !lblAMateria Label
       MoveScaled(24,36,28,4)
       #Public = True
+      Foreground = &H4A4A4A&
     }
     { lblTEtiqueta Label
       MoveScaled(1,41,24,4)
@@ -411,14 +327,17 @@
     { !lblAEtiqueta Label
       MoveScaled(1,44,24,4)
       #Public = True
+      Foreground = &H4A4A4A&
     }
     { !lblAProgra Label
       MoveScaled(24,44,28,4)
       #Public = True
+      Foreground = &H4A4A4A&
     }
     { lblTCompetencias Label
       MoveScaled(1,49,24,4)
       Font = Font["Ubuntu,Bold,15"]
+      Foreground = &H4A4A4A&
       Text = ("Competencias")
     }
     { VBox1 VBox
@@ -428,6 +347,7 @@
         MoveScaled(52,1,16,214.2857)
         #Public = True
         Font = Font["Ubuntu,10"]
+        Foreground = &H4A4A4A&
         Expand = True
         Mode = Select.Single
         Padding = 0
@@ -446,6 +366,229 @@
       Visible = False
     }
   }
+  { pnl_grado Panel
+    MoveScaled(24,9,122,77)
+    Border = Border.Plain
+    { !fondogrado PictureBox
+      MoveScaled(0,0,122,77)
+      #Public = True
+      Picture = Picture["Images/TemaAzul/fondo.png"]
+    }
+    { !pnlactividades Panel
+      MoveScaled(3,30,117,44)
+      #Public = True
+      Expand = True
+      Arrangement = Arrange.Vertical
+      Spacing = True
+      Margin = True
+      Padding = 5
+      { !IconViewActividades ScrollView
+        MoveScaled(2,1,114,42)
+        #Public = True
+        Expand = True
+        Arrangement = Arrange.Row
+        Margin = True
+        Border = False
+        ScrollBar = Scroll.Vertical
+      }
+    }
+    { btn_regresar Button
+      MoveScaled(10,1,22,4)
+      Font = Font["Ubuntu,12"]
+      Foreground = &H00ADB4&
+      Text = ("Regresar a grados")
+      Border = False
+    }
+    { pbox_grado PictureBox
+      MoveScaled(4,6,10.7143,10.7143)
+      Stretch = True
+    }
+    { !lbl_grado Label
+      MoveScaled(17,10,24,4)
+      #Public = True
+      Font = Font["Ubuntu,Bold,21"]
+      Foreground = &H00ADB4&
+    }
+    { !txt_busqueda TextBox
+      MoveScaled(82.5714,10,24,4)
+      #Public = True
+      Font = Font["Ubuntu"]
+      ToolTip = ("Busca por palabra clave")
+    }
+    { !btnBuscar Button
+      MoveScaled(106.5714,10,12,4)
+      #Public = True
+      Picture = Picture["Images/TemaAzul/icono buscar.png"]
+    }
+    { btnregresar Button
+      MoveScaled(4,0,6,6)
+      Expand = True
+      Picture = Picture["Images/TemaAzul/back.png"]
+      Border = False
+    }
+    { !lbl_selectmateria Label
+      MoveScaled(43,12,24,4)
+      #Public = True
+      Visible = False
+    }
+    { !lbl_sMateria Label
+      MoveScaled(6,27,87,4)
+      #Public = True
+      Font = Font["Bold,+2"]
+    }
+    { pnl_materias Panel
+      MoveScaled(3,18,117,9)
+      Font = Font["Ubuntu,9"]
+      Foreground = &H4A4A4A&
+      Expand = True
+      Arrangement = Arrange.Row
+      Spacing = True
+      Margin = True
+      Padding = 5
+      { !IconViewMaterias ScrollView
+        MoveScaled(2,2,24,13)
+        #Public = True
+        Foreground = Color.White
+        Expand = True
+        Arrangement = Arrange.Row
+        Spacing = True
+        Margin = True
+        Padding = 8
+        Border = False
+        ScrollBar = Scroll.None
+      }
+    }
+  }
+  { pbox_icono PictureBox
+    MoveScaled(28,13,12,12)
+    Visible = False
+    Picture = Picture["Images/icono_cubo.png"]
+    Stretch = True
+  }
+  { btn_primero Button
+    MoveScaled(43.8571,41,28.5714,28.5714)
+    Visible = False
+    AutoResize = True
+    Picture = Picture["Images/Grados/1ro.png"]
+    Border = False
+  }
+  { btnActividades Button
+    MoveScaled(98,-1,16,10.2857)
+    Font = Font["Ubuntu,Bold,12"]
+    Background = Color.SelectedForeground
+    Foreground = &H4A4A4A&
+    Text = ("Actividades")
+    Border = False
+  }
+  { btnNosotros Button
+    MoveScaled(129.2857,-1,16,10.2857)
+    Font = Font["Ubuntu,Bold,12"]
+    Foreground = &H4A4A4A&
+    Text = ("Nosotros")
+    Border = False
+  }
+  { pnlmenu Panel
+    MoveScaled(0,9,24,77)
+    Background = Color.Cyan
+    { !PictureBox2 PictureBox
+      MoveScaled(0,0,24,77)
+      #Public = True
+      Picture = Picture["Images/TemaAzul/Fondo_barra_lateral.png"]
+      Border = Border.Plain
+    }
+    { mnu_preprimaria Button
+      MoveScaled(0,26,24,11)
+      Font = Font["Ubuntu,Bold,12"]
+      Foreground = Color.White
+      Text = ("Preprimaria")
+      Border = False
+    }
+    { PictureBox8 PictureBox
+      MoveScaled(4,5,16,16)
+      Picture = Picture["Images/Personaje - Azul.png"]
+      Stretch = True
+    }
+  }
+  { PictureBox1 PictureBox
+    MoveScaled(5,1.5714,28.7143,5.7143)
+    Picture = Picture["Images/LogoEducap.png"]
+    Stretch = True
+  }
+  { mnu_primaria Button
+    MoveScaled(0,46,24,11)
+    Font = Font["Ubuntu,Bold,12"]
+    Foreground = Color.White
+    Text = ("Primaria\nPrimer Ciclo")
+    Border = False
+  }
+  { lbl_titulo Label
+    MoveScaled(42.8571,12.8571,53,7)
+    Font = Font["Ubuntu,Bold,21"]
+    Foreground = &H00ADB4&
+  }
+  { lbl_edad Label
+    MoveScaled(42.8571,18.5714,24,4)
+    Font = Font["Ubuntu,Bold,15"]
+    Foreground = Color.Black
+  }
+  { lbl_grados Label
+    MoveScaled(27,32,24,9)
+    Visible = False
+    Font = Font["Bold,15"]
+    Foreground = &H4A4A4A&
+    Text = ("Grados")
+  }
+  { btn_segundo Button
+    MoveScaled(77,41,28.5714,28.5714)
+    Visible = False
+    Picture = Picture["Images/Grados/2do.png"]
+    Border = False
+  }
+  { btn_tercero Button
+    MoveScaled(110.1429,41,28.5714,28.5714)
+    Visible = False
+    Picture = Picture["Images/Grados/3ro.png"]
+    Border = False
+  }
+  { btn_cuarto Button
+    MoveScaled(43.8571,41,28.5714,28.5714)
+    Visible = False
+    Picture = Picture["Images/Grados/4to.png"]
+    Border = False
+  }
+  { btn_quinto Button
+    MoveScaled(77,41,28.5714,28.5714)
+    Visible = False
+    Picture = Picture["Images/Grados/5to.png"]
+    Border = False
+  }
+  { btn_sexto Button
+    MoveScaled(110.1429,41,28.5714,28.5714)
+    Visible = False
+    Picture = Picture["Images/Grados/6to.png"]
+    Border = False
+  }
+  { btn_preprimaria Button
+    MoveScaled(41,41,28.5714,28.5714)
+    Visible = False
+    Text = ("PrePrimaria")
+  }
+  { !lblmnuprincipal Label
+    MoveScaled(60,2,24,4)
+    #Public = True
+    Visible = False
+  }
+  { Panel1 Panel
+    MoveScaled(114,0,16.8571,8.8571)
+    { btnManuales Button
+      MoveScaled(0,-1,16,10.2857)
+      Font = Font["Ubuntu,Bold,12"]
+      Background = Color.SelectedForeground
+      Foreground = &H4A4A4A&
+      Text = ("Manuales")
+      Border = False
+    }
+  }
   { !mnu_primaria2 Button
     MoveScaled(0,57,24,11)
     #Public = True
@@ -453,128 +596,5 @@
     Foreground = Color.White
     Text = ("Primaria\nSegundo Ciclo")
     Border = False
-  }
-  { pnl_nosotros Panel
-    MoveScaled(24,9,122,79)
-    Background = Color.White
-    { pbox_nosotros PictureBox
-      MoveScaled(4,3,16,16)
-      Picture = Picture["Images/TemaAzul/foto equipo.png"]
-      Stretch = True
-    }
-    { Label4 Label
-      MoveScaled(24,5,24,4)
-      Font = Font["Ubuntu,Bold,27"]
-      Foreground = &H00ADB4&
-      Text = ("EDUCAP")
-    }
-    { Label5 Label
-      MoveScaled(24,10,24,4)
-      Font = Font["Ubuntu,14"]
-      Foreground = &H0079C2&
-      Text = ("Sobre nosotros")
-    }
-    { txt_Nosotros TextLabel
-      MoveScaled(4,24,70,29)
-      Font = Font["Ubuntu,10"]
-      Text = ("El Centro de Ayuda Edulibre es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\n<p>El Centro de Ayuda Edulibre no hubiera sido posible sin la ayuda de:</p></br>\n\n\n<h5><p><u><br>Asociación Civil Edulibre - Proyecto</h5></p></u>\n<h5><p><u>Fundación TIGO - Patrocinador Oficial</h5></p> </u>\n<h5><p><u>Jorge Recinos - Desarrollador</h5></p></u></br>\n")
-    }
-    { PictureBox3 PictureBox
-      MoveScaled(82,18,16,36)
-      Stretch = True
-    }
-    { PictureBox4 PictureBox
-      MoveScaled(6,56,16,16)
-      Stretch = True
-    }
-    { PictureBox5 PictureBox
-      MoveScaled(30,56,16,16)
-      Stretch = True
-    }
-    { PictureBox6 PictureBox
-      MoveScaled(55,56,16,16)
-      Stretch = True
-    }
-    { PictureBox7 PictureBox
-      MoveScaled(77,56,16,16)
-      Stretch = True
-    }
-  }
-  { !pnl_manuales Panel
-    MoveScaled(24,9,122,77)
-    #Public = True
-    Background = Color.White
-    Expand = True
-    AutoResize = True
-    { Label3 Label
-      MoveScaled(64,18,24,4)
-      Font = Font["Ubuntu,Bold,11"]
-      Foreground = &H0079C2&
-      Text = ("Programa:")
-    }
-    { pbox_manuales PictureBox
-      MoveScaled(2,1,16,16)
-      Picture = Picture["Images/manuales.png"]
-      Stretch = True
-    }
-    { lbl_TManual Label
-      MoveScaled(20,5,43,4)
-      Font = Font["Ubuntu,Bold,17"]
-      Foreground = &H00ADB4&
-      Text = ("Manuales de Programas")
-    }
-    { !Lbl_MGrado Label
-      MoveScaled(20,11,41,4)
-      #Public = True
-      Font = Font["Ubuntu,Bold,11"]
-      Foreground = &H0079C2&
-    }
-    { !CmbMGrado ComboBox
-      MoveScaled(6,22,25.7143,5.7143)
-      #Public = True
-      Font = Font["Ubuntu,9"]
-      ToolTip = ("Grado")
-      Text = ("Grado")
-    }
-    { !CmbMMateria ComboBox
-      MoveScaled(35,22,25.7143,5.7143)
-      #Public = True
-      Font = Font["Ubuntu,9"]
-      ToolTip = ("Materia")
-      Text = ("Materia")
-    }
-    { !CmbMPrograma ComboBox
-      MoveScaled(64,22,25.7143,5.7143)
-      #Public = True
-      Font = Font["Ubuntu,9"]
-      ToolTip = ("Programa")
-      Text = ("Programa")
-    }
-    { !btnMBuscar Button
-      MoveScaled(95,22,14.2857,5.7143)
-      #Public = True
-      Picture = Picture["Images/TemaAzul/buscar.png"]
-    }
-    { !scrollvManuales ScrollView
-      MoveScaled(0,30,121,47)
-      #Public = True
-      Expand = True
-      Arrangement = Arrange.Row
-      Margin = True
-      Border = False
-      ScrollBar = Scroll.Vertical
-    }
-    { Label1 Label
-      MoveScaled(7,18,24,4)
-      Font = Font["Ubuntu,Bold,11"]
-      Foreground = &H0079C2&
-      Text = ("Grado:")
-    }
-    { Label2 Label
-      MoveScaled(35,18,24,4)
-      Font = Font["Ubuntu,Bold,11"]
-      Foreground = &H0079C2&
-      Text = ("Materia:")
-    }
   }
 }
