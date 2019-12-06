@@ -245,7 +245,7 @@ Public Sub ButtonManuales_Click()
   Dim consulta, url, manual As String
   
   sManual = Last.Tag
-  'Print sManual
+  'Print sManual test
   
   consulta = "SELECT url, nombre, id_programa FROM tbl_tutorial WHERE idtbl_tutorial = " & sManual
   cone = MDB_Connection.Conectar()
