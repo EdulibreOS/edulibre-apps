@@ -221,7 +221,6 @@
     { !btn_comenzaract Button
       MoveScaled(90,7,29,4)
       #Public = True
-      Picture = Picture["Images/TemaAzul/comenzar actividad.png"]
     }
     { !btn_descargaract Button
       MoveScaled(92,11,26,4)
@@ -482,7 +481,7 @@
     Border = False
   }
   { btnNosotros Button
-    MoveScaled(129.2857,-1,16,10.2857)
+    MoveScaled(129,-1,16,10.2857)
     Font = Font["Ubuntu,Bold,12"]
     Foreground = &H4A4A4A&
     Text = ("Nosotros")
