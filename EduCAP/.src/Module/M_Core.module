@@ -246,6 +246,7 @@ Public Sub ButtonManuales_Click()
   
   sManual = Last.Tag
   'Print sManual test
+  'Cambio extra
   
   consulta = "SELECT url, nombre, id_programa FROM tbl_tutorial WHERE idtbl_tutorial = " & sManual
   cone = MDB_Connection.Conectar()
