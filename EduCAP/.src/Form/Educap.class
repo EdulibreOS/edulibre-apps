@@ -618,6 +618,10 @@ Public Sub btnNosotros_Click()
   active_pnl_nosotros(True)
   active_pnl_menus(False)
   active_pnl_manuales(False)
+  active_pnl_actividades(False)
+  active_pnl_grado(False)
+  active_pnl_grados(False)
+  active_pnl_portada(False)
 
 End
 
