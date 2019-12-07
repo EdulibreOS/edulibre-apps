@@ -587,7 +587,7 @@
       Stretch = True
     }
     { PictureBox6 PictureBox
-      MoveScaled(92,42,16,16)
+      MoveScaled(92,40,16,16)
       Picture = Picture["Images/TemaAzul/fundacion tigo logo.png"]
       Stretch = True
     }
