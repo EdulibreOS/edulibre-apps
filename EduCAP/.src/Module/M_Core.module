@@ -45,9 +45,10 @@ Public Sub LLenar_Materias(Optional grado As String)
               "AND a.id_materia = c.idtbl_materia " &
               "AND b.descripcion = '" & grado & "' " &
               "ORDER BY c.descripcion"
-  'Print consulta
+  Print consulta
     cone = MDB_Connection.Conectar()
             rs = cone.Exec(consulta)
+            Educap.IconViewMaterias.Children.Clear
                While (rs.Available)
                  ImgBtnAppsBook = New PushButton(Educap.IconViewMaterias) As "ButtonMaterias"
                  ImgBtnAppsBook.w = 90
