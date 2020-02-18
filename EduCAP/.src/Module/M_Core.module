@@ -270,12 +270,14 @@ Public Sub ObtenerImagen(id_actividad As String)
   'EdulibCap.picbox2.Picture = Picture.Load(Application.path &/ "Images/2/2.png")
   
   'Limpiar imagenes
-  Try Educap.pboxAct1.Picture.Clear
-  Try Educap.pboxAct2.Picture.Clear
+  Educap.pboxAct1.Picture = Picture.Load(Desktop.ConfigDir &/ "Innova/Educap/Images/nodisponible.png")
+  Educap.pboxAct2.Picture = Picture.Load(Desktop.ConfigDir &/ "Innova/Educap/Images/nodisponible.png")
   
   'Estos de abajo son lo que deben de quedar.
   Try EduCap.pboxAct1.Picture = Picture.Load(Desktop.ConfigDir &/ "/Innova/Educap/Images/" &/ id_actividad &/ "1.png")
   Try Educap.pboxAct2.Picture = Picture.Load(Desktop.ConfigDir &/ "/Innova/Educap/Images/" &/ id_actividad &/ "2.png")
+  
+  Print id_actividad
   
 End
 
@@ -349,9 +351,11 @@ Public Sub LlenarGvInfo(id_actividad As String)
               "AND cg.id_materia = m.idtbl_materia "
               
               
-   'Print consulta
+   'Print id_actividad
 
     cone = MDB_Connection.Conectar()
+            
+            Educap.tvCompetencias.Clear()
     
             'EdulibCap.lst_iconos[id_actividad].Selected = True
             EduCap.tvCompetencias.Columns.count = 6
@@ -497,7 +501,7 @@ Public Sub LlenarGvInfoName(actividad As String)
               "AND cg.id_materia = m.idtbl_materia "
               
               
-   'Print consulta
+   'Print actividad
 
     cone = MDB_Connection.Conectar()
     
