@@ -378,44 +378,6 @@
     Text = ("Primaria\nSegundo Ciclo")
     Border = False
   }
-  { pnl_nosotros Panel
-    MoveScaled(24,9,122,79)
-    Background = Color.White
-    Border = Border.Plain
-    { Label4 Label
-      MoveScaled(24,5,24,4)
-      Font = Font["Ubuntu,Bold,27"]
-      Foreground = &H00ADB4&
-      Text = ("EDUCAP")
-    }
-    { Label5 Label
-      MoveScaled(24,10,24,4)
-      Font = Font["Ubuntu,14"]
-      Foreground = &H0079C2&
-      Text = ("Sobre nosotros")
-    }
-    { txt_Nosotros TextLabel
-      MoveScaled(4,24,70,29)
-      Font = Font["Ubuntu,10"]
-      Foreground = &H4A4A4A&
-      Text = ("El Centro de Ayuda Edulibre es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\n<p>El Centro de Ayuda Edulibre no hubiera sido posible sin la ayuda de:</p></br>\n\n\n<h5><p><u><br>Asociación Civil Edulibre - Proyecto</h5></p></u>\n<h5><p><u>Fundación TIGO - Patrocinador Oficial</h5></p> </u>\n<h5><p><u>Jorge Recinos - Desarrollador</h5></p></u></br>\n")
-    }
-    { PictureBox4 PictureBox
-      MoveScaled(85,16,28,9)
-      Picture = Picture["Images/TemaAzul/Edulibre logo.png"]
-      Stretch = True
-    }
-    { PictureBox6 PictureBox
-      MoveScaled(89,36,22,21)
-      Picture = Picture["Images/FundaTigo.png"]
-      Stretch = True
-    }
-    { PictureBox3 PictureBox
-      MoveScaled(3,3,16,16)
-      Picture = Picture["Images/edulogo.jpeg"]
-      Stretch = True
-    }
-  }
   { !pnl_actividades Panel
     MoveScaled(24,9,122,78)
     #Public = True
@@ -597,6 +559,44 @@
       MoveScaled(55,2,24,4)
       #Public = True
       Visible = False
+    }
+  }
+  { pnl_nosotros Panel
+    MoveScaled(24,9,122,79)
+    Background = Color.White
+    Border = Border.Plain
+    { Label4 Label
+      MoveScaled(24,5,24,4)
+      Font = Font["Ubuntu,Bold,27"]
+      Foreground = &H00ADB4&
+      Text = ("EDUCAP")
+    }
+    { Label5 Label
+      MoveScaled(24,10,24,4)
+      Font = Font["Ubuntu,14"]
+      Foreground = &H0079C2&
+      Text = ("Sobre nosotros")
+    }
+    { txt_Nosotros TextLabel
+      MoveScaled(4,24,70,29)
+      Font = Font["Ubuntu,10"]
+      Foreground = &H4A4A4A&
+      Text = ("El Centro de Ayuda Edulibre es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\n<p>El Centro de Ayuda Edulibre no hubiera sido posible sin la ayuda de:</p></br>\n\n\n<h5><p><u><br>Asociación Civil Edulibre - Proyecto</h5></p></u>\n<h5><p><u>Fundación TIGO - Patrocinador Oficial</h5></p> </u>\n<h5><p><u>Jorge Recinos - Desarrollador</h5></p></u></br>\n")
+    }
+    { PictureBox4 PictureBox
+      MoveScaled(85,16,31,20)
+      Picture = Picture["Images/Edulibre.png"]
+      Stretch = True
+    }
+    { PictureBox6 PictureBox
+      MoveScaled(89,36,22,21)
+      Picture = Picture["Images/FundaTigo.png"]
+      Stretch = True
+    }
+    { PictureBox3 PictureBox
+      MoveScaled(3,3,16,16)
+      Picture = Picture["Images/edulogo.jpeg"]
+      Stretch = True
     }
   }
 }
