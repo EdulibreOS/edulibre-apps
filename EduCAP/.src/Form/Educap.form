@@ -584,7 +584,7 @@
       Text = ("El Centro de Ayuda Edulibre es una herramienta de apoyo para maestros y alumnos, se encuentra alineada al Curriculo Nacional Base de Guatemala (CNB).</br>\n\n<p>El Centro de Ayuda Edulibre no hubiera sido posible sin la ayuda de:</p></br>\n\n\n<h5><p><u><br>Asociación Civil Edulibre - Proyecto</h5></p></u>\n<h5><p><u>Fundación TIGO - Patrocinador Oficial</h5></p> </u>\n<h5><p><u>Jorge Recinos - Desarrollador</h5></p></u></br>\n")
     }
     { PictureBox4 PictureBox
-      MoveScaled(85,16,31,20)
+      MoveScaled(90,16,26,20)
       Picture = Picture["Images/Edulibre.png"]
       Stretch = True
     }
