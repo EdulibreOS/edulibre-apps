@@ -80,6 +80,7 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
   Dim cant_palabras As Integer
   Dim Palabras As String[]
   Educap.IconViewActividades.Children.Clear
+  Educap.IconViewActividades.Refresh
   
   Contenido = Trim(M_Busqueda.RemoveChar(Contenido, "'"))
 
@@ -148,7 +149,7 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
                    rs.MoveNext
                Wend
         MDB_Connection.Desconectar(cone)
-    
+    Print consulta
   Endif
   
 End
@@ -227,6 +228,7 @@ Public Sub ButtonMaterias_Click()
   Llenar_Actividades(Educap.lblmnuprincipal.Text, Educap.lbl_grado.Text, Educap.lbl_selectmateria.Text, "")
   Educap.txt_busqueda.Text = ""
   Educap.lbl_sMateria.Text = sMateria
+  'Print sMateria
 End
 
 Public Sub ButtonActividades_Click()
@@ -277,7 +279,7 @@ Public Sub ObtenerImagen(id_actividad As String)
   Try EduCap.pboxAct1.Picture = Picture.Load(Desktop.ConfigDir &/ "/Innova/Educap/Images/" &/ id_actividad &/ "1.png")
   Try Educap.pboxAct2.Picture = Picture.Load(Desktop.ConfigDir &/ "/Innova/Educap/Images/" &/ id_actividad &/ "2.png")
   
-  Print id_actividad
+  'Print id_actividad
   
 End
 

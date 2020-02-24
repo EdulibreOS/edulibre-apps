@@ -39,7 +39,7 @@ Public Sub Show_Name_App()
   'Print Settings_App_Educap
   'Print "Entro"
   If Not IsNull(sResult) Then
-    Print sResult
+    'Print sResult
     lbl_app.Text = sResult
   Endif
   
@@ -501,8 +501,12 @@ Public Sub btnregresargrado_Click()
 End
 
 Public Sub Salir_Act()
-  
+
+    
     Dim opcion As String
+    Educap.lbl_selectmateria.Text = ""
+    Educap.lbl_sMateria.Text = ""
+    
   opcion = lbl_grado.Text
   
   If opcion == "Pre-escolar" Then
