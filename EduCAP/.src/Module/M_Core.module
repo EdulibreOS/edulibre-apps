@@ -193,7 +193,7 @@ Public Sub Llenar_Manuales(Grado As String, Materia As String, Programa As Strin
                "AND gm.id_grado = gra.idtbl_grado " &
                "AND gm.id_materia = mat.idtbl_materia " & consultag & consultam & consultap &
                " ORDER BY tut.descripcion "
-            Print consulta
+            'Print consulta
             cone = MDB_Connection.Conectar()
             rs = cone.Exec(consulta)
             While (rs.Available)
