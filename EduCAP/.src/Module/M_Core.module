@@ -149,7 +149,7 @@ Public Sub Llenar_Actividades(Nivel As String, Grado As String, Materia As Strin
                    rs.MoveNext
                Wend
         MDB_Connection.Desconectar(cone)
-    Print consulta
+    'Print consulta
   Endif
   
 End
